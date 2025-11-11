@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Proyectos Menores - Portal MaulePro</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'institucional-azul': '#1e3c72',
+                        'institucional-azul-claro': '#2563eb',
+                        'institucional-azul-oscuro': '#1e40af',
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+        }
+        .nav-link.active {
+            background-color: #1e3c72;
+            border-bottom-color: white;
+        }
+    </style>
+</head>
+<body class="bg-gray-50 text-gray-900">
+    <!-- Header -->
+    <header class="bg-white border-b-2 border-gray-300 shadow-md">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center py-4">
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <a href="../../index.html" class="flex items-center gap-2 sm:gap-4 hover:opacity-90">
+                        <img src="../../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="h-16 sm:h-20 md:h-28 w-auto">
+                        <div class="hidden sm:block">
+                            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-institucional-azul">MaulePro</h1>
+                            <p class="text-xs sm:text-sm text-gray-600">Gobierno Regional del Maule</p>
+                        </div>
+                    </a>
+                </div>
+                <div class="flex items-center gap-2 sm:gap-4">
+                    <!-- Search Icon -->
+                    <button id="searchBtn" class="p-2 text-institucional-azul hover:bg-gray-100 border-2 border-institucional-azul">
+                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                        </svg>
+                    </button>
+                    <!-- Mobile Menu Button -->
+                    <button id="mobileMenuBtn" class="md:hidden p-2 bg-white hover:bg-gray-100 border-2 border-institucional-azul">
+                        <svg class="w-6 h-6 text-institucional-azul" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
+                            <path id="closeIcon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                        </svg>
+                    </button>
+                    <a href="../../login.html" id="loginBtn" class="hidden md:block px-3 sm:px-6 py-1 sm:py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul text-xs sm:text-sm">Ingresar / Registrar</a>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="bg-institucional-azul text-white border-b-2 border-institucional-azul">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <!-- Desktop Menu -->
+            <div class="hidden md:flex flex-wrap">
+                <a href="../../index.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Home</a>
+                <a href="programas.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Programas</a>
+                <a href="../postulacion-financiamiento.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Postulación a Financiamiento</a>
+                <a href="circular-33.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Circular 33</a>
+            </div>
+            
+            <!-- Mobile Menu -->
+            <div id="mobileMenu" class="hidden md:hidden pb-4">
+                <a href="../../index.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Home</a>
+                <a href="programas.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Programas</a>
+                <a href="../postulacion-financiamiento.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Postulación a Financiamiento</a>
+                <a href="circular-33.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Circular 33</a>
+                <a href="../../login.html" id="mobileLoginBtn" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold bg-institucional-azul-oscuro">Ingresar / Registrar</a>
+                <span id="mobileWelcomeUser" class="hidden">
+                    <span class="block px-4 py-3 border-b border-white border-opacity-20 text-sm">Bienvenido <span id="mobileUserRut" class="font-semibold"></span></span>
+                    <a href="#" id="mobileViewApplications" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Ver mis Postulaciones</a>
+                    <a href="#" id="mobileLogout" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Salir</a>
+                </span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+        <section class="bg-white border-2 border-gray-300 p-8 mb-8">
+            <h1 class="text-3xl font-bold text-institucional-azul mb-6 pb-4 border-b-4 border-institucional-azul">Postulación FNDR Sub. 31 PROYECTOS MENORES A 5.000 UTM</h1>
+            <div class="bg-blue-50 border-l-4 border-institucional-azul p-6 mb-6">
+                <p class="mb-3 text-gray-700">El presente Instructivo tiene por objeto regular el procedimiento de postulación y evaluación de proyectos de inversión, que postulen a etapa de ejecución cuyo monto total sea menor a las 5.000 UTM.</p>
+                <p class="text-gray-700">Se podrán considerar aquellos proyectos que postulen a la etapa de Diseño cuyo monto total para dicha etapa sea inferior a las 5.000 UTM, siempre y cuando postulen desde una etapa de preinversión aprobada dentro del SNI.</p>
+            </div>
+
+            <div class="bg-yellow-50 border-2 border-yellow-400 p-6 mb-6 text-center">
+                <h3 class="text-xl font-bold text-gray-800 mb-2">Estimado usuario, el trámite seleccionado</h3>
+                <p class="text-lg font-bold text-red-600">No se encuentra en periodo de postulación</p>
+            </div>
+
+            <div class="flex flex-wrap gap-4 mb-6">
+                <a href="#" class="px-6 py-3 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Bases y Anexos</a>
+            </div>
+            
+            <button class="w-full px-6 py-4 bg-institucional-azul text-white font-bold text-lg hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">CREAR PROYECTO</button>
+        </section>
+    </main>
+
+    <!-- Search Modal -->
+    <div id="searchModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
+        <div class="bg-white p-6 border-2 border-institucional-azul max-w-2xl w-full mx-4">
+            <div class="flex justify-between items-center mb-4">
+                <h2 class="text-2xl font-bold text-institucional-azul">Buscar</h2>
+                <button id="closeSearchModal" class="text-gray-500 hover:text-gray-700">
+                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+                    </svg>
+                </button>
+            </div>
+            <form id="searchForm" class="flex gap-2">
+                <input type="text" id="searchInput" placeholder="Buscar programas, documentos, información..." class="flex-1 px-4 py-2 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
+                <button type="submit" class="px-6 py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Buscar</button>
+            </form>
+            <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-institucional-azul text-white py-8 mt-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <p class="font-semibold mb-2">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
+            <p>Portal de Postulaciones</p>
+        </div>
+    </footer>
+
+    <script src="../../assets/js/script.js"></script>
+</body>
+</html>
+

@@ -1,0 +1,295 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preview - Clon MaulePro</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            min-height: 100vh;
+            padding: 40px 20px;
+        }
+        
+        .container {
+            max-width: 900px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 20px;
+            padding: 50px;
+            box-shadow: 0 20px 60px rgba(0,0,0,0.3);
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 40px;
+            border-bottom: 3px solid #667eea;
+            padding-bottom: 30px;
+        }
+        
+        .header h1 {
+            font-size: 3em;
+            color: #1e3c72;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            font-size: 1.2em;
+            color: #666;
+        }
+        
+        .badge {
+            display: inline-block;
+            background: #4CAF50;
+            color: white;
+            padding: 8px 20px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            margin-top: 15px;
+        }
+        
+        .section {
+            margin: 30px 0;
+        }
+        
+        .section h2 {
+            color: #1e3c72;
+            margin-bottom: 15px;
+            font-size: 1.8em;
+            border-left: 5px solid #667eea;
+            padding-left: 15px;
+        }
+        
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .feature-card {
+            background: #f8f9fa;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #667eea;
+        }
+        
+        .feature-card h3 {
+            color: #1e3c72;
+            margin-bottom: 10px;
+            font-size: 1.2em;
+        }
+        
+        .feature-card p {
+            color: #666;
+            line-height: 1.6;
+        }
+        
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .tech-badge {
+            background: #667eea;
+            color: white;
+            padding: 10px 20px;
+            border-radius: 8px;
+            font-weight: bold;
+        }
+        
+        .cta-section {
+            text-align: center;
+            margin-top: 50px;
+            padding: 40px;
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            border-radius: 15px;
+            color: white;
+        }
+        
+        .cta-section h2 {
+            color: white;
+            border: none;
+            padding: 0;
+            margin-bottom: 20px;
+        }
+        
+        .btn {
+            display: inline-block;
+            background: white;
+            color: #667eea;
+            padding: 15px 40px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-weight: bold;
+            font-size: 1.1em;
+            margin: 10px;
+            transition: transform 0.3s, box-shadow 0.3s;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+        }
+        
+        .info-box {
+            background: #fff3cd;
+            border: 2px solid #ffc107;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+        }
+        
+        .info-box strong {
+            color: #856404;
+        }
+        
+        ul {
+            margin-left: 30px;
+            margin-top: 15px;
+        }
+        
+        ul li {
+            margin: 10px 0;
+            color: #333;
+            line-height: 1.8;
+        }
+        
+        .footer {
+            text-align: center;
+            margin-top: 40px;
+            padding-top: 30px;
+            border-top: 2px solid #e0e0e0;
+            color: #666;
+        }
+        
+        @media (max-width: 768px) {
+            .container {
+                padding: 30px 20px;
+            }
+            
+            .header h1 {
+                font-size: 2em;
+            }
+            
+            .features {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🏛️ MaulePro Portal</h1>
+            <p>Clon del Portal de Postulaciones</p>
+            <span class="badge">✅ Proyecto Completado</span>
+        </div>
+        
+        <div class="section">
+            <h2>📋 Descripción</h2>
+            <p>Réplica funcional del portal oficial del Gobierno Regional del Maule para postulaciones a fondos públicos, programas y subvenciones.</p>
+        </div>
+        
+        <div class="section">
+            <h2>✨ Características Principales</h2>
+            <div class="features">
+                <div class="feature-card">
+                    <h3>🔐 Sistema de Autenticación</h3>
+                    <p>Login y registro con modales interactivos, validación de formularios y persistencia de sesión.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📱 Diseño Responsive</h3>
+                    <p>Adaptable a todos los dispositivos: desktop, tablet y móvil con animaciones fluidas.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📊 Múltiples Programas</h3>
+                    <p>FNDR 8%, FRIL, FIC, FRPD y más. Todas las categorías del portal original.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>🎯 6 Categorías de Postulación</h3>
+                    <p>Cultural, Social, Deportiva, Seguridad, Medio Ambiente y Veterinaria.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>📄 Documentación</h3>
+                    <p>Enlaces a manuales, instructivos, anexos y bases de concursos.</p>
+                </div>
+                
+                <div class="feature-card">
+                    <h3>⚡ Interactividad</h3>
+                    <p>Efectos hover, animaciones, validación en tiempo real y más.</p>
+                </div>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>🛠️ Tecnologías Utilizadas</h2>
+            <div class="tech-stack">
+                <span class="tech-badge">HTML5</span>
+                <span class="tech-badge">CSS3</span>
+                <span class="tech-badge">JavaScript</span>
+                <span class="tech-badge">Flexbox</span>
+                <span class="tech-badge">Grid</span>
+                <span class="tech-badge">LocalStorage</span>
+                <span class="tech-badge">Responsive Design</span>
+            </div>
+        </div>
+        
+        <div class="section">
+            <h2>📦 Archivos del Proyecto</h2>
+            <ul>
+                <li><strong>index.html</strong> - Página principal con toda la estructura</li>
+                <li><strong>styles.css</strong> - Estilos modernos y responsive</li>
+                <li><strong>script.js</strong> - Funcionalidad e interactividad</li>
+                <li><strong>server.py</strong> - Servidor HTTP local opcional</li>
+                <li><strong>README.md</strong> - Documentación completa</li>
+                <li><strong>INSTRUCCIONES.txt</strong> - Guía rápida de uso</li>
+            </ul>
+        </div>
+        
+        <div class="section">
+            <h2>🚀 Programas Implementados</h2>
+            <ul>
+                <li>Subvenciones para actividades FNDR 8%</li>
+                <li>Circular 33 - Fondo Regional de Iniciativa Local (FRIL)</li>
+                <li>Postulación FNDR Sub. 31 con Evaluación MIDESOYF</li>
+                <li>Proyectos Menores a 5.000 UTM</li>
+                <li>Postulación a Financiamiento para Programas</li>
+                <li>Fondo de Innovación para la Competitividad (FIC 2021, 2022)</li>
+                <li>Fondo Regional para la Productividad y el Desarrollo (FRPD)</li>
+            </ul>
+        </div>
+        
+        <div class="info-box">
+            <strong>⚠️ Nota Importante:</strong> Este es un clon frontend para demostración. Las funcionalidades de backend (envío real de formularios, autenticación con servidor, descarga de documentos) no están implementadas. Para un entorno de producción se requeriría integración con backend y base de datos.
+        </div>
+        
+        <div class="cta-section">
+            <h2>🌟 ¡Listo para Explorar!</h2>
+            <p style="margin-bottom: 30px;">Abre el portal y explora todas sus funcionalidades</p>
+            <a href="index.html" class="btn">🚀 Abrir Portal</a>
+            <a href="README.md" class="btn">📖 Ver Documentación</a>
+        </div>
+        
+        <div class="footer">
+            <p><strong>MaulePro Portal Clone</strong></p>
+            <p>Portal original: <a href="https://www.maulepro.com/gore/portal/" target="_blank" style="color: #667eea;">www.maulepro.com/gore/portal/</a></p>
+            <p style="margin-top: 15px; font-size: 0.9em;">Desarrollado con ❤️ como proyecto de demostración</p>
+        </div>
+    </div>
+</body>
+</html>
+
