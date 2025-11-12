@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Preguntas Frecuentes - Portal MaulePro</title>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
+    <style>
+        :root {
+            --institucional-azul: #1e3c72;
+            --institucional-azul-claro: #2563eb;
+            --institucional-azul-oscuro: #1e40af;
+            --gov-bg: #F6F8FA;
+            --gov-border: #E1E5EB;
+        }
+        
+        body {
+            font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: var(--gov-bg);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Fondo geométrico minimalista */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 25%, #d9ecff 50%, #cce5ff 75%, #bfdeff 100%);
+            opacity: 0.6;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(30, 60, 114, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(-30px, -30px) scale(1.1);
+            }
+        }
+        
+        /* Formas geométricas adicionales */
+        body {
+            background-image: 
+                linear-gradient(45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        }
+        
+        .logo-img {
+            height: 3.5rem;
+        }
+        
+        /* Navbar Bootstrap personalizada */
+        .navbar {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1030 !important;
+            background-color: #fff !important;
+        }
+        
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(30, 60, 114, 0.15);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+            font-weight: 600;
+        }
+        
+        .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-toggler {
+            border-color: var(--institucional-azul);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 60, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        .btn-institucional {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .btn-institucional:hover {
+            background-color: var(--institucional-azul-oscuro);
+            border-color: var(--institucional-azul-oscuro);
+            color: white;
+        }
+        
+        .btn-outline-institucional {
+            border-color: var(--institucional-azul);
+            color: var(--institucional-azul);
+        }
+        
+        .btn-outline-institucional:hover {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .bg-institucional {
+            background-color: var(--institucional-azul) !important;
+        }
+        
+        .text-institucional {
+            color: var(--institucional-azul) !important;
+        }
+        
+        @media (min-width: 992px) {
+            .logo-img {
+                height: 4rem;
+            }
+        }
+        
+        /* Estilos responsive para evitar superposiciones */
+        @media (max-width: 991.98px) {
+            /* Navbar: ajustar logo y brand */
+            .navbar-brand {
+                flex: 1 1 auto;
+                min-width: 0;
+                max-width: calc(100% - 60px);
+                padding-right: 0.5rem;
+            }
+            
+            .navbar-brand .logo-img {
+                height: 2.5rem !important;
+                max-width: 100%;
+                object-fit: contain;
+            }
+            
+            .navbar-brand .d-none.d-sm-block {
+                display: none !important;
+            }
+            
+            /* Asegurar que el toggler no se superponga */
+            .navbar-toggler {
+                flex-shrink: 0;
+                margin-left: auto;
+            }
+            
+            /* Navbar collapse: evitar overflow */
+            .navbar-collapse {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Ajustar padding del container en móviles */
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        
+        @media (max-width: 575.98px) {
+            /* Navbar: logo más pequeño en móviles muy pequeños */
+            .navbar-brand .logo-img {
+                height: 2rem !important;
+            }
+            
+            /* Reducir gap en navbar-brand */
+            .navbar-brand {
+                gap: 0.5rem !important;
+            }
+            
+            /* Ajustar Userway widget en móviles */
+            .uw-widget-button,
+            [id*="userway-widget"],
+            [class*="userway-widget"],
+            iframe[title*="Userway"],
+            iframe[title*="Accessibility"] {
+                bottom: 10px !important;
+                right: 10px !important;
+                max-width: calc(100vw - 20px) !important;
+            }
+        }
+        
+        /* Prevenir overflow horizontal */
+        .navbar,
+        .container,
+        .row {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Asegurar que los textos largos se ajusten */
+        .navbar-nav .nav-link {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 575.98px) {
+            .navbar-nav .nav-link {
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
+        
+        /* Estilos para FAQ */
+        .faq-hero {
+            background: linear-gradient(180deg, #fff 0%, #f7fafc 100%);
+            border: 1px solid var(--gov-border);
+            border-radius: 1rem;
+        }
+        
+        .accordion-button {
+            font-weight: 600;
+            color: var(--institucional-azul);
+        }
+        
+        .accordion-button:not(.collapsed) {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro);
+        }
+        
+        .accordion-button:focus {
+            box-shadow: 0 0 0 0.25rem rgba(30, 60, 114, 0.25);
+        }
+        
+        .accordion-body {
+            color: #5b6b7c;
+        }
+        
+        .help-card {
+            background: #fff;
+            border: 1px solid var(--gov-border);
+            border-radius: 0.85rem;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+        }
+        
+        .help-card:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+        
+        /* Posicionar botón flotante de Userway en esquina inferior derecha */
+        .uw-widget-button,
+        [id*="userway-widget"],
+        [class*="userway-widget"],
+        iframe[title*="Userway"],
+        iframe[title*="Accessibility"] {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            top: auto !important;
+            left: auto !important;
+            z-index: 9999 !important;
+        }
+    </style>
+</head>
+<body>
+    <!-- Navbar Bootstrap Unificada -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
+        <div class="container">
+            <!-- Logo y Nombre -->
+            <a class="navbar-brand d-flex align-items-center gap-3" href="../index.html">
+                <img src="../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="logo-img" style="height: 3.5rem; width: auto;">
+                <div class="d-none d-sm-block">
+                    <h1 class="h5 mb-0 fw-bold text-institucional">MaulePro</h1>
+                    <p class="small mb-0 text-muted">Gobierno Regional del Maule</p>
+                </div>
+            </a>
+            
+            <!-- Botón Toggle Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Menú -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../index.html#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link active text-institucional" aria-current="page" href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
+                    </li>
+                    <li class="nav-item dropdown d-lg-none">
+                        <a class="nav-link dropdown-toggle text-institucional" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Programas
+                        </a>
+                        <ul class="dropdown-menu bg-white border shadow-sm">
+                            <li><a class="dropdown-item text-institucional" href="../index.html#programas">Todos los Programas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-institucional small" href="programas/circular-33.html">Circular 33</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="programas/fril.html">FRIL</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="programas/fndr-sub31.html">FNDR Sub. 31</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="programas/proyectos-menores.html">Proyectos Menores</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="programas/fndr-8.html">Subvenciones para actividades FNDR 8%</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="financiamiento-programas.html">Financiamiento para Programas</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="programas/frpd.html">FRPD</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link text-institucional" href="../login.html">Ingresar / Registrar</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ms-3">
+                        <a href="../login.html" class="btn btn-institucional btn-sm"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar / Registrar</a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container my-5">
+        <!-- Hero Section -->
+        <section class="faq-hero p-4 p-md-5 mb-5">
+            <div class="row align-items-center">
+                <div class="col-lg-8">
+                    <h1 class="display-5 fw-bold text-institucional mb-3">Preguntas Frecuentes</h1>
+                    <p class="lead mb-0">
+                        Resuelve dudas comunes sobre requisitos, plazos y el proceso de postulación a los programas y fondos regionales del Gobierno Regional del Maule.
+                    </p>
+                </div>
+                <div class="col-lg-4 text-center mt-4 mt-lg-0">
+                    <i class="bi bi-question-circle display-1 text-institucional"></i>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sección de FAQ -->
+        <section id="faq" class="my-5">
+            <div class="row">
+                <div class="col-lg-8">
+                    <h2 class="h4 mb-3">Preguntas frecuentes</h2>
+                    <p class="text-muted mb-4">Resuelve dudas comunes sobre requisitos, plazos y el proceso de postulación.</p>
+
+                    <div class="accordion accordion-flush" id="faqAccordion">
+                        <!-- Q1 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h1">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c1" aria-expanded="false" aria-controls="faq-c1">
+                                    ¿Quiénes pueden postular a cada línea de financiamiento?
+                                </button>
+                            </h3>
+                            <div id="faq-c1" class="accordion-collapse collapse" aria-labelledby="faq-h1" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Depende del programa. Por ejemplo, <strong>8% FNDR</strong> está orientado a <em>organizaciones</em>; <strong>FRIL</strong> a <em>municipios</em>; otros (p. ej. 500 UTM) a <em>empresas/cooperativas</em>. Revisa la tarjeta del programa y las <em>bases</em> para confirmar beneficiarios.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q2 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h2">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c2" aria-expanded="false" aria-controls="faq-c2">
+                                    ¿Cómo postulo cuando el proceso esté abierto?
+                                </button>
+                            </h3>
+                            <div id="faq-c2" class="accordion-collapse collapse" aria-labelledby="faq-h2" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Ingresa a la tarjeta del programa y haz clic en <strong>"Postular con ClaveÚnica"</strong>. Completa el formulario y adjunta los documentos requeridos. Al finalizar, descarga tu comprobante.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q3 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h3">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c3" aria-expanded="false" aria-controls="faq-c3">
+                                    ¿Necesito ClaveÚnica para todas las etapas?
+                                </button>
+                            </h3>
+                            <div id="faq-c3" class="accordion-collapse collapse" aria-labelledby="faq-h3" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Sí, la autenticación principal es con <strong>ClaveÚnica</strong> para garantizar identidad y trazabilidad. Para consultas generales o descargas no es obligatoria.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q4 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h4">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c4" aria-expanded="false" aria-controls="faq-c4">
+                                    ¿En qué formato deben ir los documentos?
+                                </button>
+                            </h3>
+                            <div id="faq-c4" class="accordion-collapse collapse" aria-labelledby="faq-h4" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Salvo que las bases indiquen otra cosa: <strong>PDF</strong> para resoluciones/informes y <strong>XLSX</strong> para planillas. Tamaño máximo y nomenclatura se especifican en la sección <em>Documentos</em> de cada programa.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q5 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h5">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c5" aria-expanded="false" aria-controls="faq-c5">
+                                    ¿Cómo me entero cuando se abre una convocatoria?
+                                </button>
+                            </h3>
+                            <div id="faq-c5" class="accordion-collapse collapse" aria-labelledby="faq-h5" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    En la tarjeta del programa verás el botón <strong>"Avisarme"</strong> para suscribirte a notificaciones. También puedes revisar el <em>Calendario</em> y el banner de estado.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q6 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h6">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c6" aria-expanded="false" aria-controls="faq-c6">
+                                    ¿Qué pasa después de enviar mi postulación?
+                                </button>
+                            </h3>
+                            <div id="faq-c6" class="accordion-collapse collapse" aria-labelledby="faq-h6" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Tu postulación entra a <em>revisión técnica y administrativa</em>. Podrás hacer seguimiento desde tu sesión. Si resulta adjudicada, pasarás a la etapa de <strong>convenio</strong> y luego <strong>rendición</strong>.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q7 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h7">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c7" aria-expanded="false" aria-controls="faq-c7">
+                                    ¿Dónde pido ayuda si tengo problemas técnicos o de requisitos?
+                                </button>
+                            </h3>
+                            <div id="faq-c7" class="accordion-collapse collapse" aria-labelledby="faq-h7" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    Usa la opción <strong>Ayuda</strong> en el encabezado para ver preguntas frecuentes, escribirnos por formulario o contactar la mesa de ayuda en horario hábil.
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Q8 -->
+                        <div class="accordion-item">
+                            <h3 class="accordion-header" id="faq-h8">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#faq-c8" aria-expanded="false" aria-controls="faq-c8">
+                                    ¿Qué medidas de accesibilidad contempla el portal?
+                                </button>
+                            </h3>
+                            <div id="faq-c8" class="accordion-collapse collapse" aria-labelledby="faq-h8" data-bs-parent="#faqAccordion">
+                                <div class="accordion-body">
+                                    El portal sigue WCAG 2.2 AA: navegación por teclado, foco visible, etiquetas de formularios, contraste adecuado y textos alternativos. Si necesitas ajustes específicos, contáctanos.
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Lateral: contacto y documentos útiles -->
+                <div class="col-lg-4 mt-4 mt-lg-0">
+                    <div class="help-card p-4">
+                        <h3 class="h6 mb-3">¿Necesitas más ayuda?</h3>
+                        <ul class="list-unstyled mb-3">
+                            <li class="mb-2">
+                                <i class="bi bi-journal-text me-2 text-institucional" aria-hidden="true"></i>
+                                <a href="#" class="text-institucional text-decoration-none">Guía de postulación</a>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-file-earmark-pdf me-2 text-institucional" aria-hidden="true"></i>
+                                <a href="#" class="text-institucional text-decoration-none">Bases generales</a>
+                            </li>
+                            <li class="mb-2">
+                                <i class="bi bi-envelope me-2 text-institucional" aria-hidden="true"></i>
+                                <a href="#" class="text-institucional text-decoration-none">Formulario de contacto</a>
+                            </li>
+                        </ul>
+                        <div class="d-grid">
+                            <a class="btn btn-outline-institucional" href="#" aria-label="Ir a Centro de ayuda completo">
+                                <i class="bi bi-life-preserver me-2" aria-hidden="true"></i> Centro de ayuda
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Marcado estructurado FAQPage (SEO) -->
+            <script type="application/ld+json">
+            {
+                "@context": "https://schema.org",
+                "@type": "FAQPage",
+                "mainEntity": [
+                    {
+                        "@type": "Question",
+                        "name": "¿Quiénes pueden postular a cada línea de financiamiento?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Depende del programa (8% FNDR: organizaciones; FRIL: municipios; otros: empresas/cooperativas). Revisa la tarjeta y las bases."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo postulo cuando el proceso esté abierto?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Ingresa a la tarjeta del programa y selecciona \"Postular con ClaveÚnica\". Completa el formulario y adjunta documentos."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Necesito ClaveÚnica para todas las etapas?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Sí, la autenticación principal es con ClaveÚnica para garantizar identidad y trazabilidad."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿En qué formato deben ir los documentos?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Por defecto PDF para resoluciones/informes y XLSX para planillas, salvo indicación en bases."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Cómo me entero cuando se abre una convocatoria?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Usa el botón \"Avisarme\" en la tarjeta del programa o revisa el Calendario y el banner de estado."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué pasa después de enviar mi postulación?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Se revisa técnica y administrativamente. Si adjudicas, pasas a convenio y posterior rendición."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Dónde pido ayuda si tengo problemas?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Desde la sección Ayuda: preguntas frecuentes, formulario de contacto y mesa de ayuda en horario hábil."
+                        }
+                    },
+                    {
+                        "@type": "Question",
+                        "name": "¿Qué medidas de accesibilidad contempla el portal?",
+                        "acceptedAnswer": {
+                            "@type": "Answer",
+                            "text": "Cumplimiento WCAG 2.2 AA: navegación por teclado, foco visible, etiquetas, contraste y textos alternativos."
+                        }
+                    }
+                ]
+            }
+            </script>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-institucional text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="fw-semibold mb-1">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
+            <p class="mb-0 small">Portal de Postulaciones</p>
+        </div>
+    </footer>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="../assets/js/script.js"></script>
+    
+    <!-- UserWay Accessibility Widget -->
+    <script>
+        (function(){var s=document.createElement("script");s.src="https://cdn.userway.org/widget.js";(document.body||document.head).appendChild(s);})();
+        
+        // Esperar a que el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Función para posicionar el botón flotante de Userway en esquina inferior derecha
+            function positionUserwayWidget() {
+                const selectors = [
+                    '.uw-widget-button',
+                    '[id*="userway-widget"]',
+                    '[class*="userway-widget"]',
+                    'iframe[title*="Userway"]',
+                    'iframe[title*="Accessibility"]',
+                    'div[id*="userway"]',
+                    'div[class*="userway"]'
+                ];
+                
+                selectors.forEach(selector => {
+                    try {
+                        document.querySelectorAll(selector).forEach(el => {
+                            if (el?.style) {
+                                el.style.setProperty('position', 'fixed', 'important');
+                                el.style.setProperty('bottom', '20px', 'important');
+                                el.style.setProperty('right', '20px', 'important');
+                                el.style.setProperty('top', 'auto', 'important');
+                                el.style.setProperty('left', 'auto', 'important');
+                                el.style.setProperty('z-index', '9999', 'important');
+                                el.style.setProperty('margin', '0', 'important');
+                            }
+                        });
+                    } catch(e) {
+                        // Silenciar errores
+                    }
+                });
+            }
+            
+            // Posicionar widget después de que Userway se carga
+            positionUserwayWidget();
+            setTimeout(positionUserwayWidget, 500);
+            setTimeout(positionUserwayWidget, 1000);
+            setTimeout(positionUserwayWidget, 2000);
+            setTimeout(positionUserwayWidget, 3000);
+            setTimeout(positionUserwayWidget, 5000);
+            
+            // Observar cambios en el DOM para reposicionar el widget
+            if (window.MutationObserver && document.body) {
+                let timeoutId;
+                const observer = new MutationObserver(() => {
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(positionUserwayWidget, 500);
+                });
+                
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                    attributes: false
+                });
+            }
+        });
+    </script>
+</body>
+</html>
+

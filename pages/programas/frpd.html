@@ -166,6 +166,19 @@
                 height: 4rem;
             }
         }
+        
+        /* Posicionar botón flotante de Userway en esquina inferior derecha */
+        .uw-widget-button,
+        [id*="userway-widget"],
+        [class*="userway-widget"],
+        iframe[title*="Userway"],
+        iframe[title*="Accessibility"] {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            top: auto !important;
+            left: auto !important;
+            z-index: 9999 !important;
         }
     </style>
 </head>
@@ -291,6 +304,63 @@
     <!-- UserWay Accessibility Widget -->
     <script>
         (function(){var s=document.createElement("script");s.src="https://cdn.userway.org/widget.js";(document.body||document.head).appendChild(s);})();
+        
+        // Esperar a que el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Función para posicionar el botón flotante de Userway en esquina inferior derecha
+            function positionUserwayWidget() {
+                const selectors = [
+                    '.uw-widget-button',
+                    '[id*="userway-widget"]',
+                    '[class*="userway-widget"]',
+                    'iframe[title*="Userway"]',
+                    'iframe[title*="Accessibility"]',
+                    'div[id*="userway"]',
+                    'div[class*="userway"]'
+                ];
+                
+                selectors.forEach(selector => {
+                    try {
+                        document.querySelectorAll(selector).forEach(el => {
+                            if (el?.style) {
+                                el.style.setProperty('position', 'fixed', 'important');
+                                el.style.setProperty('bottom', '20px', 'important');
+                                el.style.setProperty('right', '20px', 'important');
+                                el.style.setProperty('top', 'auto', 'important');
+                                el.style.setProperty('left', 'auto', 'important');
+                                el.style.setProperty('z-index', '9999', 'important');
+                                el.style.setProperty('margin', '0', 'important');
+                            }
+                        });
+                    } catch(e) {
+                        // Silenciar errores
+                    }
+                });
+            }
+            
+            // Posicionar widget después de que Userway se carga
+            positionUserwayWidget();
+            setTimeout(positionUserwayWidget, 500);
+            setTimeout(positionUserwayWidget, 1000);
+            setTimeout(positionUserwayWidget, 2000);
+            setTimeout(positionUserwayWidget, 3000);
+            setTimeout(positionUserwayWidget, 5000);
+            
+            // Observar cambios en el DOM para reposicionar el widget
+            if (window.MutationObserver && document.body) {
+                let timeoutId;
+                const observer = new MutationObserver(() => {
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(positionUserwayWidget, 500);
+                });
+                
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                    attributes: false
+                });
+            }
+        });
     </script>
 </body>
 </html>

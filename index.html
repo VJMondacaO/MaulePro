@@ -216,6 +216,16 @@
             text-align: right;
         }
         
+        /* Contenedor de etiquetas en tarjeta */
+        .program-card .d-flex.align-items-center.justify-content-between {
+            gap: 0.5rem;
+        }
+        
+        .program-card .d-flex.align-items-center.gap-2 {
+            flex-wrap: wrap;
+            gap: 0.5rem !important;
+        }
+        
         .program-card:hover,
         .program-card:focus-within {
             transform: translateY(-3px);
@@ -229,6 +239,11 @@
         
         #infoCarousel .carousel-item {
             transition: transform 0.6s ease-in-out;
+        }
+        
+        #infoCarousel .carousel-item .row {
+            padding-left: 1.5rem;
+            padding-right: 1.5rem;
         }
         
         #infoCarousel .carousel-control-prev,
@@ -441,30 +456,77 @@
         }
         
         /* Responsive: ajustes para pantallas pequeñas */
-        @media (max-width: 576px) {
+        @media (max-width: 768px) {
+            .program-card h3 {
+                padding-right: 0;
+                margin-bottom: 0.75rem;
+            }
+            
             .program-card > div:first-child {
                 flex-direction: column;
                 align-items: flex-start;
-            }
-            
-            .program-card h3 {
-                white-space: normal;
-                margin-bottom: 0.5rem;
+                position: relative;
+                min-height: auto;
             }
             
             .program-card > div:first-child > div:last-child {
+                position: static;
                 width: 100%;
                 justify-content: flex-start;
+                flex-direction: row;
+                text-align: left;
+                margin-top: 0.5rem;
+            }
+        }
+        
+        @media (max-width: 576px) {
+            .program-card {
+                padding: 1rem !important;
+            }
+            
+            .program-card h3 {
+                font-size: 0.95rem;
+                line-height: 1.3;
+                margin-bottom: 0.75rem;
+                padding-right: 0;
+            }
+            
+            .program-card > div:first-child {
+                margin-bottom: 0.75rem;
+            }
+            
+            .program-card > div:first-child > div:last-child {
+                flex-wrap: wrap;
+                gap: 0.5rem !important;
+                width: 100%;
             }
             
             .program-card .pill {
                 font-size: 0.7rem;
-                padding: 0.25rem 0.6rem;
+                padding: 0.35rem 0.65rem;
+                white-space: nowrap;
+                flex-shrink: 0;
             }
             
             .deadline {
-                font-size: 0.65rem;
-                padding: 0.25rem 0.5rem;
+                font-size: 0.7rem;
+                padding: 0.35rem 0.65rem;
+                white-space: nowrap;
+                flex-shrink: 0;
+            }
+            
+            .program-card .meta {
+                font-size: 0.85rem;
+                margin-bottom: 1rem;
+            }
+            
+            .program-card .cta-wrap {
+                flex-direction: column;
+                gap: 0.5rem;
+            }
+            
+            .program-card .cta-wrap .btn {
+                width: 100%;
             }
         }
         
@@ -541,6 +603,119 @@
             }
         }
         
+        /* Estilos responsive para evitar superposiciones */
+        @media (max-width: 991.98px) {
+            /* Navbar: ajustar logo y brand */
+            .navbar-brand {
+                flex: 1 1 auto;
+                min-width: 0;
+                max-width: calc(100% - 60px);
+                padding-right: 0.5rem;
+            }
+            
+            .navbar-brand .logo-img {
+                height: 2.5rem !important;
+                max-width: 100%;
+                object-fit: contain;
+            }
+            
+            .navbar-brand .d-none.d-sm-block {
+                display: none !important;
+            }
+            
+            /* Asegurar que el toggler no se superponga */
+            .navbar-toggler {
+                flex-shrink: 0;
+                margin-left: auto;
+            }
+            
+            /* Navbar collapse: evitar overflow */
+            .navbar-collapse {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+            
+            /* Tarjetas de características: apilar correctamente */
+            .hero .row.g-3 > [class*="col-"] {
+                margin-bottom: 1rem;
+            }
+            
+            /* Ajustar padding del container en móviles */
+            .container {
+                padding-left: 1rem;
+                padding-right: 1rem;
+            }
+        }
+        
+        @media (max-width: 575.98px) {
+            /* Navbar: logo más pequeño en móviles muy pequeños */
+            .navbar-brand .logo-img {
+                height: 2rem !important;
+            }
+            
+            /* Reducir gap en navbar-brand */
+            .navbar-brand {
+                gap: 0.5rem !important;
+            }
+            
+            /* Ajustar Userway widget en móviles */
+            .uw-widget-button,
+            [id*="userway-widget"],
+            [class*="userway-widget"],
+            iframe[title*="Userway"],
+            iframe[title*="Accessibility"] {
+                bottom: 10px !important;
+                right: 10px !important;
+                max-width: calc(100vw - 20px) !important;
+            }
+            
+            /* Tarjetas de características: texto más pequeño */
+            .hero .d-flex.align-items-start.p-3 {
+                padding: 0.75rem !important;
+            }
+            
+            .hero .d-flex.align-items-start.p-3 h3 {
+                font-size: 0.9rem;
+            }
+            
+            .hero .d-flex.align-items-start.p-3 p {
+                font-size: 0.8rem;
+            }
+            
+            /* Iconos más pequeños en móviles */
+            .hero .rounded-circle {
+                width: 36px;
+                height: 36px;
+            }
+            
+            .hero .rounded-circle i {
+                font-size: 1.2rem !important;
+            }
+        }
+        
+        /* Prevenir overflow horizontal */
+        .navbar,
+        .container,
+        .row {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Asegurar que los textos largos se ajusten */
+        .navbar-nav .nav-link {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 575.98px) {
+            .navbar-nav .nav-link {
+                white-space: normal;
+                word-break: break-word;
+            }
+        }
+        
         /* Estilos para teclas de atajo */
         kbd {
             background-color: #f8f9fa;
@@ -582,7 +757,7 @@
                         <a class="nav-link text-institucional" href="#nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-institucional" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
+                        <a class="nav-link text-institucional" href="pages/preguntas-frecuentes.html">Preguntas Frecuentes</a>
                     </li>
                     <li class="nav-item dropdown d-lg-none">
                         <a class="nav-link dropdown-toggle text-institucional" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -792,9 +967,9 @@
                 <!-- Programas Abiertos -->
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="PROYECTOS MENORES A 5.000 UTM" data-benef="municipios" data-estado="open" data-close="2025-11-30" data-animate>
                     <article class="program-card p-3">
-                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
                             <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">PROYECTOS MENORES A 5.000 UTM</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
                                 <span class="deadline badge" data-deadline></span>
                                 <span class="pill pill-open"><i class="bi bi-unlock" aria-hidden="true"></i> Abierto</span>
                             </div>
@@ -812,9 +987,9 @@
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Subvenciones para actividades FNDR 8%" data-benef="org" data-estado="open" data-close="2025-12-15" data-animate>
                     <article class="program-card p-3">
-                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
                             <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Subvenciones para actividades FNDR 8%</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
                                 <span class="deadline badge" data-deadline></span>
                                 <span class="pill pill-open"><i class="bi bi-unlock" aria-hidden="true"></i> Abierto</span>
                             </div>
@@ -833,9 +1008,9 @@
                 <!-- Programas Cerrados -->
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Circular 33" data-benef="municipios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card p-3">
-                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
                             <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Circular 33</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
                                 <span class="deadline badge" data-deadline></span>
                                 <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
                             </div>
@@ -853,9 +1028,9 @@
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional de Iniciativa Local (FRIL)" data-benef="municipios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card p-3">
-                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
                             <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Fondo Regional de Iniciativa Local (FRIL)</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
                                 <span class="deadline badge" data-deadline></span>
                                 <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
                             </div>
@@ -873,9 +1048,9 @@
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="FNDR Sub. 31 con Evaluación MIDESOYF" data-benef="municipios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card p-3">
-                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
                             <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">FNDR Sub. 31 con Evaluación MIDESOYF</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
                                 <span class="deadline badge" data-deadline></span>
                                 <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
                             </div>
@@ -893,9 +1068,9 @@
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Financiamiento para Programas" data-benef="servicios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card p-3">
-                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
                             <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Financiamiento para Programas</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
                                 <span class="deadline badge" data-deadline></span>
                                 <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
                             </div>
@@ -913,9 +1088,9 @@
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional para la Productividad y el Desarrollo (FRPD)" data-benef="empresas" data-estado="closed" data-close="" data-animate>
                     <article class="program-card p-3">
-                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
                             <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Fondo Regional para la Productividad y el Desarrollo (FRPD)</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
                                 <span class="deadline badge" data-deadline></span>
                                 <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
                             </div>
@@ -985,7 +1160,7 @@
             // Atajo "/" para foco en buscador
             document.addEventListener('keydown', (e) => {
                 if (e.key === '/' && !e.target.closest('input, textarea')) {
-                    e.preventDefault();
+                    e.preventDefault(); 
                     q?.focus();
                 }
             });
