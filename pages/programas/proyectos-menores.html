@@ -1,144 +1,295 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Proyectos Menores - Portal MaulePro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'institucional-azul': '#1e3c72',
-                        'institucional-azul-claro': '#2563eb',
-                        'institucional-azul-oscuro': '#1e40af',
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
     <style>
+        :root {
+            --institucional-azul: #1e3c72;
+            --institucional-azul-claro: #2563eb;
+            --institucional-azul-oscuro: #1e40af;
+            --institucional-azul-hover: #2d5aa0;
+        }
+        
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: var(--gov-bg, #f9fafb);
+            position: relative;
+            overflow-x: hidden;
         }
+        
+        /* Fondo geométrico minimalista */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 25%, #d9ecff 50%, #cce5ff 75%, #bfdeff 100%);
+            opacity: 0.6;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(30, 60, 114, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(-30px, -30px) scale(1.1);
+            }
+        }
+        
+        /* Formas geométricas adicionales */
+        body {
+            background-image: 
+                linear-gradient(45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        }
+        
         .nav-link.active {
-            background-color: #1e3c72;
+            background-color: var(--institucional-azul);
             border-bottom-color: white;
+        }
+        
+        .btn-institucional {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .btn-institucional:hover {
+            background-color: var(--institucional-azul-oscuro);
+            border-color: var(--institucional-azul-oscuro);
+            color: white;
+        }
+        
+        .btn-outline-institucional {
+            border-color: var(--institucional-azul);
+            color: var(--institucional-azul);
+        }
+        
+        .btn-outline-institucional:hover {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .bg-institucional {
+            background-color: var(--institucional-azul) !important;
+        }
+        
+        .bg-institucional-oscuro {
+            background-color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .text-institucional {
+            color: var(--institucional-azul) !important;
+        }
+        
+        .border-institucional {
+            border-color: var(--institucional-azul) !important;
+        }
+        
+                .logo-img {
+            height: 3.5rem;
+        }
+        
+        /* Navbar Bootstrap personalizada */
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(30, 60, 114, 0.15);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+            font-weight: 600;
+        }
+        
+        .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-toggler {
+            border-color: var(--institucional-azul);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 60, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        @media (min-width: 992px) {
+            .logo-img {
+                height: 4rem;
+            }
+        }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <!-- Header -->
-    <header class="bg-white border-b-2 border-gray-300 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <a href="../../index.html" class="flex items-center gap-2 sm:gap-4 hover:opacity-90">
-                        <img src="../../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="h-16 sm:h-20 md:h-28 w-auto">
-                        <div class="hidden sm:block">
-                            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-institucional-azul">MaulePro</h1>
-                            <p class="text-xs sm:text-sm text-gray-600">Gobierno Regional del Maule</p>
-                        </div>
-                    </a>
+<body>
+        <!-- Navbar Bootstrap Unificada -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
+        <div class="container">
+            <!-- Logo y Nombre -->
+            <a class="navbar-brand d-flex align-items-center gap-3" href="../../index.html">
+                <img src="../../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="logo-img" style="height: 3.5rem; width: auto;">
+                <div class="d-none d-sm-block">
+                    <h1 class="h5 mb-0 fw-bold text-institucional">MaulePro</h1>
+                    <p class="small mb-0 text-muted">Gobierno Regional del Maule</p>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <!-- Search Icon -->
-                    <button id="searchBtn" class="p-2 text-institucional-azul hover:bg-gray-100 border-2 border-institucional-azul">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </button>
-                    <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 bg-white hover:bg-gray-100 border-2 border-institucional-azul">
-                        <svg class="w-6 h-6 text-institucional-azul" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                            <path id="closeIcon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                    <a href="../../login.html" id="loginBtn" class="hidden md:block px-3 sm:px-6 py-1 sm:py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul text-xs sm:text-sm">Ingresar / Registrar</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="bg-institucional-azul text-white border-b-2 border-institucional-azul">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex flex-wrap">
-                <a href="../../index.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Home</a>
-                <a href="programas.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Programas</a>
-                <a href="../postulacion-financiamiento.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Postulación a Financiamiento</a>
-                <a href="circular-33.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Circular 33</a>
-            </div>
+            </a>
             
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4">
-                <a href="../../index.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Home</a>
-                <a href="programas.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Programas</a>
-                <a href="../postulacion-financiamiento.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Postulación a Financiamiento</a>
-                <a href="circular-33.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Circular 33</a>
-                <a href="../../login.html" id="mobileLoginBtn" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold bg-institucional-azul-oscuro">Ingresar / Registrar</a>
-                <span id="mobileWelcomeUser" class="hidden">
-                    <span class="block px-4 py-3 border-b border-white border-opacity-20 text-sm">Bienvenido <span id="mobileUserRut" class="font-semibold"></span></span>
-                    <a href="#" id="mobileViewApplications" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Ver mis Postulaciones</a>
-                    <a href="#" id="mobileLogout" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Salir</a>
-                </span>
+            <!-- Botón Toggle Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Menú -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html#preguntas-frecuentes">Preguntas Frecuentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html#accesibilidad">Accesibilidad</a>
+                    </li>
+                    <li class="nav-item dropdown d-lg-none">
+                        <a class="nav-link dropdown-toggle text-institucional" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Programas
+                        </a>
+                        <ul class="dropdown-menu bg-white border shadow-sm">
+                            <li><a class="dropdown-item text-institucional" href="../../index.html#programas">Todos los Programas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-institucional small" href="circular-33.html">Circular 33</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="fril.html">FRIL</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="fndr-sub31.html">FNDR Sub. 31</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="proyectos-menores.html">Proyectos Menores</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="fndr-8.html">Subvenciones para actividades FNDR 8%</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="../financiamiento-programas.html">Financiamiento para Programas</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="frpd.html">FRPD</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link text-institucional" href="../../login.html">Ingresar / Registrar</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ms-3">
+                        <a href="../../login.html" class="btn btn-institucional btn-sm"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar / Registrar</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <section class="bg-white border-2 border-gray-300 p-8 mb-8">
-            <h1 class="text-3xl font-bold text-institucional-azul mb-6 pb-4 border-b-4 border-institucional-azul">Postulación FNDR Sub. 31 PROYECTOS MENORES A 5.000 UTM</h1>
-            <div class="bg-blue-50 border-l-4 border-institucional-azul p-6 mb-6">
-                <p class="mb-3 text-gray-700">El presente Instructivo tiene por objeto regular el procedimiento de postulación y evaluación de proyectos de inversión, que postulen a etapa de ejecución cuyo monto total sea menor a las 5.000 UTM.</p>
-                <p class="text-gray-700">Se podrán considerar aquellos proyectos que postulen a la etapa de Diseño cuyo monto total para dicha etapa sea inferior a las 5.000 UTM, siempre y cuando postulen desde una etapa de preinversión aprobada dentro del SNI.</p>
+    <main class="container my-4">
+        <section class="bg-white border border-2 border-secondary p-4 p-md-5 mb-4">
+            <h1 class="h2 fw-bold text-institucional mb-4 pb-3 border-bottom border-4 border-institucional">Postulación FNDR Sub. 31 PROYECTOS MENORES A 5.000 UTM</h1>
+            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-4 mb-4">
+                <p class="mb-2 text-muted">El presente Instructivo tiene por objeto regular el procedimiento de postulación y evaluación de proyectos de inversión, que postulen a etapa de ejecución cuyo monto total sea menor a las 5.000 UTM.</p>
+                <p class="text-muted mb-0">Se podrán considerar aquellos proyectos que postulen a la etapa de Diseño cuyo monto total para dicha etapa sea inferior a las 5.000 UTM, siempre y cuando postulen desde una etapa de preinversión aprobada dentro del SNI.</p>
             </div>
 
-            <div class="bg-yellow-50 border-2 border-yellow-400 p-6 mb-6 text-center">
-                <h3 class="text-xl font-bold text-gray-800 mb-2">Estimado usuario, el trámite seleccionado</h3>
-                <p class="text-lg font-bold text-red-600">No se encuentra en periodo de postulación</p>
+            <div class="bg-warning bg-opacity-10 border border-2 border-warning p-4 mb-4 text-center">
+                <h3 class="h5 fw-bold text-dark mb-2">Estimado usuario, el trámite seleccionado</h3>
+                <p class="h6 fw-bold text-danger mb-0">No se encuentra en periodo de postulación</p>
             </div>
 
-            <div class="flex flex-wrap gap-4 mb-6">
-                <a href="#" class="px-6 py-3 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Bases y Anexos</a>
+            <div class="d-flex flex-wrap gap-3 mb-4">
+                <a href="#" class="btn btn-institucional"><i class="bi bi-file-earmark-pdf me-2"></i>Bases y Anexos</a>
             </div>
             
-            <button class="w-full px-6 py-4 bg-institucional-azul text-white font-bold text-lg hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">CREAR PROYECTO</button>
+            <button class="btn btn-institucional btn-lg w-100"><i class="bi bi-plus-circle me-2"></i>CREAR PROYECTO</button>
         </section>
     </main>
 
     <!-- Search Modal -->
-    <div id="searchModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-        <div class="bg-white p-6 border-2 border-institucional-azul max-w-2xl w-full mx-4">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold text-institucional-azul">Buscar</h2>
-                <button id="closeSearchModal" class="text-gray-500 hover:text-gray-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5 fw-bold text-institucional" id="searchModalLabel">Buscar</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="searchForm">
+                        <div class="input-group mb-2">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Buscar programas, documentos, información..." autocomplete="off">
+                            <button type="submit" class="btn btn-institucional"><i class="bi bi-search me-2"></i>Buscar</button>
+                        </div>
+                        <p class="text-muted small mb-0">
+                            <i class="bi bi-keyboard me-1"></i>Presione <kbd>/</kbd> para buscar o <kbd>ESC</kbd> para cerrar
+                        </p>
+                    </form>
+                    <div id="searchResults" class="mt-3" style="max-height: 24rem; overflow-y: auto;"></div>
+                </div>
             </div>
-            <form id="searchForm" class="flex gap-2">
-                <input type="text" id="searchInput" placeholder="Buscar programas, documentos, información..." class="flex-1 px-4 py-2 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
-                <button type="submit" class="px-6 py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Buscar</button>
-            </form>
-            <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-institucional-azul text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="font-semibold mb-2">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
-            <p>Portal de Postulaciones</p>
+    <footer class="bg-institucional text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="fw-semibold mb-1">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
+            <p class="mb-0 small">Portal de Postulaciones</p>
         </div>
     </footer>
 
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/script.js"></script>
+    
+    <!-- UserWay Accessibility Widget -->
+    <script>
+        (function(){var s=document.createElement("script");s.src="https://cdn.userway.org/widget.js";(document.body||document.head).appendChild(s);})();
+    </script>
 </body>
 </html>
-

@@ -108,29 +108,49 @@ MaulePro/
    - Anexos
    - Bases de concursos
 
-## Cómo Usar
+## 🚀 Cómo Ejecutar el Proyecto
 
-### Opción 1: Abrir directamente
-Simplemente abre el archivo `index.html` en tu navegador web favorito.
+**Este proyecto es solo frontend** - no requiere instalación de dependencias. Todas las librerías (Bootstrap, Bootstrap Icons) se cargan desde CDN.
 
-### Opción 2: Servidor local
-Para una mejor experiencia, usa un servidor local:
+### ✅ Opción 1: Live Server (Recomendado - VS Code)
+
+1. Instala la extensión "Live Server" en VS Code
+2. Abre `index.html`
+3. Click derecho → "Open with Live Server"
+4. Se abrirá automáticamente en `http://127.0.0.1:5500`
+
+**Ventajas:** Recarga automática, muy fácil de usar
+
+### ✅ Opción 2: Servidor Python (Incluido)
 
 ```bash
-# Con Python 3
+# Desde la raíz del proyecto
+cd utils
+python3 server.py
+```
+
+O directamente:
+```bash
 python3 -m http.server 8000
+```
 
-# Con Python 2
-python -m SimpleHTTPServer 8000
+Luego visita `http://localhost:8000`
 
-# Con Node.js (npx)
+### ✅ Opción 3: Otros Servidores
+
+```bash
+# Node.js
 npx serve
 
-# Con PHP
+# PHP
 php -S localhost:8000
 ```
 
-Luego visita `http://localhost:8000` en tu navegador.
+### ⚠️ Opción 4: Abrir Directamente (No Recomendado)
+
+Puedes abrir `index.html` directamente, pero algunas funcionalidades pueden no funcionar correctamente (rutas relativas, buscador, etc.). **Se recomienda usar un servidor local.**
+
+📖 **Ver `CÓMO_EJECUTAR.md` en la raíz del proyecto para instrucciones detalladas.**
 
 ## Credenciales de Prueba
 

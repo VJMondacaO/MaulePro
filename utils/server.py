@@ -12,7 +12,8 @@ from pathlib import Path
 
 # Configuration
 PORT = 8000
-DIRECTORY = Path(__file__).parent
+# Serve from project root (parent of utils directory)
+DIRECTORY = Path(__file__).parent.parent
 
 class MyHTTPRequestHandler(http.server.SimpleHTTPRequestHandler):
     def __init__(self, *args, **kwargs):

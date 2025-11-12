@@ -1,179 +1,1193 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal MaulePro - Gobierno Regional del Maule</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'institucional-azul': '#1e3c72',
-                        'institucional-azul-claro': '#2563eb',
-                        'institucional-azul-oscuro': '#1e40af',
-                    },
-                    fontFamily: {
-                        'seria': ['Arial', 'Helvetica', 'sans-serif'],
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
     <style>
+        :root {
+            --institucional-azul: #1e3c72;
+            --institucional-azul-claro: #2563eb;
+            --institucional-azul-oscuro: #1e40af;
+            --gov-bg: #F6F8FA;
+            --gov-border: #E1E5EB;
+        }
+        
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: var(--gov-bg);
+            position: relative;
+            overflow-x: hidden;
         }
-        .nav-link.active {
-            background-color: #1e3c72;
-            border-bottom-color: white;
+        
+        /* Fondo geométrico minimalista */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 25%, #d9ecff 50%, #cce5ff 75%, #bfdeff 100%);
+            opacity: 0.6;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(30, 60, 114, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(-30px, -30px) scale(1.1);
+            }
+        }
+        
+        /* Formas geométricas adicionales */
+        body {
+            background-image: 
+                linear-gradient(45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        }
+        
+        .hero {
+            background: linear-gradient(180deg, #fff 0%, #f7fafc 100%);
+            border: 1px solid var(--gov-border);
+            border-radius: 1rem;
+        }
+        
+        /* Hero Section - Cards de características */
+        .hero .bg-light {
+            transition: all 0.3s ease;
+            cursor: default;
+        }
+        
+        .hero .bg-light:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+            background-color: #fff !important;
+        }
+        
+        .hero .rounded-circle {
+            width: 48px;
+            height: 48px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .hero h1.display-5 {
+            line-height: 1.2;
+            letter-spacing: -0.02em;
+        }
+        
+        @media (max-width: 768px) {
+            .hero h1.display-5 {
+                font-size: 2rem;
+            }
+        }
+        
+        /* Contadores por estado */
+        #statusCounters .badge {
+            padding: .45rem .6rem;
+            font-weight: 700;
+            border-radius: .75rem;
+            border-width: 1px;
+            border-style: solid;
+        }
+        #statusCounters .badge-open {
+            background: #198754;
+            border-color: #146c43;
+            color: #fff;
+        }
+        #statusCounters .badge-soon {
+            background: #ffc107;
+            border-color: #e0a800;
+            color: #1b1f24;
+        }
+        #statusCounters .badge-closed {
+            background: #dc3545;
+            border-color: #b02a37;
+            color: #fff;
+        }
+        
+        .btn-institucional {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .btn-institucional:hover {
+            background-color: var(--institucional-azul-oscuro);
+            border-color: var(--institucional-azul-oscuro);
+            color: white;
+        }
+        
+        .btn-outline-institucional {
+            border-color: var(--institucional-azul);
+            color: var(--institucional-azul);
+        }
+        
+        .btn-outline-institucional:hover {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .bg-institucional {
+            background-color: var(--institucional-azul) !important;
+        }
+        
+        .bg-institucional-oscuro {
+            background-color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .text-institucional {
+            color: var(--institucional-azul) !important;
+        }
+        
+        .border-institucional {
+            border-color: var(--institucional-azul) !important;
+        }
+        
+        /* Tarjetas base */
+        .program-card {
+            background: #FFFFFF;
+            border: 1px solid #E1E5EB;
+            border-radius: 0.85rem;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+            box-shadow: 0 2px 6px rgba(13, 30, 53, 0.06);
+            border-left: 4px solid transparent;
+            overflow: hidden;
+        }
+        
+        /* Contenedor del título y estado */
+        .program-card > div:first-child {
+            min-width: 0;
+            position: relative;
+            min-height: 3.5rem;
+            align-items: flex-start;
+        }
+        
+        .program-card h3 {
+            flex: 1 1 auto;
+            min-width: 0;
+            padding-right: 8rem;
+            line-height: 1.4;
+            word-wrap: break-word;
+            overflow-wrap: break-word;
+        }
+        
+        .program-card > div:first-child > div:last-child {
+            flex: 0 0 auto;
+            min-width: 0;
+            position: absolute;
+            top: 0;
+            right: 0;
+            align-items: flex-end;
+            flex-direction: column;
+            gap: 0.25rem;
+            text-align: right;
+        }
+        
+        .program-card:hover,
+        .program-card:focus-within {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 22px rgba(13, 30, 53, 0.12);
+        }
+        
+        /* Banner informativo carrusel */
+        #infoCarousel {
+            border-bottom: 2px solid rgba(0, 0, 0, 0.1);
+        }
+        
+        #infoCarousel .carousel-item {
+            transition: transform 0.6s ease-in-out;
+        }
+        
+        #infoCarousel .carousel-control-prev,
+        #infoCarousel .carousel-control-next {
+            width: 3rem;
+            opacity: 0.7;
+        }
+        
+        #infoCarousel .carousel-control-prev:hover,
+        #infoCarousel .carousel-control-next:hover {
+            opacity: 1;
+        }
+        
+        /* Colores pasteles sobrios para uso gubernamental */
+        .banner-pastel-verde {
+            background-color: #d4edda !important;
+            border-left: 4px solid #6c9b7a;
+        }
+        
+        .banner-pastel-ocre {
+            background-color: #f5e6d3 !important;
+            border-left: 4px solid #b89a7a;
+        }
+        
+        .banner-pastel-azul {
+            background-color: #d1ecf1 !important;
+            border-left: 4px solid #6fa8bf;
+        }
+        
+        .program-card .meta {
+            font-size: 0.9rem;
+            color: #5b6b7c;
+        }
+        
+        /* Acento por estado */
+        [data-program][data-estado="open"] .program-card,
+        [data-estado="open"] .program-card {
+            border-left-color: #1f7a52;
+        }
+        
+        [data-program][data-estado="soon"] .program-card,
+        [data-estado="soon"] .program-card {
+            border-left-color: #b26a00;
+        }
+        
+        [data-program][data-estado="closed"] .program-card,
+        [data-estado="closed"] .program-card {
+            border-left-color: #8a2432;
+        }
+        
+        /* Línea decorativa superior sutil */
+        .program-card::after {
+            content: "";
+            position: absolute;
+            inset: 0 0 auto 0;
+            height: 2px;
+            background: linear-gradient(90deg, rgba(29, 123, 191, 0.25), rgba(31, 122, 82, 0.25));
+            opacity: 0;
+            transition: opacity 0.25s ease;
+        }
+        
+        .program-card:hover::after,
+        .program-card:focus-within::after {
+            opacity: 1;
+        }
+        
+        /* Pill de estado */
+        .program-card .pill {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.35rem;
+            padding: 0.3rem 0.75rem;
+            line-height: 1;
+            font-weight: 700;
+            border-radius: 999px;
+            border-width: 2px;
+            border-style: solid;
+            transition: box-shadow 0.25s ease, transform 0.25s ease;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 0.75rem;
+        }
+        
+        .pill-open {
+            background: #e6f5ee;
+            color: #0a6a3b;
+            border-color: #0a6a3b;
+        }
+        
+        .pill-soon {
+            background: #fff1cc;
+            color: #8b5a00;
+            border-color: #8b5a00;
+        }
+        
+        .pill-closed {
+            background: #ffe0e5;
+            color: #8a1f34;
+            border-color: #8a1f34;
+        }
+        
+        .program-card:hover .pill {
+            box-shadow: none;
+        }
+        
+        /* CTA reveal */
+        .program-card .cta-wrap {
+            transform: translateY(4px);
+            opacity: 0;
+            transition: transform 0.25s ease, opacity 0.25s ease;
+        }
+        
+        .program-card:hover .cta-wrap,
+        .program-card:focus-within .cta-wrap {
+            transform: translateY(0);
+            opacity: 1;
+        }
+        
+        /* Focus accesible */
+        :focus-visible {
+            outline: 3px solid var(--institucional-azul-claro);
+            outline-offset: 2px;
+        }
+        
+        .program-card a:focus-visible {
+            outline: 3px solid var(--institucional-azul-claro);
+            outline-offset: 3px;
+            border-radius: 0.5rem;
+        }
+        
+        /* Animación al entrar en viewport */
+        @keyframes fadeSlideUp {
+            from {
+                opacity: 0;
+                transform: translateY(12px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+        
+        [data-animate] {
+            opacity: 0;
+            transform: translateY(12px);
+        }
+        
+        [data-animate].in {
+            animation: fadeSlideUp 0.5s ease forwards;
+        }
+        
+        /* Deadline "Cierra en X días" */
+        .deadline {
+            display: inline-block;
+            padding: 0.28rem 0.6rem;
+            border-radius: 0.75rem;
+            border: 1px solid rgba(0, 0, 0, 0.08);
+            background: #eef3f7;
+            color: var(--institucional-azul);
+            font-weight: 700;
+            white-space: nowrap;
+            flex-shrink: 0;
+            font-size: 0.7rem;
+        }
+        
+        .deadline.soon {
+            background: #fff1cc;
+            color: #8b5a00;
+        }
+        
+        .deadline.urgent {
+            background: #ffe0e5;
+            color: #8a1f34;
+        }
+        
+        /* Ripple minimalista */
+        .ripple {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.5);
+            transform: scale(0);
+            animation: ripple 0.45s ease-out forwards;
+            pointer-events: none;
+        }
+        
+        @keyframes ripple {
+            to {
+                transform: scale(2.5);
+                opacity: 0;
+            }
+        }
+        
+        /* Respeta reduce motion */
+        @media (prefers-reduced-motion: reduce) {
+            .program-card,
+            .program-card .cta-wrap,
+            .program-card::after {
+                transition: none !important;
+            }
+            
+            [data-animate] {
+                opacity: 1 !important;
+                transform: none !important;
+                animation: none !important;
+            }
+            
+            .ripple {
+                display: none !important;
+            }
+        }
+        
+        /* Responsive: ajustes para pantallas pequeñas */
+        @media (max-width: 576px) {
+            .program-card > div:first-child {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+            
+            .program-card h3 {
+                white-space: normal;
+                margin-bottom: 0.5rem;
+            }
+            
+            .program-card > div:first-child > div:last-child {
+                width: 100%;
+                justify-content: flex-start;
+            }
+            
+            .program-card .pill {
+                font-size: 0.7rem;
+                padding: 0.25rem 0.6rem;
+            }
+            
+            .deadline {
+                font-size: 0.65rem;
+                padding: 0.25rem 0.5rem;
+            }
+        }
+        
+        .logo-img {
+            height: 3.5rem;
+        }
+        
+        /* Navbar Bootstrap personalizada */
+        .navbar {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1030 !important;
+            background-color: #fff !important;
+        }
+        
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(30, 60, 114, 0.15);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+            font-weight: 600;
+        }
+        
+        .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        /* Posicionar botón flotante de Userway en esquina inferior derecha */
+        .uw-widget-button,
+        [id*="userway-widget"],
+        [class*="userway-widget"],
+        iframe[title*="Userway"],
+        iframe[title*="Accessibility"] {
+            position: fixed !important;
+            bottom: 20px !important;
+            right: 20px !important;
+            top: auto !important;
+            left: auto !important;
+            z-index: 9999 !important;
+        }
+        
+        .navbar-toggler {
+            border-color: var(--institucional-azul);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 60, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        @media (min-width: 992px) {
+            .logo-img {
+                height: 4rem;
+            }
+        }
+        
+        /* Estilos para teclas de atajo */
+        kbd {
+            background-color: #f8f9fa;
+            border: 1px solid #dee2e6;
+            border-radius: 0.25rem;
+            color: var(--institucional-azul);
+            font-family: 'Courier New', monospace;
+            font-size: 0.875em;
+            padding: 0.125rem 0.375rem;
+            box-shadow: 0 1px 0 rgba(0, 0, 0, 0.1);
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <!-- Header -->
-    <header class="bg-white border-b-2 border-gray-300 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <a href="index.html" class="flex items-center gap-2 sm:gap-4 hover:opacity-90">
-                        <img src="assets/images/Logo.png" alt="Gobierno Regional del Maule" class="h-16 sm:h-20 md:h-28 w-auto">
-                        <div class="hidden sm:block">
-                            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-institucional-azul">MaulePro</h1>
-                            <p class="text-xs sm:text-sm text-gray-600">Gobierno Regional del Maule</p>
-                        </div>
-                    </a>
+<body>
+    <!-- Navbar Bootstrap Unificada -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
+        <div class="container">
+            <!-- Logo y Nombre -->
+            <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
+                <img src="assets/images/Logo.png" alt="Gobierno Regional del Maule" class="logo-img" style="height: 3.5rem; width: auto;">
+                <div class="d-none d-sm-block">
+                    <h1 class="h5 mb-0 fw-bold text-institucional">MaulePro</h1>
+                    <p class="small mb-0 text-muted">Gobierno Regional del Maule</p>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <!-- Search Icon -->
-                    <button id="searchBtn" class="p-2 text-institucional-azul hover:bg-gray-100 border-2 border-institucional-azul">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </button>
-                    <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 bg-white hover:bg-gray-100 border-2 border-institucional-azul">
-                        <svg class="w-6 h-6 text-institucional-azul" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                            <path id="closeIcon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                    <a href="login.html" id="loginBtn" class="hidden md:block px-3 sm:px-6 py-1 sm:py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul text-xs sm:text-sm">Ingresar / Registrar</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="bg-institucional-azul text-white border-b-2 border-institucional-azul">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex flex-wrap">
-                <a href="index.html" class="nav-link inline-block px-6 py-4 bg-institucional-azul border-b-2 border-white font-semibold">Home</a>
-                <a href="pages/programas/programas.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Programas</a>
-                <a href="pages/postulacion-financiamiento.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Postulación a Financiamiento</a>
-                <a href="pages/programas/circular-33.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Circular 33</a>
-            </div>
+            </a>
             
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4">
-                <a href="index.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Home</a>
-                <a href="pages/programas/programas.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Programas</a>
-                <a href="pages/postulacion-financiamiento.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Postulación a Financiamiento</a>
-                <a href="pages/programas/circular-33.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Circular 33</a>
-                <a href="login.html" id="mobileLoginBtn" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold bg-institucional-azul-oscuro">Ingresar / Registrar</a>
-                <span id="mobileWelcomeUser" class="hidden">
-                    <span class="block px-4 py-3 border-b border-white border-opacity-20 text-sm">Bienvenido <span id="mobileUserRut" class="font-semibold"></span></span>
-                    <a href="#" id="mobileViewApplications" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Ver mis Postulaciones</a>
-                    <a href="#" id="mobileLogout" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Salir</a>
-                </span>
+            <!-- Botón Toggle Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <!-- Menú -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link active text-institucional" aria-current="page" href="index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="#preguntas-frecuentes">Preguntas Frecuentes</a>
+                    </li>
+                    <li class="nav-item dropdown d-lg-none">
+                        <a class="nav-link dropdown-toggle text-institucional" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Programas
+                        </a>
+                        <ul class="dropdown-menu bg-white border shadow-sm">
+                            <li><a class="dropdown-item text-institucional" href="#programas">Todos los Programas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-institucional small" href="pages/programas/circular-33.html">Circular 33</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="pages/programas/fril.html">FRIL</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="pages/programas/fndr-sub31.html">FNDR Sub. 31</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="pages/programas/proyectos-menores.html">Proyectos Menores</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="pages/programas/fndr-8.html">Subvenciones para actividades FNDR 8%</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="pages/financiamiento-programas.html">Financiamiento para Programas</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="pages/programas/frpd.html">FRPD</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link text-institucional" href="login.html">Ingresar / Registrar</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ms-3">
+                        <a href="login.html" class="btn btn-institucional btn-sm"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar / Registrar</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
+    <!-- Banner Informativo con Carrusel -->
+    <div id="infoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <div class="carousel-inner">
+            <div class="carousel-item active banner-pastel-verde">
+                <div class="container py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-info-circle me-2"></i>Convocatorias Abiertas</h5>
+                            <p class="mb-0 small text-dark">PROYECTOS MENORES A 5.000 UTM y Subvenciones FNDR 8% están recibiendo postulaciones. Revisa los requisitos y plazos.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                            <a href="#programas" class="btn btn-dark btn-sm"><i class="bi bi-arrow-right me-1"></i>Ver Programas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item banner-pastel-ocre">
+                <div class="container py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-calendar-check me-2"></i>Plazos Importantes</h5>
+                            <p class="mb-0 small text-dark">PROYECTOS MENORES A 5.000 UTM cierra el 30 de noviembre de 2025. Subvenciones FNDR 8% cierra el 15 de diciembre de 2025.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                            <a href="#programas" class="btn btn-dark btn-sm"><i class="bi bi-clock me-1"></i>Ver Fechas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item banner-pastel-azul">
+                <div class="container py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-file-earmark-text me-2"></i>Documentación Requerida</h5>
+                            <p class="mb-0 small text-dark">Asegúrate de tener todos los documentos necesarios antes de postular. Descarga los instructivos y manuales de cada programa.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                            <a href="#programas" class="btn btn-dark btn-sm"><i class="bi bi-download me-1"></i>Descargar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#infoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#infoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+    <main class="container my-4">
         <!-- Hero Section -->
-        <section class="bg-white border-2 border-gray-300 p-8 mb-8 text-center">
-            <h1 class="text-4xl font-bold text-institucional-azul mb-4">Portal de Postulaciones</h1>
-            <p class="text-xl text-gray-700 mb-6">Gobierno Regional del Maule</p>
-            <p class="text-gray-600 max-w-3xl mx-auto">
-                Bienvenido al portal de postulaciones del Gobierno Regional del Maule. 
-                Aquí podrá acceder a todos los programas y fondos disponibles para postular.
-            </p>
+        <section class="hero p-4 p-md-5 mb-4">
+            <div class="row g-4 align-items-center">
+                <div class="col-lg-8">
+                    <div class="mb-4">
+                        <span class="badge bg-institucional mb-3 px-3 py-2">
+                            <i class="bi bi-building me-2"></i>Gobierno Regional del Maule
+                        </span>
+                        <h1 class="display-5 fw-bold mb-3 text-institucional">
+                            Portal de Postulación a Programas y Fondos Regionales
+                        </h1>
+                        <p class="lead mb-4 fs-5">
+                            Accede a las líneas de financiamiento del <strong>Gobierno Regional del Maule</strong>. Revisa requisitos, fechas y postula con <strong>ClaveÚnica</strong> cuando el proceso esté abierto.
+                        </p>
+                    </div>
+                    
+                    <div class="row g-3 mb-4">
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start p-3 bg-light rounded border-start border-4 border-primary">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle p-2">
+                                        <i class="bi bi-eye-fill text-primary fs-4"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="h6 fw-bold mb-1">Transparencia Total</h3>
+                                    <p class="small mb-0 text-muted">Trazabilidad del proceso completo en cada etapa</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start p-3 bg-light rounded border-start border-4 border-success">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="bg-success bg-opacity-10 rounded-circle p-2">
+                                        <i class="bi bi-file-earmark-check-fill text-success fs-4"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="h6 fw-bold mb-1">Documentación Oficial</h3>
+                                    <p class="small mb-0 text-muted">Documentos oficiales y checklist por etapa</p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-4">
+                            <div class="d-flex align-items-start p-3 bg-light rounded border-start border-4 border-warning">
+                                <div class="flex-shrink-0 me-3">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle p-2">
+                                        <i class="bi bi-bell-fill text-warning fs-4"></i>
+                                    </div>
+                                </div>
+                                <div>
+                                    <h3 class="h6 fw-bold mb-1">Alertas Inteligentes</h3>
+                                    <p class="small mb-0 text-muted">Avisos de apertura y recordatorios clave</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-lg-4">
+                    <div class="p-3 border rounded bg-white">
+                        <h2 class="h6 mb-3">Buscar convocatorias</h2>
+                        <form id="searchForm" class="filters" role="search" aria-label="Buscador y filtros">
+                            <div class="mb-2">
+                                <label for="q" class="form-label small">Buscar por nombre o palabra clave</label>
+                                <input id="q" class="form-control" type="search" placeholder="Ej.: FRIL, 8% FNDR, cultura…">
+                            </div>
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <label for="estado" class="form-label small">Estado</label>
+                                    <select id="estado" class="form-select">
+                                        <option value="">Todos</option>
+                                        <option value="open">Abiertos</option>
+                                        <option value="soon">Próximos</option>
+                                        <option value="closed">Cerrados</option>
+                                    </select>
+                                </div>
+                                <div class="col-6">
+                                    <label for="benef" class="form-label small">Beneficiario</label>
+                                    <select id="benef" class="form-select">
+                                        <option value="">Todos</option>
+                                        <option value="municipios">Municipios</option>
+                                        <option value="servicios">Servicios públicos</option>
+                                        <option value="org">Organizaciones</option>
+                                        <option value="personas">Personas naturales</option>
+                                        <option value="empresas">Empresas</option>
+                                    </select>
+                                </div>
+                            </div>
+                            <div class="mt-2">
+                                <label for="orden" class="form-label small">Ordenar por</label>
+                                <select id="orden" class="form-select">
+                                    <option value="relevance">Relevancia</option>
+                                    <option value="openfirst">Abiertos primero</option>
+                                    <option value="date">Fecha de cierre</option>
+                                    <option value="alpha">A–Z</option>
+                                </select>
+                            </div>
+                            <div class="d-grid mt-3">
+                                <button type="submit" class="btn btn-primary">
+                                    <i class="bi bi-search" aria-hidden="true"></i> Aplicar filtros
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
         </section>
 
-        <!-- Quick Access Cards -->
-        <section class="mb-12">
-            <h2 class="text-3xl font-bold text-institucional-azul mb-6 pb-4 border-b-4 border-institucional-azul">Acceso Rápido</h2>
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-                <a href="pages/programas/fndr-8.html" class="bg-white border-2 border-gray-300 p-6 hover:border-institucional-azul hover:shadow-lg transition-shadow block text-center">
-                    <h3 class="text-xl font-bold text-institucional-azul mb-2">Subvenciones FNDR 8%</h3>
-                    <p class="text-gray-600">Actividades deportivas, sociales, culturales y más</p>
-                </a>
-                <a href="pages/programas/circular-33.html" class="bg-white border-2 border-gray-300 p-6 hover:border-institucional-azul hover:shadow-lg transition-shadow block text-center">
-                    <h3 class="text-xl font-bold text-institucional-azul mb-2">Circular 33 - FRIL</h3>
-                    <p class="text-gray-600">Fondo Regional de Iniciativa Local</p>
-                </a>
-                <a href="pages/programas/fndr-sub31.html" class="bg-white border-2 border-gray-300 p-6 hover:border-institucional-azul hover:shadow-lg transition-shadow block text-center">
-                    <h3 class="text-xl font-bold text-institucional-azul mb-2">FNDR Sub. 31</h3>
-                    <p class="text-gray-600">Con Evaluación MIDESOYF</p>
-                </a>
-                <a href="pages/programas/proyectos-menores.html" class="bg-white border-2 border-gray-300 p-6 hover:border-institucional-azul hover:shadow-lg transition-shadow block text-center">
-                    <h3 class="text-xl font-bold text-institucional-azul mb-2">Proyectos Menores</h3>
-                    <p class="text-gray-600">Proyectos menores a 5.000 UTM</p>
-                </a>
-                <a href="pages/financiamiento-programas.html" class="bg-white border-2 border-gray-300 p-6 hover:border-institucional-azul hover:shadow-lg transition-shadow block text-center">
-                    <h3 class="text-xl font-bold text-institucional-azul mb-2">Financiamiento para Programas</h3>
-                    <p class="text-gray-600">Transferencias Subtítulo 33</p>
-                </a>
-                <a href="pages/programas/programas.html" class="bg-white border-2 border-gray-300 p-6 hover:border-institucional-azul hover:shadow-lg transition-shadow block text-center">
-                    <h3 class="text-xl font-bold text-institucional-azul mb-2">Ver Todos los Programas</h3>
-                    <p class="text-gray-600">Lista completa de programas disponibles</p>
-                </a>
+        <!-- Programas Disponibles -->
+        <section id="programas" aria-labelledby="titulo-lista" class="mb-5">
+            <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
+                <h2 id="titulo-lista" class="h5 mb-0">Líneas de postulación</h2>
+                <p class="text-muted small mb-0" id="resumen" aria-live="polite">Mostrando <span id="count">—</span> programas</p>
+            </div>
+
+            <!-- Contadores por estado -->
+            <div class="d-flex flex-wrap align-items-center gap-2 mb-3" id="statusCounters" aria-live="polite">
+                <span class="badge badge-open">Abiertos: <strong id="cntOpen">0</strong></span>
+                <span class="badge badge-soon">Próximos: <strong id="cntSoon">0</strong></span>
+                <span class="badge badge-closed">Cerrados: <strong id="cntClosed">0</strong></span>
+            </div>
+
+            <div id="grid" class="row g-3">
+                <!-- Programas Abiertos -->
+                <div class="col-12 col-md-6 col-lg-4" data-program data-name="PROYECTOS MENORES A 5.000 UTM" data-benef="municipios" data-estado="open" data-close="2025-11-30" data-animate>
+                    <article class="program-card p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">PROYECTOS MENORES A 5.000 UTM</h3>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="deadline badge" data-deadline></span>
+                                <span class="pill pill-open"><i class="bi bi-unlock" aria-hidden="true"></i> Abierto</span>
+                            </div>
+                        </div>
+                        <p class="meta mb-2">Iniciativas de inversión de menor escala con procesos de evaluación simplificados</p>
+                        <ul class="meta mb-3">
+                            <li>Cierre: <strong>30/11/2025</strong></li>
+                        </ul>
+                        <div class="mt-auto d-flex gap-2 cta-wrap">
+                            <a class="btn btn-primary flex-grow-1" href="pages/programas/proyectos-menores.html"><i class="bi bi-send me-2"></i>Postular</a>
+                            <a class="btn btn-outline-secondary" href="pages/programas/proyectos-menores.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Subvenciones para actividades FNDR 8%" data-benef="org" data-estado="open" data-close="2025-12-15" data-animate>
+                    <article class="program-card p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Subvenciones para actividades FNDR 8%</h3>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="deadline badge" data-deadline></span>
+                                <span class="pill pill-open"><i class="bi bi-unlock" aria-hidden="true"></i> Abierto</span>
+                            </div>
+                        </div>
+                        <p class="meta mb-2">Subvenciones para actividades y proyectos que contribuyen al desarrollo regional</p>
+                        <ul class="meta mb-3">
+                            <li>Cierre: <strong>15/12/2025</strong></li>
+                        </ul>
+                        <div class="mt-auto d-flex gap-2 cta-wrap">
+                            <a class="btn btn-primary flex-grow-1" href="pages/programas/fndr-8.html"><i class="bi bi-send me-2"></i>Postular</a>
+                            <a class="btn btn-outline-secondary" href="pages/programas/fndr-8.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <!-- Programas Cerrados -->
+                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Circular 33" data-benef="municipios" data-estado="closed" data-close="" data-animate>
+                    <article class="program-card p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Circular 33</h3>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="deadline badge" data-deadline></span>
+                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                            </div>
+                        </div>
+                        <p class="meta mb-2">Instructivo que regula el procedimiento de evaluación y ejecución de proyectos</p>
+                        <ul class="meta mb-3">
+                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
+                        </ul>
+                        <div class="mt-auto d-flex gap-2 cta-wrap">
+                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/circular-33.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura Circular 33"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional de Iniciativa Local (FRIL)" data-benef="municipios" data-estado="closed" data-close="" data-animate>
+                    <article class="program-card p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Fondo Regional de Iniciativa Local (FRIL)</h3>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="deadline badge" data-deadline></span>
+                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                            </div>
+                        </div>
+                        <p class="meta mb-2">Financiamiento para proyectos de infraestructura pública y conservación</p>
+                        <ul class="meta mb-3">
+                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
+                        </ul>
+                        <div class="mt-auto d-flex gap-2 cta-wrap">
+                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/fril.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura FRIL"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4" data-program data-name="FNDR Sub. 31 con Evaluación MIDESOYF" data-benef="municipios" data-estado="closed" data-close="" data-animate>
+                    <article class="program-card p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">FNDR Sub. 31 con Evaluación MIDESOYF</h3>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="deadline badge" data-deadline></span>
+                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                            </div>
+                        </div>
+                        <p class="meta mb-2">Proyectos de que requieren evaluación del Ministerio de Desarrollo Social y Familia</p>
+                        <ul class="meta mb-3">
+                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
+                        </ul>
+                        <div class="mt-auto d-flex gap-2 cta-wrap">
+                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/fndr-sub31.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura FNDR Sub. 31"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Financiamiento para Programas" data-benef="servicios" data-estado="closed" data-close="" data-animate>
+                    <article class="program-card p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Financiamiento para Programas</h3>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="deadline badge" data-deadline></span>
+                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                            </div>
+                        </div>
+                        <p class="meta mb-2">Postulación a financiamiento para programas y proyectos regionales</p>
+                        <ul class="meta mb-3">
+                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
+                        </ul>
+                        <div class="mt-auto d-flex gap-2 cta-wrap">
+                            <a class="btn btn-outline-primary flex-grow-1" href="pages/financiamiento-programas.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura Financiamiento para Programas"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        </div>
+                    </article>
+                </div>
+                
+                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional para la Productividad y el Desarrollo (FRPD)" data-benef="empresas" data-estado="closed" data-close="" data-animate>
+                    <article class="program-card p-3">
+                        <div class="d-flex align-items-center justify-content-between mb-2 flex-wrap">
+                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Fondo Regional para la Productividad y el Desarrollo (FRPD)</h3>
+                            <div class="d-flex align-items-center gap-2 flex-shrink-0">
+                                <span class="deadline badge" data-deadline></span>
+                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                            </div>
+                        </div>
+                        <p class="meta mb-2">Apoyo a iniciativas que fomentan la productividad y el desarrollo regional</p>
+                        <ul class="meta mb-3">
+                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
+                        </ul>
+                        <div class="mt-auto d-flex gap-2 cta-wrap">
+                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/frpd.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura FRPD"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        </div>
+                    </article>
+                </div>
             </div>
         </section>
 
         <!-- Information Section -->
-        <section class="bg-blue-50 border-l-4 border-institucional-azul p-6 mb-8">
-            <h2 class="text-2xl font-bold text-institucional-azul mb-4">Información Importante</h2>
-            <ul class="list-disc ml-6 space-y-2 text-gray-700">
-                <li>Para postular, debe iniciar sesión con su cuenta</li>
-                <li>Revise los requisitos y documentación necesaria antes de postular</li>
-                <li>Los periodos de postulación varían según el programa</li>
-                <li>Consulte los manuales e instructivos disponibles en cada sección</li>
+        <section class="bg-info bg-opacity-10 border-start border-4 border-institucional p-4 mb-4">
+            <h2 class="h4 fw-bold text-institucional mb-3">Información Importante</h2>
+            <ul class="list-unstyled ms-4">
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-institucional me-2"></i>Para postular, debe iniciar sesión con su cuenta</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-institucional me-2"></i>Revise los requisitos y documentación necesaria antes de postular</li>
+                <li class="mb-2"><i class="bi bi-check-circle-fill text-institucional me-2"></i>Los periodos de postulación varían según el programa</li>
+                <li class="mb-0"><i class="bi bi-check-circle-fill text-institucional me-2"></i>Consulte los manuales e instructivos disponibles en cada sección</li>
             </ul>
         </section>
     </main>
 
-    <!-- Search Modal -->
-    <div id="searchModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-        <div class="bg-white p-6 border-2 border-institucional-azul max-w-2xl w-full mx-4">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold text-institucional-azul">Buscar</h2>
-                <button id="closeSearchModal" class="text-gray-500 hover:text-gray-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
-            </div>
-            <form id="searchForm" class="flex gap-2">
-                <input type="text" id="searchInput" placeholder="Buscar programas, documentos, información..." class="flex-1 px-4 py-2 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
-                <button type="submit" class="px-6 py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Buscar</button>
-            </form>
-            <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
-        </div>
-    </div>
 
     <!-- Footer -->
-    <footer class="bg-institucional-azul text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="font-semibold mb-2">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
-            <p>Portal de Postulaciones</p>
+    <footer class="bg-institucional text-white py-4 mt-5">
+        <div class="container text-center">
+            <p class="fw-semibold mb-1">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
+            <p class="mb-0 small">Portal de Postulaciones</p>
         </div>
     </footer>
 
+    <!-- Toast confirmación Avisarme -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080">
+        <div id="toastAviso" class="toast align-items-center text-bg-success border-0" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">Te avisaremos cuando la convocatoria se abra. Revisa tu correo.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <script>
+        (function(){
+            const grid   = document.getElementById('grid');
+            const cards  = [...grid.querySelectorAll('[data-program]')];
+            const q      = document.getElementById('q');
+            const estado = document.getElementById('estado');
+            const benef  = document.getElementById('benef');
+            const orden  = document.getElementById('orden');
+            const form   = document.getElementById('searchForm');
+            const count  = document.getElementById('count');
+
+            const cntOpen   = document.getElementById('cntOpen');
+            const cntSoon   = document.getElementById('cntSoon');
+            const cntClosed = document.getElementById('cntClosed');
+
+            // Atajo "/" para foco en buscador
+            document.addEventListener('keydown', (e) => {
+                if (e.key === '/' && !e.target.closest('input, textarea')) {
+                    e.preventDefault();
+                    q?.focus();
+                }
+            });
+
+            function apply() {
+                const term = (q.value || '').toLowerCase();
+                const fEstado = estado.value;
+                const fBenef = benef.value;
+
+                // Filtrar
+                cards.forEach(c => {
+                    const name = (c.dataset.name || '').toLowerCase();
+                    const matchQ = !term || name.includes(term);
+                    const matchE = !fEstado || c.dataset.estado === fEstado;
+                    const matchB = !fBenef || c.dataset.benef === fBenef;
+                    c.style.display = (matchQ && matchE && matchB) ? '' : 'none';
+                });
+
+                // Ordenar visibles
+                let visible = cards.filter(c => c.style.display !== 'none');
+                const byName = (a, b) => a.dataset.name.localeCompare(b.dataset.name, 'es');
+                const toRank = s => ({open: 3, soon: 2, closed: 1}[s] || 0);
+
+                if (orden.value === 'alpha') {
+                    visible.sort(byName);
+                } else if (orden.value === 'openfirst') {
+                    visible.sort((a, b) => toRank(b.dataset.estado) - toRank(a.dataset.estado));
+                } else if (orden.value === 'date') {
+                    visible.sort((a, b) => {
+                        const da = Date.parse(a.dataset.close || '9999-12-31');
+                        const db = Date.parse(b.dataset.close || '9999-12-31');
+                        return da - db;
+                    });
+                } else {
+                    visible.sort((a, b) => {
+                        const r = toRank(b.dataset.estado) - toRank(a.dataset.estado);
+                        return r !== 0 ? r : byName(a, b);
+                    });
+                }
+
+                // Reinsertar y actualizar conteos
+                visible.forEach(card => grid.appendChild(card));
+                if (count) count.textContent = String(visible.length);
+
+                const get = s => visible.filter(c => c.dataset.estado === s).length;
+                if (cntOpen) cntOpen.textContent = get('open');
+                if (cntSoon) cntSoon.textContent = get('soon');
+                if (cntClosed) cntClosed.textContent = get('closed');
+            }
+
+            function paintDeadlines() {
+                const now = new Date();
+                document.querySelectorAll('[data-program]').forEach(col => {
+                    const d = col.dataset.close ? new Date(col.dataset.close) : null;
+                    const badge = col.querySelector('[data-deadline]');
+                    if (!badge) return;
+                    
+                    if (!d || isNaN(d)) {
+                        badge.textContent = '';
+                        badge.className = 'deadline badge';
+                        return;
+                    }
+                    
+                    const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
+                    let cls = '';
+                    let text = '';
+                    
+                    if (days < 0) {
+                        text = 'Cerró';
+                    } else if (days === 0) {
+                        text = 'Cierra hoy';
+                        cls = 'urgent';
+                    } else {
+                        text = `Cierra en ${days} día${days > 1 ? 's' : ''}`;
+                        cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
+                    }
+                    
+                    badge.className = `deadline badge ${cls}`;
+                    badge.textContent = text;
+                });
+            }
+
+            if (form) form.addEventListener('submit', e => { e.preventDefault(); apply(); });
+            [q, estado, benef, orden].forEach(el => { if (el) el.addEventListener('change', apply); });
+
+            // Primera ejecución
+            apply();
+            paintDeadlines();
+
+            // Animación de entrada
+            const els = document.querySelectorAll('[data-animate]');
+            if ('IntersectionObserver' in window) {
+                const io = new IntersectionObserver((entries) => {
+                    entries.forEach(e => {
+                        if (e.isIntersecting) {
+                            e.target.classList.add('in');
+                            io.unobserve(e.target);
+                        }
+                    });
+                }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+                els.forEach(el => io.observe(el));
+            } else {
+                els.forEach(el => el.classList.add('in'));
+            }
+
+            // Ripple en botones
+            document.querySelectorAll('.program-card .btn').forEach(btn => {
+                btn.addEventListener('click', function(e) {
+                    const prev = this.querySelector('.ripple');
+                    if (prev) prev.remove();
+                    
+                    const r = document.createElement('span');
+                    r.className = 'ripple';
+                    const rect = this.getBoundingClientRect();
+                    const size = Math.max(rect.width, rect.height);
+                    
+                    r.style.width = r.style.height = size + 'px';
+                    r.style.left = (e.clientX - rect.left - size / 2) + 'px';
+                    r.style.top = (e.clientY - rect.top - size / 2) + 'px';
+                    
+                    this.style.position = 'relative';
+                    this.style.overflow = 'hidden';
+                    this.appendChild(r);
+                    setTimeout(() => r.remove(), 450);
+                });
+            });
+
+            // Toast "Avisarme"
+            document.querySelectorAll('a, button').forEach(el => {
+                if (/avisarme/i.test(el.textContent)) {
+                    el.addEventListener('click', () => {
+                        const toastEl = document.getElementById('toastAviso');
+                        if (toastEl) {
+                            const toast = new bootstrap.Toast(toastEl, { delay: 3000 });
+                            toast.show();
+                        }
+                    });
+                }
+            });
+        })();
+    </script>
+    
+    <!-- UserWay Accessibility Widget -->
+    <script>
+        (function(){var s=document.createElement("script");s.src="https://cdn.userway.org/widget.js";(document.body||document.head).appendChild(s);})();
+        
+        // Esperar a que el DOM esté listo
+        document.addEventListener('DOMContentLoaded', function() {
+            // Función para posicionar el botón flotante de Userway en esquina inferior derecha
+            function positionUserwayWidget() {
+                const selectors = [
+                    '.uw-widget-button',
+                    '[id*="userway-widget"]',
+                    '[class*="userway-widget"]',
+                    'iframe[title*="Userway"]',
+                    'iframe[title*="Accessibility"]',
+                    'div[id*="userway"]',
+                    'div[class*="userway"]'
+                ];
+                
+                selectors.forEach(selector => {
+                    try {
+                        document.querySelectorAll(selector).forEach(el => {
+                            if (el?.style) {
+                                el.style.setProperty('position', 'fixed', 'important');
+                                el.style.setProperty('bottom', '20px', 'important');
+                                el.style.setProperty('right', '20px', 'important');
+                                el.style.setProperty('top', 'auto', 'important');
+                                el.style.setProperty('left', 'auto', 'important');
+                                el.style.setProperty('z-index', '9999', 'important');
+                                el.style.setProperty('margin', '0', 'important');
+                            }
+                        });
+                    } catch(e) {
+                        // Silenciar errores
+                    }
+                });
+            }
+            
+            // Posicionar widget después de que Userway se carga
+            positionUserwayWidget();
+            setTimeout(positionUserwayWidget, 500);
+            setTimeout(positionUserwayWidget, 1000);
+            setTimeout(positionUserwayWidget, 2000);
+            setTimeout(positionUserwayWidget, 3000);
+            setTimeout(positionUserwayWidget, 5000);
+            
+            // Observar cambios en el DOM para reposicionar el widget
+            if (window.MutationObserver && document.body) {
+                let timeoutId;
+                const observer = new MutationObserver(() => {
+                    clearTimeout(timeoutId);
+                    timeoutId = setTimeout(positionUserwayWidget, 500);
+                });
+                
+                observer.observe(document.body, {
+                    childList: true,
+                    subtree: true,
+                    attributes: false
+                });
+            }
+        });
+    </script>
 </body>
 </html>

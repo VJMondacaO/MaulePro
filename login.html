@@ -1,124 +1,262 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login - Portal MaulePro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'institucional-azul': '#1e3c72',
-                        'institucional-azul-claro': '#2563eb',
-                        'institucional-azul-oscuro': '#1e40af',
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
     <style>
+        :root {
+            --institucional-azul: #1e3c72;
+            --institucional-azul-claro: #2563eb;
+            --institucional-azul-oscuro: #1e40af;
+            --institucional-azul-hover: #2d5aa0;
+        }
+        
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: var(--gov-bg, #f9fafb);
+            position: relative;
+            overflow-x: hidden;
+        }
+        
+        /* Fondo geométrico minimalista */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 25%, #d9ecff 50%, #cce5ff 75%, #bfdeff 100%);
+            opacity: 0.6;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(30, 60, 114, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(-30px, -30px) scale(1.1);
+            }
+        }
+        
+        /* Formas geométricas adicionales */
+        body {
+            background-image: 
+                linear-gradient(45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        }
+        
+        .btn-institucional {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .btn-institucional:hover {
+            background-color: var(--institucional-azul-oscuro);
+            border-color: var(--institucional-azul-oscuro);
+            color: white;
+        }
+        
+        .btn-outline-institucional {
+            border-color: var(--institucional-azul);
+            color: var(--institucional-azul);
+        }
+        
+        .btn-outline-institucional:hover {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .bg-institucional {
+            background-color: var(--institucional-azul) !important;
+        }
+        
+        .bg-institucional-oscuro {
+            background-color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .text-institucional {
+            color: var(--institucional-azul) !important;
+        }
+        
+                .logo-img {
+            height: 3.5rem;
+        }
+        
+        /* Navbar Bootstrap personalizada */
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(30, 60, 114, 0.15);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+            font-weight: 600;
+        }
+        
+        .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-toggler {
+            border-color: var(--institucional-azul);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 60, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        @media (min-width: 992px) {
+            .logo-img {
+                height: 4rem;
+            }
+        }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
+<body>
     <!-- Header -->
-    <header class="bg-white border-b-2 border-gray-300 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <a href="index.html" class="flex items-center gap-2 sm:gap-4 hover:opacity-90">
-                        <img src="assets/images/Logo.png" alt="Gobierno Regional del Maule" class="h-16 sm:h-20 md:h-28 w-auto">
-                        <div class="hidden sm:block">
-                            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-institucional-azul">MaulePro</h1>
-                            <p class="text-xs sm:text-sm text-gray-600">Gobierno Regional del Maule</p>
+    <header class="bg-white border-bottom border border-2 border-secondary shadow-sm">
+        <div class="container">
+            <div class="d-d-flex justify-content-between align-align-items-center py-2">
+                <div class="d-d-flex align-align-items-center gap-2 gap-md-4">
+                    <a href="index.html" class="d-d-flex align-align-items-center gap-2 gap-md-4 text-decoration-none">
+                        <img src="assets/images/Logo.png" alt="Gobierno Regional del Maule" class="logo-img" style="width: auto;">
+                        <div class="d-none d-sm-d-block">
+                            <h1 class="h3 h-md-2 mb-1 fw-bold text-institucional">MaulePro</h1>
+                            <p class="small text-muted mb-0">Gobierno Regional del Maule</p>
                         </div>
                     </a>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <a href="index.html" class="px-3 sm:px-4 py-1 sm:py-2 bg-institucional-azul hover:bg-institucional-azul-oscuro text-white border-2 border-institucional-azul text-xs sm:text-sm">Volver al Inicio</a>
+                <div class="d-d-flex align-align-items-center gap-2 gap-md-4">
+                    <a href="index.html" class="btn btn-institucional"><i class="bi bi-house me-2"></i>Volver al Inicio</a>
                 </div>
             </div>
         </div>
     </header>
 
     <!-- Main Content -->
-    <main class="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div class="bg-white border-2 border-gray-300 p-8">
-            <h1 class="text-3xl font-bold text-institucional-azul mb-8 text-center">Inicio de Sesión / Registro</h1>
+    <main class="container my-5">
+        <div class="bg-white border border border-2 border-secondary p-3 p-md-5">
+            <h1 class="h2 fw-bold text-institucional mb-3 text-center">Inicio de Sesión / Registro</h1>
             
             <!-- Login Form -->
-            <div class="mb-8 pb-8 border-b-2 border-gray-300">
-                <h2 class="text-2xl font-bold text-institucional-azul mb-6">Inicio de sesión</h2>
+            <div class="mb-3 pb-4 border-bottom border border-2 border-secondary">
+                <h2 class="h4 fw-bold text-institucional mb-3">Inicio de sesión</h2>
                 <form id="loginForm">
-                    <div class="mb-6">
-                        <label for="username" class="block mb-2 font-semibold text-gray-700">Usuario Ej:(11111111)</label>
-                        <input type="text" id="username" name="username" placeholder="Campo Requerido" required class="w-full px-4 py-3 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
+                    <div class="mb-3">
+                        <label for="username" class="form-label fw-semibold">Usuario Ej:(11111111)</label>
+                        <input type="text" id="username" name="username" class="form-control" placeholder="Campo Requerido" required>
                     </div>
-                    <div class="mb-6">
-                        <label for="password" class="block mb-2 font-semibold text-gray-700">Contraseña</label>
-                        <input type="password" id="password" name="password" placeholder="Campo Requerido" required class="w-full px-4 py-3 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
+                    <div class="mb-3">
+                        <label for="password" class="form-label fw-semibold">Contraseña</label>
+                        <input type="password" id="password" name="password" class="form-control" placeholder="Campo Requerido" required>
                     </div>
-                    <button type="submit" class="w-full px-6 py-3 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul mb-4">Iniciar Sesión</button>
-                    <div class="flex justify-between text-sm">
-                        <a href="#register" id="showRegister" class="text-institucional-azul hover:underline font-semibold">Registro</a>
-                        <a href="#recover" id="showRecover" class="text-institucional-azul hover:underline font-semibold">Recuperar Password</a>
+                    <button type="submit" class="btn btn-institucional w-100 mb-3"><i class="bi bi-box-arrow-in-right me-2"></i>Iniciar Sesión</button>
+                    <div class="d-d-flex justify-content-between small">
+                        <a href="#register" id="showRegister" class="text-institucional text-decoration-none fw-semibold">Registro</a>
+                        <a href="#recover" id="showRecover" class="text-institucional text-decoration-none fw-semibold">Recuperar Password</a>
                     </div>
                 </form>
-                <p id="loginError" class="hidden mt-4 p-3 bg-red-50 border-2 border-red-500 text-red-600 text-center font-semibold">Datos no válidos..</p>
+                <div id="loginError" class="d-none mt-3 p-3 bg-danger bg-opacity-10 border border border-2 border-danger text-danger text-center fw-semibold">Datos no válidos..</div>
             </div>
 
             <!-- Register Form -->
-            <div id="registerSection" class="hidden">
-                <h2 class="text-2xl font-bold text-institucional-azul mb-2">Registro</h2>
-                <h3 class="text-lg font-semibold text-institucional-azul-oscuro mb-6">RECUPERAR PASSWORD / REGISTRARSE</h3>
+            <div id="registerSection" class="d-none">
+                <h2 class="h4 fw-bold text-institucional mb-2">Registro</h2>
+                <h3 class="h6 fw-semibold text-institucional mb-3">RECUPERAR PASSWORD / REGISTRARSE</h3>
                 <form id="registerForm">
-                    <div class="mb-6">
-                        <label for="rut" class="block mb-2 font-semibold text-gray-700">Rut Ej:(11111111)</label>
-                        <input type="text" id="rut" name="rut" placeholder="Campo Requerido" required class="w-full px-4 py-3 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
+                    <div class="mb-3">
+                        <label for="rut" class="form-label fw-semibold">Rut Ej:(11111111)</label>
+                        <input type="text" id="rut" name="rut" class="form-control" placeholder="Campo Requerido" required>
                     </div>
-                    <div class="mb-6">
-                        <label for="email" class="block mb-2 font-semibold text-gray-700">Mail</label>
-                        <input type="email" id="email" name="email" placeholder="Campo Requerido" required class="w-full px-4 py-3 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
+                    <div class="mb-3">
+                        <label for="email" class="form-label fw-semibold">Mail</label>
+                        <input type="email" id="email" name="email" class="form-control" placeholder="Campo Requerido" required>
                     </div>
-                    <div class="mb-6">
-                        <label for="confirmEmail" class="block mb-2 font-semibold text-gray-700">Confirmar Mail</label>
-                        <input type="email" id="confirmEmail" name="confirmEmail" placeholder="Campo Requerido" required class="w-full px-4 py-3 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
+                    <div class="mb-3">
+                        <label for="confirmEmail" class="form-label fw-semibold">Confirmar Mail</label>
+                        <input type="email" id="confirmEmail" name="confirmEmail" class="form-control" placeholder="Campo Requerido" required>
                     </div>
-                    <button type="submit" class="w-full px-6 py-3 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul mb-3">Registrar</button>
-                    <button type="button" id="recoverPassword" class="w-full px-6 py-3 bg-orange-500 text-white font-semibold hover:bg-orange-600 border-2 border-orange-500">Recuperar Password</button>
+                    <button type="submit" class="btn btn-institucional w-100 mb-2"><i class="bi bi-person-plus me-2"></i>Registrar</button>
+                    <button type="button" id="recoverPassword" class="btn btn-warning w-100">Recuperar Password</button>
                 </form>
-                <div class="mt-6 pt-6 border-t-2 border-gray-300">
-                    <h4 class="text-lg font-bold text-institucional-azul mb-2">POSTULACIONES</h4>
-                    <p class="text-gray-600">Para postular o ver postulaciones anteriores ingrese su Clave Única</p>
+                <div class="mt-3 pt-4 border-top border border-2 border-secondary">
+                    <h4 class="h5 fw-bold text-institucional mb-2">POSTULACIONES</h4>
+                    <p class="text-muted mb-0">Para postular o ver postulaciones anteriores ingrese su Clave Única</p>
                 </div>
             </div>
         </div>
     </main>
 
     <!-- Footer -->
-    <footer class="bg-institucional-azul text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="font-semibold mb-2">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
-            <p>Portal de Postulaciones</p>
+    <footer class="bg-institucional text-white py-2 mt-5">
+        <div class="container text-center">
+            <p class="fw-semibold mb-1">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
+            <p class="mb-0 small">Portal de Postulaciones</p>
         </div>
     </footer>
 
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
         // Toggle register section
         document.getElementById('showRegister')?.addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('registerSection').classList.remove('hidden');
+            document.getElementById('registerSection').classList.remove('d-none');
             document.getElementById('registerSection').scrollIntoView({ behavior: 'smooth' });
         });
 
         document.getElementById('showRecover')?.addEventListener('click', (e) => {
             e.preventDefault();
-            document.getElementById('registerSection').classList.remove('hidden');
+            document.getElementById('registerSection').classList.remove('d-none');
             document.getElementById('registerSection').scrollIntoView({ behavior: 'smooth' });
         });
 
@@ -132,10 +270,14 @@
                 localStorage.setItem('userRut', username);
                 window.location.href = 'index.html';
             } else {
-                document.getElementById('loginError').classList.remove('hidden');
+                document.getElementById('loginError').classList.remove('d-none');
             }
         });
     </script>
+    
+    <!-- UserWay Accessibility Widget -->
+    <script>
+        (function(){var s=document.createElement("script");s.src="https://cdn.userway.org/widget.js";(document.body||document.head).appendChild(s);})();
+    </script>
 </body>
 </html>
-

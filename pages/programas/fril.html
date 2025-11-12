@@ -1,196 +1,331 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="es" data-bs-theme="light">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FRIL - Fondo Regional de Iniciativa Local - Portal MaulePro</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <script>
-        tailwind.config = {
-            theme: {
-                extend: {
-                    colors: {
-                        'institucional-azul': '#1e3c72',
-                        'institucional-azul-claro': '#2563eb',
-                        'institucional-azul-oscuro': '#1e40af',
-                    }
-                }
-            }
-        }
-    </script>
+    
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    
     <style>
+        :root {
+            --institucional-azul: #1e3c72;
+            --institucional-azul-claro: #2563eb;
+            --institucional-azul-oscuro: #1e40af;
+            --institucional-azul-hover: #2d5aa0;
+        }
+        
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
+            background-color: var(--gov-bg, #f9fafb);
+            position: relative;
+            overflow-x: hidden;
         }
+        
+        /* Fondo geométrico minimalista */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #f0f7ff 0%, #e6f2ff 25%, #d9ecff 50%, #cce5ff 75%, #bfdeff 100%);
+            opacity: 0.6;
+        }
+        
+        body::after {
+            content: '';
+            position: fixed;
+            top: -50%;
+            right: -10%;
+            width: 600px;
+            height: 600px;
+            z-index: -1;
+            background: radial-gradient(circle, rgba(30, 60, 114, 0.08) 0%, transparent 70%);
+            border-radius: 50%;
+            animation: float 20s ease-in-out infinite;
+        }
+        
+        @keyframes float {
+            0%, 100% {
+                transform: translate(0, 0) scale(1);
+            }
+            50% {
+                transform: translate(-30px, -30px) scale(1.1);
+            }
+        }
+        
+        /* Formas geométricas adicionales */
+        body {
+            background-image: 
+                linear-gradient(45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(-45deg, rgba(30, 60, 114, 0.03) 25%, transparent 25%),
+                linear-gradient(45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%),
+                linear-gradient(-45deg, transparent 75%, rgba(30, 60, 114, 0.03) 75%);
+            background-size: 60px 60px;
+            background-position: 0 0, 0 30px, 30px -30px, -30px 0px;
+        }
+        
         .nav-link.active {
-            background-color: #1e3c72;
+            background-color: var(--institucional-azul);
             border-bottom-color: white;
+        }
+        
+        .btn-institucional {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .btn-institucional:hover {
+            background-color: var(--institucional-azul-oscuro);
+            border-color: var(--institucional-azul-oscuro);
+            color: white;
+        }
+        
+        .btn-outline-institucional {
+            border-color: var(--institucional-azul);
+            color: var(--institucional-azul);
+        }
+        
+        .btn-outline-institucional:hover {
+            background-color: var(--institucional-azul);
+            border-color: var(--institucional-azul);
+            color: white;
+        }
+        
+        .bg-institucional {
+            background-color: var(--institucional-azul) !important;
+        }
+        
+        .bg-institucional-oscuro {
+            background-color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .text-institucional {
+            color: var(--institucional-azul) !important;
+        }
+        
+        .border-institucional {
+            border-color: var(--institucional-azul) !important;
+        }
+        
+        .logo-img {
+            height: 3.5rem;
+        }
+        
+        /* Navbar Bootstrap personalizada */
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(30, 60, 114, 0.15);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+            font-weight: 600;
+        }
+        
+        .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-toggler {
+            border-color: var(--institucional-azul);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 60, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        @media (min-width: 992px) {
+            .logo-img {
+                height: 4rem;
+            }
         }
     </style>
 </head>
-<body class="bg-gray-50 text-gray-900">
-    <!-- Header -->
-    <header class="bg-white border-b-2 border-gray-300 shadow-md">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center py-4">
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <a href="../../index.html" class="flex items-center gap-2 sm:gap-4 hover:opacity-90">
-                        <img src="../../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="h-16 sm:h-20 md:h-28 w-auto">
-                        <div class="hidden sm:block">
-                            <h1 class="text-xl sm:text-2xl md:text-3xl font-bold mb-1 text-institucional-azul">MaulePro</h1>
-                            <p class="text-xs sm:text-sm text-gray-600">Gobierno Regional del Maule</p>
-                        </div>
-                    </a>
+<body>
+    <!-- Navbar Bootstrap Unificada -->
+    <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
+        <div class="container">
+            <!-- Logo y Nombre -->
+            <a class="navbar-brand d-flex align-items-center gap-3" href="../../index.html">
+                <img src="../../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="logo-img" style="height: 3.5rem; width: auto;">
+                <div class="d-none d-sm-block">
+                    <h1 class="h5 mb-0 fw-bold text-institucional">MaulePro</h1>
+                    <p class="small mb-0 text-muted">Gobierno Regional del Maule</p>
                 </div>
-                <div class="flex items-center gap-2 sm:gap-4">
-                    <!-- Search Icon -->
-                    <button id="searchBtn" class="p-2 text-institucional-azul hover:bg-gray-100 border-2 border-institucional-azul">
-                        <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
-                        </svg>
-                    </button>
-                    <!-- Mobile Menu Button -->
-                    <button id="mobileMenuBtn" class="md:hidden p-2 bg-white hover:bg-gray-100 border-2 border-institucional-azul">
-                        <svg class="w-6 h-6 text-institucional-azul" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                            <path id="menuIcon" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"></path>
-                            <path id="closeIcon" class="hidden" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                        </svg>
-                    </button>
-                    <a href="../../login.html" id="loginBtn" class="hidden md:block px-3 sm:px-6 py-1 sm:py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul text-xs sm:text-sm">Ingresar / Registrar</a>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <!-- Navigation -->
-    <nav class="bg-institucional-azul text-white border-b-2 border-institucional-azul">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <!-- Desktop Menu -->
-            <div class="hidden md:flex flex-wrap">
-                <a href="../../index.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Home</a>
-                <a href="programas.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Programas</a>
-                <a href="../postulacion-financiamiento.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Postulación a Financiamiento</a>
-                <a href="circular-33.html" class="nav-link inline-block px-6 py-4 border-b-2 border-transparent hover:bg-institucional-azul font-semibold">Circular 33</a>
-            </div>
+            </a>
             
-            <!-- Mobile Menu -->
-            <div id="mobileMenu" class="hidden md:hidden pb-4">
-                <a href="../../index.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Home</a>
-                <a href="programas.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Programas</a>
-                <a href="../postulacion-financiamiento.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Postulación a Financiamiento</a>
-                <a href="circular-33.html" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Circular 33</a>
-                <a href="../../login.html" id="mobileLoginBtn" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold bg-institucional-azul-oscuro">Ingresar / Registrar</a>
-                <span id="mobileWelcomeUser" class="hidden">
-                    <span class="block px-4 py-3 border-b border-white border-opacity-20 text-sm">Bienvenido <span id="mobileUserRut" class="font-semibold"></span></span>
-                    <a href="#" id="mobileViewApplications" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Ver mis Postulaciones</a>
-                    <a href="#" id="mobileLogout" class="nav-link block px-4 py-3 border-b border-white border-opacity-20 hover:bg-institucional-azul-oscuro font-semibold">Salir</a>
-                </span>
+            <!-- Botón Toggle Mobile -->
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+                    </button>
+            
+            <!-- Menú -->
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-lg-center">
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html#preguntas-frecuentes">Preguntas Frecuentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-institucional" href="../../index.html#accesibilidad">Accesibilidad</a>
+                    </li>
+                    <li class="nav-item dropdown d-lg-none">
+                        <a class="nav-link dropdown-toggle text-institucional" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+                            Programas
+                        </a>
+                        <ul class="dropdown-menu bg-white border shadow-sm">
+                            <li><a class="dropdown-item text-institucional" href="../../index.html#programas">Todos los Programas</a></li>
+                            <li><hr class="dropdown-divider"></li>
+                            <li><a class="dropdown-item text-institucional small" href="circular-33.html">Circular 33</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="fril.html">FRIL</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="fndr-sub31.html">FNDR Sub. 31</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="proyectos-menores.html">Proyectos Menores</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="fndr-8.html">Subvenciones para actividades FNDR 8%</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="../financiamiento-programas.html">Financiamiento para Programas</a></li>
+                            <li><a class="dropdown-item text-institucional small" href="frpd.html">FRPD</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item d-lg-none">
+                        <a class="nav-link text-institucional" href="../../login.html">Ingresar / Registrar</a>
+                    </li>
+                    <li class="nav-item d-none d-lg-block ms-3">
+                        <a href="../../login.html" class="btn btn-institucional btn-sm"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar / Registrar</a>
+                    </li>
+                </ul>
             </div>
         </div>
     </nav>
 
     <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
-        <section class="bg-white border-2 border-gray-300 p-8 mb-8">
-            <h1 class="text-3xl font-bold text-institucional-azul mb-6 pb-4 border-b-4 border-institucional-azul">FONDO REGIONAL DE INICIATIVA LOCAL (FRIL)</h1>
+    <main class="container my-4">
+        <section class="bg-white border border border-2 border-secondary p-3 p-md-5 mb-3">
+            <h1 class="h2 fw-bold text-institucional mb-3 pb-3 border-bottom border-4 border-institucional">FONDO REGIONAL DE INICIATIVA LOCAL (FRIL)</h1>
             
-            <h2 class="text-2xl font-bold text-institucional-azul-oscuro mb-4">I.- DESCRIPCIÓN GENERAL</h2>
-            <div class="bg-blue-50 border-l-4 border-institucional-azul p-6 mb-6">
-                <p class="mb-4 text-gray-700">El Instructivo tiene por objeto establecer lineamientos y regular la metodología de distribución y asignación de los recursos, la forma y oportunidad de la presentación de proyectos, su mecanismo de evaluación, de transferencia de remesas, ejecución y rendición de gastos, así como las demás disposiciones que permitan la mejor utilización de los recursos del Fondo Regional de Iniciativa Local, contemplado en la Ley de Presupuestos del Sector Público vigente, específicamente, lo establecido por la Glosa 6, letra g) del Subtítulo 33, Programa 02, Capítulo 01, Partida 31.</p>
+            <h2 class="h4 fw-bold text-institucional mb-3">I.- DESCRIPCIÓN GENERAL</h2>
+            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
+                <p class="mb-3 text-muted">El Instructivo tiene por objeto establecer lineamientos y regular la metodología de distribución y asignación de los recursos, la forma y oportunidad de la presentación de proyectos, su mecanismo de evaluación, de transferencia de remesas, ejecución y rendición de gastos, así como las demás disposiciones que permitan la mejor utilización de los recursos del Fondo Regional de Iniciativa Local, contemplado en la Ley de Presupuestos del Sector Público vigente, específicamente, lo establecido por la Glosa 6, letra g) del Subtítulo 33, Programa 02, Capítulo 01, Partida 31.</p>
                 
-                <p class="mb-4 text-gray-700">El presente instructivo toma como base, la Guía Operativa del Fondo Regional de Iniciativa Local elaborada por la Subsecretaria de Desarrollo Regional y Administrativo, aprobada por resolución exenta N° 15.051, de fecha 29 de diciembre de 2023, de la Subsecretaría de Desarrollo Regional y Administrativo.</p>
-                
-                <h3 class="text-xl font-bold text-institucional-azul mb-3 mt-4">Tipos de proyectos:</h3>
-                <p class="mb-3 text-gray-700"><strong>a) Conservación de Infraestructura Pública:</strong> Proyectos de conservación de bienes públicos.</p>
-                
-                <p class="mb-3 text-gray-700"><strong>b) Vialidad Urbana y Caminos Rurales:</strong> Construcción, pavimentación, recarpeteo o reasfaltado de calzadas, pasajes, veredas, obras de arte, construcción de pasarelas, demarcaciones, señalización y equipamiento complementario.</p>
-                
-                <p class="mb-3 text-gray-700"><strong>c) Habilitación de Espacios Públicos:</strong> Habilitar espacios públicos de uso cotidiano como áreas verdes, mobiliario urbano, refugios peatonales, piletas, iluminación pública, etc.</p>
-                
-                <p class="mb-3 text-gray-700"><strong>d) Construcciones Comunitarias:</strong> Construcción, ampliación, reparación de Centros de la Mujer, Sedes Sociales, Salones Multiusos, Centros Culturales, Recintos Deportivos, etc.</p>
-                
-                <p class="mb-3 text-gray-700"><strong>e) Construcciones de Servicios Públicos:</strong> Construir, habilitar, mejorar o ampliar edificios públicos como Escuelas, Postas Rurales de Salud, etc.</p>
-                
-                <div class="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4">
-                    <p class="mb-2 text-gray-700"><strong>Equipamiento:</strong> Cada iniciativa podrá destinar hasta un 20% del costo total de las Obras Civiles para incorporar Equipamiento y/o Equipos.</p>
-                    <p class="text-gray-700"><strong>Consultorías:</strong> Hasta un 5% del costo total para ASESORÍA A LA INSPECCIÓN DE OBRAS.</p>
-                </div>
+                <p class="mb-3 text-muted">El presente instructivo toma como base, la Guía Operativa del Fondo Regional de Iniciativa Local elaborada por la Subsecretaria de Desarrollo Regional y Administrativo, aprobada por resolución exenta N° 15.051, de fecha 29 de diciembre de 2023, de la Subsecretaría de Desarrollo Regional y Administrativo.</p>
+              
             </div>
 
-            <h2 class="text-2xl font-bold text-institucional-azul-oscuro mb-4 mt-8">II.- POSTULACIÓN</h2>
-            <div class="bg-blue-50 border-l-4 border-institucional-azul p-6 mb-6">
-                <p class="mb-4 text-gray-700">Sólo pueden postular proyectos a la presente convocatoria del Fondo Regional de Iniciativa Local (FRIL) las Municipalidades de la Región del Maule, ciñéndose a la forma, plazo requisitos y demás estipulaciones del presente instructivo.</p>
+            <h2 class="h4 fw-bold text-institucional mb-3 mt-3">II.- POSTULACIÓN</h2>
+            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
+                <p class="text-muted mb-0">Sólo pueden postular proyectos a la presente convocatoria del Fondo Regional de Iniciativa Local (FRIL) las Municipalidades de la Región del Maule, ciñéndose a la forma, plazo requisitos y demás estipulaciones del presente instructivo.</p>
             </div>
 
-            <h2 class="text-2xl font-bold text-institucional-azul-oscuro mb-4 mt-8">III.- OBJETIVOS DEL PROGRAMA</h2>
-            <div class="bg-blue-50 border-l-4 border-institucional-azul p-6 mb-6">
-                <p class="mb-3 text-gray-700">Los recursos del Fondo Regional de Iniciativa Local, en adelante FRIL, deberán destinarse a ejecutar, mantener o conservar infraestructura pública incluso aquellas de carácter social o deportivo que se ejecuten en los recintos indicados en la letra c) de la glosa 06, del Subtítulo 33, Programa 02, Capítulo 01, Partida 31, de la Ley 21.640, las que serán autorizadas de acuerdo a los procedimientos establecido en el presente instructivo y en el oficio circular N° 33, del Ministerio de Hacienda de fecha 13 de julio de 2009, y sus modificaciones.</p>
+            <h2 class="h4 fw-bold text-institucional mb-3 mt-3">III.- OBJETIVOS DEL PROGRAMA</h2>
+            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
+                <p class="mb-2 text-muted">Los recursos del Fondo Regional de Iniciativa Local, en adelante FRIL, deberán destinarse a ejecutar, mantener o conservar infraestructura pública incluso aquellas de carácter social o deportivo que se ejecuten en los recintos indicados en la letra c) de la glosa 06, del Subtítulo 33, Programa 02, Capítulo 01, Partida 31, de la Ley 21.640, las que serán autorizadas de acuerdo a los procedimientos establecido en el presente instructivo y en el oficio circular N° 33, del Ministerio de Hacienda de fecha 13 de julio de 2009, y sus modificaciones.</p>
                 
-                <p class="mb-3 text-gray-700">La identificación y el ordenamiento de prioridades de desarrollo de la Región del Maule radican en las condiciones individuales de cada territorio y de su gente. La inversión en infraestructura pública permite acceder a más y mejores servicios, mejora la calidad de vida de las maulinas y maulinos, aporta a una mayor equidad territorial y también contribuye a crear condiciones para el aumento de la productividad de la economía local.</p>
+                <p class="mb-2 text-muted">La identificación y el ordenamiento de prioridades de desarrollo de la Región del Maule radican en las condiciones individuales de cada territorio y de su gente. La inversión en infraestructura pública permite acceder a más y mejores servicios, mejora la calidad de vida de las maulinas y maulinos, aporta a una mayor equidad territorial y también contribuye a crear condiciones para el aumento de la productividad de la economía local.</p>
                 
-                <p class="mb-3 text-gray-700">Las iniciativas deben propender a un desarrollo territorial resiliente y sostenible mediante servicios de infraestructura de calidad al servicio de las personas, promoviendo el desarrollo rural integral y el desarrollo urbano sostenible, teniendo en consideración el enfoque de género.</p>
+                <p class="text-muted mb-0">Las iniciativas deben propender a un desarrollo territorial resiliente y sostenible mediante servicios de infraestructura de calidad al servicio de las personas, promoviendo el desarrollo rural integral y el desarrollo urbano sostenible, teniendo en consideración el enfoque de género.</p>
             </div>
 
-            <h2 class="text-2xl font-bold text-institucional-azul-oscuro mb-4 mt-8">IV.- CONVOCATORIA</h2>
-            <div class="bg-blue-50 border-l-4 border-institucional-azul p-6 mb-6">
-                <h3 class="text-xl font-bold text-institucional-azul mb-3">Del Costo Total de una Iniciativa:</h3>
-                <p class="mb-3 text-gray-700">El numeral 6, letra g), de la glosa antes citada de la Ley de Presupuesto vigente dispone que "Los proyectos que se ejecuten con recursos transferidos a los municipios a través de este ítem, cuyo costo total por proyecto sea inferior a 3000 UTM, valorizadas al 1 de enero del ejercicio presupuestario vigente, no requerirán informe favorable del Ministerio de Desarrollo Social y Familia."</p>
+            <h2 class="h4 fw-bold text-institucional mb-3 mt-3">IV.- CONVOCATORIA</h2>
+            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
+                <h3 class="h5 fw-bold text-institucional mb-3">Del Costo Total de una Iniciativa:</h3>
+                <p class="mb-2 text-muted">El numeral 6, letra g), de la glosa antes citada de la Ley de Presupuesto vigente dispone que "Los proyectos que se ejecuten con recursos transferidos a los municipios a través de este ítem, cuyo costo total por proyecto sea inferior a 3000 UTM, valorizadas al 1 de enero del ejercicio presupuestario vigente, no requerirán informe favorable del Ministerio de Desarrollo Social y Familia."</p>
                 
-                <p class="mb-3 text-gray-700">Ahora bien, considerando que el presupuesto regional se gestiona en miles de pesos (M$), el monto del proyecto a presentar no debe superar, en el ejercicio vigente, los <strong>M$ 193.997.-</strong> (ciento noventa y tres millones novecientos noventa y siete mil pesos), para ser evaluado por el Gobierno Regional del Maule.</p>
+                <p class="mb-2 text-muted">Ahora bien, considerando que el presupuesto regional se gestiona en miles de pesos (M$), el monto del proyecto a presentar no debe superar, en el ejercicio vigente, los <strong>M$ 193.997.-</strong> (ciento noventa y tres millones novecientos noventa y siete mil pesos), para ser evaluado por el Gobierno Regional del Maule.</p>
                 
-                <p class="mb-4 text-gray-700">Las iniciativas que sobrepasen el monto indicado en este párrafo serán enviadas, para su evaluación, al Ministerio de Desarrollo Social y Familia, conforme lo dispone la glosa citada.</p>
+                <p class="mb-3 text-muted">Las iniciativas que sobrepasen el monto indicado en este párrafo serán enviadas, para su evaluación, al Ministerio de Desarrollo Social y Familia, conforme lo dispone la glosa citada.</p>
 
-                <h3 class="text-xl font-bold text-institucional-azul mb-3 mt-4">De la asignación de Recursos por Comuna:</h3>
-                <p class="mb-3 text-gray-700">Se asignarán <strong>9.000 UTM</strong> a cada comuna de la Región del Maule, valorizadas a enero de 2024, que establezca la glosa que regula el Fondo Regional de Iniciativa Local, contenida en las Glosas comunes para todos los Gobiernos Regionales de la Ley de Presupuestos del Sector Público Vigente para el ejercicio presupuestario en que la iniciativa se encuentra en proceso de evaluación. Lo anterior será en conformidad a metodología de distribución de recursos aprobada por el Gobierno Regional del Maule.</p>
+                <h3 class="h5 fw-bold text-institucional mb-3 mt-3">De la asignación de Recursos por Comuna:</h3>
+                <p class="mb-2 text-muted">Se asignarán <strong>9.000 UTM</strong> a cada comuna de la Región del Maule, valorizadas a enero de 2024, que establezca la glosa que regula el Fondo Regional de Iniciativa Local, contenida en las Glosas comunes para todos los Gobiernos Regionales de la Ley de Presupuestos del Sector Público Vigente para el ejercicio presupuestario en que la iniciativa se encuentra en proceso de evaluación. Lo anterior será en conformidad a metodología de distribución de recursos aprobada por el Gobierno Regional del Maule.</p>
 
-                <h3 class="text-xl font-bold text-institucional-azul mb-3 mt-4">Renuncia a los recursos asignados:</h3>
-                <p class="mb-3 text-gray-700">Si habiendo Transcurrido el plazo establecido, el/la Alcalde (sa) no ha remitido el Oficio señalado en el numeral 7 del presente instructivo, se entenderá que renuncia a los recursos asignados a su comuna, los que podrán ser reasignados por el/la Gobernador(a) Regional con la metodología aprobada por el Consejo Regional.</p>
+                <h3 class="h5 fw-bold text-institucional mb-3 mt-3">Renuncia a los recursos asignados:</h3>
+                <p class="mb-2 text-muted">Si habiendo Transcurrido el plazo establecido, el/la Alcalde (sa) no ha remitido el Oficio señalado en el numeral 7 del presente instructivo, se entenderá que renuncia a los recursos asignados a su comuna, los que podrán ser reasignados por el/la Gobernador(a) Regional con la metodología aprobada por el Consejo Regional.</p>
                 
-                <p class="mb-4 text-gray-700">Asimismo, se entenderá que renuncia parcialmente a los recursos si solo presenta, dentro del plazo indicado en el numeral 7 de este instructivo, proyectos financiables por un monto total inferior al asignado a su comuna.</p>
+                <p class="mb-2 text-muted">Asimismo, se entenderá que renuncia parcialmente a los recursos si solo presenta, dentro del plazo indicado en el numeral 7 de este instructivo, proyectos financiables por un monto total inferior al asignado a su comuna.</p>
 
-                <h3 class="text-xl font-bold text-institucional-azul mb-3 mt-4">De la postulación y plazos Fondo Regional Iniciativa Local año 2024:</h3>
-                <p class="mb-3 text-gray-700">El proceso de postulación de iniciativas de inversión al Fondo Regional de Iniciativa Local, año 2024, se realizará a través de la plataforma digital Maule Pro, a la que se accede desde la página web del Gobierno Regional del Maule (www.goremaule.cl).</p>
+                <h3 class="h5 fw-bold text-institucional mb-3 mt-3">De la postulación y plazos Fondo Regional Iniciativa Local año 2024:</h3>
+                <p class="mb-2 text-muted">El proceso de postulación de iniciativas de inversión al Fondo Regional de Iniciativa Local, año 2024, se realizará a través de la plataforma digital Maule Pro, a la que se accede desde la página web del Gobierno Regional del Maule (www.goremaule.cl).</p>
                 
-                <p class="mb-3 text-gray-700"><strong>Plazo de postulación:</strong> El plazo máximo de postulación será de <strong>40 días hábiles</strong> siguientes al envío del Oficio que informa la Resolución Exenta del Gobierno Regional, que aprueba el presente instructivo y sus anexos, emitido por el/la Gobernador(a) Regional, dentro del cual cada Alcalde (sa) deberá remitir mediante Oficio, para su evaluación, el listado de los proyectos a financiar con cargo a los recursos correspondientes a su comuna, dirigido al Gobernador(a) Regional.</p>
+                <p class="text-muted mb-0"><strong>Plazo de postulación:</strong> El plazo máximo de postulación será de <strong>40 días hábiles</strong> siguientes al envío del Oficio que informa la Resolución Exenta del Gobierno Regional, que aprueba el presente instructivo y sus anexos, emitido por el/la Gobernador(a) Regional, dentro del cual cada Alcalde (sa) deberá remitir mediante Oficio, para su evaluación, el listado de los proyectos a financiar con cargo a los recursos correspondientes a su comuna, dirigido al Gobernador(a) Regional.</p>
             </div>
             
-            <div class="flex flex-wrap justify-center gap-4 mb-6">
-                <a href="#" class="px-6 py-3 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Bases y Anexos</a>
-                <a href="#" class="px-6 py-3 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Manual de Postulación</a>
+            <div class="d-d-flex d-flex-wrap justify-content-center gap-3 mb-3">
+                <a href="#" class="btn btn-institucional"><i class="bi bi-file-earmark-pdf me-2"></i>Bases y Anexos</a>
+                <a href="#" class="btn btn-institucional"><i class="bi bi-file-earmark-text me-2"></i>Manual de Postulación</a>
             </div>
             
-            <button class="w-full px-6 py-4 bg-institucional-azul text-white font-bold text-lg hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Postular Aquí - Fondo Regional de Iniciativa Local</button>
+            <button class="btn btn-institucional btn-lg w-100"><i class="bi bi-send me-2"></i>Postular Aquí - Fondo Regional de Iniciativa Local</button>
         </section>
     </main>
 
     <!-- Search Modal -->
-    <div id="searchModal" class="hidden fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center">
-        <div class="bg-white p-6 border-2 border-institucional-azul max-w-2xl w-full mx-4">
-            <div class="flex justify-between items-center mb-4">
-                <h2 class="text-2xl font-bold text-institucional-azul">Buscar</h2>
-                <button id="closeSearchModal" class="text-gray-500 hover:text-gray-700">
-                    <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
-                    </svg>
-                </button>
+    <div class="modal fade" id="searchModal" tabindex="-1" aria-labelledby="searchModalLabel" aria-d-none="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h2 class="modal-title h5 fw-bold text-institucional" id="searchModalLabel">Buscar</h2>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="searchForm">
+                        <div class="input-group mb-2">
+                            <input type="text" id="searchInput" class="form-control" placeholder="Buscar programas, documentos, información..." autocomplete="off">
+                            <button type="submit" class="btn btn-institucional"><i class="bi bi-search me-2"></i>Buscar</button>
+                        </div>
+                        <p class="text-muted small mb-0">
+                            <i class="bi bi-keyboard me-1"></i>Presione <kbd>/</kbd> para buscar o <kbd>ESC</kbd> para cerrar
+                        </p>
+                    </form>
+                    <div id="searchResults" class="mt-3" style="max-height: 24rem; overflow-y: auto;"></div>
+                </div>
             </div>
-            <form id="searchForm" class="flex gap-2">
-                <input type="text" id="searchInput" placeholder="Buscar programas, documentos, información..." class="flex-1 px-4 py-2 border-2 border-gray-300 focus:border-institucional-azul focus:outline-none">
-                <button type="submit" class="px-6 py-2 bg-institucional-azul text-white font-semibold hover:bg-institucional-azul-oscuro border-2 border-institucional-azul">Buscar</button>
-            </form>
-            <div id="searchResults" class="mt-4 max-h-96 overflow-y-auto"></div>
         </div>
     </div>
 
     <!-- Footer -->
-    <footer class="bg-institucional-azul text-white py-8 mt-12">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <p class="font-semibold mb-2">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
-            <p>Portal de Postulaciones</p>
+    <footer class="bg-institucional text-white py-2 mt-5">
+        <div class="container text-center">
+            <p class="fw-semibold mb-1">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
+            <p class="mb-0 small">Portal de Postulaciones</p>
         </div>
     </footer>
 
+    <!-- Bootstrap 5 JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="../../assets/js/script.js"></script>
+    
+    <!-- UserWay Accessibility Widget -->
+    <script>
+        (function(){var s=document.createElement("script");s.src="https://cdn.userway.org/widget.js";(document.body||document.head).appendChild(s);})();
+    </script>
 </body>
 </html>
-
