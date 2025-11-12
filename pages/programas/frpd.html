@@ -15,14 +15,53 @@
             --institucional-azul: #1e3c72;
             --institucional-azul-claro: #2563eb;
             --institucional-azul-oscuro: #1e40af;
-            --institucional-azul-hover: #2d5aa0;
+            --gov-bg: #F6F8FA;
+            --gov-border: #E1E5EB;
+        }
+        
+        html, body {
+            margin: 0;
+            padding: 0;
+            width: 100%;
         }
         
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
-            background-color: var(--gov-bg, #f9fafb);
+            background-color: var(--gov-bg);
             position: relative;
             overflow-x: hidden;
+            --body-padding-left: 1rem;
+            --body-padding-right: 1rem;
+            padding-left: var(--body-padding-left);
+            padding-right: var(--body-padding-right);
+        }
+        
+        @media (min-width: 576px) {
+            body {
+                --body-padding-left: 1.5rem;
+                --body-padding-right: 1.5rem;
+            }
+        }
+        
+        @media (min-width: 768px) {
+            body {
+                --body-padding-left: 2rem;
+                --body-padding-right: 2rem;
+            }
+        }
+        
+        @media (min-width: 992px) {
+            body {
+                --body-padding-left: 2.5rem;
+                --body-padding-right: 2.5rem;
+            }
+        }
+        
+        @media (min-width: 1200px) {
+            body {
+                --body-padding-left: 3rem;
+                --body-padding-right: 3rem;
+            }
         }
         
         /* Fondo geométrico minimalista */
@@ -115,11 +154,27 @@
             border-color: var(--institucional-azul) !important;
         }
         
-                .logo-img {
-            height: 3.5rem;
+                
+        /* Navbar Bootstrap personalizada */
+        .navbar {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1030 !important;
+            background-color: #fff !important;
+            margin-left: calc(-1 * var(--body-padding-left, 1rem)) !important;
+            margin-right: calc(-1 * var(--body-padding-right, 1rem)) !important;
+            width: calc(100% + var(--body-padding-left, 1rem) + var(--body-padding-right, 1rem)) !important;
+            max-width: none !important;
+            left: 0;
+            right: 0;
         }
         
-        /* Navbar Bootstrap personalizada */
+        .navbar .container {
+            padding-left: var(--body-padding-left, 1rem) !important;
+            padding-right: var(--body-padding-right, 1rem) !important;
+            max-width: 100%;
+        }
+        
         .navbar-brand {
             padding: 0.5rem 0;
         }
@@ -167,6 +222,266 @@
             }
         }
         
+        /* Estilos responsive para evitar superposiciones */
+        @media (max-width: 991.98px) {
+            .navbar-brand {
+                flex: 1 1 auto;
+                min-width: 0;
+                max-width: calc(100% - 60px);
+                padding-right: 0.5rem;
+            }
+            
+            .navbar-brand .logo-img {
+                height: 2.5rem !important;
+                max-width: 100%;
+                object-fit: contain;
+            }
+            
+            .navbar-brand .d-none.d-sm-block {
+                display: none !important;
+            }
+            
+            .navbar-toggler {
+                flex-shrink: 0;
+                margin-left: auto;
+            }
+            
+            .navbar-collapse {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+        /* Prevenir overflow horizontal */
+        .navbar,
+        .container,
+        .row {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Asegurar que los textos largos se ajusten */
+        .navbar-nav .nav-link {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 575.98px) {
+            .navbar-brand .logo-img {
+                height: 2rem !important;
+            }
+            
+            .navbar-brand {
+                gap: 0.5rem !important;
+            }
+            
+            .navbar-nav .nav-link {
+                white-space: normal;
+                word-break: break-word;
+            }
+            
+            .uw-widget-button,
+            [id*="userway-widget"],
+            [class*="userway-widget"],
+            iframe[title*="Userway"],
+            iframe[title*="Accessibility"] {
+                bottom: 10px !important;
+                right: 10px !important;
+                max-width: calc(100vw - 20px) !important;
+            }
+        }
+        .logo-img {
+            height: 3.5rem;
+        }
+        
+        /* Navbar Bootstrap personalizada */
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(30, 60, 114, 0.15);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+            font-weight: 600;
+        }
+        
+        .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-toggler {
+            border-color: var(--institucional-azul);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 60, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        @media (min-width: 992px) {
+            
+        /* Navbar Bootstrap personalizada */
+        .navbar {
+            position: sticky !important;
+            top: 0 !important;
+            z-index: 1030 !important;
+            background-color: #fff !important;
+            margin-left: calc(-1 * var(--body-padding-left, 1rem)) !important;
+            margin-right: calc(-1 * var(--body-padding-right, 1rem)) !important;
+            width: calc(100% + var(--body-padding-left, 1rem) + var(--body-padding-right, 1rem)) !important;
+            max-width: none !important;
+            left: 0;
+            right: 0;
+        }
+        
+        .navbar .container {
+            padding-left: var(--body-padding-left, 1rem) !important;
+            padding-right: var(--body-padding-right, 1rem) !important;
+            max-width: 100%;
+        }
+        
+        .navbar-brand {
+            padding: 0.5rem 0;
+        }
+        
+        .navbar-nav .nav-link {
+            padding: 0.75rem 1rem;
+            transition: all 0.2s ease;
+            font-weight: 500;
+        }
+        
+        .navbar-nav .nav-link:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-nav .nav-link.active {
+            background-color: rgba(30, 60, 114, 0.15);
+            border-radius: 0.25rem;
+            color: var(--institucional-azul-oscuro) !important;
+            font-weight: 600;
+        }
+        
+        .navbar-nav .dropdown-menu {
+            border: 1px solid #dee2e6;
+            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
+        }
+        
+        .navbar-nav .dropdown-item:hover {
+            background-color: rgba(30, 60, 114, 0.1);
+            color: var(--institucional-azul-oscuro) !important;
+        }
+        
+        .navbar-toggler {
+            border-color: var(--institucional-azul);
+        }
+        
+        .navbar-toggler-icon {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(30, 60, 114, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
+        }
+        
+        @media (min-width: 992px) {
+            .logo-img {
+                height: 4rem;
+            }
+        }
+        
+        /* Estilos responsive para evitar superposiciones */
+        @media (max-width: 991.98px) {
+            .navbar-brand {
+                flex: 1 1 auto;
+                min-width: 0;
+                max-width: calc(100% - 60px);
+                padding-right: 0.5rem;
+            }
+            
+            .navbar-brand .logo-img {
+                height: 2.5rem !important;
+                max-width: 100%;
+                object-fit: contain;
+            }
+            
+            .navbar-brand .d-none.d-sm-block {
+                display: none !important;
+            }
+            
+            .navbar-toggler {
+                flex-shrink: 0;
+                margin-left: auto;
+            }
+            
+            .navbar-collapse {
+                margin-top: 1rem;
+                padding-top: 1rem;
+                border-top: 1px solid rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+        /* Prevenir overflow horizontal */
+        .navbar,
+        .container,
+        .row {
+            max-width: 100%;
+            overflow-x: hidden;
+        }
+        
+        /* Asegurar que los textos largos se ajusten */
+        .navbar-nav .nav-link {
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        
+        @media (max-width: 575.98px) {
+            .navbar-brand .logo-img {
+                height: 2rem !important;
+            }
+            
+            .navbar-brand {
+                gap: 0.5rem !important;
+            }
+            
+            .navbar-nav .nav-link {
+                white-space: normal;
+                word-break: break-word;
+            }
+            
+            .uw-widget-button,
+            [id*="userway-widget"],
+            [class*="userway-widget"],
+            iframe[title*="Userway"],
+            iframe[title*="Accessibility"] {
+                bottom: 10px !important;
+                right: 10px !important;
+                max-width: calc(100vw - 20px) !important;
+            }
+        }
+        .logo-img {
+                height: 4rem;
+            }
+        }
+        
         /* Posicionar botón flotante de Userway en esquina inferior derecha */
         .uw-widget-button,
         [id*="userway-widget"],
@@ -188,7 +503,7 @@
         <div class="container">
             <!-- Logo y Nombre -->
             <a class="navbar-brand d-flex align-items-center gap-3" href="../../index.html">
-                <img src="../../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="logo-img" style="height: 3.5rem; width: auto;">
+                <img src="../../assets/images/Logo.png" alt="Gobierno Regional del Maule" class="logo-img" >
                 <div class="d-none d-sm-block">
                     <h1 class="h5 mb-0 fw-bold text-institucional">MaulePro</h1>
                     <p class="small mb-0 text-muted">Gobierno Regional del Maule</p>
@@ -339,12 +654,8 @@
             }
             
             // Posicionar widget después de que Userway se carga
-            positionUserwayWidget();
-            setTimeout(positionUserwayWidget, 500);
-            setTimeout(positionUserwayWidget, 1000);
-            setTimeout(positionUserwayWidget, 2000);
-            setTimeout(positionUserwayWidget, 3000);
-            setTimeout(positionUserwayWidget, 5000);
+            const delays = [0, 500, 1000, 2000, 3000, 5000];
+            delays.forEach(delay => setTimeout(positionUserwayWidget, delay));
             
             // Observar cambios en el DOM para reposicionar el widget
             if (window.MutationObserver && document.body) {
