@@ -457,6 +457,22 @@
         
         /* Responsive: ajustes para pantallas pequeñas */
         @media (max-width: 768px) {
+            /* Centrar tarjetas en móviles */
+            #grid.row {
+                justify-content: center;
+            }
+            
+            #grid .col-12 {
+                display: flex;
+                justify-content: center;
+            }
+            
+            #grid .col-12 > .program-card {
+                width: 100%;
+                max-width: 500px;
+                margin: 0 auto;
+            }
+            
             .program-card h3 {
                 padding-right: 0;
                 margin-bottom: 0.75rem;
