@@ -8,12 +8,46 @@ html, body {
     width: 100%;
 }
 
+html {
+    overflow-y: scroll;
+}
+
+/* Ocultar scrollbar durante la carga */
+html.loading,
+html.loading body {
+    overflow: hidden !important;
+}
+
 body {
     font-family: 'Arial', 'Helvetica', sans-serif;
     background-color: var(--gov-bg);
     position: relative;
     overflow-x: hidden;
     padding: 0 var(--body-padding);
+}
+
+/* Ocultar scrollbar visualmente pero mantener funcionalidad */
+body::-webkit-scrollbar {
+    width: 8px;
+}
+
+body::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+body::-webkit-scrollbar-thumb {
+    background: rgba(97, 22, 22, 0.3);
+    border-radius: 4px;
+}
+
+body::-webkit-scrollbar-thumb:hover {
+    background: rgba(97, 22, 22, 0.5);
+}
+
+/* Firefox */
+html {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(97, 22, 22, 0.3) transparent;
 }
 
 /* Fondo con gradientes y animaciones */
