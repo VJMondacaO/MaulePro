@@ -1104,7 +1104,7 @@ describe('FilterManager', () => {
 
 ---
 
-**Última actualización**: Diciembre 2024  
+**Última actualización**: Noviembre 2025  
 **Estado**: Propuesta de mejora  
 **Prioridad**: Alta - Mejora significativa en arquitectura
 

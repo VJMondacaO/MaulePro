@@ -12,6 +12,10 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Portal MaulePro - Gobierno Regional del Maule</title>
     
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
@@ -20,56 +24,44 @@
     <link href="assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar Bootstrap Unificada -->
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
-        <div class="container">
-            <!-- Logo y Nombre -->
+    <!-- Navbar Bootstrap Estándar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-3" href="index.html">
-                <img src="assets/images/logo-gore-horizontal.png" alt="Gobierno Regional del Maule" class="logo-img">
-                <div class="d-none d-sm-block">
-                    <h1 class="h5 mb-0 fw-bold text-institucional">MaulePro</h1>
-                    <p class="small mb-0 text-muted">Gobierno Regional del Maule</p>
+                <img src="assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo">
+                <div class="d-none d-md-block">
+                    <h1 class="h5 mb-0 fw-bold text-white">Maule Pro</h1>
+                    <p class="small mb-0 text-white opacity-75">Gobierno Regional del Maule</p>
                 </div>
             </a>
             
-            <!-- Botón Toggle Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
-            <!-- Menú -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link active text-institucional" aria-current="page" href="index.html">Inicio</a>
+                        <a class="nav-link" href="index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-institucional" href="#nosotros">Nosotros</a>
+                        <a class="nav-link" href="#nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-institucional" href="pages/preguntas-frecuentes.html">Preguntas Frecuentes</a>
+                        <a class="nav-link" href="pages/preguntas-frecuentes.html">Preguntas Frecuentes</a>
                     </li>
-                    <li class="nav-item dropdown d-lg-none">
-                        <a class="nav-link dropdown-toggle text-institucional" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Programas
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="Accesibilidad(); return false;">
+                            <span class="btn-accesibilidad-icono-redondo">
+                                <i id="imgAccesibilidad" class="bi bi-universal-access-circle"></i>
+                            </span>
+                            <span class="btn-accesibilidad-texto">Accesibilidad</span>
                         </a>
-                        <ul class="dropdown-menu bg-white border shadow-sm">
-                            <li><a class="dropdown-item text-institucional" href="#programas">Todos los Programas</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-institucional small" href="pages/programas/circular-33.html">Circular 33</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="pages/programas/fril.html">FRIL</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="pages/programas/fndr-sub31.html">FNDR Sub. 31</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="pages/programas/proyectos-menores.html">Proyectos Menores</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="pages/programas/fndr-8.html">Subvenciones para actividades FNDR 8%</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="pages/financiamiento-programas.html">Financiamiento para Programas</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="pages/programas/frpd.html">FRPD</a></li>
-                        </ul>
                     </li>
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link text-institucional" href="login.html">Ingresar / Registrar</a>
-                    </li>
-                    <li class="nav-item d-none d-lg-block ms-3">
-                        <a href="login.html" class="btn btn-institucional btn-sm"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar / Registrar</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="login.html">
+                            <img src="assets/images/claveunica-icon.svg" alt="ClaveÚnica" class="claveunica-btn-img">
+                        </a>
                     </li>
                 </ul>
             </div>
@@ -142,7 +134,7 @@
                         <span class="badge bg-institucional mb-3 px-3 py-2">
                             <i class="bi bi-building me-2"></i>Gobierno Regional del Maule
                         </span>
-                        <h1 class="display-5 fw-bold mb-3 text-institucional">
+                        <h1 class="display-5 fw-bold mb-3" style="color: #000000;">
                             Portal de Postulación a Programas y Fondos Regionales
                         </h1>
                         <p class="lead mb-4 fs-5">
@@ -197,20 +189,20 @@
                         <div class="search-box-header">
                             <h2 class="h6 mb-0">Buscar convocatorias</h2>
                         </div>
-                        <form id="searchForm" class="filters" role="search" aria-label="Buscador y filtros">
+                        <form id="searchForm" class="filters" role="search" aria-label="Buscador y filtros" method="get" action="pages/buscar.html">
                             <div class="mb-3">
                                 <label for="q" class="form-label small fw-semibold">Buscar por nombre o palabra clave</label>
                                 <div class="input-group search-input-wrapper">
                                     <span class="input-group-text">
                                         <i class="bi bi-search"></i>
                                     </span>
-                                <input id="q" class="form-control" type="search" placeholder="Ej.: FRIL, 8% FNDR, cultura…">
+                                <input id="q" name="q" class="form-control" type="search" placeholder="Ej.: FRIL, 8% FNDR, cultura…">
                             </div>
                             </div>
                             <div class="row g-2 mb-2">
                                 <div class="col-6">
                                     <label for="estado" class="form-label small fw-semibold">Estado</label>
-                                    <select id="estado" class="form-select">
+                                    <select id="estado" name="estado" class="form-select">
                                         <option value="">Todos</option>
                                         <option value="open">Abiertos</option>
                                         <option value="soon">Próximos</option>
@@ -219,7 +211,7 @@
                                 </div>
                                 <div class="col-6">
                                     <label for="benef" class="form-label small fw-semibold">Beneficiario</label>
-                                    <select id="benef" class="form-select">
+                                    <select id="benef" name="benef" class="form-select">
                                         <option value="">Todos</option>
                                         <option value="municipios">Municipios</option>
                                         <option value="servicios">Servicios públicos</option>
@@ -231,7 +223,7 @@
                             </div>
                             <div class="mb-3">
                                 <label for="orden" class="form-label small fw-semibold">Ordenar por</label>
-                                <select id="orden" class="form-select">
+                                <select id="orden" name="orden" class="form-select">
                                     <option value="relevance">Relevancia</option>
                                     <option value="openfirst">Abiertos primero</option>
                                     <option value="date">Fecha de cierre</option>
@@ -258,16 +250,9 @@
                 </div>
             </div>
 
-            <!-- Contadores por estado -->
-            <div class="d-flex flex-wrap align-items-center gap-2 mb-3" id="statusCounters" aria-live="polite">
-                <span class="badge badge-open">Abiertos: <strong id="cntOpen">0</strong></span>
-                <span class="badge badge-soon">Próximos: <strong id="cntSoon">0</strong></span>
-                <span class="badge badge-closed">Cerrados: <strong id="cntClosed">0</strong></span>
-            </div>
-
             <div id="grid" class="row g-3">
                 <!-- Programas Abiertos -->
-                <div class="col-12 col-md-6 col-lg-4" data-program data-name="PROYECTOS MENORES A 5.000 UTM" data-benef="municipios" data-estado="open" data-close="2025-11-30" data-animate>
+                <div class="col-12 col-md-6 col-lg-3" data-program data-name="PROYECTOS MENORES A 5.000 UTM" data-benef="municipios" data-estado="open" data-close="2025-11-30" data-animate>
                     <article class="program-card">
                         <div class="program-card-header">
                             <div class="program-card-header-top">
@@ -275,10 +260,6 @@
                                     <span class="program-card-status-badge status-badge-open">Abierto</span>
                                     <span class="deadline-badge urgent" data-deadline></span>
                             </div>
-                                <span class="program-card-location">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <span>Regional</span>
-                                </span>
                         </div>
                             <h3>PROYECTOS MENORES A 5.000 UTM</h3>
                         </div>
@@ -315,7 +296,7 @@
                     </article>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Subvenciones para actividades FNDR 8%" data-benef="org" data-estado="open" data-close="2025-12-15" data-animate>
+                <div class="col-12 col-md-6 col-lg-3" data-program data-name="Subvenciones para actividades FNDR 8%" data-benef="org" data-estado="open" data-close="2025-12-15" data-animate>
                     <article class="program-card">
                         <div class="program-card-header">
                             <div class="program-card-header-top">
@@ -323,10 +304,6 @@
                                     <span class="program-card-status-badge status-badge-open">Abierto</span>
                                     <span class="deadline-badge" data-deadline></span>
                             </div>
-                                <span class="program-card-location">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <span>Regional</span>
-                                </span>
                         </div>
                             <h3>Subvenciones para actividades FNDR 8%</h3>
                         </div>
@@ -364,15 +341,11 @@
                 </div>
                 
                 <!-- Programas Cerrados -->
-                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Circular 33" data-benef="municipios" data-estado="closed" data-close="" data-animate>
+                <div class="col-12 col-md-6 col-lg-3" data-program data-name="Circular 33" data-benef="municipios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card">
                         <div class="program-card-header">
                             <div class="program-card-header-top">
                                 <span class="program-card-status-badge status-badge-closed">Cerrado</span>
-                                <span class="program-card-location">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <span>Regional</span>
-                                </span>
                             </div>
                             <h3>Circular 33</h3>
                         </div>
@@ -409,15 +382,11 @@
                     </article>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional de Iniciativa Local (FRIL)" data-benef="municipios" data-estado="closed" data-close="" data-animate>
+                <div class="col-12 col-md-6 col-lg-3" data-program data-name="Fondo Regional de Iniciativa Local (FRIL)" data-benef="municipios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card">
                         <div class="program-card-header">
                             <div class="program-card-header-top">
                                 <span class="program-card-status-badge status-badge-closed">Cerrado</span>
-                                <span class="program-card-location">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <span>Regional</span>
-                                </span>
                             </div>
                             <h3>Fondo Regional de Iniciativa Local (FRIL)</h3>
                         </div>
@@ -454,15 +423,11 @@
                     </article>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-4" data-program data-name="FNDR Sub. 31 con Evaluación MIDESOYF" data-benef="municipios" data-estado="closed" data-close="" data-animate>
+                <div class="col-12 col-md-6 col-lg-3" data-program data-name="FNDR Sub. 31 con Evaluación MIDESOYF" data-benef="municipios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card">
                         <div class="program-card-header">
                             <div class="program-card-header-top">
                                 <span class="program-card-status-badge status-badge-closed">Cerrado</span>
-                                <span class="program-card-location">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <span>Regional</span>
-                                </span>
                             </div>
                             <h3>FNDR Sub. 31 con Evaluación MIDESOYF</h3>
                         </div>
@@ -499,15 +464,11 @@
                     </article>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Financiamiento para Programas" data-benef="servicios" data-estado="closed" data-close="" data-animate>
+                <div class="col-12 col-md-6 col-lg-3" data-program data-name="Financiamiento para Programas" data-benef="servicios" data-estado="closed" data-close="" data-animate>
                     <article class="program-card">
                         <div class="program-card-header">
                             <div class="program-card-header-top">
                                 <span class="program-card-status-badge status-badge-closed">Cerrado</span>
-                                <span class="program-card-location">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <span>Regional</span>
-                                </span>
                             </div>
                             <h3>Financiamiento para Programas</h3>
                         </div>
@@ -544,15 +505,11 @@
                     </article>
                 </div>
                 
-                <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional para la Productividad y el Desarrollo (FRPD)" data-benef="empresas" data-estado="closed" data-close="" data-animate>
+                <div class="col-12 col-md-6 col-lg-3" data-program data-name="Fondo Regional para la Productividad y el Desarrollo (FRPD)" data-benef="empresas" data-estado="closed" data-close="" data-animate>
                     <article class="program-card">
                         <div class="program-card-header">
                             <div class="program-card-header-top">
                                 <span class="program-card-status-badge status-badge-closed">Cerrado</span>
-                                <span class="program-card-location">
-                                    <i class="bi bi-geo-alt-fill"></i>
-                                    <span>Regional</span>
-                                </span>
                             </div>
                             <h3>Fondo Regional para la Productividad y el Desarrollo (FRPD)</h3>
                         </div>
@@ -632,6 +589,13 @@
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
+    <!-- MaulePro Core Modules (cargar primero) -->
+    <script src="assets/js/data/programas.js"></script>
+    <script src="assets/js/utils/debounce.js"></script>
+    <script src="assets/js/modules/search/FilterEngine.js"></script>
+    <script src="assets/js/modules/search/SortEngine.js"></script>
+    <script src="assets/js/modules/search/CardRenderer.js"></script>
+    <script src="assets/js/modules/search/SearchManager.js"></script>
     <!-- MaulePro Modules -->
     <script src="assets/js/modules/carousel.js" defer></script>
     <script src="assets/js/modules/filters.js" defer></script>

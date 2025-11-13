@@ -61,31 +61,8 @@
     letter-spacing: -0.02em;
 }
 
-/* Status Counters */
-#statusCounters .badge {
-    padding: 0.45rem 0.6rem;
-    font-weight: 700;
-    border-radius: 0.75rem;
-    border: 1px solid;
-}
-
-#statusCounters .badge-open {
-    background: #198754;
-    border-color: #146c43;
-    color: #fff;
-}
-
-#statusCounters .badge-soon {
-    background: #ffc107;
-    border-color: #e0a800;
-    color: #1b1f24;
-}
-
-#statusCounters .badge-closed {
-    background: #dc3545;
-    border-color: #b02a37;
-    color: #fff;
-}
+/* Status Counters - Eliminados */
+/* Los contadores de estado (Abiertos, Próximos, Cerrados) fueron removidos */
 
 /* Responsive Hero */
 @media (max-width: 768px) {
@@ -187,7 +164,7 @@
 }
 
 .search-input-wrapper:focus-within {
-    box-shadow: 0 0 0 3px rgba(97, 22, 22, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
     border-color: var(--institucional-azul);
 }
 
@@ -232,7 +209,7 @@
 
 #searchForm .form-select:focus {
     border-color: var(--institucional-azul);
-    box-shadow: 0 0 0 3px rgba(97, 22, 22, 0.1);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
     outline: none;
 }
 
@@ -249,23 +226,23 @@
     font-weight: 600;
     font-size: 0.95rem;
     transition: all 0.2s ease;
-    box-shadow: 0 2px 4px rgba(97, 22, 22, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
 }
 
 .btn-search:hover {
     background: var(--institucional-azul-oscuro);
     color: white;
     transform: translateY(-1px);
-    box-shadow: 0 4px 8px rgba(97, 22, 22, 0.3);
+    box-shadow: 0 4px 8px rgba(0, 102, 204, 0.3);
 }
 
 .btn-search:active {
     transform: translateY(0);
-    box-shadow: 0 2px 4px rgba(97, 22, 22, 0.2);
+    box-shadow: 0 2px 4px rgba(0, 102, 204, 0.2);
 }
 
 .btn-search:focus {
-    box-shadow: 0 0 0 3px rgba(97, 22, 22, 0.25);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.25);
     outline: none;
 }
 
@@ -284,5 +261,55 @@
         margin-bottom: 1rem;
         padding-bottom: 0.75rem;
     }
+}
+
+/* Estilos para formulario de búsqueda horizontal en página de resultados */
+.encuentra {
+    position: relative;
+}
+
+.encuentra input {
+    padding-right: 3rem !important;
+}
+
+.lupa {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+    z-index: 10;
+}
+
+#formSearch .form-control,
+#formSearch .form-select {
+    border-radius: 50px;
+    border: 1px solid #dee2e6;
+}
+
+#formSearch .form-control:focus,
+#formSearch .form-select:focus {
+    border-color: var(--institucional-azul);
+    box-shadow: 0 0 0 3px rgba(0, 102, 204, 0.1);
+    outline: none;
+}
+
+#formSearchMovil .encuentra {
+    position: relative;
+}
+
+#formSearchMovil .encuentra input {
+    padding-right: 3rem !important;
+}
+
+#formSearchMovil .lupa {
+    position: absolute;
+    right: 1rem;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #666;
+    pointer-events: none;
+    z-index: 10;
 }
 

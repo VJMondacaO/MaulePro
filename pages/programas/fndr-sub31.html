@@ -1,72 +1,67 @@
 <!DOCTYPE html>
-<html lang="es" data-bs-theme="light">
+<html lang="es" data-bs-theme="light" class="loading">
 <head>
+    <script>
+        // Ocultar scrollbar durante la carga
+        document.documentElement.classList.add('loading');
+        window.addEventListener('load', function() {
+            document.documentElement.classList.remove('loading');
+        });
+    </script>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>FNDR Sub. 31 - Portal MaulePro</title>
     
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
     <!-- Bootstrap 5 CSS -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <!-- Bootstrap Icons -->
     <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
-    
-        <!-- MaulePro Main CSS -->
+    <!-- MaulePro Main CSS -->
     <link href="../../assets/css/main.css" rel="stylesheet">
 </head>
 <body>
-    <!-- Navbar Bootstrap Unificada -->
-    <nav class="navbar navbar-expand-lg bg-white shadow-sm border-bottom">
-        <div class="container">
-            <!-- Logo y Nombre -->
+    <!-- Navbar Bootstrap Estándar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-3" href="../../index.html">
-                <img src="../../assets/images/logo-gore-horizontal.png" alt="Gobierno Regional del Maule" class="logo-img">
-                <div class="d-none d-sm-block">
-                    <h1 class="h5 mb-0 fw-bold text-institucional">MaulePro</h1>
-                    <p class="small mb-0 text-muted">Gobierno Regional del Maule</p>
+                <img src="../../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo">
+                <div class="d-none d-md-block">
+                    <h1 class="h5 mb-0 fw-bold text-white">Maule Pro</h1>
+                    <p class="small mb-0 text-white opacity-75">Gobierno Regional del Maule</p>
                 </div>
             </a>
             
-            <!-- Botón Toggle Mobile -->
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
-                    </button>
+            </button>
             
-            <!-- Menú -->
             <div class="collapse navbar-collapse" id="navbarNav">
-                <ul class="navbar-nav ms-auto align-items-lg-center">
+                <ul class="navbar-nav ms-auto align-items-center">
                     <li class="nav-item">
-                        <a class="nav-link text-institucional" href="../../index.html">Inicio</a>
+                        <a class="nav-link" href="../../index.html">Inicio</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-institucional" href="../../index.html#nosotros">Nosotros</a>
+                        <a class="nav-link" href="../../index.html#nosotros">Nosotros</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-institucional" href="../../index.html#preguntas-frecuentes">Preguntas Frecuentes</a>
+                        <a class="nav-link" href="../../pages/preguntas-frecuentes.html">Preguntas Frecuentes</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link text-institucional" href="../../index.html#accesibilidad">Accesibilidad</a>
-                    </li>
-                    <li class="nav-item dropdown d-lg-none">
-                        <a class="nav-link dropdown-toggle text-institucional" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                            Programas
+                        <a class="nav-link" href="#" onclick="Accesibilidad(); return false;">
+                            <span class="btn-accesibilidad-icono-redondo">
+                                <i id="imgAccesibilidad" class="bi bi-universal-access-circle"></i>
+                            </span>
+                            <span class="btn-accesibilidad-texto">Accesibilidad</span>
                         </a>
-                        <ul class="dropdown-menu bg-white border shadow-sm">
-                            <li><a class="dropdown-item text-institucional" href="../../index.html#programas">Todos los Programas</a></li>
-                            <li><hr class="dropdown-divider"></li>
-                            <li><a class="dropdown-item text-institucional small" href="circular-33.html">Circular 33</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="fril.html">FRIL</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="fndr-sub31.html">FNDR Sub. 31</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="proyectos-menores.html">Proyectos Menores</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="fndr-8.html">Subvenciones para actividades FNDR 8%</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="../financiamiento-programas.html">Financiamiento para Programas</a></li>
-                            <li><a class="dropdown-item text-institucional small" href="frpd.html">FRPD</a></li>
-                        </ul>
                     </li>
-                    <li class="nav-item d-lg-none">
-                        <a class="nav-link text-institucional" href="../../login.html">Ingresar / Registrar</a>
-                    </li>
-                    <li class="nav-item d-none d-lg-block ms-3">
-                        <a href="../../login.html" class="btn btn-institucional btn-sm"><i class="bi bi-box-arrow-in-right me-2"></i>Ingresar / Registrar</a>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../../login.html">
+                            <img src="../../assets/images/claveunica-icon.svg" alt="ClaveÚnica" class="claveunica-btn-img">
+                        </a>
                     </li>
                 </ul>
             </div>

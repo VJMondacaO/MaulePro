@@ -1,0 +1,434 @@
+<!DOCTYPE html>
+<html lang="es" data-bs-theme="light" class="loading">
+<head>
+    <script>
+        // Ocultar scrollbar durante la carga
+        document.documentElement.classList.add('loading');
+        window.addEventListener('load', function() {
+            document.documentElement.classList.remove('loading');
+        });
+    </script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Resultados de Búsqueda - Portal MaulePro</title>
+    
+    <!-- Google Fonts - Roboto -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css" rel="stylesheet">
+    <!-- MaulePro Main CSS -->
+    <link href="../assets/css/main.css" rel="stylesheet">
+</head>
+<body>
+    <!-- Navbar Bootstrap Estándar -->
+    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+        <div class="container-fluid">
+            <a class="navbar-brand d-flex align-items-center gap-3" href="../index.html">
+                <img src="../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo">
+                <div class="d-none d-md-block">
+                    <h1 class="h5 mb-0 fw-bold text-white">Maule Pro</h1>
+                    <p class="small mb-0 text-white opacity-75">Gobierno Regional del Maule</p>
+                </div>
+            </a>
+            
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto align-items-center">
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html">Inicio</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../index.html#nosotros">Nosotros</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="#" onclick="Accesibilidad(); return false;">
+                            <span class="btn-accesibilidad-icono-redondo">
+                                <i id="imgAccesibilidad" class="bi bi-universal-access-circle"></i>
+                            </span>
+                            <span class="btn-accesibilidad-texto">Accesibilidad</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="../login.html">
+                            <img src="../assets/images/claveunica-icon.svg" alt="ClaveÚnica" class="claveunica-btn-img">
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+
+    <main role="main">
+        <!-- Sección de Búsqueda -->
+        <section class="bg-light pt-4 pb-4">
+            <div class="container-fluid">
+                <div class="row">
+                    <div class="col-md-2">
+                        <div class="mt-2 mb-5 text-center">
+                            <a href="../index.html" class="btn btn-outline-secondary rounded-pill text-center">
+                                <i class="bi bi-chevron-left me-1"></i> Volver
+                            </a>
+                        </div>
+                    </div>
+                    <div class="col-md-8">
+                        <div class="row">
+                            <div class="col-md-12 text-center">
+                                <h2 class="mb-0" style="color: #000000;"><b>Resultado de búsqueda</b></h2>
+                                <p class="mb-0">Hemos encontrado <span class="text-danger"><b id="resultCount">0</b></span> resultados</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Filtros de Búsqueda -->
+        <section class="container-fluid bg-white pt-3 pb-3">
+            <div class="row align-items-center">
+                <div class="col">
+                    <form id="formSearch" class="mb-3 d-none d-lg-block" method="get" action="buscar.html">
+                        <div class="row g-3 align-items-center">
+                            <div style="width: 30%;" class="encuentra">
+                                <input type="text" name="q" id="searchQuery" class="form-control rounded-pill p-3" placeholder="Encuentra un fondo " aria-label="Encuentra un fondo">
+                                <i class="bi bi-search lupa"></i>
+                            </div>
+                            <div style="width: 14%;">
+                                <select id="selectEstado" name="estado" class="form-select p-3">
+                                    <option value="" selected>Estado</option>
+                                    <option value="open">Abierto</option>
+                                    <option value="soon">Próximo</option>
+                                    <option value="closed">Cerrado</option>
+                                </select>
+                            </div>
+                            <div style="width: 14%;">
+                                <select id="selectBenef" name="benef" class="form-select p-3">
+                                    <option value="" selected>Beneficiario</option>
+                                    <option value="municipios">Municipios</option>
+                                    <option value="servicios">Servicios públicos</option>
+                                    <option value="org">Organizaciones</option>
+                                    <option value="personas">Personas naturales</option>
+                                    <option value="empresas">Empresas</option>
+                                </select>
+                            </div>
+                            <div style="width: 14%;">
+                                <select id="selectOrden" name="orden" class="form-select p-3">
+                                    <option value="relevance" selected>Relevancia</option>
+                                    <option value="openfirst">Abiertos primero</option>
+                                    <option value="date">Fecha de cierre</option>
+                                    <option value="alpha">A-Z</option>
+                                </select>
+                            </div>
+                            <div style="width: 14%;">
+                                <select id="selectRegion" name="region" class="form-select p-3">
+                                    <option value="" selected>Alcance</option>
+                                    <option value="comunal">Comunal</option>
+                                    <option value="provincial">Provincial</option>
+                                    <option value="regional">Regional</option>
+                                    <option value="nacional">Nacional</option>
+                                </select>
+                            </div>
+                            <div style="width: 14%;">
+                                <button type="submit" class="btn btn-lg btn-primary rounded-pill d-block" style="width: 100%;">Buscar</button>
+                            </div>
+                        </div>
+                    </form>
+                    <div class="d-block d-lg-none">
+                        <a class="btn btn-outline-primary btn-lg rounded mb-3 collapsed d-block" data-bs-toggle="collapse" href="#filtrarSM" role="button" aria-expanded="false" aria-controls="filtrarSM">
+                            <i class="bi bi-filter"></i> Filtros
+                        </a>
+                        <div class="col-12 collapse" id="filtrarSM">
+                            <form id="formSearchMovil" class="mb-3" method="get" action="buscar.html">
+                                <div class="row g-3 align-items-center">
+                                    <div class="col-lg-2 col-md-12 encuentra">
+                                        <input type="text" name="q" class="form-control rounded-pill p-3" placeholder="Encuentra un fondo " aria-label="Encuentra un fondo">
+                                        <i class="bi bi-search lupa"></i>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6">
+                                        <select name="estado" class="form-select p-3 text-wrap">
+                                            <option value="" selected>Estado</option>
+                                            <option value="open">Abierto</option>
+                                            <option value="soon">Próximo</option>
+                                            <option value="closed">Cerrado</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6">
+                                        <select name="benef" class="form-select p-3 text-wrap">
+                                            <option value="" selected>Beneficiario</option>
+                                            <option value="municipios">Municipios</option>
+                                            <option value="servicios">Servicios públicos</option>
+                                            <option value="org">Organizaciones</option>
+                                            <option value="personas">Personas naturales</option>
+                                            <option value="empresas">Empresas</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6">
+                                        <select name="orden" class="form-select p-3 text-wrap">
+                                            <option value="relevance" selected>Relevancia</option>
+                                            <option value="openfirst">Abiertos primero</option>
+                                            <option value="date">Fecha de cierre</option>
+                                            <option value="alpha">A-Z</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2 col-md-6">
+                                        <select name="region" class="form-select p-3 text-wrap">
+                                            <option value="" selected>Alcance</option>
+                                            <option value="comunal">Comunal</option>
+                                            <option value="provincial">Provincial</option>
+                                            <option value="regional">Regional</option>
+                                            <option value="nacional">Nacional</option>
+                                        </select>
+                                    </div>
+                                    <div class="col-lg-2">
+                                        <button type="submit" class="btn btn-lg btn-primary rounded-pill d-block" style="width: 100%;">Buscar</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Resultados -->
+        <section class="py-4">
+            <div class="container">
+                <div class="row g-3" id="searchResults">
+                    <!-- Los resultados se cargarán aquí dinámicamente -->
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer mt-5 py-5 bg-light">
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-md-6 col-lg-4 mb-4">
+                    <div class="row">
+                        <div class="col-4 text-center">
+                            <img class="img-fluid px-3" src="../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" style="max-height: 80px;">
+                        </div>
+                        <div class="col-8">
+                            <p>Gobierno Regional del Maule</p>
+                            <p>Talca, Chile</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-sm-6 col-lg-2 mb-4">
+                    <h6>Ayuda</h6>
+                    <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-4">
+                    <h6>Información</h6>
+                    <p>Portal de Postulación a Programas y Fondos Regionales</p>
+                </div>
+                <div class="col-sm-6 col-lg-3 mb-4">
+                    <h6>Contáctanos</h6>
+                    <p>Gobierno Regional del Maule</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+        <!-- Bootstrap JS -->
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+        <!-- MaulePro Core Modules (cargar primero) -->
+        <script src="../assets/js/data/programas.js"></script>
+        <script src="../assets/js/utils/debounce.js"></script>
+        <script src="../assets/js/modules/search/FilterEngine.js"></script>
+        <script src="../assets/js/modules/search/SortEngine.js"></script>
+        <script src="../assets/js/modules/search/CardRenderer.js"></script>
+        <script src="../assets/js/modules/search/SearchManager.js"></script>
+        <!-- MaulePro JS -->
+        <script src="../assets/js/script.js"></script>
+        <script src="../assets/js/main.js"></script>
+
+        <script>
+            (function() {
+                'use strict';
+
+                // Función de Accesibilidad
+                function Accesibilidad() {
+                    spinnerAccesibilidad();
+                    if (typeof UserWay !== 'undefined' && UserWay.widgetToggle) {
+                        UserWay.widgetToggle();
+                    }
+                    setTimeout(function () {
+                        ocultarspinnerAccesibilidad();
+                    }, 1000);
+                }
+
+                function spinnerAccesibilidad() {
+                    var elemento = document.getElementById("imgAccesibilidad");
+                    if (elemento) {
+                        elemento.classList.remove("bg-primary");
+                        elemento.classList.add("spinner-grow");
+                        elemento.classList.remove("rounded-pill");
+                    }
+                }
+
+                function ocultarspinnerAccesibilidad() {
+                    var elemento = document.getElementById("imgAccesibilidad");
+                    if (elemento) {
+                        elemento.classList.remove("spinner-grow");
+                        elemento.classList.add("bg-primary");
+                        elemento.classList.add("rounded-pill");
+                    }
+                }
+
+                // Exponer función de accesibilidad globalmente
+                window.Accesibilidad = Accesibilidad;
+
+                // Cargar resultados de búsqueda usando SearchManager
+                function loadSearchResults() {
+                    // Verificar que los módulos estén cargados
+                    if (!window.MaulePro || !window.MaulePro.Data || !window.MaulePro.Search) {
+                        console.error('Error: Los módulos de búsqueda no están cargados');
+                        // Reintentar después de un delay
+                        setTimeout(loadSearchResults, 100);
+                        return;
+                    }
+
+                    // Obtener datos de programas
+                    const programas = window.MaulePro.Data.programas || [];
+                    if (programas.length === 0) {
+                        console.error('Error: No se encontraron programas');
+                        return;
+                    }
+
+                    // Ajustar rutas de links para buscar.html (relativo a pages/)
+                    const programasAjustados = programas.map(p => ({
+                        ...p,
+                        link: p.link.replace('pages/', '../')
+                    }));
+
+                    // Obtener parámetros de URL
+                    const params = window.MaulePro.Search.SearchManager.getUrlParams();
+
+                    // Elementos del DOM
+                    const resultsContainer = document.getElementById('searchResults');
+                    const resultCount = document.getElementById('resultCount');
+
+                    if (!resultsContainer) {
+                        console.error('Error: No se encontró el contenedor de resultados');
+                        return;
+                    }
+
+                    // Llenar formularios con parámetros
+                    window.MaulePro.Search.SearchManager.fillForm(params, {
+                        q: 'searchQuery',
+                        estado: 'selectEstado',
+                        benef: 'selectBenef',
+                        orden: 'selectOrden',
+                        region: 'selectRegion'
+                    });
+
+                    // Crear SearchManager
+                    const searchManager = new window.MaulePro.Search.SearchManager({
+                        programas: programasAjustados,
+                        container: resultsContainer,
+                        onCountChange: (counts) => {
+                            if (resultCount) {
+                                resultCount.textContent = counts.total;
+                            }
+                        }
+                    });
+
+                    // Ejecutar búsqueda
+                    const resultados = searchManager.search(params);
+
+                    // Renderizar resultados
+                    searchManager.renderResults(resultados, resultsContainer);
+
+                    // Inicializar funcionalidades adicionales
+                    setTimeout(() => {
+                        paintDeadlines();
+                        initAnimations();
+                    }, 100);
+                }
+
+                // Función para pintar deadlines (similar a filters.js)
+                function paintDeadlines() {
+                    const now = new Date();
+                    document.querySelectorAll('[data-program][data-close]').forEach(col => {
+                        const closeDate = col.getAttribute('data-close');
+                        if (!closeDate) return;
+                        
+                        const d = new Date(closeDate);
+                        const badge = col.querySelector('[data-deadline]');
+                        if (!badge) return;
+                        
+                        if (!d || isNaN(d.getTime())) {
+                            badge.style.display = 'none';
+                            return;
+                        }
+                        
+                        const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
+                        
+                        if (days < 0) {
+                            badge.style.display = 'none';
+                            return;
+                        }
+                        
+                        let text = '';
+                        let cls = '';
+                        
+                        if (days === 0) {
+                            text = 'Finaliza hoy';
+                            cls = 'urgent';
+                        } else if (days === 1) {
+                            text = 'Finaliza en 1 día';
+                            cls = 'urgent';
+                        } else {
+                            text = `Finaliza en ${days} días`;
+                            cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
+                        }
+                        
+                        badge.className = `deadline-badge ${cls}`;
+                        badge.textContent = text;
+                        badge.style.display = 'inline-block';
+                    });
+                }
+
+                // Inicializar animaciones
+                function initAnimations() {
+                    const els = document.querySelectorAll('[data-animate]');
+                    if ('IntersectionObserver' in window) {
+                        const io = new IntersectionObserver((entries) => {
+                            entries.forEach(e => {
+                                if (e.isIntersecting) {
+                                    e.target.classList.add('in');
+                                    io.unobserve(e.target);
+                                }
+                            });
+                        }, { root: null, rootMargin: '0px 0px -10% 0px', threshold: 0.1 });
+                        els.forEach(el => io.observe(el));
+                    } else {
+                        els.forEach(el => el.classList.add('in'));
+                    }
+                }
+
+                // Cargar resultados al cargar la página
+                if (document.readyState === 'loading') {
+                    document.addEventListener('DOMContentLoaded', function() {
+                        // Esperar a que los módulos se carguen
+                        setTimeout(loadSearchResults, 200);
+                    });
+                } else {
+                    setTimeout(loadSearchResults, 200);
+                }
+            })();
+        </script>
+</body>
+</html>
+

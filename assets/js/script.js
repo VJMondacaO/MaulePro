@@ -447,17 +447,33 @@ if (searchInput) {
 
 // Search functionality - Wait for DOM to be ready
 function initSearch() {
+    // Verificar si estamos en la página de búsqueda (buscar.html)
+    // En esa página, el buscador se maneja de forma diferente
+    if (window.location.pathname.includes('buscar.html')) {
+        console.log('Página de búsqueda detectada, no inicializando buscador modal');
+        return;
+    }
+    
     const searchForm = document.getElementById('searchForm');
     const searchInput = document.getElementById('searchInput');
     const searchResults = document.getElementById('searchResults');
     
-    if (!searchForm || !searchInput || !searchResults) {
-        console.warn('⚠️ Elementos del buscador no encontrados:', {
-            searchForm: !!searchForm,
-            searchInput: !!searchInput,
-            searchResults: !!searchResults
-        });
+    // Verificar si es el modal de búsqueda (requiere searchInput y searchResults)
+    // Si es el formulario de búsqueda principal (index.html), tiene action y no necesita esto
+    if (!searchInput || !searchResults) {
+        // No es un error si no hay modal de búsqueda
         return;
+    }
+    
+    // Verificar si el formulario tiene action (redirección)
+    // Si tiene action, no inicializar el buscador modal
+    if (searchForm) {
+        const formAction = searchForm.getAttribute('action');
+        const hasRedirectAction = formAction && formAction.trim() !== '' && formAction.trim() !== '#';
+        if (hasRedirectAction) {
+            console.log('Formulario con action detectado, no inicializando buscador modal');
+            return;
+        }
     }
     
     console.log('✅ Buscador inicializado correctamente');
@@ -681,138 +697,146 @@ function initSearch() {
         return sortedResults;
     }
     
-    // Handle form submission
-    searchForm.addEventListener('submit', (e) => {
-        e.preventDefault();
-        console.log('🔍 Formulario de búsqueda enviado');
-        const query = searchInput.value.trim();
-        
-        if (query === '') {
-            searchResults.innerHTML = '<div class="text-center py-4"><i class="bi bi-search text-muted" style="font-size: 3rem;"></i><p class="text-muted mt-2">Por favor, ingrese un término de búsqueda.</p></div>';
-            return;
-        }
-        
-        console.log('🔍 Buscando:', query);
-        let results = [];
-        try {
-            results = performSearch(query);
-            console.log('✅ Resultados encontrados:', results.length);
-        } catch (error) {
-            console.error('❌ Error al realizar la búsqueda:', error);
-            searchResults.innerHTML = `
-                <div class="text-center py-4">
-                    <i class="bi bi-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
-                    <p class="text-muted mt-2">Ocurrió un error al realizar la búsqueda. Por favor, intente nuevamente.</p>
-                </div>
-            `;
-            return;
-        }
-        
-        if (results.length === 0) {
-            searchResults.innerHTML = `
-                <div class="text-center py-4">
-                    <i class="bi bi-search text-muted" style="font-size: 3rem;"></i>
-                    <p class="text-muted mt-2 mb-1">No se encontraron resultados para "<strong>${query}</strong>"</p>
-                    <p class="text-muted small">Intente con otros términos de búsqueda</p>
-                </div>
-            `;
-        } else {
-            searchResults.innerHTML = `
-                <div class="mb-2">
-                    <p class="text-muted small mb-0">Se encontraron <strong>${results.length}</strong> resultado${results.length > 1 ? 's' : ''}</p>
-                </div>
-                ${results.map(item => `
-                    <a href="${item.url}" class="d-block p-3 border border-2 border-secondary rounded mb-2 text-decoration-none program-search-result" style="transition: all 0.2s ease;">
-                        <div class="d-flex align-items-start gap-2">
-                            <i class="bi ${item.type === 'programa' ? 'bi-folder' : 'bi-file-earmark-text'} text-institucional mt-1"></i>
-                            <div class="flex-grow-1">
-                                <h3 class="h6 fw-bold text-institucional mb-1">${item.title}</h3>
-                                ${item.snippet && item.snippet !== item.description ? `<p class="text-muted small mb-1"><em>${item.snippet}</em></p>` : ''}
-                                <p class="text-muted small mb-0">${item.description}</p>
-                            </div>
-                            <i class="bi bi-arrow-right text-muted"></i>
-                        </div>
-                    </a>
-                `).join('')}
-            `;
-            
-            // Add hover effect
-            searchResults.querySelectorAll('.program-search-result').forEach(result => {
-                result.addEventListener('mouseenter', function() {
-                    this.style.backgroundColor = '#f8f9fa';
-                    this.style.borderColor = 'var(--institucional-azul)';
-                });
-                result.addEventListener('mouseleave', function() {
-                    this.style.backgroundColor = '';
-                    this.style.borderColor = '';
-                });
-            });
-        }
-    });
+    // Verificar si el formulario tiene un action (redirección a otra página)
+    const formAction = searchForm.getAttribute('action');
+    const hasRedirectAction = formAction && formAction !== '' && formAction !== '#' && !formAction.startsWith('#');
     
-    // Real-time search as user types (debounced)
-    let searchTimeout;
-    if (searchInput) {
-        searchInput.addEventListener('input', function() {
-            clearTimeout(searchTimeout);
-            const query = this.value.trim();
+    // Solo interceptar si NO hay action (búsqueda modal/local)
+    if (!hasRedirectAction) {
+        // Handle form submission - Solo para búsqueda modal/local
+        searchForm.addEventListener('submit', (e) => {
+            e.preventDefault();
+            console.log('🔍 Formulario de búsqueda enviado');
+            const query = searchInput.value.trim();
             
-            if (query.length < 2) {
-                searchResults.innerHTML = '';
+            if (query === '') {
+                searchResults.innerHTML = '<div class="text-center py-4"><i class="bi bi-search text-muted" style="font-size: 3rem;"></i><p class="text-muted mt-2">Por favor, ingrese un término de búsqueda.</p></div>';
+                return;
+            }
+        
+            console.log('🔍 Buscando:', query);
+            let results = [];
+            try {
+                results = performSearch(query);
+                console.log('✅ Resultados encontrados:', results.length);
+            } catch (error) {
+                console.error('❌ Error al realizar la búsqueda:', error);
+                searchResults.innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="bi bi-exclamation-triangle text-warning" style="font-size: 3rem;"></i>
+                        <p class="text-muted mt-2">Ocurrió un error al realizar la búsqueda. Por favor, intente nuevamente.</p>
+                    </div>
+                `;
                 return;
             }
             
-            searchTimeout = setTimeout(() => {
-                let results = [];
-                try {
-                    results = performSearch(query);
-                } catch (error) {
-                    console.error('Error en búsqueda en tiempo real:', error);
+            if (results.length === 0) {
+                searchResults.innerHTML = `
+                    <div class="text-center py-4">
+                        <i class="bi bi-search text-muted" style="font-size: 3rem;"></i>
+                        <p class="text-muted mt-2 mb-1">No se encontraron resultados para "<strong>${query}</strong>"</p>
+                        <p class="text-muted small">Intente con otros términos de búsqueda</p>
+                    </div>
+                `;
+            } else {
+                searchResults.innerHTML = `
+                    <div class="mb-2">
+                        <p class="text-muted small mb-0">Se encontraron <strong>${results.length}</strong> resultado${results.length > 1 ? 's' : ''}</p>
+                    </div>
+                    ${results.map(item => `
+                        <a href="${item.url}" class="d-block p-3 border border-2 border-secondary rounded mb-2 text-decoration-none program-search-result" style="transition: all 0.2s ease;">
+                            <div class="d-flex align-items-start gap-2">
+                                <i class="bi ${item.type === 'programa' ? 'bi-folder' : 'bi-file-earmark-text'} text-institucional mt-1"></i>
+                                <div class="flex-grow-1">
+                                    <h3 class="h6 fw-bold text-institucional mb-1">${item.title}</h3>
+                                    ${item.snippet && item.snippet !== item.description ? `<p class="text-muted small mb-1"><em>${item.snippet}</em></p>` : ''}
+                                    <p class="text-muted small mb-0">${item.description}</p>
+                                </div>
+                                <i class="bi bi-arrow-right text-muted"></i>
+                            </div>
+                        </a>
+                    `).join('')}
+                `;
+                
+                // Add hover effect
+                searchResults.querySelectorAll('.program-search-result').forEach(result => {
+                    result.addEventListener('mouseenter', function() {
+                        this.style.backgroundColor = '#f8f9fa';
+                        this.style.borderColor = 'var(--institucional-azul)';
+                    });
+                    result.addEventListener('mouseleave', function() {
+                        this.style.backgroundColor = '';
+                        this.style.borderColor = '';
+                    });
+                });
+            }
+        });
+        
+        // Real-time search as user types (debounced) - Solo si no hay action
+        let searchTimeout;
+        if (searchInput) {
+            searchInput.addEventListener('input', function() {
+                clearTimeout(searchTimeout);
+                const query = this.value.trim();
+                
+                if (query.length < 2) {
+                    searchResults.innerHTML = '';
                     return;
                 }
                 
-                if (results.length === 0 && query.length >= 2) {
-                    searchResults.innerHTML = `
-                        <div class="text-center py-3">
-                            <p class="text-muted small mb-0">No se encontraron resultados para "<strong>${query}</strong>"</p>
-                        </div>
-                    `;
-                } else if (results.length > 0) {
-                    searchResults.innerHTML = `
-                        <div class="mb-2">
-                            <p class="text-muted small mb-0">Se encontraron <strong>${results.length}</strong> resultado${results.length > 1 ? 's' : ''}</p>
-                        </div>
-                        ${results.slice(0, 5).map(item => `
-                            <a href="${item.url}" class="d-block p-3 border border-2 border-secondary rounded mb-2 text-decoration-none program-search-result" style="transition: all 0.2s ease;">
-                                <div class="d-flex align-items-start gap-2">
-                                    <i class="bi ${item.type === 'programa' ? 'bi-folder' : 'bi-file-earmark-text'} text-institucional mt-1"></i>
-                                    <div class="flex-grow-1">
-                                        <h3 class="h6 fw-bold text-institucional mb-1">${item.title}</h3>
-                                        ${item.snippet && item.snippet !== item.description ? `<p class="text-muted small mb-1"><em>${item.snippet}</em></p>` : ''}
-                                        <p class="text-muted small mb-0">${item.description}</p>
-                                    </div>
-                                    <i class="bi bi-arrow-right text-muted"></i>
-                                </div>
-                            </a>
-                        `).join('')}
-                        ${results.length > 5 ? `<p class="text-muted small text-center mt-2">Y ${results.length - 5} resultado${results.length - 5 > 1 ? 's' : ''} más. Presione Enter para ver todos.</p>` : ''}
-                    `;
+                searchTimeout = setTimeout(() => {
+                    let results = [];
+                    try {
+                        results = performSearch(query);
+                    } catch (error) {
+                        console.error('Error en búsqueda en tiempo real:', error);
+                        return;
+                    }
                     
-                    // Add hover effect
-                    searchResults.querySelectorAll('.program-search-result').forEach(result => {
-                        result.addEventListener('mouseenter', function() {
-                            this.style.backgroundColor = '#f8f9fa';
-                            this.style.borderColor = 'var(--institucional-azul)';
+                    if (results.length === 0 && query.length >= 2) {
+                        searchResults.innerHTML = `
+                            <div class="text-center py-3">
+                                <p class="text-muted small mb-0">No se encontraron resultados para "<strong>${query}</strong>"</p>
+                            </div>
+                        `;
+                    } else if (results.length > 0) {
+                        searchResults.innerHTML = `
+                            <div class="mb-2">
+                                <p class="text-muted small mb-0">Se encontraron <strong>${results.length}</strong> resultado${results.length > 1 ? 's' : ''}</p>
+                            </div>
+                            ${results.slice(0, 5).map(item => `
+                                <a href="${item.url}" class="d-block p-3 border border-2 border-secondary rounded mb-2 text-decoration-none program-search-result" style="transition: all 0.2s ease;">
+                                    <div class="d-flex align-items-start gap-2">
+                                        <i class="bi ${item.type === 'programa' ? 'bi-folder' : 'bi-file-earmark-text'} text-institucional mt-1"></i>
+                                        <div class="flex-grow-1">
+                                            <h3 class="h6 fw-bold text-institucional mb-1">${item.title}</h3>
+                                            ${item.snippet && item.snippet !== item.description ? `<p class="text-muted small mb-1"><em>${item.snippet}</em></p>` : ''}
+                                            <p class="text-muted small mb-0">${item.description}</p>
+                                        </div>
+                                        <i class="bi bi-arrow-right text-muted"></i>
+                                    </div>
+                                </a>
+                            `).join('')}
+                            ${results.length > 5 ? `<p class="text-muted small text-center mt-2">Y ${results.length - 5} resultado${results.length - 5 > 1 ? 's' : ''} más. Presione Enter para ver todos.</p>` : ''}
+                        `;
+                        
+                        // Add hover effect
+                        searchResults.querySelectorAll('.program-search-result').forEach(result => {
+                            result.addEventListener('mouseenter', function() {
+                                this.style.backgroundColor = '#f8f9fa';
+                                this.style.borderColor = 'var(--institucional-azul)';
+                            });
+                            result.addEventListener('mouseleave', function() {
+                                this.style.backgroundColor = '';
+                                this.style.borderColor = '';
+                            });
                         });
-                        result.addEventListener('mouseleave', function() {
-                            this.style.backgroundColor = '';
-                            this.style.borderColor = '';
-                        });
-                    });
-                }
-            }, 300); // 300ms debounce
-        });
+                    }
+                }, 300); // 300ms debounce
+            });
+        }
     }
+    // Si hay action, no interceptar - dejar que el formulario se envíe normalmente
 }
 
 // Console welcome message
@@ -821,6 +845,19 @@ console.log('%c Portal de Postulaciones - Gobierno Regional del Maule ', 'color:
 
 // Verificar funcionalidad del buscador al cargar la página
 window.addEventListener('DOMContentLoaded', () => {
+    // Verificar si estamos en la página de búsqueda (buscar.html)
+    // En esa página, el buscador se maneja de forma diferente
+    if (window.location.pathname.includes('buscar.html')) {
+        console.log('Página de búsqueda detectada, no verificando elementos del buscador modal');
+        // Verificar que Bootstrap esté cargado
+        if (typeof bootstrap !== 'undefined') {
+            console.log('✅ Bootstrap está cargado correctamente');
+        } else {
+            console.warn('⚠️ Bootstrap no está disponible. Algunas funcionalidades pueden no funcionar.');
+        }
+        return;
+    }
+    
     // Verificar que todos los elementos del buscador estén presentes
     const searchElements = {
         searchBtn: document.getElementById('searchBtn'),
@@ -834,9 +871,11 @@ window.addEventListener('DOMContentLoaded', () => {
         .filter(([name, element]) => !element)
         .map(([name]) => name);
     
-    if (missingElements.length > 0) {
-        console.warn('⚠️ Elementos del buscador no encontrados:', missingElements);
-    } else {
+    // Solo mostrar advertencia si falta el modal de búsqueda completo
+    // No es un error si el formulario tiene action (redirección a página de búsqueda)
+    if (missingElements.length > 0 && searchElements.searchModal) {
+        console.warn('⚠️ Elementos del buscador modal no encontrados:', missingElements);
+    } else if (!missingElements.length) {
         console.log('✅ Buscador: Todos los elementos están presentes');
     }
     
@@ -850,4 +889,58 @@ window.addEventListener('DOMContentLoaded', () => {
     // Inicializar el buscador
     initSearch();
 });
+
+// Función de Accesibilidad - Activar widget Userway
+function Accesibilidad() {
+    spinnerAccesibilidad();
+    
+    // Intentar activar el widget de Userway
+    if (typeof UserWay !== 'undefined' && UserWay.widgetToggle) {
+        UserWay.widgetToggle();
+    } else if (typeof window.Userway !== 'undefined' && window.Userway.widgetToggle) {
+        window.Userway.widgetToggle();
+    } else {
+        // Intentar buscar el botón de Userway y hacer clic
+        const userwayButtons = [
+            '.uw-widget-button',
+            '[id*="userway"]',
+            '[class*="userway"]',
+            'iframe[title*="Userway"]',
+            'iframe[title*="Accessibility"]'
+        ];
+        
+        let found = false;
+        userwayButtons.forEach(selector => {
+            if (!found) {
+                const element = document.querySelector(selector);
+                if (element) {
+                    element.click();
+                    found = true;
+                }
+            }
+        });
+    }
+    
+    setTimeout(function () {
+        ocultarspinnerAccesibilidad();
+    }, 1000);
+}
+
+function spinnerAccesibilidad() {
+    var elemento = document.getElementById("imgAccesibilidad");
+    if (elemento) {
+        elemento.classList.remove("bg-primary");
+        elemento.classList.add("spinner-grow");
+        elemento.classList.remove("rounded-pill");
+    }
+}
+
+function ocultarspinnerAccesibilidad() {
+    var elemento = document.getElementById("imgAccesibilidad");
+    if (elemento) {
+        elemento.classList.remove("spinner-grow");
+        elemento.classList.add("bg-primary");
+        elemento.classList.add("rounded-pill");
+    }
+}
 

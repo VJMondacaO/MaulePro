@@ -6,6 +6,7 @@
     background: #FFFFFF;
     border-radius: 0.75rem;
     height: 100%;
+    min-height: 450px;
     position: relative;
     transition: transform 0.25s ease, box-shadow 0.25s ease;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
@@ -31,10 +32,15 @@
 
 /* Program Card Header */
 .program-card-header {
-    background: var(--institucional-azul);
+    background: #093F75;
     color: white;
     padding: 1.25rem 1.5rem;
     position: relative;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
 }
 
 .program-card-header::after {
@@ -63,6 +69,8 @@
     justify-content: space-between;
     align-items: flex-start;
     margin-bottom: 0.75rem;
+    min-height: 40px;
+    flex-shrink: 0;
 }
 
 .program-card-header .institution {
@@ -82,6 +90,9 @@
     word-wrap: break-word;
     overflow-wrap: break-word;
     hyphens: auto;
+    flex-grow: 1;
+    min-height: 50px;
+    display: block;
 }
 
 /* Program Card Body */
@@ -108,7 +119,7 @@
 }
 
 .program-card-info-item i {
-    color: var(--institucional-azul);
+    color: #093F75;
     font-size: 1.1rem;
     margin-top: 0.15rem;
     flex-shrink: 0;
@@ -150,7 +161,7 @@
 }
 
 .status-badge-open {
-    background: #28a745;
+    background: #018484;
     color: white;
 }
 
@@ -160,7 +171,7 @@
 }
 
 .status-badge-closed {
-    background: #dc3545;
+    background: #FE6565;
     color: white;
 }
 
@@ -171,6 +182,112 @@
     font-size: 0.75rem;
     color: rgba(255, 255, 255, 0.9);
 }
+
+/* ============================================
+   Plantillas de Tarjetas por Estado
+   Estas plantillas se pueden reutilizar y modificar según sea necesario
+   ============================================ */
+
+/* 
+   PLANTILLA: Tarjeta Cerrada
+   Uso: Aplicar a elementos con data-estado="closed"
+   Características:
+   - Fondo gris (#BBBBBB) solo en header
+   - Fondo blanco en body
+   - Texto negro en header
+   - Texto normal en body
+   - Línea intermedia visible
+*/
+[data-program][data-estado="closed"] .program-card {
+    background: #FFFFFF;
+}
+
+/* Solo el header tiene fondo gris - Mantener mismas dimensiones mínimas que abiertas */
+[data-program][data-estado="closed"] .program-card-header {
+    background: #BBBBBB;
+    color: #000000;
+    min-height: 120px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    box-sizing: border-box;
+}
+
+/* Mantener línea intermedia en tarjetas cerradas */
+[data-program][data-estado="closed"] .program-card-header::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: rgba(0, 0, 0, 0.2);
+    display: block;
+}
+
+/* Texto negro en header de tarjetas cerradas - Mantener mismas dimensiones mínimas */
+[data-program][data-estado="closed"] .program-card-header h3 {
+    color: #000000;
+    flex-grow: 1;
+    min-height: 50px;
+    display: block;
+}
+
+/* Asegurar que header-top de cerradas tenga misma altura mínima */
+[data-program][data-estado="closed"] .program-card-header-top {
+    min-height: 40px;
+}
+
+[data-program][data-estado="closed"] .program-card-header .institution {
+    color: rgba(0, 0, 0, 0.85);
+}
+
+[data-program][data-estado="closed"] .program-card-location {
+    color: rgba(0, 0, 0, 0.9);
+}
+
+[data-program][data-estado="closed"] .program-card-location i {
+    color: #000000;
+}
+
+/* Body mantiene fondo blanco y colores originales */
+[data-program][data-estado="closed"] .program-card-body {
+    background: #FFFFFF;
+}
+
+/* Íconos vuelven al color azul original en body */
+[data-program][data-estado="closed"] .program-card-info-item i {
+    color: #093F75;
+}
+
+/* Texto vuelve a colores originales en body */
+[data-program][data-estado="closed"] .program-card-info-item-content strong {
+    color: #666;
+}
+
+[data-program][data-estado="closed"] .program-card-info-item-content span {
+    color: #333;
+}
+
+/* 
+   PLANTILLA: Tarjeta Abierta (estilo por defecto)
+   Uso: Aplicar a elementos con data-estado="open"
+   Características:
+   - Fondo azul oscuro en header (#093F75)
+   - Texto blanco en header
+   - Fondo blanco en body
+   - Con animación de onda
+*/
+
+/* 
+   PLANTILLA: Tarjeta Próxima (estilo por defecto)
+   Uso: Aplicar a elementos con data-estado="soon"
+   Características:
+   - Fondo azul oscuro en header (#093F75)
+   - Texto blanco en header
+   - Fondo blanco en body
+   - Con animación de onda
+*/
 
 /* Deadline Badge */
 .deadline-badge {
@@ -230,26 +347,51 @@
 }
 
 /* Grid */
-#grid.row {
+#grid.row,
+#searchResults.row {
     margin: 0;
     overflow-x: hidden;
 }
 
-#grid [class*="col-"] {
+#grid [class*="col-"],
+#searchResults [class*="col-"] {
     min-width: 0;
-    padding: 0 0.75rem;
+    padding: 4px 0.75rem;
+    padding-bottom: 0.75rem;
     box-sizing: border-box;
-    overflow: hidden;
+    overflow: visible;
 }
 
 /* Responsive Program Cards */
 @media (max-width: 768px) {
+    .program-card {
+        min-height: 420px;
+    }
+    
     .program-card-header {
         padding: 1rem;
+        min-height: 110px;
+    }
+    
+    [data-program][data-estado="closed"] .program-card-header {
+        min-height: 110px;
+    }
+    
+    .program-card-header-top {
+        min-height: 35px;
+    }
+    
+    [data-program][data-estado="closed"] .program-card-header-top {
+        min-height: 35px;
     }
     
     .program-card-header h3 {
         font-size: 1rem;
+        min-height: 45px;
+    }
+    
+    [data-program][data-estado="closed"] .program-card-header h3 {
+        min-height: 45px;
     }
     
     .program-card-body {
@@ -258,12 +400,34 @@
 }
 
 @media (max-width: 576px) {
+    .program-card {
+        min-height: 400px;
+    }
+    
     .program-card-header {
         padding: 0.875rem;
+        min-height: 100px;
+    }
+    
+    [data-program][data-estado="closed"] .program-card-header {
+        min-height: 100px;
+    }
+    
+    .program-card-header-top {
+        min-height: 32px;
+    }
+    
+    [data-program][data-estado="closed"] .program-card-header-top {
+        min-height: 32px;
     }
     
     .program-card-header h3 {
         font-size: 0.95rem;
+        min-height: 40px;
+    }
+    
+    [data-program][data-estado="closed"] .program-card-header h3 {
+        min-height: 40px;
     }
     
     .program-card-body {
