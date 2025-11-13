@@ -8,12 +8,14 @@ MaulePro es un portal web que permite a usuarios acceder a las líneas de financ
 
 ## ✨ Características Principales
 
-- 🎯 **Búsqueda y Filtrado**: Sistema de búsqueda avanzada con filtros por estado, beneficiario y ordenamiento
+- 🎯 **Búsqueda y Filtrado Avanzado**: Sistema de búsqueda con filtros por estado, beneficiario y ordenamiento
 - 📱 **Diseño Responsive**: Adaptado para dispositivos móviles, tablets y desktop
 - ♿ **Accesibilidad**: Integración con Userway para herramientas de accesibilidad
 - 🎨 **Interfaz Moderna**: Diseño limpio y profesional con animaciones suaves
 - 🔍 **Búsqueda Inteligente**: Atajo de teclado `/` para acceso rápido al buscador
 - 📊 **Estados de Programas**: Visualización clara de programas abiertos, próximos y cerrados
+- 🎨 **Manual de Marca**: Diseño alineado con las normas corporativas del GORE Maule
+- 🏗️ **Arquitectura Modular**: CSS y JavaScript organizados en módulos reutilizables
 
 ## 🚀 Inicio Rápido
 
@@ -60,7 +62,7 @@ npx serve
 php -S localhost:8000
 ```
 
-📖 **Ver `CÓMO_EJECUTAR.md` para instrucciones detalladas.**
+📖 **Ver `docs/CÓMO_EJECUTAR.md` para instrucciones detalladas.**
 
 ## 📁 Estructura del Proyecto
 
@@ -70,39 +72,68 @@ MaulePro/
 ├── index.html                    # Página principal
 ├── login.html                    # Página de login y registro
 ├── README.md                     # Este archivo
-├── CÓMO_EJECUTAR.md             # Guía de ejecución
 │
 ├── assets/                       # Recursos estáticos
 │   ├── css/
-│   │   └── styles.css           # Estilos adicionales
+│   │   ├── main.css             # CSS principal (importa módulos)
+│   │   └── modules/              # Módulos CSS modulares
+│   │       ├── _variables.css   # Variables CSS
+│   │       ├── _base.css        # Estilos base
+│   │       ├── _navbar.css      # Estilos navbar
+│   │       ├── _hero.css        # Estilos hero section
+│   │       ├── _program-cards.css # Estilos tarjetas
+│   │       ├── _carousel.css   # Estilos carousel
+│   │       └── _utilities.css  # Utilidades
 │   ├── js/
-│   │   └── script.js            # Funcionalidad JavaScript
-│   └── images/
-│       └── Logo.png             # Logo del Gobierno Regional del Maule
+│   │   ├── script.js            # Funcionalidad principal
+│   │   ├── components/          # Componentes reutilizables
+│   │   │   └── BaseComponent.js
+│   │   ├── config/              # Configuración centralizada
+│   │   │   ├── index.js
+│   │   │   └── selectors.js
+│   │   ├── modules/             # Módulos JavaScript
+│   │   │   ├── carousel.js
+│   │   │   ├── filters.js
+│   │   │   └── userway.js
+│   │   └── utils/              # Utilidades
+│   │       ├── dom.js
+│   │       ├── storage.js
+│   │       ├── date.js
+│   │       └── debounce.js
+│   └── images/                  # Imágenes
+│       ├── logo-gore-horizontal.png
+│       ├── logo-gore-blanco.png
+│       ├── logo-gore-negro.png
+│       └── logo-gore.png
 │
 ├── pages/                        # Subpáginas del portal
 │   ├── programas/                # Páginas de programas
-│   │   ├── circular-33.html     # Circular 33
-│   │   ├── fndr-8.html          # FNDR 8%
-│   │   ├── fndr-sub31.html      # FNDR Sub. 31
-│   │   ├── fril.html            # FRIL
-│   │   ├── frpd.html            # FRPD
+│   │   ├── circular-33.html
+│   │   ├── fndr-8.html
+│   │   ├── fndr-sub31.html
+│   │   ├── fril.html
+│   │   ├── frpd.html
 │   │   └── proyectos-menores.html
 │   ├── financiamiento-programas.html
-│   └── postulacion-financiamiento.html
+│   ├── postulacion-financiamiento.html
+│   └── preguntas-frecuentes.html
 │
 ├── components/                   # Componentes de desarrollo
 │   ├── components.html
 │   └── preview.html
 │
-├── docs/                         # Documentación adicional
-│   ├── README.md                # Documentación técnica
+├── docs/                         # Documentación
 │   ├── ESTRUCTURA.md            # Estructura del proyecto
-│   └── INSTRUCCIONES.txt        # Instrucciones adicionales
+│   ├── REFACTORIZACION_COMPLETA.md
+│   ├── FASE1_COMPLETADA.md
+│   ├── RESUMEN_SESION.md
+│   ├── MEJORAS_ARQUITECTURA_MODULAR.md
+│   ├── SUGERENCIAS_MANUAL_MARCA.md
+│   └── README.md                # Documentación técnica
 │
 └── utils/                        # Utilidades y scripts
     ├── server.py                 # Servidor Python local
-    ├── start.sh                  # Script de inicio (macOS/Linux)
+    ├── start.sh                  # Script de inicio
     └── package.json
 ```
 
@@ -110,19 +141,26 @@ MaulePro/
 
 - **HTML5**: Estructura semántica
 - **CSS3**: Estilos modernos con variables CSS, Flexbox y Grid
-- **JavaScript (Vanilla)**: Sin dependencias externas
+- **JavaScript (ES6+)**: Vanilla JavaScript modular
 - **Bootstrap 5.3.3**: Framework CSS (CDN)
 - **Bootstrap Icons 1.11.3**: Iconografía (CDN)
 - **Userway**: Widget de accesibilidad
 
 ## 🎨 Características de Diseño
 
-### Paleta de Colores
+### Paleta de Colores Institucionales
 
-- **Azul Institucional**: `#1e3c72`
-- **Azul Claro**: `#2563eb`
-- **Azul Oscuro**: `#1e40af`
-- **Fondo**: `#F6F8FA`
+- **Pantone 7421**: `#611616` (Rojo institucional)
+- **Pantone 7420**: `#9B3D3D` (Rojo claro)
+- **Pantone Black 7C**: `#3A3A3A` (Gris oscuro)
+- **Fondo**: `#E6E6E6` (Gris claro)
+
+### Logos
+
+- **Logo Horizontal**: Para navbar y headers
+- **Logo Blanco**: Para fondos oscuros (footer)
+- **Logo Negro**: Para fondos claros
+- **Logo Estándar**: Versión general
 
 ### Componentes
 
@@ -130,7 +168,7 @@ MaulePro/
 - **Cards Interactivas**: Efectos hover y animaciones
 - **Búsqueda Avanzada**: Filtros por estado, beneficiario y ordenamiento
 - **Contadores de Estado**: Badges para programas abiertos, próximos y cerrados
-- **Deadlines**: Indicadores de tiempo restante para cierre
+- **Deadlines**: Indicadores de tiempo restante con contorno amarillo
 
 ## 🔧 Funcionalidades
 
@@ -141,6 +179,8 @@ MaulePro/
 - Filtro por beneficiario (Municipios, Servicios públicos, Organizaciones, etc.)
 - Ordenamiento (Relevancia, Abiertos primero, Fecha, A-Z)
 - Atajo de teclado `/` para acceso rápido
+- Scroll automático a resultados
+- Mensaje "no hay resultados" cuando no hay coincidencias
 
 ### Programas Disponibles
 
@@ -158,6 +198,7 @@ MaulePro/
 - Navegación por teclado
 - Focus visible
 - Respeto a `prefers-reduced-motion`
+- Widget posicionado en esquina inferior derecha
 
 ## 📱 Responsive Design
 
@@ -173,6 +214,29 @@ El sitio es completamente responsive y se adapta a:
 - Firefox (últimas 2 versiones)
 - Safari (últimas 2 versiones)
 - Opera (últimas 2 versiones)
+
+## 🏗️ Arquitectura
+
+### CSS Modular
+
+El proyecto utiliza una arquitectura CSS modular con 7 módulos:
+
+- `_variables.css`: Variables CSS y colores
+- `_base.css`: Estilos base y fondo
+- `_navbar.css`: Estilos del navbar
+- `_hero.css`: Hero section y buscador
+- `_program-cards.css`: Tarjetas de programas
+- `_carousel.css`: Carousel de información
+- `_utilities.css`: Utilidades y helpers
+
+### JavaScript Modular
+
+- `modules/carousel.js`: Gestión del carousel
+- `modules/filters.js`: Sistema de búsqueda y filtrado
+- `modules/userway.js`: Integración con Userway
+- `components/BaseComponent.js`: Clase base para componentes
+- `config/`: Configuración centralizada
+- `utils/`: Utilidades reutilizables
 
 ## ⚠️ Limitaciones Actuales
 
@@ -192,44 +256,15 @@ Este es un **prototipo de frontend**. Las siguientes funcionalidades están simu
 - ✅ Sistema de procesamiento de postulaciones
 - ✅ Integración con sistemas gubernamentales
 
-## 📝 Scripts Disponibles
-
-### Servidor Python
-
-```bash
-cd utils
-python3 server.py
-```
-
-### Script de Inicio (macOS/Linux)
-
-```bash
-cd utils
-chmod +x start.sh
-./start.sh
-```
-
-## 🔍 Desarrollo
-
-### Estructura de Código
-
-- **CSS**: Variables CSS para colores y estilos reutilizables
-- **JavaScript**: Código modular y organizado
-- **HTML**: Estructura semántica y accesible
-
-### Mejores Prácticas
-
-- Código limpio y comentado
-- Nombres descriptivos de variables y funciones
-- Separación de responsabilidades
-- Optimización de rendimiento
-
 ## 📚 Documentación Adicional
 
-- `CÓMO_EJECUTAR.md`: Guía detallada de ejecución
-- `docs/README.md`: Documentación técnica
-- `docs/ESTRUCTURA.md`: Estructura del proyecto
-- `docs/INSTRUCCIONES.txt`: Instrucciones adicionales
+- `docs/ESTRUCTURA.md`: Estructura detallada del proyecto
+- `docs/REFACTORIZACION_COMPLETA.md`: Resumen de refactorización
+- `docs/FASE1_COMPLETADA.md`: Documentación de Fase 1
+- `docs/RESUMEN_SESION.md`: Resumen de sesión de desarrollo
+- `docs/MEJORAS_ARQUITECTURA_MODULAR.md`: Sugerencias de arquitectura
+- `docs/SUGERENCIAS_MANUAL_MARCA.md`: Sugerencias basadas en manual de marca
+- `docs/README.md`: Documentación técnica detallada
 
 ## 🤝 Contribución
 
@@ -258,4 +293,3 @@ Desarrollado para el Gobierno Regional del Maule.
 ---
 
 **Nota**: Este es un prototipo de frontend que requiere integración con sistemas backend y Clave Única para ser completamente funcional en producción.
-

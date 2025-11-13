@@ -1,6 +1,6 @@
-# Estructura del Proyecto MaulePro
+# 📁 Estructura del Proyecto MaulePro
 
-## 📁 Organización de Archivos
+## Organización de Archivos
 
 ```
 MaulePro/
@@ -8,26 +8,54 @@ MaulePro/
 ├── index.html                    # Página principal del portal
 ├── login.html                    # Página de login y registro
 ├── README.md                     # Documentación principal
-├── CÓMO_EJECUTAR.md             # Guía de ejecución
 │
 ├── assets/                       # Recursos estáticos
 │   ├── css/
-│   │   └── styles.css           # Estilos adicionales (si se usa)
+│   │   ├── main.css             # CSS principal (importa módulos)
+│   │   ├── styles.css           # Estilos adicionales (legacy)
+│   │   └── modules/             # Módulos CSS modulares
+│   │       ├── _variables.css   # Variables CSS y colores
+│   │       ├── _base.css        # Estilos base y fondo
+│   │       ├── _navbar.css      # Estilos del navbar
+│   │       ├── _hero.css        # Hero section y buscador
+│   │       ├── _program-cards.css # Tarjetas de programas
+│   │       ├── _carousel.css    # Carousel de información
+│   │       └── _utilities.css   # Utilidades y helpers
 │   ├── js/
-│   │   └── script.js            # Funcionalidad JavaScript compartida
-│   └── images/
-│       └── Logo.png             # Logo del Gobierno Regional del Maule
+│   │   ├── script.js            # Funcionalidad principal (login/registro)
+│   │   ├── main.js              # Punto de entrada principal
+│   │   ├── components/          # Componentes reutilizables
+│   │   │   └── BaseComponent.js # Clase base para componentes
+│   │   ├── config/              # Configuración centralizada
+│   │   │   ├── index.js         # Configuración principal
+│   │   │   └── selectors.js    # Helpers de selectores
+│   │   ├── modules/             # Módulos JavaScript
+│   │   │   ├── carousel.js      # Gestión del carousel
+│   │   │   ├── filters.js      # Sistema de búsqueda y filtrado
+│   │   │   └── userway.js      # Integración con Userway
+│   │   └── utils/               # Utilidades compartidas
+│   │       ├── dom.js           # Utilidades DOM
+│   │       ├── storage.js       # LocalStorage helpers
+│   │       ├── date.js          # Utilidades de fecha
+│   │       └── debounce.js      # Debounce/throttle
+│   └── images/                   # Imágenes
+│       ├── logo-gore-horizontal.png # Logo horizontal (navbar)
+│       ├── logo-gore-blanco.png     # Logo blanco (footer)
+│       ├── logo-gore-negro.png      # Logo negro
+│       ├── logo-gore.png            # Logo estándar
+│       └── Logo.png                 # Logo legacy
 │
 ├── pages/                        # Subpáginas del portal
 │   ├── programas/                # Páginas de programas específicos
-│   │   ├── circular-33.html     # Circular 33 (FRIL)
+│   │   ├── circular-33.html     # Circular 33
 │   │   ├── fndr-8.html          # Subvenciones FNDR 8%
 │   │   ├── fndr-sub31.html      # FNDR Sub. 31 con Evaluación MIDESOYF
 │   │   ├── fril.html            # Fondo Regional de Iniciativa Local
 │   │   ├── frpd.html            # Fondo Regional para la Productividad y el Desarrollo
 │   │   └── proyectos-menores.html # Proyectos Menores a 5.000 UTM
 │   ├── financiamiento-programas.html
-│   └── postulacion-financiamiento.html
+│   ├── postulacion-financiamiento.html
+│   └── preguntas-frecuentes.html # Página de preguntas frecuentes
 │
 ├── components/                   # Componentes de desarrollo
 │   ├── components.html          # Componentes reutilizables (referencia)
@@ -36,7 +64,19 @@ MaulePro/
 ├── docs/                         # Documentación adicional
 │   ├── README.md                # Documentación técnica detallada
 │   ├── ESTRUCTURA.md            # Este archivo
+│   ├── REFACTORIZACION_COMPLETA.md
+│   ├── FASE1_COMPLETADA.md
+│   ├── RESUMEN_SESION.md
+│   ├── MEJORAS_ARQUITECTURA_MODULAR.md
+│   ├── SUGERENCIAS_MANUAL_MARCA.md
 │   └── INSTRUCCIONES.txt        # Instrucciones adicionales
+│
+├── RV_ Manual de marca actualizado/ # Manual de marca
+│   ├── LOGO GORE HORIZONTAL.png
+│   ├── LOGO NUEVO GORE BLANCO.png
+│   ├── LOGO NUEVO GORE NEGRO.png
+│   ├── Logo Nuevo Gore.png
+│   └── MANUAL CORPORATIVO (2).pdf
 │
 └── utils/                        # Utilidades y scripts
     ├── server.py                 # Servidor Python local
@@ -50,11 +90,14 @@ MaulePro/
 
 #### `index.html`
 - Página de inicio del portal
-- Hero section con información general
-- Sistema de búsqueda y filtrado de programas
+- Hero section con información general y tarjetas de características
+- Sistema de búsqueda y filtrado de programas con diseño mejorado
 - Grid de programas con estados (Abiertos, Próximos, Cerrados)
-- Contadores por estado
+- Contadores por estado integrados en el header
 - Navbar fijo con navegación
+- Carousel de información con botón de cierre
+- Sección de información importante
+- Footer con logo blanco
 
 #### `login.html`
 - Página de autenticación
@@ -77,55 +120,163 @@ MaulePro/
 - Categorías de postulación (Cultural, Social, Deportiva, etc.)
 - Documentación y anexos
 - Sección de rendición
+- Botón "Postular aquí" estandarizado
 
 #### `pages/programas/fndr-sub31.html`
 - FNDR Sub. 31 con Evaluación MIDESOYF
 - Requisitos y documentación
 - Manual de postulación
 - Proceso de evaluación
+- Botón "Postular aquí" estandarizado
 
 #### `pages/programas/fril.html`
 - Fondo Regional de Iniciativa Local (FRIL)
 - Información detallada del programa
 - Bases y documentación
+- Botón "Postular aquí" estandarizado
 
 #### `pages/programas/frpd.html`
 - Fondo Regional para la Productividad y el Desarrollo (FRPD)
 - Información del programa
 - Requisitos y documentación
+- Botón "Postular aquí" estandarizado
 
 #### `pages/programas/proyectos-menores.html`
 - Proyectos Menores a 5.000 UTM
 - Información sobre proyectos menores
 - Bases y anexos
 - Estado de postulación
+- Botón "Postular aquí" estandarizado
 
 #### `pages/financiamiento-programas.html`
 - Financiamiento para Programas
 - Transferencias Subtítulo 33
 - Glosas 7.1, 7.7 y 5.12
 - Instructivos y manuales
+- Botón "Postular aquí" estandarizado
 
 #### `pages/postulacion-financiamiento.html`
 - Postulación a Financiamiento
 - Formularios y documentación
 
+#### `pages/preguntas-frecuentes.html`
+- Página de preguntas frecuentes
+- Accordion de Bootstrap
+- Información sobre postulaciones
+- Enlaces de ayuda
+
 ## 🎨 Recursos Estáticos
 
-### `assets/css/styles.css`
-- Estilos adicionales (si se requiere)
-- Actualmente los estilos están en el `<style>` de cada HTML
+### CSS Modular (`assets/css/modules/`)
 
-### `assets/js/script.js`
-- Funcionalidad JavaScript compartida
-- Manejo de login/logout
-- Navegación entre páginas
+#### `_variables.css`
+- Variables CSS para colores institucionales
+- Variables de espaciado
+- Colores Pantone del manual de marca
+
+#### `_base.css`
+- Estilos base de `html` y `body`
+- Fondos con gradientes y animaciones
+- Ocultación de scrollbar durante carga
+- Estilos de scrollbar personalizados
+
+#### `_navbar.css`
+- Estilos del navbar
+- Logo con área de exclusión
+- Responsive design
+- Estados hover y active
+
+#### `_hero.css`
+- Hero section
+- Tarjetas de características
+- Estilos del buscador mejorado
+- Responsive design
+
+#### `_program-cards.css`
+- Tarjetas de programas
+- Header con fondo institucional
+- Body con información estructurada
+- Badges de estado y deadline
+- Animaciones y efectos hover
+
+#### `_carousel.css`
+- Carousel de información
+- Botón de cierre
+- Banners con colores pastel
+- Responsive design
+
+#### `_utilities.css`
+- Utilidades y helpers
+- Badges de estado
+- Botones institucionales
+- Animaciones
+- Estilos del footer
+- Sistema de espaciado corporativo
+
+### JavaScript Modular (`assets/js/`)
+
+#### `script.js`
+- Funcionalidad principal de login/registro
+- Manejo de modales
 - Validación de formularios
-- Detección de página activa
+- Persistencia con localStorage
 
-### `assets/images/Logo.png`
-- Logo del Gobierno Regional del Maule
-- Usado en el navbar de todas las páginas
+#### `modules/carousel.js`
+- Gestión del carousel de información
+- Botón de cierre
+- Persistencia de estado en localStorage
+
+#### `modules/filters.js`
+- Sistema de búsqueda y filtrado
+- Filtros por estado, beneficiario y ordenamiento
+- Actualización de contadores
+- Cálculo de deadlines
+- Scroll automático a resultados
+- Mensaje "no hay resultados"
+- Animaciones de entrada
+- Efecto ripple en botones
+
+#### `modules/userway.js`
+- Integración con Userway
+- Posicionamiento del widget en esquina inferior derecha
+- Observador de cambios en el DOM
+
+#### `components/BaseComponent.js`
+- Clase base para componentes reutilizables
+- Gestión automática de event listeners
+- Métodos helpers comunes
+
+#### `config/index.js`
+- Configuración centralizada
+- Selectores DOM
+- Claves de localStorage
+- Configuración de features
+
+#### `config/selectors.js`
+- Helpers para acceder a elementos del DOM
+- Funciones: `getSelector()`, `getElement()`, `getElements()`, `elementExists()`
+
+#### `utils/dom.js`
+- Utilidades DOM: `create()`, `exists()`, `waitFor()`, `scrollTo()`, etc.
+
+#### `utils/storage.js`
+- Helpers de localStorage con prefijo automático
+- Serialización JSON automática
+
+#### `utils/date.js`
+- Utilidades de fecha: `format()`, `daysBetween()`, `formatDaysRemaining()`, etc.
+
+#### `utils/debounce.js`
+- Funciones `debounce()` y `throttle()`
+
+### Imágenes (`assets/images/`)
+
+#### Logos del Manual de Marca
+- `logo-gore-horizontal.png`: Logo horizontal para navbar (1641x619px)
+- `logo-gore-blanco.png`: Logo blanco para fondos oscuros (942x1023px)
+- `logo-gore-negro.png`: Logo negro para fondos claros (1176x1287px)
+- `logo-gore.png`: Logo estándar (1641x1216px)
+- `Logo.png`: Logo legacy (mantenido por compatibilidad)
 
 ## 🛠️ Utilidades
 
@@ -145,11 +296,7 @@ MaulePro/
 - Documentación principal del proyecto
 - Guía de inicio rápido
 - Características y tecnologías
-
-### `CÓMO_EJECUTAR.md`
-- Guía detallada de ejecución
-- Múltiples opciones de servidor
-- Solución de problemas
+- Estructura básica
 
 ### `docs/README.md`
 - Documentación técnica detallada
@@ -158,7 +305,33 @@ MaulePro/
 
 ### `docs/ESTRUCTURA.md`
 - Este archivo
-- Descripción de la estructura del proyecto
+- Descripción detallada de la estructura del proyecto
+
+### `docs/REFACTORIZACION_COMPLETA.md`
+- Resumen de la refactorización CSS/JS
+- Métricas de reducción de código
+- Beneficios obtenidos
+
+### `docs/FASE1_COMPLETADA.md`
+- Documentación de la Fase 1 de arquitectura modular
+- Componentes creados
+- Utilidades implementadas
+
+### `docs/RESUMEN_SESION.md`
+- Resumen de sesión de desarrollo
+- Estado del proyecto
+- Próximos pasos
+
+### `docs/MEJORAS_ARQUITECTURA_MODULAR.md`
+- Sugerencias detalladas para mejorar la arquitectura
+- Plan de implementación por fases
+- Ejemplos de código
+
+### `docs/SUGERENCIAS_MANUAL_MARCA.md`
+- Sugerencias basadas en el manual de marca
+- Uso correcto de logos
+- Colores institucionales
+- Tipografía corporativa
 
 ## 🔗 Navegación
 
@@ -167,7 +340,7 @@ La navegación está implementada en todas las páginas con:
 - **Navbar fijo**: Se mantiene visible al hacer scroll
 - **Menú responsive**: Adaptado para móvil, tablet y desktop
 - **Enlaces internos**: Entre programas relacionados
-- **Breadcrumbs**: (si se implementa)
+- **Logo institucional**: Logo horizontal del GORE Maule
 
 ## 🎯 Convenciones de Nomenclatura
 
@@ -175,6 +348,7 @@ La navegación está implementada en todas las páginas con:
 - **Clases CSS**: kebab-case (ej: `program-card`)
 - **IDs**: camelCase (ej: `searchForm`)
 - **Variables JavaScript**: camelCase (ej: `userwayBtn`)
+- **Módulos CSS**: snake_case con prefijo `_` (ej: `_variables.css`)
 
 ## 📱 Responsive Design
 
@@ -190,18 +364,22 @@ Todas las páginas son completamente responsive:
 - HTML5 semántico
 - Bootstrap 5.3.3 (CDN)
 - Bootstrap Icons 1.11.3 (CDN)
+- Estructura modular y accesible
 
 ### CSS
 - Variables CSS
 - Flexbox y Grid
 - Media queries para responsive
 - Animaciones CSS
+- Arquitectura modular (7 módulos)
 
 ### JavaScript
 - Vanilla JavaScript (sin dependencias)
 - ES6+ sintaxis
+- Módulos con IIFE
 - LocalStorage para persistencia
 - Intersection Observer API
+- Arquitectura modular (componentes, config, utils, modules)
 
 ## 🚀 Flujo de Desarrollo
 
@@ -214,7 +392,28 @@ Todas las páginas son completamente responsive:
 ## 📝 Notas Importantes
 
 - Todos los archivos HTML son independientes
-- Los estilos están principalmente en `<style>` dentro de cada HTML
-- El JavaScript está en `assets/js/script.js` y también inline en algunos HTML
+- Los estilos están en módulos CSS externos (`assets/css/modules/`)
+- El JavaScript está modularizado en `assets/js/modules/`
 - No hay sistema de build - archivos estáticos directos
 - Las dependencias se cargan desde CDN
+- Logos del manual de marca disponibles en `assets/images/`
+- Manual de marca disponible en `RV_ Manual de marca actualizado/`
+
+## 🎨 Manual de Marca
+
+El proyecto incluye el manual de marca del Gobierno Regional del Maule:
+
+- **Ubicación**: `RV_ Manual de marca actualizado/`
+- **Logos**: Disponibles en múltiples variantes (horizontal, blanco, negro)
+- **PDF**: `MANUAL CORPORATIVO (2).pdf`
+- **Implementación**: Logos movidos a `assets/images/` y referencias actualizadas
+
+## 📊 Estadísticas del Proyecto
+
+- **Páginas HTML**: 11
+- **Módulos CSS**: 7
+- **Módulos JavaScript**: 3
+- **Componentes**: 1 (BaseComponent)
+- **Utilidades**: 20+ funciones
+- **Logos**: 4 variantes
+- **Reducción de código**: ~58.6% después de refactorización
