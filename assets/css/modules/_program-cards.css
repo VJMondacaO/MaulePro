@@ -162,23 +162,46 @@
 
 /* Deadline Badge */
 .deadline-badge {
-    display: inline-block;
-    padding: 0.5rem 0.9rem;
-    border-radius: 0.5rem;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.4rem 0.9rem;
+    border-radius: 999px;
     font-weight: 700;
-    font-size: 0.75rem;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
     white-space: nowrap;
-    margin-top: 1rem;
+    border: 2px solid #ffc107;
+    transition: all 0.2s ease;
 }
 
 .deadline-badge.soon {
     background: #fff1cc;
     color: #8b5a00;
+    border-color: #ffc107;
 }
 
 .deadline-badge.urgent {
     background: #dc3545;
     color: white;
+    border-color: #ffc107;
+    animation: pulse-urgent 2s ease-in-out infinite;
+}
+
+@keyframes pulse-urgent {
+    0%, 100% {
+        box-shadow: 0 0 0 0 rgba(220, 53, 69, 0.4);
+    }
+    50% {
+        box-shadow: 0 0 0 4px rgba(220, 53, 69, 0);
+    }
+}
+
+.deadline-badge::before {
+    content: "⏰";
+    font-size: 0.75rem;
+    display: inline-block;
 }
 
 /* Program Card Footer */
