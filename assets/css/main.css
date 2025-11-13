@@ -1,0 +1,20 @@
+/* ============================================
+   MaulePro - Main Stylesheet
+   Importa todos los módulos CSS
+   ============================================ */
+
+/* 1. Variables (debe ir primero) */
+@import url('modules/_variables.css');
+
+/* 2. Base Styles */
+@import url('modules/_base.css');
+
+/* 3. Components */
+@import url('modules/_navbar.css');
+@import url('modules/_hero.css');
+@import url('modules/_program-cards.css');
+@import url('modules/_carousel.css');
+
+/* 4. Utilities (debe ir último para poder sobrescribir) */
+@import url('modules/_utilities.css');
+
