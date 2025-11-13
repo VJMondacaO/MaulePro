@@ -12,11 +12,16 @@
     
     <style>
         :root {
-            --institucional-azul: #1e3c72;
-            --institucional-azul-claro: #2563eb;
-            --institucional-azul-oscuro: #1e40af;
-            --gov-bg: #F6F8FA;
-            --gov-border: #E1E5EB;
+            --pantone-7421: #611616;
+            --pantone-7420: #9B3D3D;
+            --pantone-black-7c: #3A3A3A;
+            --black-89: #1C1C1C;
+            --black-10: #E6E6E6;
+            --institucional-azul: var(--pantone-7421);
+            --institucional-azul-claro: var(--pantone-7420);
+            --institucional-azul-oscuro: var(--pantone-black-7c);
+            --gov-bg: var(--black-10);
+            --gov-border: var(--black-89);
         }
         
         html, body {
@@ -375,7 +380,7 @@
         .logo-img {
                 height: 4rem;
             }
-        }
+        
         
         /* Posicionar botón flotante de Userway en esquina inferior derecha */
         .uw-widget-button,

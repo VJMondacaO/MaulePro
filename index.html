@@ -12,14 +12,11 @@
     
     <style>
         :root {
-            /* Paleta Pantone - Colores Institucionales */
-            --pantone-7421: #611616;        /* Pantone 7421 - C:0%, M:77%, Y:54%, K:62% - Marrón rojizo muy oscuro */
-            --pantone-7420: #9B3D3D;        /* Pantone 7420 - C:0%, M:78%, Y:60%, K:39% - Marrón rojizo oscuro */
-            --pantone-black-7c: #3A3A3A;    /* Pantone Black 7C - C:0%, M:4%, Y:5%, K:78% - Gris muy oscuro */
-            --black-89: #1C1C1C;            /* 89% Black - C:0%, M:0%, Y:0%, K:89% - Gris oscuro */
-            --black-10: #E6E6E6;            /* 10% Black - C:0%, M:0%, Y:0%, K:10% - Gris muy claro */
-            
-            /* Colores institucionales (usando paleta Pantone) */
+            --pantone-7421: #611616;
+            --pantone-7420: #9B3D3D;
+            --pantone-black-7c: #3A3A3A;
+            --black-89: #1C1C1C;
+            --black-10: #E6E6E6;
             --institucional-azul: var(--pantone-7421);
             --institucional-azul-claro: var(--pantone-7420);
             --institucional-azul-oscuro: var(--pantone-black-7c);
@@ -27,74 +24,30 @@
             --gov-border: var(--black-89);
         }
         
-        html, body {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-        }
-        
+        html, body { margin: 0; padding: 0; width: 100%; }
         body {
             font-family: 'Arial', 'Helvetica', sans-serif;
             background-color: var(--gov-bg);
             position: relative;
             overflow-x: hidden;
-            --body-padding-left: 1rem;
-            --body-padding-right: 1rem;
-            padding-left: var(--body-padding-left);
-            padding-right: var(--body-padding-right);
+            --body-padding: 1rem;
+            padding: 0 var(--body-padding);
         }
+        @media (min-width: 576px) { body { --body-padding: 1.5rem; } }
+        @media (min-width: 768px) { body { --body-padding: 2rem; } }
+        @media (min-width: 992px) { body { --body-padding: 2.5rem; } }
+        @media (min-width: 1200px) { body { --body-padding: 3rem; } }
         
-        @media (min-width: 576px) {
-            body {
-                --body-padding-left: 1.5rem;
-                --body-padding-right: 1.5rem;
-            }
-        }
-        
-        @media (min-width: 768px) {
-            body {
-                --body-padding-left: 2rem;
-                --body-padding-right: 2rem;
-            }
-        }
-        
-        @media (min-width: 992px) {
-            body {
-                --body-padding-left: 2.5rem;
-                --body-padding-right: 2.5rem;
-            }
-        }
-        
-        @media (min-width: 1200px) {
-            body {
-                --body-padding-left: 3rem;
-                --body-padding-right: 3rem;
-            }
-        }
-        
-        /* Fondo geométrico con diseño - Paleta Pantone */
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            inset: 0;
             z-index: -1;
-            background: 
-                radial-gradient(circle at 20% 30%, rgba(97, 22, 22, 0.1) 0%, transparent 50%),
-                radial-gradient(circle at 80% 70%, rgba(155, 61, 61, 0.08) 0%, transparent 50%),
-                linear-gradient(135deg, 
-                    var(--black-10) 0%, 
-                    rgba(97, 22, 22, 0.06) 20%,
-                    #F5F5F5 40%,
-                    rgba(155, 61, 61, 0.05) 60%,
-                    #E8E8E8 80%,
-                    var(--black-10) 100%);
+            background: radial-gradient(circle at 20% 30%, rgba(97, 22, 22, 0.1) 0%, transparent 50%),
+                        radial-gradient(circle at 80% 70%, rgba(155, 61, 61, 0.08) 0%, transparent 50%),
+                        linear-gradient(135deg, var(--black-10) 0%, rgba(97, 22, 22, 0.06) 20%, #F5F5F5 40%, rgba(155, 61, 61, 0.05) 60%, #E8E8E8 80%, var(--black-10) 100%);
             background-blend-mode: overlay, overlay, normal;
-            opacity: 1;
         }
-        
         body::after {
             content: '';
             position: fixed;
@@ -103,38 +56,21 @@
             width: 800px;
             height: 800px;
             z-index: -1;
-            background: radial-gradient(circle, 
-                rgba(97, 22, 22, 0.15) 0%, 
-                rgba(155, 61, 61, 0.1) 30%,
-                rgba(97, 22, 22, 0.06) 50%,
-                transparent 70%);
+            background: radial-gradient(circle, rgba(97, 22, 22, 0.15) 0%, rgba(155, 61, 61, 0.1) 30%, rgba(97, 22, 22, 0.06) 50%, transparent 70%);
             border-radius: 50%;
-            box-shadow: 
-                -200px -200px 400px rgba(97, 22, 22, 0.12),
-                200px 200px 400px rgba(155, 61, 61, 0.1);
+            box-shadow: -200px -200px 400px rgba(97, 22, 22, 0.12), 200px 200px 400px rgba(155, 61, 61, 0.1);
             animation: float 20s ease-in-out infinite;
         }
-        
         @keyframes float {
-            0%, 100% {
-                transform: translate(0, 0) scale(1);
-            }
-            50% {
-                transform: translate(-30px, -30px) scale(1.1);
-            }
+            0%, 100% { transform: translate(0, 0) scale(1); }
+            50% { transform: translate(-30px, -30px) scale(1.1); }
         }
-        
-        /* Formas geométricas adicionales - Paleta Pantone (más notorio) */
         body {
-            background-image: 
-                linear-gradient(45deg, rgba(97, 22, 22, 0.05) 25%, transparent 25%),
-                linear-gradient(-45deg, rgba(155, 61, 61, 0.05) 25%, transparent 25%),
-                linear-gradient(45deg, transparent 75%, rgba(97, 22, 22, 0.05) 75%),
-                linear-gradient(-45deg, transparent 75%, rgba(155, 61, 61, 0.05) 75%),
-                linear-gradient(90deg, rgba(58, 58, 58, 0.03) 0%, transparent 50%),
-                linear-gradient(0deg, rgba(97, 22, 22, 0.02) 0%, transparent 30%);
-            background-size: 80px 80px, 80px 80px, 80px 80px, 80px 80px, 100% 100%, 100% 100%;
-            background-position: 0 0, 0 40px, 40px -40px, -40px 0px, 0 0, 0 0;
+            background-image: linear-gradient(45deg, rgba(97, 22, 22, 0.05) 25%, transparent 25%, transparent 75%, rgba(97, 22, 22, 0.05) 75%),
+                              linear-gradient(-45deg, rgba(155, 61, 61, 0.05) 25%, transparent 25%, transparent 75%, rgba(155, 61, 61, 0.05) 75%),
+                              linear-gradient(90deg, rgba(58, 58, 58, 0.03) 0%, transparent 50%);
+            background-size: 80px 80px, 80px 80px, 100% 100%;
+            background-position: 0 0, 0 40px, 0 0;
         }
         
         .hero {
@@ -142,321 +78,187 @@
             border: 1px solid var(--gov-border);
             border-radius: 1rem;
         }
-        
-        /* Hero Section - Cards de características */
         .hero .bg-light {
             transition: all 0.3s ease;
-            cursor: default;
             min-width: 0;
             width: 100%;
-            box-sizing: border-box;
             overflow: hidden;
         }
-        
         .hero .bg-light:hover {
             transform: translateY(-2px);
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
             background-color: #fff !important;
         }
-        
-        /* Contenedor de las tarjetas de características */
         .hero .row.g-3 {
-            margin-left: -0.75rem;
-            margin-right: -0.75rem;
+            margin: 0 -0.75rem;
             overflow-x: hidden;
         }
-        
         .hero .row.g-3 > [class*="col-"] {
             min-width: 0;
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-            flex: 0 0 auto;
+            padding: 0 0.75rem;
         }
+        .hero .bg-light > .d-flex { min-width: 0; width: 100%; }
+        .hero .bg-light > .d-flex > div:last-child { min-width: 0; }
+        .hero .bg-light h3, .hero .bg-light p { word-wrap: break-word; overflow-wrap: break-word; }
+        .hero .bg-light h3 { hyphens: auto; line-height: 1.3; }
+        .hero .rounded-circle { width: 48px; height: 48px; }
+        .hero h1.display-5 { line-height: 1.2; letter-spacing: -0.02em; }
+        @media (max-width: 768px) { .hero h1.display-5 { font-size: 2rem; } }
         
-        /* Ajustes específicos para col-md-4 */
-        .hero .row.g-3 > .col-md-4 {
-            width: 100%;
-            max-width: 100%;
-        }
-        
-        @media (min-width: 768px) {
-            .hero .row.g-3 > .col-md-4 {
-                flex: 0 0 33.333333%;
-                max-width: 33.333333%;
-            }
-        }
-        
-        /* Ajustes para pantallas medianas (768px - 991px) */
-        @media (min-width: 768px) and (max-width: 991.98px) {
-            .hero .row.g-3 > .col-md-4 {
-                flex: 0 0 33.333333%;
-                max-width: 33.333333%;
-                padding-left: 0.5rem;
-                padding-right: 0.5rem;
-            }
-            
-            .hero .bg-light {
-                padding: 0.75rem !important;
-            }
-            
-            .hero .bg-light h3 {
-                font-size: 0.9rem;
-            }
-            
-            .hero .bg-light p {
-                font-size: 0.8rem;
-            }
-            
-            .hero .rounded-circle {
-                width: 40px;
-                height: 40px;
-            }
-            
-            .hero .rounded-circle i {
-                font-size: 1.1rem !important;
-            }
-        }
-        
-        /* Móviles: apilar verticalmente */
-        @media (max-width: 767.98px) {
-            .hero .row.g-3 > [class*="col-"] {
-                flex: 0 0 100%;
-                max-width: 100%;
-                margin-bottom: 0.75rem;
-            }
-            
-            .hero .row.g-3 > [class*="col-"]:last-child {
-                margin-bottom: 0;
-            }
-        }
-        
-        /* Asegurar que el contenido interno no se desborde */
-        .hero .bg-light > .d-flex {
-            min-width: 0;
-            width: 100%;
-        }
-        
-        .hero .bg-light > .d-flex > div:last-child {
-            min-width: 0;
-            flex: 1 1 auto;
-        }
-        
-        .hero .bg-light h3 {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-            line-height: 1.3;
-        }
-        
-        .hero .bg-light p {
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-        }
-        
-        .hero .rounded-circle {
-            width: 48px;
-            height: 48px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-        
-        .hero h1.display-5 {
-            line-height: 1.2;
-            letter-spacing: -0.02em;
-        }
-        
-        @media (max-width: 768px) {
-            .hero h1.display-5 {
-                font-size: 2rem;
-            }
-        }
-        
-        /* Contadores por estado */
         #statusCounters .badge {
             padding: .45rem .6rem;
             font-weight: 700;
             border-radius: .75rem;
-            border-width: 1px;
-            border-style: solid;
+            border: 1px solid;
         }
-        #statusCounters .badge-open {
-            background: #198754;
-            border-color: #146c43;
-            color: #fff;
-        }
-        #statusCounters .badge-soon {
-            background: #ffc107;
-            border-color: #e0a800;
-            color: #1b1f24;
-        }
-        #statusCounters .badge-closed {
-            background: #dc3545;
-            border-color: #b02a37;
-            color: #fff;
-        }
+        #statusCounters .badge-open { background: #198754; border-color: #146c43; color: #fff; }
+        #statusCounters .badge-soon { background: #ffc107; border-color: #e0a800; color: #1b1f24; }
+        #statusCounters .badge-closed { background: #dc3545; border-color: #b02a37; color: #fff; }
         
-        .btn-institucional {
-            background-color: var(--institucional-azul);
-            border-color: var(--institucional-azul);
-            color: white;
-        }
+        .btn-institucional { background-color: var(--institucional-azul); border-color: var(--institucional-azul); color: white; }
+        .btn-institucional:hover { background-color: var(--institucional-azul-oscuro); border-color: var(--institucional-azul-oscuro); color: white; }
+        .btn-outline-institucional { border-color: var(--institucional-azul); color: var(--institucional-azul); }
+        .btn-outline-institucional:hover { background-color: var(--institucional-azul); border-color: var(--institucional-azul); color: white; }
+        .bg-institucional { background-color: var(--institucional-azul) !important; }
+        .bg-institucional-oscuro { background-color: var(--institucional-azul-oscuro) !important; }
+        .text-institucional { color: var(--institucional-azul) !important; }
+        .border-institucional { border-color: var(--institucional-azul) !important; }
         
-        .btn-institucional:hover {
-            background-color: var(--institucional-azul-oscuro);
-            border-color: var(--institucional-azul-oscuro);
-            color: white;
-        }
-        
-        .btn-outline-institucional {
-            border-color: var(--institucional-azul);
-            color: var(--institucional-azul);
-        }
-        
-        .btn-outline-institucional:hover {
-            background-color: var(--institucional-azul);
-            border-color: var(--institucional-azul);
-            color: white;
-        }
-        
-        .bg-institucional {
-            background-color: var(--institucional-azul) !important;
-        }
-        
-        .bg-institucional-oscuro {
-            background-color: var(--institucional-azul-oscuro) !important;
-        }
-        
-        .text-institucional {
-            color: var(--institucional-azul) !important;
-        }
-        
-        .border-institucional {
-            border-color: var(--institucional-azul) !important;
-        }
-        
-        /* Tarjetas base */
         .program-card {
             background: #FFFFFF;
-            border: 1px solid #E1E5EB;
-            border-radius: 0.85rem;
+            border-radius: 0.75rem;
             height: 100%;
-            display: flex;
-            flex-direction: column;
             position: relative;
-            transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
-            box-shadow: 0 2px 6px rgba(13, 30, 53, 0.06);
-            border-left: 4px solid transparent;
+            transition: transform 0.25s ease, box-shadow 0.25s ease;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             overflow: hidden;
             min-width: 0;
             width: 100%;
-            box-sizing: border-box;
-        }
-        
-        /* Contenedor del título y estado */
-        .program-card > div:first-child {
-            min-width: 0;
-            position: relative;
-            min-height: 3.5rem;
-            align-items: flex-start;
-        }
-        
-        .program-card h3 {
-            flex: 1 1 auto;
-            min-width: 0;
-            padding-right: 8rem;
-            line-height: 1.4;
-            word-wrap: break-word;
-            overflow-wrap: break-word;
-            hyphens: auto;
-        }
-        
-        /* Ajuste dinámico del padding según ancho disponible */
-        @media (max-width: 1199.98px) {
-            .program-card h3 {
-                padding-right: 6rem;
-            }
-        }
-        
-        @media (max-width: 991.98px) {
-            .program-card h3 {
-                padding-right: 5rem;
-            }
-        }
-        
-        .program-card > div:first-child > div:last-child {
-            flex: 0 0 auto;
-            min-width: 0;
-            position: absolute;
-            top: 0;
-            right: 0;
-            align-items: flex-end;
+            display: flex;
             flex-direction: column;
-            gap: 0.25rem;
-            text-align: right;
-            max-width: 7rem;
-            z-index: 1;
+        }
+        .program-card-header {
+            background: var(--institucional-azul);
+            color: white;
+            padding: 1.25rem 1.5rem;
+            position: relative;
+        }
+        .program-card-header::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            height: 8px;
+            background: linear-gradient(90deg, rgba(255,255,255,0.3) 0%, rgba(255,255,255,0.1) 50%, rgba(255,255,255,0.3) 100%);
+            background-size: 200% 100%;
+            animation: wave 3s ease-in-out infinite;
+        }
+        @keyframes wave {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+        .program-card-header-top {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 0.75rem;
+        }
+        .program-card-header .institution {
+            font-size: 0.7rem;
+            color: rgba(255, 255, 255, 0.85);
+            font-weight: 500;
+            margin-bottom: 0.5rem;
+            display: block;
+        }
+        .program-card-header h3 {
+            font-size: 1.1rem;
+            font-weight: 700;
+            line-height: 1.3;
+            margin: 0;
+            color: white;
+        }
+        .program-card-body {
+            padding: 1.5rem;
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+        .program-card-info {
+            display: flex;
+            flex-direction: column;
+            gap: 1rem;
+            margin-bottom: 1rem;
+        }
+        .program-card-info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 0.75rem;
+        }
+        .program-card-info-item i {
+            color: var(--institucional-azul);
+            font-size: 1.1rem;
+            margin-top: 0.15rem;
+            flex-shrink: 0;
+        }
+        .program-card-info-item-content {
+            flex: 1;
+        }
+        .program-card-info-item-content strong {
+            display: block;
+            font-size: 0.75rem;
+            color: #666;
+            margin-bottom: 0.25rem;
+            font-weight: 600;
+        }
+        .program-card-info-item-content span {
+            font-size: 0.9rem;
+            color: #333;
+        }
+        .program-card:hover, .program-card:focus-within {
+            transform: translateY(-4px);
+            box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+        }
+        .program-card-status-badge {
+            padding: 0.4rem 0.9rem;
+            border-radius: 999px;
+            font-weight: 700;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            white-space: nowrap;
+            display: inline-block;
+        }
+        .status-badge-open { background: #28a745; color: white; }
+        .status-badge-soon { background: #ffc107; color: #1b1f24; }
+        .status-badge-closed { background: #dc3545; color: white; }
+        .program-card-location {
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: rgba(255, 255, 255, 0.9);
+        }
+        .program-card-footer {
+            margin-top: auto;
+            padding-top: 1rem;
+        }
+        .program-card-footer .btn {
+            width: 100%;
+            border-radius: 0.5rem;
+            font-weight: 600;
+            padding: 0.75rem;
         }
         
-        /* Ajuste para evitar que los badges se salgan en pantallas medianas */
-        @media (max-width: 1199.98px) {
-            .program-card > div:first-child > div:last-child {
-                max-width: 5.5rem;
-            }
-        }
-        
-        @media (max-width: 991.98px) {
-            .program-card > div:first-child > div:last-child {
-                max-width: 4.5rem;
-            }
-        }
-        
-        /* Contenedor de etiquetas en tarjeta */
-        .program-card .d-flex.align-items-center.justify-content-between {
-            gap: 0.5rem;
-        }
-        
-        .program-card .d-flex.align-items-center.gap-2 {
-            flex-wrap: wrap;
-            gap: 0.5rem !important;
-        }
-        
-        .program-card:hover,
-        .program-card:focus-within {
-            transform: translateY(-3px);
-            box-shadow: 0 10px 22px rgba(13, 30, 53, 0.12);
-        }
-        
-        /* Banner informativo carrusel */
         #infoCarousel {
             border-bottom: 2px solid rgba(0, 0, 0, 0.1);
-            margin-left: calc(-1 * var(--body-padding-left, 1rem));
-            margin-right: calc(-1 * var(--body-padding-right, 1rem));
-            width: calc(100% + var(--body-padding-left, 1rem) + var(--body-padding-right, 1rem));
-            position: relative;
+            margin: 0 calc(-1 * var(--body-padding, 1rem));
+            width: calc(100% + var(--body-padding, 1rem) * 2);
         }
-        
-        #infoCarousel .carousel-item {
-            transition: transform 0.6s ease-in-out;
-        }
-        
-        #infoCarousel .carousel-item .row {
-            padding-left: 1.5rem;
-            padding-right: 1.5rem;
-        }
-        
-        #infoCarousel .carousel-control-prev,
-        #infoCarousel .carousel-control-next {
-            width: 3rem;
-            opacity: 0.7;
-        }
-        
-        #infoCarousel .carousel-control-prev:hover,
-        #infoCarousel .carousel-control-next:hover {
-            opacity: 1;
-        }
-        
-        /* Botón de cierre del banner */
+        #infoCarousel .carousel-item { transition: transform 0.6s ease-in-out; }
+        #infoCarousel .carousel-item .row { padding: 0 1.5rem; }
+        #infoCarousel .carousel-control-prev, #infoCarousel .carousel-control-next { width: 3rem; opacity: 0.7; }
+        #infoCarousel .carousel-control-prev:hover, #infoCarousel .carousel-control-next:hover { opacity: 1; }
         .carousel-close-btn {
             position: absolute;
             top: 0.5rem;
@@ -467,199 +269,42 @@
             border-radius: 50%;
             width: 28px;
             height: 28px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
             cursor: pointer;
             transition: all 0.2s ease;
             color: rgba(0, 0, 0, 0.6);
             font-size: 0.875rem;
             padding: 0;
         }
+        .carousel-close-btn:hover { background: rgba(0, 0, 0, 0.2); color: rgba(0, 0, 0, 0.8); transform: scale(1.1); }
+        .carousel-close-btn:focus { outline: 2px solid var(--institucional-azul); outline-offset: 2px; }
+        .carousel-close-btn:active { transform: scale(0.95); }
+        #infoCarousel.hidden { display: none !important; }
+        .banner-pastel-verde { background-color: #d4edda !important; border-left: 4px solid #6c9b7a; }
+        .banner-pastel-ocre { background-color: #f5e6d3 !important; border-left: 4px solid #b89a7a; }
+        .banner-pastel-azul { background-color: #d1ecf1 !important; border-left: 4px solid #6fa8bf; }
         
-        .carousel-close-btn:hover {
-            background: rgba(0, 0, 0, 0.2);
-            color: rgba(0, 0, 0, 0.8);
-            transform: scale(1.1);
-        }
+        :focus-visible { outline: 3px solid var(--institucional-azul-claro); outline-offset: 2px; }
+        .program-card a:focus-visible { outline: 3px solid var(--institucional-azul-claro); outline-offset: 3px; border-radius: 0.5rem; }
         
-        .carousel-close-btn:focus {
-            outline: 2px solid var(--institucional-azul);
-            outline-offset: 2px;
-        }
-        
-        .carousel-close-btn:active {
-            transform: scale(0.95);
-        }
-        
-        /* Ocultar banner cuando está cerrado */
-        #infoCarousel.hidden {
-            display: none !important;
-        }
-        
-        /* Colores pasteles sobrios para uso gubernamental */
-        .banner-pastel-verde {
-            background-color: #d4edda !important;
-            border-left: 4px solid #6c9b7a;
-        }
-        
-        .banner-pastel-ocre {
-            background-color: #f5e6d3 !important;
-            border-left: 4px solid #b89a7a;
-        }
-        
-        .banner-pastel-azul {
-            background-color: #d1ecf1 !important;
-            border-left: 4px solid #6fa8bf;
-        }
-        
-        .program-card .meta {
-            font-size: 0.9rem;
-            color: #5b6b7c;
-        }
-        
-        /* Acento por estado */
-        [data-program][data-estado="open"] .program-card,
-        [data-estado="open"] .program-card {
-            border-left-color: #1f7a52;
-        }
-        
-        [data-program][data-estado="soon"] .program-card,
-        [data-estado="soon"] .program-card {
-            border-left-color: #b26a00;
-        }
-        
-        [data-program][data-estado="closed"] .program-card,
-        [data-estado="closed"] .program-card {
-            border-left-color: #8a2432;
-        }
-        
-        /* Línea decorativa superior sutil */
-        .program-card::after {
-            content: "";
-            position: absolute;
-            inset: 0 0 auto 0;
-            height: 2px;
-            background: linear-gradient(90deg, rgba(97, 22, 22, 0.25), rgba(155, 61, 61, 0.25));
-            opacity: 0;
-            transition: opacity 0.25s ease;
-        }
-        
-        .program-card:hover::after,
-        .program-card:focus-within::after {
-            opacity: 1;
-        }
-        
-        /* Pill de estado */
-        .program-card .pill {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.35rem;
-            padding: 0.3rem 0.75rem;
-            line-height: 1;
-            font-weight: 700;
-            border-radius: 999px;
-            border-width: 2px;
-            border-style: solid;
-            transition: box-shadow 0.25s ease, transform 0.25s ease;
-            white-space: nowrap;
-            flex-shrink: 0;
-            font-size: 0.75rem;
-        }
-        
-        .pill-open {
-            background: #e6f5ee;
-            color: #0a6a3b;
-            border-color: #0a6a3b;
-        }
-        
-        .pill-soon {
-            background: #fff1cc;
-            color: #8b5a00;
-            border-color: #8b5a00;
-        }
-        
-        .pill-closed {
-            background: #ffe0e5;
-            color: #8a1f34;
-            border-color: #8a1f34;
-        }
-        
-        .program-card:hover .pill {
-            box-shadow: none;
-        }
-        
-        /* CTA reveal */
-        .program-card .cta-wrap {
-            transform: translateY(4px);
-            opacity: 0;
-            transition: transform 0.25s ease, opacity 0.25s ease;
-        }
-        
-        .program-card:hover .cta-wrap,
-        .program-card:focus-within .cta-wrap {
-            transform: translateY(0);
-            opacity: 1;
-        }
-        
-        /* Focus accesible */
-        :focus-visible {
-            outline: 3px solid var(--institucional-azul-claro);
-            outline-offset: 2px;
-        }
-        
-        .program-card a:focus-visible {
-            outline: 3px solid var(--institucional-azul-claro);
-            outline-offset: 3px;
-            border-radius: 0.5rem;
-        }
-        
-        /* Animación al entrar en viewport */
         @keyframes fadeSlideUp {
-            from {
-                opacity: 0;
-                transform: translateY(12px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(12px); }
+            to { opacity: 1; transform: translateY(0); }
         }
+        [data-animate] { opacity: 0; transform: translateY(12px); }
+        [data-animate].in { animation: fadeSlideUp 0.5s ease forwards; }
         
-        [data-animate] {
-            opacity: 0;
-            transform: translateY(12px);
-        }
-        
-        [data-animate].in {
-            animation: fadeSlideUp 0.5s ease forwards;
-        }
-        
-        /* Deadline "Cierra en X días" */
-        .deadline {
+        .deadline-badge {
             display: inline-block;
-            padding: 0.28rem 0.6rem;
-            border-radius: 0.75rem;
-            border: 1px solid rgba(0, 0, 0, 0.08);
-            background: #eef3f7;
-            color: var(--institucional-azul);
+            padding: 0.5rem 0.9rem;
+            border-radius: 0.5rem;
             font-weight: 700;
+            font-size: 0.75rem;
             white-space: nowrap;
-            flex-shrink: 0;
-            font-size: 0.7rem;
+            margin-top: 1rem;
         }
+        .deadline-badge.soon { background: #fff1cc; color: #8b5a00; }
+        .deadline-badge.urgent { background: #dc3545; color: white; }
         
-        .deadline.soon {
-            background: #fff1cc;
-            color: #8b5a00;
-        }
-        
-        .deadline.urgent {
-            background: #ffe0e5;
-            color: #8a1f34;
-        }
-        
-        /* Ripple minimalista */
         .ripple {
             position: absolute;
             border-radius: 50%;
@@ -668,224 +313,75 @@
             animation: ripple 0.45s ease-out forwards;
             pointer-events: none;
         }
-        
         @keyframes ripple {
-            to {
-                transform: scale(2.5);
-                opacity: 0;
-            }
+            to { transform: scale(2.5); opacity: 0; }
         }
         
-        /* Respeta reduce motion */
         @media (prefers-reduced-motion: reduce) {
-            .program-card,
-            .program-card .cta-wrap,
-            .program-card::after {
-                transition: none !important;
-            }
-            
-            [data-animate] {
-                opacity: 1 !important;
-                transform: none !important;
-                animation: none !important;
-            }
-            
-            .ripple {
-                display: none !important;
-            }
+            .program-card { transition: none !important; }
+            [data-animate] { opacity: 1 !important; transform: none !important; animation: none !important; }
+            .ripple { display: none !important; }
         }
         
-        /* Responsive: ajustes para evitar superposiciones */
-        /* Grid y columnas */
-        #grid.row {
-            margin-left: 0;
-            margin-right: 0;
-            overflow-x: hidden;
-        }
+        #grid.row { margin: 0; overflow-x: hidden; }
+        #grid [class*="col-"] { min-width: 0; padding: 0 0.75rem; }
         
-        #grid [class*="col-"] {
-            min-width: 0;
-            padding-left: 0.75rem;
-            padding-right: 0.75rem;
-        }
-        
-        /* Ajustes para tablets y pantallas medianas */
         @media (min-width: 768px) and (max-width: 991.98px) {
-            .program-card h3 {
-                padding-right: 6rem;
-                font-size: 0.95rem;
-            }
-            
-            .program-card > div:first-child > div:last-child {
-                gap: 0.2rem;
-            }
-            
-            .program-card .pill {
-                font-size: 0.7rem;
-                padding: 0.25rem 0.6rem;
-            }
-            
-            .deadline {
-                font-size: 0.7rem;
-                padding: 0.25rem 0.6rem;
-            }
+            .hero .row.g-3 > .col-md-4 { padding: 0 0.5rem; }
+            .hero .bg-light { padding: 0.75rem !important; }
+            .hero .bg-light h3 { font-size: 0.9rem; }
+            .hero .bg-light p { font-size: 0.8rem; }
+            .hero .rounded-circle { width: 40px; height: 40px; }
         }
-        
+        @media (max-width: 767.98px) {
+            .hero .row.g-3 > [class*="col-"] { flex: 0 0 100%; max-width: 100%; margin-bottom: 0.75rem; }
+            .hero .row.g-3 > [class*="col-"]:last-child { margin-bottom: 0; }
+        }
         @media (max-width: 768px) {
-            /* Centrar tarjetas en móviles */
-            #grid.row {
-                justify-content: center;
-            }
-            
-            #grid .col-12 {
-                display: flex;
-                justify-content: center;
-                flex: 0 0 100%;
-                max-width: 100%;
-            }
-            
-            #grid .col-12 > .program-card {
-                width: 100%;
-                max-width: 100%;
-                margin: 0;
-            }
-            
-            .program-card h3 {
-                padding-right: 0;
-                margin-bottom: 0.75rem;
-            }
-            
-            .program-card > div:first-child {
-                flex-direction: column;
-                align-items: flex-start;
-                position: relative;
-                min-height: auto;
-            }
-            
-            .program-card > div:first-child > div:last-child {
-                position: static;
-                width: 100%;
-                justify-content: flex-start;
-                flex-direction: row;
-                text-align: left;
-                margin-top: 0.5rem;
-            }
+            .program-card-header { padding: 1rem; }
+            .program-card-header h3 { font-size: 1rem; }
+            .program-card-body { padding: 1.25rem; }
         }
-        
         @media (max-width: 576px) {
-            .program-card {
-                padding: 1rem !important;
-            }
-            
-            .program-card h3 {
-                font-size: 0.95rem;
-                line-height: 1.3;
-                margin-bottom: 0.75rem;
-                padding-right: 0;
-            }
-            
-            .program-card > div:first-child {
-                margin-bottom: 0.75rem;
-            }
-            
-            .program-card > div:first-child > div:last-child {
-                flex-wrap: wrap;
-                gap: 0.5rem !important;
-                width: 100%;
-            }
-            
-            .program-card .pill {
-                font-size: 0.7rem;
-                padding: 0.35rem 0.65rem;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-            
-            .deadline {
-                font-size: 0.7rem;
-                padding: 0.35rem 0.65rem;
-                white-space: nowrap;
-                flex-shrink: 0;
-            }
-            
-            .program-card .meta {
-                font-size: 0.85rem;
-                margin-bottom: 1rem;
-            }
-            
-            .program-card .cta-wrap {
-                flex-direction: column;
-                gap: 0.5rem;
-            }
-            
-            .program-card .cta-wrap .btn {
-                width: 100%;
-            }
+            .program-card-header { padding: 0.875rem; }
+            .program-card-header h3 { font-size: 0.95rem; }
+            .program-card-body { padding: 1rem; }
+            .program-card-info-item { gap: 0.5rem; }
+            .program-card-info-item i { font-size: 1rem; }
+            .program-card-info-item-content strong { font-size: 0.7rem; }
+            .program-card-info-item-content span { font-size: 0.85rem; }
         }
         
-        .logo-img {
-            height: 3.5rem;
-        }
-        
-        /* Navbar Bootstrap personalizada */
+        .logo-img { height: 3.5rem; }
         .navbar {
             position: sticky !important;
             top: 0 !important;
             z-index: 1030 !important;
             background-color: #fff !important;
-            margin-left: calc(-1 * var(--body-padding-left, 1rem)) !important;
-            margin-right: calc(-1 * var(--body-padding-right, 1rem)) !important;
-            width: calc(100% + var(--body-padding-left, 1rem) + var(--body-padding-right, 1rem)) !important;
+            margin: 0 calc(-1 * var(--body-padding, 1rem));
+            width: calc(100% + var(--body-padding, 1rem) * 2) !important;
             max-width: none !important;
-            left: 0;
-            right: 0;
         }
-        
-        .navbar .container {
-            padding-left: var(--body-padding-left, 1rem) !important;
-            padding-right: var(--body-padding-right, 1rem) !important;
-            max-width: 100%;
-        }
-        
-        .navbar-brand {
-            padding: 0.5rem 0;
-        }
-        
+        .navbar .container { padding: 0 var(--body-padding, 1rem) !important; }
         .navbar-nav .nav-link {
             padding: 0.75rem 1rem;
             transition: all 0.2s ease;
             font-weight: 500;
         }
-        
         .navbar-nav .nav-link:hover {
             background-color: rgba(97, 22, 22, 0.1);
             border-radius: 0.25rem;
             color: var(--institucional-azul-oscuro) !important;
         }
-        
         .navbar-nav .nav-link.active {
             background-color: rgba(97, 22, 22, 0.15);
             border-radius: 0.25rem;
             color: var(--institucional-azul-oscuro) !important;
             font-weight: 600;
         }
-        
-        .navbar-nav .dropdown-menu {
-            border: 1px solid #dee2e6;
-            box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15);
-        }
-        
-        .navbar-nav .dropdown-item:hover {
-            background-color: rgba(97, 22, 22, 0.1);
-            color: var(--institucional-azul-oscuro) !important;
-        }
-        
-        /* Posicionar botón flotante de Userway en esquina inferior derecha */
-        .uw-widget-button,
-        [id*="userway-widget"],
-        [class*="userway-widget"],
-        iframe[title*="Userway"],
-        iframe[title*="Accessibility"] {
+        .navbar-nav .dropdown-menu { border: 1px solid #dee2e6; box-shadow: 0 0.5rem 1rem rgba(0, 0, 0, 0.15); }
+        .navbar-nav .dropdown-item:hover { background-color: rgba(97, 22, 22, 0.1); color: var(--institucional-azul-oscuro) !important; }
+        .uw-widget-button, [id*="userway-widget"], [class*="userway-widget"], iframe[title*="Userway"], iframe[title*="Accessibility"] {
             position: fixed !important;
             bottom: 20px !important;
             right: 20px !important;
@@ -893,131 +389,36 @@
             left: auto !important;
             z-index: 9999 !important;
         }
-        
-        .navbar-toggler {
-            border-color: var(--institucional-azul);
-        }
-        
+        .navbar-toggler { border-color: var(--institucional-azul); }
         .navbar-toggler-icon {
             background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 30 30'%3e%3cpath stroke='rgba(97, 22, 22, 1)' stroke-linecap='round' stroke-miterlimit='10' stroke-width='2' d='M4 7h22M4 15h22M4 23h22'/%3e%3c/svg%3e");
         }
-        
-        @media (min-width: 992px) {
-            .logo-img {
-                height: 4rem;
-            }
-        }
-        
-        /* Estilos responsive para evitar superposiciones */
+        @media (min-width: 992px) { .logo-img { height: 4rem; } }
         @media (max-width: 991.98px) {
-            /* Navbar: ajustar logo y brand */
-            .navbar-brand {
-                flex: 1 1 auto;
-                min-width: 0;
-                max-width: calc(100% - 60px);
-                padding-right: 0.5rem;
-            }
-            
-            .navbar-brand .logo-img {
-                height: 3rem !important;
-                max-width: 100%;
-                object-fit: contain;
-            }
-            
-            .navbar-brand .d-none.d-sm-block {
-                display: none !important;
-            }
-            
-            /* Asegurar que el toggler no se superponga */
-            .navbar-toggler {
-                flex-shrink: 0;
-                margin-left: auto;
-            }
-            
-            /* Navbar collapse: evitar overflow */
-            .navbar-collapse {
-                margin-top: 1rem;
-                padding-top: 1rem;
-                border-top: 1px solid rgba(0, 0, 0, 0.1);
-            }
-            
-            /* Tarjetas de características: apilar correctamente */
-            .hero .row.g-3 > [class*="col-"] {
-                margin-bottom: 1rem;
-            }
-            
-            /* Ajustar padding del container en móviles */
-            .container {
-                padding-left: 1rem;
-                padding-right: 1rem;
-            }
+            .navbar-brand { flex: 1 1 auto; min-width: 0; max-width: calc(100% - 60px); padding-right: 0.5rem; }
+            .navbar-brand .logo-img { height: 3rem !important; max-width: 100%; object-fit: contain; }
+            .navbar-brand .d-none.d-sm-block { display: none !important; }
+            .navbar-toggler { flex-shrink: 0; margin-left: auto; }
+            .navbar-collapse { margin-top: 1rem; padding-top: 1rem; border-top: 1px solid rgba(0, 0, 0, 0.1); }
+            .hero .row.g-3 > [class*="col-"] { margin-bottom: 1rem; }
+            .container { padding: 0 1rem; }
         }
-        
-        /* Prevenir overflow horizontal */
-        .navbar,
-        .container,
-        .row {
-            max-width: 100%;
-            overflow-x: hidden;
-        }
-        
-        /* Asegurar que los textos largos se ajusten */
-        .navbar-nav .nav-link {
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-        
+        .navbar, .container, .row { max-width: 100%; overflow-x: hidden; }
+        .navbar-nav .nav-link { white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
         @media (max-width: 575.98px) {
-            /* Navbar: logo más pequeño en móviles muy pequeños */
-            .navbar-brand .logo-img {
-                height: 2.75rem !important;
-            }
-            
-            .navbar-brand {
-                gap: 0.5rem !important;
-            }
-            
-            .navbar-nav .nav-link {
-                white-space: normal;
-                word-break: break-word;
-            }
-            
-            /* Ajustar Userway widget en móviles */
-            .uw-widget-button,
-            [id*="userway-widget"],
-            [class*="userway-widget"],
-            iframe[title*="Userway"],
-            iframe[title*="Accessibility"] {
+            .navbar-brand .logo-img { height: 2.75rem !important; }
+            .navbar-brand { gap: 0.5rem !important; }
+            .navbar-nav .nav-link { white-space: normal; word-break: break-word; }
+            .uw-widget-button, [id*="userway-widget"], [class*="userway-widget"], iframe[title*="Userway"], iframe[title*="Accessibility"] {
                 bottom: 10px !important;
                 right: 10px !important;
                 max-width: calc(100vw - 20px) !important;
             }
-            
-            /* Tarjetas de características: texto más pequeño */
-            .hero .d-flex.align-items-start.p-3 {
-                padding: 0.75rem !important;
-            }
-            
-            .hero .d-flex.align-items-start.p-3 h3 {
-                font-size: 0.9rem;
-            }
-            
-            .hero .d-flex.align-items-start.p-3 p {
-                font-size: 0.8rem;
-            }
-            
-            .hero .rounded-circle {
-                width: 36px;
-                height: 36px;
-            }
-            
-            .hero .rounded-circle i {
-                font-size: 1.2rem !important;
-            }
+            .hero .d-flex.align-items-start.p-3 { padding: 0.75rem !important; }
+            .hero .d-flex.align-items-start.p-3 h3 { font-size: 0.9rem; }
+            .hero .d-flex.align-items-start.p-3 p { font-size: 0.8rem; }
+            .hero .rounded-circle { width: 36px; height: 36px; }
         }
-        
-        /* Estilos para teclas de atajo */
         kbd {
             background-color: #f8f9fa;
             border: 1px solid #dee2e6;
@@ -1089,7 +490,7 @@
 
     <!-- Banner Informativo con Carrusel -->
     <div id="infoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-        <button type="button" class="carousel-close-btn" id="carouselCloseBtn" aria-label="Cerrar banner">
+        <button type="button" class="carousel-close-btn d-flex align-items-center justify-content-center" id="carouselCloseBtn" aria-label="Cerrar banner">
             <i class="bi bi-x-lg"></i>
         </button>
         <div class="carousel-inner">
@@ -1165,7 +566,7 @@
                         <div class="col-md-4">
                             <div class="d-flex align-items-start p-3 bg-light rounded border-start border-4 border-primary">
                                 <div class="flex-shrink-0 me-3">
-                                    <div class="bg-primary bg-opacity-10 rounded-circle p-2">
+                                    <div class="bg-primary bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">
                                         <i class="bi bi-eye-fill text-primary fs-4"></i>
                                     </div>
                                 </div>
@@ -1178,7 +579,7 @@
                         <div class="col-md-4">
                             <div class="d-flex align-items-start p-3 bg-light rounded border-start border-4 border-success">
                                 <div class="flex-shrink-0 me-3">
-                                    <div class="bg-success bg-opacity-10 rounded-circle p-2">
+                                    <div class="bg-success bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">
                                         <i class="bi bi-file-earmark-check-fill text-success fs-4"></i>
                                     </div>
                                 </div>
@@ -1191,7 +592,7 @@
                         <div class="col-md-4">
                             <div class="d-flex align-items-start p-3 bg-light rounded border-start border-4 border-warning">
                                 <div class="flex-shrink-0 me-3">
-                                    <div class="bg-warning bg-opacity-10 rounded-circle p-2">
+                                    <div class="bg-warning bg-opacity-10 rounded-circle p-2 d-flex align-items-center justify-content-center">
                                         <i class="bi bi-bell-fill text-warning fs-4"></i>
                                     </div>
                                 </div>
@@ -1253,8 +654,8 @@
             </div>
         </section>
 
-        <!-- Programas Disponibles -->
-        <section id="programas" aria-labelledby="titulo-lista" class="mb-5">
+        <!-- Resultados / tarjetas -->
+        <section aria-labelledby="titulo-lista">
             <div class="d-flex align-items-center justify-content-between flex-wrap gap-2 mb-2">
                 <h2 id="titulo-lista" class="h5 mb-0">Líneas de postulación</h2>
                 <p class="text-muted small mb-0" id="resumen" aria-live="polite">Mostrando <span id="count">—</span> programas</p>
@@ -1270,142 +671,326 @@
             <div id="grid" class="row g-3">
                 <!-- Programas Abiertos -->
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="PROYECTOS MENORES A 5.000 UTM" data-benef="municipios" data-estado="open" data-close="2025-11-30" data-animate>
-                    <article class="program-card p-3">
-                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
-                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">PROYECTOS MENORES A 5.000 UTM</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
-                                <span class="deadline badge" data-deadline></span>
-                                <span class="pill pill-open"><i class="bi bi-unlock" aria-hidden="true"></i> Abierto</span>
+                    <article class="program-card">
+                        <div class="program-card-header">
+                            <div class="program-card-header-top">
+                                <span class="program-card-status-badge status-badge-open">Abierto</span>
+                                <span class="program-card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span>Regional</span>
+                                </span>
                             </div>
+                            <div class="institution">Gobierno Regional del Maule</div>
+                            <h3>PROYECTOS MENORES A 5.000 UTM</h3>
                         </div>
-                        <p class="meta mb-2">Iniciativas de inversión de menor escala con procesos de evaluación simplificados</p>
-                        <ul class="meta mb-3">
-                            <li>Cierre: <strong>30/11/2025</strong></li>
-                        </ul>
-                        <div class="mt-auto d-flex gap-2 cta-wrap">
-                            <a class="btn btn-primary flex-grow-1" href="pages/programas/proyectos-menores.html"><i class="bi bi-send me-2"></i>Postular</a>
-                            <a class="btn btn-outline-secondary" href="pages/programas/proyectos-menores.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                        <div class="program-card-body">
+                            <div class="program-card-info">
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-people-fill"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Beneficiarios/as:</strong>
+                                        <span>Municipalidades</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Fechas:</strong>
+                                        <span>Inicio: 01-10-2025 | Fin: 30-11-2025</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-cash-stack"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Montos:</strong>
+                                        <span>Hasta 5.000 UTM</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="deadline-badge urgent" data-deadline></span>
+                            <div class="program-card-footer">
+                                <a class="btn btn-outline-dark" href="pages/programas/proyectos-menores.html">
+                                    Ver detalles <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Subvenciones para actividades FNDR 8%" data-benef="org" data-estado="open" data-close="2025-12-15" data-animate>
-                    <article class="program-card p-3">
-                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
-                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Subvenciones para actividades FNDR 8%</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
-                                <span class="deadline badge" data-deadline></span>
-                                <span class="pill pill-open"><i class="bi bi-unlock" aria-hidden="true"></i> Abierto</span>
+                    <article class="program-card">
+                        <div class="program-card-header">
+                            <div class="program-card-header-top">
+                                <span class="program-card-status-badge status-badge-open">Abierto</span>
+                                <span class="program-card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span>Regional</span>
+                                </span>
                             </div>
+                            <div class="institution">Gobierno Regional del Maule</div>
+                            <h3>Subvenciones para actividades FNDR 8%</h3>
                         </div>
-                        <p class="meta mb-2">Subvenciones para actividades y proyectos que contribuyen al desarrollo regional</p>
-                        <ul class="meta mb-3">
-                            <li>Cierre: <strong>15/12/2025</strong></li>
-                        </ul>
-                        <div class="mt-auto d-flex gap-2 cta-wrap">
-                            <a class="btn btn-primary flex-grow-1" href="pages/programas/fndr-8.html"><i class="bi bi-send me-2"></i>Postular</a>
-                            <a class="btn btn-outline-secondary" href="pages/programas/fndr-8.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
+                        <div class="program-card-body">
+                            <div class="program-card-info">
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-people-fill"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Beneficiarios/as:</strong>
+                                        <span>Organizaciones</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Fechas:</strong>
+                                        <span>Inicio: 01-11-2025 | Fin: 15-12-2025</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-cash-stack"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Montos:</strong>
+                                        <span>Subvenciones variables</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <span class="deadline-badge" data-deadline></span>
+                            <div class="program-card-footer">
+                                <a class="btn btn-outline-dark" href="pages/programas/fndr-8.html">
+                                    Ver detalles <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
                 
                 <!-- Programas Cerrados -->
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Circular 33" data-benef="municipios" data-estado="closed" data-close="" data-animate>
-                    <article class="program-card p-3">
-                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
-                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Circular 33</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
-                                <span class="deadline badge" data-deadline></span>
-                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                    <article class="program-card">
+                        <div class="program-card-header">
+                            <div class="program-card-header-top">
+                                <span class="program-card-status-badge status-badge-closed">Cerrado</span>
+                                <span class="program-card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span>Regional</span>
+                                </span>
                             </div>
+                            <div class="institution">Gobierno Regional del Maule</div>
+                            <h3>Circular 33</h3>
                         </div>
-                        <p class="meta mb-2">Instructivo que regula el procedimiento de evaluación y ejecución de proyectos</p>
-                        <ul class="meta mb-3">
-                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
-                        </ul>
-                        <div class="mt-auto d-flex gap-2 cta-wrap">
-                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/circular-33.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
-                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura Circular 33"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        <div class="program-card-body">
+                            <div class="program-card-info">
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-people-fill"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Beneficiarios/as:</strong>
+                                        <span>Municipalidades</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Fechas:</strong>
+                                        <span>Sin convocatoria vigente</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-cash-stack"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Montos:</strong>
+                                        <span>Según instructivo</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card-footer">
+                                <a class="btn btn-outline-dark" href="pages/programas/circular-33.html">
+                                    Ver detalles <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional de Iniciativa Local (FRIL)" data-benef="municipios" data-estado="closed" data-close="" data-animate>
-                    <article class="program-card p-3">
-                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
-                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Fondo Regional de Iniciativa Local (FRIL)</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
-                                <span class="deadline badge" data-deadline></span>
-                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                    <article class="program-card">
+                        <div class="program-card-header">
+                            <div class="program-card-header-top">
+                                <span class="program-card-status-badge status-badge-closed">Cerrado</span>
+                                <span class="program-card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span>Regional</span>
+                                </span>
                             </div>
+                            <div class="institution">Gobierno Regional del Maule</div>
+                            <h3>Fondo Regional de Iniciativa Local (FRIL)</h3>
                         </div>
-                        <p class="meta mb-2">Financiamiento para proyectos de infraestructura pública y conservación</p>
-                        <ul class="meta mb-3">
-                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
-                        </ul>
-                        <div class="mt-auto d-flex gap-2 cta-wrap">
-                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/fril.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
-                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura FRIL"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        <div class="program-card-body">
+                            <div class="program-card-info">
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-people-fill"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Beneficiarios/as:</strong>
+                                        <span>Municipalidades</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Fechas:</strong>
+                                        <span>Sin convocatoria vigente</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-cash-stack"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Montos:</strong>
+                                        <span>Según bases</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card-footer">
+                                <a class="btn btn-outline-dark" href="pages/programas/fril.html">
+                                    Ver detalles <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="FNDR Sub. 31 con Evaluación MIDESOYF" data-benef="municipios" data-estado="closed" data-close="" data-animate>
-                    <article class="program-card p-3">
-                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
-                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">FNDR Sub. 31 con Evaluación MIDESOYF</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
-                                <span class="deadline badge" data-deadline></span>
-                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                    <article class="program-card">
+                        <div class="program-card-header">
+                            <div class="program-card-header-top">
+                                <span class="program-card-status-badge status-badge-closed">Cerrado</span>
+                                <span class="program-card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span>Regional</span>
+                                </span>
                             </div>
+                            <div class="institution">Gobierno Regional del Maule</div>
+                            <h3>FNDR Sub. 31 con Evaluación MIDESOYF</h3>
                         </div>
-                        <p class="meta mb-2">Proyectos de que requieren evaluación del Ministerio de Desarrollo Social y Familia</p>
-                        <ul class="meta mb-3">
-                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
-                        </ul>
-                        <div class="mt-auto d-flex gap-2 cta-wrap">
-                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/fndr-sub31.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
-                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura FNDR Sub. 31"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        <div class="program-card-body">
+                            <div class="program-card-info">
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-people-fill"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Beneficiarios/as:</strong>
+                                        <span>Municipalidades</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Fechas:</strong>
+                                        <span>Sin convocatoria vigente</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-cash-stack"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Montos:</strong>
+                                        <span>Según evaluación</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card-footer">
+                                <a class="btn btn-outline-dark" href="pages/programas/fndr-sub31.html">
+                                    Ver detalles <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Financiamiento para Programas" data-benef="servicios" data-estado="closed" data-close="" data-animate>
-                    <article class="program-card p-3">
-                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
-                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Financiamiento para Programas</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
-                                <span class="deadline badge" data-deadline></span>
-                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                    <article class="program-card">
+                        <div class="program-card-header">
+                            <div class="program-card-header-top">
+                                <span class="program-card-status-badge status-badge-closed">Cerrado</span>
+                                <span class="program-card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span>Regional</span>
+                                </span>
                             </div>
+                            <div class="institution">Gobierno Regional del Maule</div>
+                            <h3>Financiamiento para Programas</h3>
                         </div>
-                        <p class="meta mb-2">Postulación a financiamiento para programas y proyectos regionales</p>
-                        <ul class="meta mb-3">
-                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
-                        </ul>
-                        <div class="mt-auto d-flex gap-2 cta-wrap">
-                            <a class="btn btn-outline-primary flex-grow-1" href="pages/financiamiento-programas.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
-                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura Financiamiento para Programas"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        <div class="program-card-body">
+                            <div class="program-card-info">
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-people-fill"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Beneficiarios/as:</strong>
+                                        <span>Servicios públicos</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Fechas:</strong>
+                                        <span>Sin convocatoria vigente</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-cash-stack"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Montos:</strong>
+                                        <span>Variables</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card-footer">
+                                <a class="btn btn-outline-dark" href="pages/financiamiento-programas.html">
+                                    Ver detalles <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
                 
                 <div class="col-12 col-md-6 col-lg-4" data-program data-name="Fondo Regional para la Productividad y el Desarrollo (FRPD)" data-benef="empresas" data-estado="closed" data-close="" data-animate>
-                    <article class="program-card p-3">
-                        <div class="d-flex align-items-start justify-content-between mb-2 flex-wrap">
-                            <h3 class="h6 mb-0 flex-grow-1" style="min-width: 0;">Fondo Regional para la Productividad y el Desarrollo (FRPD)</h3>
-                            <div class="d-flex align-items-center gap-2 flex-shrink-0 flex-wrap">
-                                <span class="deadline badge" data-deadline></span>
-                                <span class="pill pill-closed"><i class="bi bi-lock-fill" aria-hidden="true"></i> Cerrado</span>
+                    <article class="program-card">
+                        <div class="program-card-header">
+                            <div class="program-card-header-top">
+                                <span class="program-card-status-badge status-badge-closed">Cerrado</span>
+                                <span class="program-card-location">
+                                    <i class="bi bi-geo-alt-fill"></i>
+                                    <span>Regional</span>
+                                </span>
                             </div>
+                            <div class="institution">Gobierno Regional del Maule</div>
+                            <h3>Fondo Regional para la Productividad y el Desarrollo (FRPD)</h3>
                         </div>
-                        <p class="meta mb-2">Apoyo a iniciativas que fomentan la productividad y el desarrollo regional</p>
-                        <ul class="meta mb-3">
-                            <li>Estado: <strong>Sin convocatoria vigente</strong></li>
-                        </ul>
-                        <div class="mt-auto d-flex gap-2 cta-wrap">
-                            <a class="btn btn-outline-primary flex-grow-1" href="pages/programas/frpd.html"><i class="bi bi-eye me-2"></i>Ver detalles</a>
-                            <a class="btn btn-secondary" href="#" aria-label="Recibir aviso apertura FRPD"><i class="bi bi-bell me-2"></i>Avisarme</a>
+                        <div class="program-card-body">
+                            <div class="program-card-info">
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-people-fill"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Beneficiarios/as:</strong>
+                                        <span>Empresas</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-calendar-event"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Fechas:</strong>
+                                        <span>Sin convocatoria vigente</span>
+                                    </div>
+                                </div>
+                                <div class="program-card-info-item">
+                                    <i class="bi bi-cash-stack"></i>
+                                    <div class="program-card-info-item-content">
+                                        <strong>Montos:</strong>
+                                        <span>Según proyecto</span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="program-card-footer">
+                                <a class="btn btn-outline-dark" href="pages/programas/frpd.html">
+                                    Ver detalles <i class="bi bi-arrow-right ms-2"></i>
+                                </a>
+                            </div>
                         </div>
                     </article>
                 </div>
@@ -1447,21 +1032,16 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
     <script src="assets/js/script.js"></script>
     <script>
-        // Cerrar banner del carrusel
         document.addEventListener('DOMContentLoaded', function() {
             const carousel = document.getElementById('infoCarousel');
             const closeBtn = document.getElementById('carouselCloseBtn');
             
-            // Verificar si el banner fue cerrado previamente
-            if (localStorage.getItem('bannerClosed') === 'true') {
-                if (carousel) {
-                    carousel.classList.add('hidden');
-                }
+            if (localStorage.getItem('bannerClosed') === 'true' && carousel) {
+                carousel.classList.add('hidden');
             }
             
-            // Manejar el cierre del banner
             if (closeBtn && carousel) {
-                closeBtn.addEventListener('click', function() {
+                closeBtn.addEventListener('click', () => {
                     carousel.classList.add('hidden');
                     localStorage.setItem('bannerClosed', 'true');
                 });
@@ -1483,7 +1063,6 @@
             const cntSoon   = document.getElementById('cntSoon');
             const cntClosed = document.getElementById('cntClosed');
 
-            // Atajo "/" para foco en buscador
             document.addEventListener('keydown', (e) => {
                 if (e.key === '/' && !e.target.closest('input, textarea')) {
                     e.preventDefault(); 
@@ -1496,7 +1075,6 @@
                 const fEstado = estado.value;
                 const fBenef = benef.value;
 
-                // Filtrar
                 cards.forEach(c => {
                     const name = (c.dataset.name || '').toLowerCase();
                     const matchQ = !term || name.includes(term);
@@ -1505,7 +1083,6 @@
                     c.style.display = (matchQ && matchE && matchB) ? '' : 'none';
                 });
 
-                // Ordenar visibles
                 let visible = cards.filter(c => c.style.display !== 'none');
                 const byName = (a, b) => a.dataset.name.localeCompare(b.dataset.name, 'es');
                 const toRank = s => ({open: 3, soon: 2, closed: 1}[s] || 0);
@@ -1527,7 +1104,6 @@
                     });
                 }
 
-                // Reinsertar y actualizar conteos
                 visible.forEach(card => grid.appendChild(card));
                 if (count) count.textContent = String(visible.length);
 
@@ -1545,8 +1121,7 @@
                     if (!badge) return;
                     
                     if (!d || isNaN(d)) {
-                        badge.textContent = '';
-                        badge.className = 'deadline badge';
+                        badge.style.display = 'none';
                         return;
                     }
                     
@@ -1555,28 +1130,31 @@
                     let text = '';
                     
                     if (days < 0) {
-                        text = 'Cerró';
+                        badge.style.display = 'none';
+                        return;
                     } else if (days === 0) {
-                        text = 'Cierra hoy';
+                        text = 'Finaliza hoy';
+                        cls = 'urgent';
+                    } else if (days === 1) {
+                        text = 'Finaliza en 1 día';
                         cls = 'urgent';
                     } else {
-                        text = `Cierra en ${days} día${days > 1 ? 's' : ''}`;
+                        text = `Finaliza en ${days} días`;
                         cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
                     }
                     
-                    badge.className = `deadline badge ${cls}`;
+                    badge.className = `deadline-badge ${cls}`;
                     badge.textContent = text;
+                    badge.style.display = 'inline-block';
                 });
             }
 
             if (form) form.addEventListener('submit', e => { e.preventDefault(); apply(); });
             [q, estado, benef, orden].forEach(el => { if (el) el.addEventListener('change', apply); });
 
-            // Primera ejecución
             apply();
             paintDeadlines();
 
-            // Animación de entrada
             const els = document.querySelectorAll('[data-animate]');
             if ('IntersectionObserver' in window) {
                 const io = new IntersectionObserver((entries) => {
@@ -1592,7 +1170,6 @@
                 els.forEach(el => el.classList.add('in'));
             }
 
-            // Ripple en botones
             document.querySelectorAll('.program-card .btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
                     const prev = this.querySelector('.ripple');
@@ -1614,7 +1191,6 @@
                 });
             });
 
-            // Toast "Avisarme"
             document.querySelectorAll('a, button').forEach(el => {
                 if (/avisarme/i.test(el.textContent)) {
                     el.addEventListener('click', () => {
@@ -1631,57 +1207,28 @@
     <!-- UserWay Accessibility Widget -->
     <script>
         (function(){var s=document.createElement("script");s.src="https://cdn.userway.org/widget.js";(document.body||document.head).appendChild(s);})();
-        
-        // Esperar a que el DOM esté listo
         document.addEventListener('DOMContentLoaded', function() {
-            // Función para posicionar el botón flotante de Userway en esquina inferior derecha
             function positionUserwayWidget() {
-                const selectors = [
-                    '.uw-widget-button',
-                    '[id*="userway-widget"]',
-                    '[class*="userway-widget"]',
-                    'iframe[title*="Userway"]',
-                    'iframe[title*="Accessibility"]',
-                    'div[id*="userway"]',
-                    'div[class*="userway"]'
-                ];
-                
+                const selectors = ['.uw-widget-button', '[id*="userway-widget"]', '[class*="userway-widget"]', 'iframe[title*="Userway"]', 'iframe[title*="Accessibility"]', 'div[id*="userway"]', 'div[class*="userway"]'];
                 selectors.forEach(selector => {
                     try {
                         document.querySelectorAll(selector).forEach(el => {
                             if (el?.style) {
-                                el.style.setProperty('position', 'fixed', 'important');
-                                el.style.setProperty('bottom', '20px', 'important');
-                                el.style.setProperty('right', '20px', 'important');
-                                el.style.setProperty('top', 'auto', 'important');
-                                el.style.setProperty('left', 'auto', 'important');
-                                el.style.setProperty('z-index', '9999', 'important');
-                                el.style.setProperty('margin', '0', 'important');
+                                const props = {position:'fixed', bottom:'20px', right:'20px', top:'auto', left:'auto', 'z-index':'9999', margin:'0'};
+                                Object.entries(props).forEach(([k,v]) => el.style.setProperty(k, v, 'important'));
                             }
                         });
-                    } catch(e) {
-                        // Silenciar errores
-                    }
+                    } catch(e) {}
                 });
             }
-            
-            // Posicionar widget después de que Userway se carga
-            const delays = [0, 500, 1000, 2000, 3000, 5000];
-            delays.forEach(delay => setTimeout(positionUserwayWidget, delay));
-            
-            // Observar cambios en el DOM para reposicionar el widget
+            [0, 500, 1000, 2000, 3000, 5000].forEach(delay => setTimeout(positionUserwayWidget, delay));
             if (window.MutationObserver && document.body) {
                 let timeoutId;
                 const observer = new MutationObserver(() => {
                     clearTimeout(timeoutId);
                     timeoutId = setTimeout(positionUserwayWidget, 500);
                 });
-                
-                observer.observe(document.body, {
-                    childList: true,
-                    subtree: true,
-                    attributes: false
-                });
+                observer.observe(document.body, { childList: true, subtree: true, attributes: false });
             }
         });
     </script>
