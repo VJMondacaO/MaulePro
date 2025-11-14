@@ -202,6 +202,69 @@ footer .footer-logo {
     }
 }
 
+/* Footer Versión */
+.footer-version {
+    background-color: var(--header-fondo-oscuro) !important;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    padding-left: var(--body-padding, 1rem);
+    padding-right: var(--body-padding, 1rem);
+    box-sizing: border-box;
+}
+
+.version-info {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+.version-bars {
+    display: flex;
+    gap: 0.25rem;
+}
+
+.version-bar {
+    width: 20px;
+    height: 4px;
+    border-radius: 2px;
+}
+
+.version-bar-blue {
+    background-color: #2196F3;
+}
+
+.version-bar-red {
+    background-color: #F44336;
+}
+
+.footer-version a {
+    color: #FFFFFF !important;
+    text-decoration: underline;
+    transition: opacity 0.2s ease;
+}
+
+.footer-version a:hover {
+    opacity: 0.8;
+}
+
+@media (max-width: 768px) {
+    .footer-version {
+        text-align: center;
+    }
+    
+    .version-info {
+        align-items: center;
+        margin-bottom: 1rem;
+    }
+    
+    .footer-version .col-md-6:last-child {
+        text-align: center !important;
+    }
+}
+
 /* Sistema de Espaciado Corporativo */
 :root {
     --spacing-xs: 0.25rem;  /* 4px */

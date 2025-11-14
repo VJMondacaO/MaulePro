@@ -28,11 +28,17 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-3" href="../index.html">
-                <img src="../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo">
-                <div class="d-none d-md-block">
+                <img src="../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo d-lg-none">
+                <img src="../assets/images/logo-diseño-sin-titulo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo-horizontal d-none d-lg-block">
+                <div>
                     <h1 class="h5 mb-0 fw-bold text-white">Maule Pro</h1>
-                    <p class="small mb-0 text-white opacity-75">Gobierno Regional del Maule</p>
+                    <p class="small mb-0 text-white opacity-75 d-none d-sm-block">Gobierno Regional del Maule</p>
                 </div>
+            </a>
+            
+            <!-- Logo ClaveÚnica visible en móvil, fuera del menú colapsable -->
+            <a class="nav-link d-lg-none me-2" href="../login.html" style="padding: 0.5rem;">
+                <img src="../assets/images/claveunica-icon.svg" alt="ClaveÚnica" class="claveunica-btn-img">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +64,7 @@
                             <span class="btn-accesibilidad-texto">Accesibilidad</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-none d-lg-block">
                         <a class="nav-link" href="../login.html">
                             <img src="../assets/images/claveunica-icon.svg" alt="ClaveÚnica" class="claveunica-btn-img">
                         </a>
@@ -210,31 +216,16 @@
     </main>
 
     <!-- Footer -->
-    <footer class="footer mt-5 py-5 bg-light">
+    <footer class="footer-version text-white py-3 mt-5">
         <div class="container-fluid">
-            <div class="row">
-                <div class="col-md-6 col-lg-4 mb-4">
-                    <div class="row">
-                        <div class="col-4 text-center">
-                            <img class="img-fluid px-3" src="../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" style="max-height: 80px;">
-                        </div>
-                        <div class="col-8">
-                            <p>Gobierno Regional del Maule</p>
-                            <p>Talca, Chile</p>
+            <div class="row align-items-center">
+                <div class="col-md-6 d-flex align-items-center gap-3">
+                    <div class="version-info">
+                        <div class="version-bars d-flex gap-1">
+                            <div class="version-bar version-bar-blue"></div>
+                            <div class="version-bar version-bar-red"></div>
                         </div>
                     </div>
-                </div>
-                <div class="col-sm-6 col-lg-2 mb-4">
-                    <h6>Ayuda</h6>
-                    <a href="preguntas-frecuentes.html">Preguntas Frecuentes</a>
-                </div>
-                <div class="col-sm-6 col-lg-3 mb-4">
-                    <h6>Información</h6>
-                    <p>Portal de Postulación a Programas y Fondos Regionales</p>
-                </div>
-                <div class="col-sm-6 col-lg-3 mb-4">
-                    <h6>Contáctanos</h6>
-                    <p>Gobierno Regional del Maule</p>
                 </div>
             </div>
         </div>

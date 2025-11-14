@@ -28,11 +28,17 @@
     <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-3" href="../../index.html">
-                <img src="../../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo">
-                <div class="d-none d-md-block">
+                <img src="../../assets/images/logo-gore-blanco-nuevo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo d-lg-none">
+                <img src="../../assets/images/logo-diseño-sin-titulo.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo-horizontal d-none d-lg-block">
+                <div>
                     <h1 class="h5 mb-0 fw-bold text-white">Maule Pro</h1>
-                    <p class="small mb-0 text-white opacity-75">Gobierno Regional del Maule</p>
+                    <p class="small mb-0 text-white opacity-75 d-none d-sm-block">Gobierno Regional del Maule</p>
                 </div>
+            </a>
+            
+            <!-- Logo ClaveÚnica visible en móvil, fuera del menú colapsable -->
+            <a class="nav-link d-lg-none me-2" href="../../login.html" style="padding: 0.5rem;">
+                <img src="../../assets/images/claveunica-icon.svg" alt="ClaveÚnica" class="claveunica-btn-img">
             </a>
             
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
@@ -58,7 +64,7 @@
                             <span class="btn-accesibilidad-texto">Accesibilidad</span>
                         </a>
                     </li>
-                    <li class="nav-item">
+                    <li class="nav-item d-none d-lg-block">
                         <a class="nav-link" href="../../login.html">
                             <img src="../../assets/images/claveunica-icon.svg" alt="ClaveÚnica" class="claveunica-btn-img">
                         </a>
@@ -116,10 +122,18 @@
     </div>
 
     <!-- Footer -->
-    <footer class="bg-institucional text-white py-4 mt-5">
-        <div class="container text-center">
-            <p class="fw-semibold mb-1">&copy; 2025 Gobierno Regional del Maule - MaulePro</p>
-            <p class="mb-0 small">Portal de Postulaciones</p>
+    <footer class="footer-version text-white py-3 mt-5">
+        <div class="container-fluid">
+            <div class="row align-items-center">
+                <div class="col-md-6 d-flex align-items-center gap-3">
+                    <div class="version-info">
+                        <div class="version-bars d-flex gap-1">
+                            <div class="version-bar version-bar-blue"></div>
+                            <div class="version-bar version-bar-red"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </footer>
 

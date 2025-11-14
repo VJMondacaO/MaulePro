@@ -33,15 +33,26 @@
     object-fit: contain;
 }
 
+/* Logo horizontal blanco para versión web */
+.navbar-logo-horizontal {
+    height: auto;
+    max-height: 5.5rem;
+    width: auto;
+    object-fit: contain;
+    /* Filtro para convertir el logo a blanco */
+    filter: brightness(0) invert(1);
+    -webkit-filter: brightness(0) invert(1);
+}
+
 .navbar-brand {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
     text-decoration: none;
 }
 
 .navbar-brand h1 {
-    font-size: 1.25rem;
+    font-size: 1.5rem;
     font-weight: 700;
     color: #FFFFFF;
     margin: 0;
@@ -49,20 +60,94 @@
 }
 
 .navbar-brand p {
-    font-size: 0.875rem;
+    font-size: 1rem;
     color: #FFFFFF;
     opacity: 0.75;
     margin: 0;
     line-height: 1.2;
 }
 
-@media (max-width: 767.98px) {
+/* Tamaños más grandes para versión web */
+@media (min-width: 992px) {
+    .navbar-logo-horizontal {
+        max-height: 6rem;
+    }
+    
     .navbar-brand h1 {
-        font-size: 1rem;
+        font-size: 1.75rem;
     }
     
     .navbar-brand p {
-        font-size: 0.75rem;
+        font-size: 1.1rem;
+    }
+    
+    .navbar-brand {
+        gap: 1.5rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    /* Logo vertical visible en móvil/tablet, tamaño más pequeño */
+    .navbar-logo {
+        display: block !important;
+        max-height: 3.5rem !important;
+    }
+    
+    /* Ocultar logo horizontal en móvil/tablet */
+    .navbar-logo-horizontal {
+        display: none !important;
+    }
+    
+    /* Mostrar nombre en móvil */
+    .navbar-brand h1 {
+        font-size: 0.95rem;
+        display: block !important;
+    }
+    
+    .navbar-brand p {
+        font-size: 0.7rem;
+    }
+    
+    /* Asegurar que ClaveÚnica y hamburguesa sean visibles */
+    .navbar-toggler {
+        display: block !important;
+    }
+    
+    /* ClaveÚnica visible fuera del menú en móvil */
+    .navbar .nav-link.d-lg-none {
+        display: flex !important;
+        align-items: center;
+        padding: 0.5rem;
+    }
+    
+    .claveunica-btn-img {
+        display: block !important;
+        max-height: 35px;
+    }
+    
+    /* Ajustar espaciado del navbar-brand en móvil */
+    .navbar-brand {
+        gap: 0.5rem;
+        flex: 1;
+    }
+}
+
+@media (max-width: 576px) {
+    /* Logo en pantallas muy pequeñas */
+    .navbar-logo {
+        max-height: 3rem !important;
+    }
+    
+    .navbar-brand h1 {
+        font-size: 0.85rem;
+    }
+    
+    .claveunica-btn-img {
+        max-height: 30px;
+    }
+    
+    .navbar-brand {
+        gap: 0.4rem;
     }
 }
 

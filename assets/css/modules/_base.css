@@ -26,6 +26,93 @@ body {
     padding: 0 var(--body-padding);
 }
 
+/* Justificar todos los textos de contenido */
+p {
+    text-align: justify;
+    text-align-last: left; /* Última línea alineada a la izquierda para evitar espacios grandes */
+    hyphens: auto; /* Separación automática de palabras con guiones */
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    word-spacing: normal; /* Espaciado normal entre palabras */
+    letter-spacing: normal; /* Espaciado normal entre letras */
+}
+
+.lead,
+.text-content,
+article p,
+section p,
+.program-card-body p,
+.program-card-info-item-content,
+.card-body p,
+.container p:not(.navbar p),
+main p {
+    text-align: justify;
+    text-align-last: left;
+    hyphens: auto;
+    -webkit-hyphens: auto;
+    -ms-hyphens: auto;
+    word-spacing: normal;
+    letter-spacing: normal;
+}
+
+/* Excepciones: elementos que NO deben estar justificados */
+.navbar,
+.navbar *,
+.navbar-brand,
+.navbar-brand *,
+.navbar-nav,
+.nav-link,
+.btn,
+.badge,
+.program-card-header,
+.program-card-header *,
+.program-card-header-top,
+.program-card-header-top *,
+h1, h2, h3, h4, h5, h6,
+label,
+input,
+select,
+textarea,
+button,
+a:not(p a),
+li,
+td,
+th {
+    text-align: inherit;
+    hyphens: none;
+}
+
+/* En móvil, reducir justificación o desactivarla para evitar espacios grandes */
+@media (max-width: 768px) {
+    p {
+        text-align: left; /* En móvil, alineación a la izquierda en lugar de justificado */
+        text-align-last: left;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+    }
+    
+    /* Opcional: Justificación más suave en tablet */
+    @media (min-width: 577px) {
+        p {
+            text-align: justify;
+            text-align-last: left;
+            word-spacing: -0.1px; /* Reducir ligeramente el espaciado entre palabras */
+        }
+    }
+}
+
+/* En desktop, justificación completa */
+@media (min-width: 769px) {
+    p {
+        text-align: justify;
+        text-align-last: left;
+        hyphens: auto;
+        -webkit-hyphens: auto;
+        -ms-hyphens: auto;
+    }
+}
+
 /* Permitir que el navbar se extienda completamente */
 body > .navbar {
     margin-left: calc(-1 * var(--body-padding));
