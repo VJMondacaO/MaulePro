@@ -340,3 +340,943 @@ footer .footer-logo {
     --spacing-xxl: 3rem;    /* 48px */
 }
 
+/* ============================================
+   Estilos para Páginas de Detalle de Programas
+   ============================================ */
+
+/* Background azul para hero section */
+.bg-azul.bg-01 {
+    background-color: var(--gobierno-azul-oscuro);
+    padding: 3rem 0;
+    min-height: 400px;
+}
+
+@media (max-width: 991.98px) {
+    .bg-azul.bg-01 {
+        padding: 2rem 0;
+        min-height: auto;
+    }
+}
+
+/* Badges de estado y información */
+.bg-verde {
+    background-color: #018484 !important;
+    color: white !important;
+}
+
+.bg-rojo {
+    background-color: #FE6565 !important;
+    color: white !important;
+}
+
+.bg-rosa {
+    background-color: #FFE0E0 !important;
+    color: #000000 !important;
+}
+
+/* ============================================
+   Botones - Consolidado
+   ============================================ */
+
+/* ============================================
+   Sección: Detalles del Fondo - Cards Colapsables
+   ============================================ */
+
+#detalles-collap .card:hover {
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+#detalles-collap .vermenos {
+    display: none;
+}
+
+#detalles-collap .btn:not(.collapsed) .vermas {
+    display: none;
+}
+
+#detalles-collap .btn:not(.collapsed) .vermenos {
+    display: inline;
+}
+
+#detalles-collap .flecha {
+    margin: 0;
+    padding: 0.5rem 0;
+}
+
+/* Tabs de detalles - Mantenido para compatibilidad con otras páginas */
+#detalles-tab .nav-pills:not(.tab-nav-integrated) .nav-link {
+    color: var(--institucional-azul);
+    border: 1px solid #dee2e6;
+    margin: 0 0.25rem;
+    border-radius: 0.5rem;
+    transition: all 0.3s ease;
+    font-weight: 500;
+    padding: 0.75rem 1.5rem;
+}
+
+#detalles-tab .nav-pills:not(.tab-nav-integrated) .nav-link:hover {
+    background-color: var(--gobierno-azul-muy-claro);
+    border-color: var(--institucional-azul);
+    transform: translateY(-2px);
+    box-shadow: 0 2px 8px rgba(0, 102, 204, 0.2);
+}
+
+#detalles-tab .nav-pills:not(.tab-nav-integrated) .nav-link.active {
+    background-color: var(--institucional-azul);
+    border-color: var(--institucional-azul);
+    color: white;
+    box-shadow: 0 2px 12px rgba(0, 102, 204, 0.3);
+}
+
+#detalles-tab .tab-content:not(.tab-content-integrated) {
+    border: 1px solid #dee2e6;
+    border-top: none;
+    border-radius: 0 0 0.5rem 0.5rem;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 991.98px) {
+    #detalles-tab .tab-nav-integrated .nav-item {
+        border-right: none;
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    #detalles-tab .tab-nav-integrated .nav-item:last-child {
+        border-bottom: none;
+    }
+    
+    #detalles-tab .tab-nav-integrated .nav-link {
+        text-align: left;
+        padding: 0.875rem 1.25rem;
+    }
+    
+    #detalles-tab .tab-content-integrated {
+        padding: 1.5rem;
+    }
+    
+    .tab-title-square {
+        font-size: 1.5rem !important;
+        padding: 0 !important;
+    }
+}
+
+@media (max-width: 767.98px) {
+    #detalles-tab .tab-nav-integrated {
+        flex-direction: column;
+    }
+    
+    #detalles-tab .tab-nav-integrated .nav-link {
+        width: 100%;
+        border-bottom: 1px solid #dee2e6;
+        border-right: none;
+    }
+    
+    #detalles-tab .tab-nav-integrated .nav-link.active {
+        border-left: 3px solid var(--institucional-azul);
+        border-bottom: 1px solid #dee2e6;
+    }
+    
+    #detalles-tab .tab-nav-integrated .nav-link.active::before {
+        display: none;
+    }
+    
+    .tab-title-square {
+        font-size: 1.35rem !important;
+        padding: 0 !important;
+        display: block;
+        width: 100%;
+    }
+}
+
+/* ============================================
+   Mejoras Estéticas Página del 8%
+   ============================================ */
+
+/* ============================================
+   Sección: Hero de Página de Programa (FNDR 8%)
+   ============================================ */
+
+/* Hero Section - Fondo azul que ocupa todo el ancho */
+.bg-azul.bg-01 {
+    background-color: #004080;
+    padding: 3rem 0;
+    min-height: 500px;
+    position: relative;
+    width: 100vw;
+    max-width: 100vw;
+    margin-left: calc(50% - 50vw);
+    margin-right: calc(50% - 50vw);
+    box-sizing: border-box;
+}
+
+.bg-azul.bg-01 .container-fluid {
+    position: relative;
+    z-index: 1;
+    padding-left: var(--body-padding, 1rem);
+    padding-right: var(--body-padding, 1rem);
+}
+
+.bg-azul.bg-01 .hero-content-wrapper {
+    padding-left: 2rem;
+    padding-right: 2rem;
+    max-width: 1400px;
+    margin: 0 auto;
+}
+
+.bg-azul.bg-01 .hero-volver-wrapper {
+    padding-left: 0;
+    padding-top: 0;
+}
+
+.bg-azul.bg-01 .hero-main-content {
+    padding-right: 2rem;
+}
+
+@media (min-width: 1200px) {
+    .bg-azul.bg-01 .hero-content-wrapper {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+    
+    .bg-azul.bg-01 .hero-main-content {
+        padding-right: 3rem;
+    }
+}
+
+@media (max-width: 991.98px) {
+    .bg-azul.bg-01 {
+        padding: 3rem 0;
+        min-height: auto;
+    }
+    
+    .bg-azul.bg-01 .hero-content-wrapper {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
+    
+    .bg-azul.bg-01 .hero-main-content {
+        padding-right: 0;
+    }
+    
+    .bg-azul.bg-01 .hero-volver-wrapper {
+        padding-left: 0;
+    }
+}
+
+@media (max-width: 767.98px) {
+    .bg-azul.bg-01 .hero-content-wrapper {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
+}
+
+/* Botón Volver mejorado */
+.bg-azul.bg-01 .btn-outline-light {
+    border-width: 2px;
+    padding: 0.5rem 1.5rem;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    background-color: rgba(255, 255, 255, 0.1);
+}
+
+.bg-azul.bg-01 .btn-outline-light:hover {
+    background-color: rgba(255, 255, 255, 0.2);
+}
+
+/* ============================================
+   Badges de Estado y Categoría
+   ============================================ */
+
+/* Badge: Estado "Abierto" - Verde */
+.bg-verde {
+    background: linear-gradient(135deg, #018484 0%, #016969 100%);
+    color: white;
+    font-weight: 700;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+    padding: 0.5rem 1.25rem;
+    box-shadow: 0 2px 8px rgba(1, 132, 132, 0.3);
+    display: inline-block;
+}
+
+/* Badge: Estado "Cerrado" o Fechas - Rojo */
+.bg-rojo {
+    background: linear-gradient(135deg, #FE6565 0%, #e05555 100%);
+    color: white;
+    font-weight: 600;
+    font-size: 0.85rem;
+    padding: 0.5rem 1.25rem;
+    box-shadow: 0 2px 8px rgba(254, 101, 101, 0.3);
+    display: inline-block;
+}
+
+/* Badge: Información complementaria - Rosa */
+.bg-rosa {
+    background: linear-gradient(135deg, #FFE0E0 0%, #FFD4D4 100%);
+    color: #000000;
+    font-weight: 600;
+    padding: 0.5rem 1rem;
+    box-shadow: 0 2px 6px rgba(255, 224, 224, 0.4);
+    transition: all 0.3s ease;
+    display: inline-block;
+}
+
+.bg-rosa:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(255, 224, 224, 0.6);
+}
+
+/* Tipografía del Hero */
+.bg-azul.bg-01 h1 {
+    font-size: 2.5rem;
+    font-weight: 800;
+    line-height: 1.2;
+    letter-spacing: -0.02em;
+    text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+}
+
+.bg-azul.bg-01 p {
+    font-size: 1.1rem;
+    line-height: 1.7;
+    opacity: 0.95;
+}
+
+@media (max-width: 767.98px) {
+    .bg-azul.bg-01 h1 {
+        font-size: 1.75rem;
+    }
+    
+    .bg-azul.bg-01 p {
+        font-size: 1rem;
+    }
+}
+
+/* Botón Postular - Estilo principal para hero y secciones principales */
+.btn-postular {
+    background: linear-gradient(135deg, var(--institucional-azul) 0%, #0052CC 100%);
+    border: none;
+    color: white;
+    padding: 1rem 2.5rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.4);
+    text-transform: uppercase;
+}
+
+.btn-postular:hover {
+    background: linear-gradient(135deg, #0052CC 0%, var(--gobierno-azul-oscuro) 100%);
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5);
+    color: white;
+}
+
+.btn-postular:active {
+    transform: translateY(-1px);
+}
+
+/* 
+ * Variante: Botón postular con clase outline-primary
+ * Se usa en secciones colapsables donde el HTML tiene btn-outline-primary
+ * pero queremos el mismo estilo visual del botón principal
+ */
+.btn-outline-primary.btn-postular {
+    background: linear-gradient(135deg, var(--institucional-azul) 0%, #0052CC 100%);
+    border: none;
+    color: white;
+}
+
+.btn-outline-primary.btn-postular:hover {
+    background: linear-gradient(135deg, #0052CC 0%, var(--gobierno-azul-oscuro) 100%);
+    border: none;
+    color: white;
+    transform: translateY(-3px);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.5);
+}
+
+
+/* ============================================
+   Sección: Detalles del Fondo - Títulos
+   ============================================ */
+section > .container h2 {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gobierno-azul-oscuro);
+    margin-bottom: 3rem;
+    margin-top: 2rem;
+    padding: 1rem 0;
+    position: relative;
+    display: inline-block;
+}
+
+/* Línea decorativa bajo el título */
+section > .container h2::after {
+    content: '';
+    position: absolute;
+    bottom: -10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60px;
+    height: 4px;
+    background: var(--institucional-azul);
+    border-radius: 2px;
+}
+
+/* ============================================
+   Sección: Detalles del Fondo - Cards Colapsables
+   ============================================ */
+
+/* Estilos base de las cards colapsables */
+#detalles-collap .row {
+    overflow: visible;
+    margin-bottom: 0.25rem;
+}
+
+#detalles-collap .row > [class*="col-"] {
+    overflow: visible;
+    padding-top: 1rem;
+    padding-bottom: 0.25rem;
+}
+
+#detalles-collap .card {
+    border: 2px solid #e9ecef;
+    transition: all 0.3s ease;
+    border-radius: 1rem !important;
+    overflow: visible;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+    background: white;
+    margin: 0;
+}
+
+#detalles-collap .card:hover {
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.12);
+    border-color: var(--institucional-azul);
+    transform: translateY(-2px);
+    z-index: 10;
+    position: relative;
+}
+
+#detalles-collap .card-body {
+    padding: 2rem;
+    overflow: visible;
+    position: relative;
+    z-index: 1;
+}
+
+/* Texto sin justificar en cards (sobrescribe regla global de justificación) */
+#detalles-collap .card-body p,
+#detalles-collap .card-body *,
+#detalles-collap .accordion-collapse .card-body p,
+#detalles-collap .accordion-collapse .card-body * {
+    text-align: left;
+    text-align-last: left;
+}
+
+#detalles-collap .card-body h3 {
+    color: var(--gobierno-azul-oscuro);
+    font-weight: 700;
+    font-size: 1.25rem;
+    margin-bottom: 1rem;
+}
+
+#detalles-collap .card-body .h4 {
+    color: var(--institucional-azul);
+    font-weight: 700;
+    font-size: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+#detalles-collap .card-body i {
+    font-size: 1.5rem;
+    margin-right: 0.5rem;
+}
+
+/* Botón outline (sin clase btn-postular) - estilo por defecto */
+#detalles-collap .btn-outline-primary:not(.btn-postular) {
+    border: 2px solid var(--institucional-azul);
+    color: var(--institucional-azul);
+    font-weight: 600;
+    padding: 0.5rem 1.5rem;
+    transition: all 0.3s ease;
+}
+
+#detalles-collap .btn-outline-primary:not(.btn-postular):hover {
+    background-color: var(--institucional-azul);
+    color: white;
+}
+
+/* Contenido expandido - reducción de distancia */
+#detalles-collap .accordion-collapse {
+    margin-top: 0.25rem;
+}
+
+#detalles-collap .accordion-collapse .card {
+    margin-top: 0;
+    border-radius: 1rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+#detalles-collap .accordion-collapse .card-body {
+    background: linear-gradient(to bottom, #ffffff 0%, #f8f9fa 100%);
+}
+
+#detalles-collap .flecha {
+    margin: 0;
+    padding: 0.1rem 0;
+}
+
+#detalles-collap .flecha i {
+    color: #6c757d !important;
+    filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.1));
+    font-size: 1.2rem !important;
+}
+
+#detalles-collap .row.flecha {
+    margin-top: 0;
+    margin-bottom: 0;
+}
+
+/* Tabs integrados mejorados */
+#detalles-tab .tab-card-integrated {
+    border: 2px solid #dee2e6;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+    border-radius: 0;
+    overflow: hidden;
+    background: white;
+}
+
+#detalles-tab .tab-nav-integrated {
+    background-color: #f8f9fa;
+    border-bottom: 2px solid #dee2e6;
+    margin: 0;
+    padding: 0;
+}
+
+#detalles-tab .tab-nav-integrated .nav-item {
+    margin: 0;
+    border-right: 1px solid #dee2e6;
+}
+
+#detalles-tab .tab-nav-integrated .nav-item:last-child {
+    border-right: none;
+}
+
+#detalles-tab .tab-nav-integrated .nav-link {
+    border-radius: 0 !important;
+    margin: 0 !important;
+    border: none;
+    border-bottom: 3px solid transparent;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: #6c757d;
+    background-color: transparent;
+    transition: all 0.3s ease;
+}
+
+#detalles-tab .tab-nav-integrated .nav-link:hover {
+    background-color: #e9ecef;
+    color: var(--institucional-azul);
+    border-bottom-color: rgba(0, 102, 204, 0.3);
+}
+
+#detalles-tab .tab-nav-integrated .nav-link.active {
+    background-color: white;
+    color: var(--institucional-azul);
+    border-bottom-color: var(--institucional-azul);
+    border-top: none;
+    border-left: none;
+    border-right: none;
+    box-shadow: none;
+    position: relative;
+}
+
+#detalles-tab .tab-nav-integrated .nav-link.active::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 3px;
+    background: var(--institucional-azul);
+}
+
+#detalles-tab .tab-content-integrated {
+    background: white;
+    padding: 2.5rem;
+    border: none;
+    border-radius: 0;
+    box-shadow: none;
+}
+
+/* Títulos dentro de los tabs - Sin bordes ni decoraciones */
+.tab-title-square {
+    color: #000000;
+    font-weight: 700;
+    font-size: 1.75rem;
+    margin-bottom: 1.5rem;
+    padding: 0;
+    border: none;
+    border-radius: 0;
+    display: block;
+    background-color: transparent;
+    position: relative;
+    box-shadow: none;
+}
+
+.tab-title-square::after {
+    display: none;
+}
+
+#detalles-tab .tab-content-integrated div {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin-top: 1rem;
+}
+
+/* Listas sin viñetas - Estilo mejorado */
+#detalles-tab .tab-content-integrated ul {
+    font-size: 1.05rem;
+    line-height: 1.8;
+    color: #555;
+    margin-top: 1rem;
+    padding-left: 0;
+    list-style: none;
+}
+
+#detalles-tab .tab-content-integrated li {
+    margin-bottom: 0.75rem;
+}
+
+/* ============================================
+   Listas Personalizadas (Requisitos, Documentos, Objetivos)
+   ============================================ */
+
+/* Contenedores de listas */
+.requisitos-list,
+.documentos-list,
+.objetivos-list {
+    margin-top: 1.5rem;
+    margin-bottom: 1.5rem;
+}
+
+.requisito-item,
+.documento-item,
+.objetivo-item {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #444;
+    margin-bottom: 1.25rem;
+    padding: 1rem 1.25rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--institucional-azul);
+    border-radius: 0 0.5rem 0.5rem 0;
+    transition: all 0.3s ease;
+}
+
+.requisito-item:hover,
+.documento-item:hover,
+.objetivo-item:hover {
+    background-color: #e9ecef;
+    border-left-color: var(--gobierno-azul-oscuro);
+    transform: translateX(4px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.requisito-item strong,
+.documento-item strong,
+.objetivo-item strong {
+    color: var(--gobierno-azul-oscuro);
+    font-weight: 700;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+.objetivo-item {
+    padding-left: 1.5rem;
+    position: relative;
+}
+
+.objetivo-item::before {
+    content: '→';
+    position: absolute;
+    left: 0.75rem;
+    color: var(--institucional-azul);
+    font-weight: 700;
+    font-size: 1.2rem;
+}
+
+/* Estilos para Evaluación */
+.evaluacion-etapa {
+    margin-bottom: 2rem;
+}
+
+.evaluacion-etapa h4 {
+    color: #1a1a1a;
+    font-size: 1.35rem;
+    font-weight: 700;
+    padding-bottom: 0.75rem;
+    border-bottom: 2px solid #6c757d;
+}
+
+.evaluacion-list {
+    margin-top: 1rem;
+}
+
+.evaluacion-item {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #444;
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    background-color: #f8f9fa;
+    border-left: 4px solid var(--institucional-azul);
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+.evaluacion-item strong {
+    color: #1a1a1a;
+    font-weight: 700;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
+/* ============================================
+   Tabla de Criterios de Evaluación (Bootstrap)
+   ============================================ */
+
+.table-responsive {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.table.table-criterios {
+    margin-bottom: 0;
+    border: 1px solid #e9ecef;
+    border-radius: 12px;
+    overflow: hidden;
+    background: white;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+}
+
+/* Encabezado de la tabla */
+.table.table-criterios thead {
+    background: linear-gradient(135deg, var(--institucional-azul) 0%, #0052CC 100%) !important;
+    color: white !important;
+}
+
+.table.table-criterios thead tr {
+    background: transparent;
+}
+
+.table.table-criterios thead th {
+    border: none !important;
+    padding: 1.25rem 1.5rem !important;
+    font-weight: 700 !important;
+    font-size: 1.1rem !important;
+    letter-spacing: 0.3px !important;
+    color: white !important;
+    text-transform: none !important;
+    vertical-align: middle !important;
+    background: transparent !important;
+}
+
+.table.table-criterios thead th:first-child {
+    border-right: 1px solid rgba(255, 255, 255, 0.2) !important;
+}
+
+/* Cuerpo de la tabla */
+.table.table-criterios tbody tr {
+    border-bottom: 1px solid #e9ecef;
+    transition: all 0.2s ease;
+}
+
+.table.table-criterios tbody tr:last-child {
+    border-bottom: none;
+}
+
+.table.table-criterios tbody tr:hover {
+    background-color: #f8f9fa;
+    transform: translateX(2px);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+/* Celdas de datos */
+.table.table-criterios tbody td {
+    padding: 1.25rem 1.5rem;
+    font-size: 1.05rem;
+    line-height: 1.7;
+    color: #2c3e50;
+    vertical-align: middle;
+    border-top: none;
+}
+
+.table.table-criterios tbody td:first-child {
+    border-right: 1px solid #e9ecef;
+    font-weight: 500;
+}
+
+.table.table-criterios tbody td:last-child {
+    font-weight: 700;
+    font-size: 1.1rem;
+    background-color: #f8f9fa;
+}
+
+/* Notas importantes */
+.notas-importantes {
+    margin-top: 2rem;
+    padding-top: 1.5rem;
+    border-top: 2px solid #dee2e6;
+}
+
+.notas-importantes h4 {
+    color: #1a1a1a;
+    font-size: 1.25rem;
+    font-weight: 700;
+}
+
+.notas-list {
+    margin-top: 1rem;
+}
+
+.nota-item {
+    font-size: 1.05rem;
+    line-height: 1.9;
+    color: #444;
+    margin-bottom: 1rem;
+    padding: 1rem 1.25rem;
+    background-color: #fff3cd;
+    border-left: 4px solid #ffc107;
+    border-radius: 0 0.5rem 0.5rem 0;
+}
+
+/* Badge de categoría pequeño (junto a etiquetas de estado) */
+.categoria-badge-small {
+    display: inline-block;
+    padding: 0.4rem 1rem;
+    font-size: 0.8rem;
+    font-weight: 700;
+    color: white;
+    background: var(--institucional-azul);
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    border-radius: 1.5rem;
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 767.98px) {
+    .requisito-item,
+    .documento-item,
+    .objetivo-item,
+    .evaluacion-item,
+    .nota-item {
+        padding: 0.875rem 1rem;
+        font-size: 1rem;
+        line-height: 1.7;
+    }
+    
+    .objetivo-item::before {
+        left: 0.5rem;
+    }
+    
+    .evaluacion-etapa h4 {
+        font-size: 1.2rem;
+    }
+    
+    .table-responsive {
+        margin-top: 1.5rem;
+    }
+    
+    .table.table-criterios {
+        border-radius: 8px;
+        font-size: 0.95rem;
+    }
+    
+    .table.table-criterios thead th,
+    .table.table-criterios tbody td {
+        padding: 1rem 1.25rem;
+    }
+    
+    .table.table-criterios thead th {
+        font-size: 1rem;
+    }
+    
+    .table.table-criterios tbody td:first-child {
+        border-right: none;
+        border-bottom: 1px solid #e9ecef;
+    }
+    
+    .table.table-criterios tbody td:last-child {
+        font-size: 1.05rem;
+    }
+    
+    .table.table-criterios tbody tr:hover {
+        transform: none;
+    }
+    
+    .categoria-badge-small {
+        font-size: 0.75rem;
+        padding: 0.35rem 0.875rem;
+    }
+}
+
+#detalles-tab .tab-content-integrated b {
+    color: var(--gobierno-azul-oscuro);
+    font-weight: 700;
+    font-size: 1.1rem;
+    display: block;
+    margin-top: 1.5rem;
+    margin-bottom: 0.5rem;
+}
+
+#detalles-tab .tab-content-integrated a {
+    color: var(--institucional-azul);
+    font-weight: 600;
+    text-decoration: none;
+    transition: all 0.3s ease;
+    border-bottom: 2px solid transparent;
+}
+
+#detalles-tab .tab-content-integrated a:hover {
+    color: var(--gobierno-azul-oscuro);
+    border-bottom-color: var(--institucional-azul);
+}
+
+#detalles-tab .tab-content-integrated p {
+    margin-bottom: 1rem;
+    line-height: 1.8;
+}
+
+/* Responsive mejoras */
+@media (max-width: 991.98px) {
+    section.bg-white,
+    section > .container {
+        padding: 2.5rem 0;
+    }
+    
+    #detalles-collap .card-body,
+    #detalles-tab .tab-content {
+        padding: 1.5rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .bg-rosa {
+        font-size: 0.85rem;
+        padding: 0.4rem 0.8rem !important;
+    }
+    
+    #detalles-collap .card-body,
+    #detalles-tab .tab-content {
+        padding: 1rem;
+    }
+    
+    #detalles-tab .tab-content h3 {
+        font-size: 1.5rem;
+    }
+}
+
