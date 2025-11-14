@@ -1,7 +1,12 @@
 /**
- * SearchManager
- * Gestor unificado de búsqueda y filtrado
+ * SearchManager Module
+ * Gestor unificado de búsqueda y filtrado de programas
  * Centraliza toda la lógica de búsqueda para index.html y buscar.html
+ * @module Search/SearchManager
+ * @requires window.MaulePro.Search.FilterEngine
+ * @requires window.MaulePro.Search.SortEngine
+ * @requires window.MaulePro.Search.CardRenderer
+ * @requires window.MaulePro.Utils.Logger
  */
 
 (function(window) {
@@ -32,10 +37,15 @@
     SearchManager.prototype.search = function(params = {}) {
         // Validar parámetros
         const FilterEngine = window.MaulePro?.Search?.FilterEngine;
+        const Logger = window.MaulePro?.Utils?.Logger;
         if (FilterEngine) {
             const validation = FilterEngine.validateSearchParams(params);
             if (!validation.isValid) {
-                console.warn('Parámetros de búsqueda inválidos:', validation.errors);
+                if (Logger) {
+                    Logger.warn('Parámetros de búsqueda inválidos:', validation.errors);
+                } else {
+                    console.warn('Parámetros de búsqueda inválidos:', validation.errors);
+                }
             }
         }
 
@@ -105,7 +115,12 @@
         const targetContainer = container || this.container;
 
         if (!targetContainer) {
-            console.error('No se proporcionó contenedor para renderizar');
+            const Logger = window.MaulePro?.Utils?.Logger;
+            if (Logger) {
+                Logger.error('No se proporcionó contenedor para renderizar');
+            } else {
+                console.error('No se proporcionó contenedor para renderizar');
+            }
             return;
         }
 

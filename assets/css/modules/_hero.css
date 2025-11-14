@@ -65,7 +65,23 @@
 /* Los contadores de estado (Abiertos, Próximos, Cerrados) fueron removidos */
 
 /* Responsive Hero */
-@media (max-width: 768px) {
+.hero-responsive {
+    padding: 1rem;
+}
+
+@media (min-width: 768px) {
+    .hero-responsive {
+        padding: 2rem 2.5rem;
+    }
+}
+
+@media (min-width: 992px) {
+    .hero-responsive {
+        padding: 3rem 3.5rem;
+    }
+}
+
+@media (max-width: 767.98px) {
     .hero h1.display-5 {
         font-size: 2rem;
     }
@@ -108,11 +124,19 @@
     .hero .row.g-3 > [class*="col-"]:last-child {
         margin-bottom: 0;
     }
+    
+    .hero-responsive {
+        padding: 1rem;
+    }
 }
 
 @media (max-width: 575.98px) {
+    .hero-responsive {
+        padding: 0.75rem;
+    }
+    
     .hero .d-flex.align-items-start.p-3 {
-        padding: 0.75rem !important;
+        padding: 0.5rem !important;
     }
     
     .hero .d-flex.align-items-start.p-3 h3 {
@@ -126,6 +150,14 @@
     .hero .rounded-circle {
         width: 36px;
         height: 36px;
+    }
+    
+    .hero .row.g-3 {
+        margin: 0 -0.5rem;
+    }
+    
+    .hero .row.g-3 > [class*="col-"] {
+        padding: 0 0.5rem;
     }
 }
 
@@ -254,12 +286,22 @@
 
 @media (max-width: 575.98px) {
     .search-box {
-        padding: 1.25rem;
+        padding: 1rem;
     }
     
     .search-box-header {
-        margin-bottom: 1rem;
-        padding-bottom: 0.75rem;
+        margin-bottom: 0.75rem;
+        padding-bottom: 0.5rem;
+    }
+    
+    #searchForm .form-select,
+    #searchForm .form-control {
+        padding: 0.5rem 0.75rem;
+        font-size: 0.875rem;
+    }
+    
+    .search-input-wrapper .input-group-text {
+        padding: 0.5rem 0.75rem;
     }
 }
 

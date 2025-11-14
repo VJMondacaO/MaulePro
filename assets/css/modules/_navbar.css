@@ -132,7 +132,7 @@
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575.98px) {
     /* Logo en pantallas muy pequeñas */
     .navbar-logo {
         max-height: 3rem !important;

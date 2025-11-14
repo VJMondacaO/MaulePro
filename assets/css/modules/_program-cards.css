@@ -356,10 +356,22 @@
 #grid [class*="col-"],
 #searchResults [class*="col-"] {
     min-width: 0;
-    padding: 4px 0.75rem;
+    padding-top: 4px;
+    padding-left: 0.75rem;
+    padding-right: 0.75rem;
     padding-bottom: 0.75rem;
     box-sizing: border-box;
     overflow: visible;
+}
+
+@media (max-width: 575.98px) {
+    #grid [class*="col-"],
+    #searchResults [class*="col-"] {
+        padding-left: 0.5rem;
+        padding-right: 0.5rem;
+        padding-top: 0.25rem;
+        padding-bottom: 0.5rem;
+    }
 }
 
 /* Responsive Program Cards */
@@ -399,7 +411,7 @@
     }
 }
 
-@media (max-width: 576px) {
+@media (max-width: 575.98px) {
     .program-card {
         min-height: 400px;
     }
@@ -410,6 +422,7 @@
     }
     
     [data-program][data-estado="closed"] .program-card-header {
+        padding: 0.875rem;
         min-height: 100px;
     }
     
@@ -450,4 +463,3 @@
         font-size: 0.85rem;
     }
 }
-

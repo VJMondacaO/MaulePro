@@ -1,7 +1,9 @@
 /**
- * SortEngine
- * Motor de ordenamiento de programas
+ * SortEngine Module
+ * Motor de ordenamiento de programas según múltiples criterios
  * Lógica unificada para index.html y buscar.html
+ * @module Search/SortEngine
+ * @requires window.MaulePro
  */
 
 (function(window) {

@@ -1,10 +1,28 @@
 /**
- * Datos de Programas
+ * Programas Data Module
  * Fuente única de verdad para todos los programas disponibles
+ * @module Data/Programas
+ * @requires window.MaulePro
  */
 
 (function(window) {
     'use strict';
+
+    /**
+     * Array de programas disponibles
+     * @type {Array<Object>}
+     * @property {string} name - Nombre del programa
+     * @property {string} benef - Tipo de beneficiario (municipios, org, personas)
+     * @property {string} estado - Estado del programa (open, soon, closed)
+     * @property {string} close - Fecha de cierre (formato ISO)
+     * @property {string} location - Ubicación/alcance del programa
+     * @property {string} beneficiarios - Descripción de beneficiarios
+     * @property {string} fechas - Rango de fechas
+     * @property {string} montos - Información de montos
+     * @property {string} link - Ruta relativa a la página del programa
+     * @property {boolean} hasDeadline - Si tiene deadline visible
+     * @property {boolean} deadlineUrgent - Si el deadline es urgente
+     */
 
     const programas = [
         {
@@ -111,35 +129,43 @@
     window.MaulePro.Data.programas = programas;
 
     /**
-     * Obtener todos los programas
-     * @returns {Array} Lista de programas
+     * Obtener todos los programas disponibles
+     * @function getAllProgramas
+     * @returns {Array<Object>} Copia del array de programas
+     * @memberof window.MaulePro.Data
      */
     window.MaulePro.Data.getAllProgramas = function() {
         return [...programas];
     };
 
     /**
-     * Obtener programa por nombre
-     * @param {string} name - Nombre del programa
-     * @returns {Object|null} Programa encontrado o null
+     * Obtener programa por nombre exacto
+     * @function getProgramaByName
+     * @param {string} name - Nombre exacto del programa
+     * @returns {Object|null} Programa encontrado o null si no existe
+     * @memberof window.MaulePro.Data
      */
     window.MaulePro.Data.getProgramaByName = function(name) {
         return programas.find(p => p.name === name) || null;
     };
 
     /**
-     * Obtener programas por estado
-     * @param {string} estado - Estado del programa (open, soon, closed)
-     * @returns {Array} Lista de programas filtrados
+     * Obtener programas filtrados por estado
+     * @function getProgramasByEstado
+     * @param {string} estado - Estado del programa ('open', 'soon', 'closed')
+     * @returns {Array<Object>} Lista de programas con el estado especificado
+     * @memberof window.MaulePro.Data
      */
     window.MaulePro.Data.getProgramasByEstado = function(estado) {
         return programas.filter(p => p.estado === estado);
     };
 
     /**
-     * Obtener programas por beneficiario
-     * @param {string} benef - Tipo de beneficiario
-     * @returns {Array} Lista de programas filtrados
+     * Obtener programas filtrados por tipo de beneficiario
+     * @function getProgramasByBenef
+     * @param {string} benef - Tipo de beneficiario ('municipios', 'org', 'personas')
+     * @returns {Array<Object>} Lista de programas para el tipo de beneficiario especificado
+     * @memberof window.MaulePro.Data
      */
     window.MaulePro.Data.getProgramasByBenef = function(benef) {
         return programas.filter(function(p) {

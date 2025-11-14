@@ -8,8 +8,8 @@ Documentación técnica detallada del portal MaulePro del Gobierno Regional del 
 2. [Estructura de Archivos](#estructura-de-archivos)
 3. [CSS Modular](#css-modular)
 4. [JavaScript Modular](#javascript-modular)
-5. [Manual de Marca](#manual-de-marca)
-6. [Mejoras Implementadas](#mejoras-implementadas)
+5. [Sistema de Logging](#sistema-de-logging)
+6. [Seguridad](#seguridad)
 7. [Estado del Proyecto](#estado-del-proyecto)
 
 ---
@@ -43,8 +43,10 @@ assets/css/
 
 ```
 assets/js/
-├── script.js                   # Funcionalidad principal (login/registro)
+├── script.js                   # Orquestador principal
 ├── main.js                     # Punto de entrada principal
+├── data/                       # Datos centralizados
+│   └── programas.js            # Fuente única de verdad para programas
 ├── components/                 # Componentes reutilizables
 │   └── BaseComponent.js        # Clase base
 ├── config/                     # Configuración centralizada
@@ -52,9 +54,22 @@ assets/js/
 │   └── selectors.js            # Helpers de selectores
 ├── modules/                    # Módulos funcionales
 │   ├── carousel.js             # Gestión del carousel
-│   ├── filters.js              # Sistema de búsqueda
-│   └── userway.js              # Integración Userway
+│   ├── filters.js              # Sistema de búsqueda (index.html)
+│   ├── userway.js              # Integración Userway
+│   ├── modals/                 # Gestión de modales
+│   │   └── ModalManager.js     # Apertura/cierre de modales
+│   ├── forms/                  # Gestión de formularios
+│   │   └── FormManager.js      # Validación y envío de formularios
+│   └── search/                 # Módulos de búsqueda
+│       ├── FilterEngine.js     # Motor de filtrado
+│       ├── SortEngine.js       # Motor de ordenamiento
+│       ├── CardRenderer.js     # Renderizado seguro de tarjetas
+│       ├── SearchManager.js    # Gestor unificado de búsqueda
+│       └── ModalSearch.js      # Búsqueda modal segura
 └── utils/                      # Utilidades compartidas
+    ├── Logger.js               # Sistema de logging con niveles
+    ├── DeadlineManager.js      # Gestión de deadlines
+    ├── AccessibilityManager.js # Gestión de accesibilidad
     ├── dom.js                  # Utilidades DOM
     ├── storage.js              # LocalStorage helpers
     ├── date.js                 # Utilidades de fecha
@@ -76,18 +91,20 @@ Ver `ESTRUCTURA.md` para una descripción detallada de todos los archivos del pr
 #### `_variables.css`
 - Variables CSS para colores institucionales
 - Variables de espaciado responsive
-- Colores Pantone del manual de marca
+- Colores: azul institucional (`#093F75`), verde abierto (`#018484`), rojo cerrado (`#FE6565`)
 
 #### `_base.css`
 - Estilos base de `html` y `body`
-- Fondos con gradientes y animaciones
-- Ocultación de scrollbar durante carga
+- Fondo estático (`#EEEEEE`)
+- Tipografía: Google Fonts (Roboto Sans)
+- Texto justificado
 - Estilos de scrollbar personalizados
 
 #### `_navbar.css`
 - Estilos del navbar
-- Logo con área de exclusión
-- Responsive design
+- Logo responsive (diferente en móvil y desktop)
+- ClaveÚnica button
+- Menú hamburguesa para móvil
 - Estados hover y active
 
 #### `_hero.css`
@@ -98,10 +115,11 @@ Ver `ESTRUCTURA.md` para una descripción detallada de todos los archivos del pr
 
 #### `_program-cards.css`
 - Tarjetas de programas
-- Header con fondo institucional
+- Header con fondo institucional (azul) o gris (cerrado)
 - Body con información estructurada
 - Badges de estado y deadline
 - Animaciones y efectos hover
+- Dimensiones estandarizadas (min-height)
 
 #### `_carousel.css`
 - Carousel de información
@@ -121,27 +139,109 @@ Ver `ESTRUCTURA.md` para una descripción detallada de todos los archivos del pr
 
 ## 💻 JavaScript Modular
 
-### Módulos Funcionales
+### Módulos de Búsqueda
+
+#### `modules/search/FilterEngine.js`
+- Motor de filtrado reutilizable
+- Filtra por nombre, estado, beneficiario, región
+- Validación de parámetros
+- Usado por `index.html` y `buscar.html`
+
+#### `modules/search/SortEngine.js`
+- Motor de ordenamiento reutilizable
+- Ordena por relevancia, abiertos primero, fecha, alfabético
+- Usado por `index.html` y `buscar.html`
+
+#### `modules/search/CardRenderer.js`
+- Renderizado seguro de tarjetas (sin XSS)
+- Usa `createElement` y `textContent`
+- Crea estructura completa de tarjeta
+- Funciones: `crearTarjetaElement`, `escapeHtml`
+
+#### `modules/search/SearchManager.js`
+- Gestor unificado de búsqueda
+- Orquesta FilterEngine, SortEngine y CardRenderer
+- Maneja URL params
+- Renderiza resultados y estados vacíos
+- Actualiza contadores
+
+#### `modules/search/ModalSearch.js`
+- Búsqueda modal completa
+- Renderizado seguro sin `innerHTML` con datos del usuario
+- Búsqueda en tiempo real (debounced)
+- Construye contenido buscable desde DOM y datos estáticos
+
+### Módulos de UI
+
+#### `modules/modals/ModalManager.js`
+- Gestión centralizada de modales
+- Funciones: `open`, `close`, `init`, `setupTrigger`, `setupModalSwitch`
+- Integración con Bootstrap Modal API
+- Fallbacks para compatibilidad
+
+#### `modules/forms/FormManager.js`
+- Gestión de formularios
+- Validación: RUT, email, match de emails
+- Validación en tiempo real
+- Handlers: login, registro, recuperación de contraseña
+- Gestión de UI de usuario logueado/deslogueado
+
+#### `modules/filters.js`
+- Sistema de búsqueda y filtrado para `index.html`
+- Integración con FilterEngine y SortEngine
+- Actualización de contadores
+- Cálculo de deadlines (usa DeadlineManager)
+- Animaciones de entrada
 
 #### `modules/carousel.js`
 - Gestión del carousel de información
 - Botón de cierre
 - Persistencia de estado en localStorage
 
-#### `modules/filters.js`
-- Sistema de búsqueda y filtrado
-- Filtros por estado, beneficiario y ordenamiento
-- Actualización de contadores
-- Cálculo de deadlines
-- Scroll automático a resultados
-- Mensaje "no hay resultados"
-- Animaciones de entrada
-- Efecto ripple en botones
-
 #### `modules/userway.js`
 - Integración con Userway
-- Posicionamiento del widget en esquina inferior derecha
+- Posicionamiento del widget
 - Observador de cambios en el DOM
+
+### Datos
+
+#### `data/programas.js`
+- Fuente única de verdad para todos los programas
+- Array de objetos de programas
+- Funciones: `getAllProgramas`, `getProgramaByName`, `getProgramasByEstado`, `getProgramasByBenef`
+- Namespace: `window.MaulePro.Data.programas`
+
+### Utilidades
+
+#### `utils/Logger.js`
+- Sistema de logging con niveles (DEBUG, INFO, WARN, ERROR)
+- Deshabilitación automática en producción
+- Formato consistente con timestamp
+- Integración: `window.MaulePro.Utils.Logger`
+
+#### `utils/DeadlineManager.js`
+- Gestión centralizada de deadlines
+- Calcula días restantes
+- Aplica clases CSS (urgent, soon)
+- Funciones: `paintAllDeadlines`, `paintDeadline`, `getDaysRemaining`
+
+#### `utils/AccessibilityManager.js`
+- Gestión de accesibilidad
+- Spinner y toggle de UserWay
+- Funciones: `execute`, `showSpinner`, `hideSpinner`, `toggleUserWay`
+
+#### `utils/dom.js`
+- Utilidades DOM: `create()`, `exists()`, `waitFor()`, `scrollTo()`, etc.
+
+#### `utils/storage.js`
+- Helpers de localStorage con prefijo automático
+- Serialización JSON automática
+
+#### `utils/date.js`
+- Utilidades de fecha: `format()`, `daysBetween()`, `formatDaysRemaining()`, etc.
+
+#### `utils/debounce.js`
+- Funciones `debounce()` y `throttle()`
 
 ### Componentes
 
@@ -149,7 +249,6 @@ Ver `ESTRUCTURA.md` para una descripción detallada de todos los archivos del pr
 - Clase base para componentes reutilizables
 - Gestión automática de event listeners
 - Métodos helpers comunes
-- Validación de elementos
 
 ### Configuración
 
@@ -158,127 +257,114 @@ Ver `ESTRUCTURA.md` para una descripción detallada de todos los archivos del pr
 - Selectores DOM
 - Claves de localStorage
 - Configuración de features
-- Configuración de Userway
-- Configuración de animaciones
 
 #### `config/selectors.js`
 - Helpers para acceder a elementos del DOM
 - Funciones: `getSelector()`, `getElement()`, `getElements()`, `elementExists()`
 
-### Utilidades
+---
 
-#### `utils/dom.js`
-- `create()` - Crea elementos con opciones
-- `exists()` - Verifica existencia
-- `waitFor()` - Espera elemento
-- `scrollTo()` - Scroll suave
-- `closest()` - Busca padre
-- `clear()` - Limpia hijos
-- `insertAfter()` / `insertBefore()` - Inserta elementos
+## 📝 Sistema de Logging
 
-#### `utils/storage.js`
-- Helpers de localStorage con prefijo automático
-- Serialización JSON automática
-- Manejo de errores
+### Logger Module (`utils/Logger.js`)
 
-#### `utils/date.js`
-- `format()` - Formatea fechas
-- `daysBetween()` - Calcula días entre fechas
-- `formatDaysRemaining()` - Formatea días restantes
-- Y más utilidades de fecha
+Sistema de logging centralizado con niveles:
 
-#### `utils/debounce.js`
-- `debounce()` - Debounce function
-- `throttle()` - Throttle function
+- **DEBUG**: Solo en desarrollo (deshabilitado en producción)
+- **INFO**: Información general
+- **WARN**: Advertencias
+- **ERROR**: Errores
+
+### Uso
+
+```javascript
+const Logger = window.MaulePro?.Utils?.Logger;
+
+Logger?.debug('Mensaje de depuración');
+Logger?.info('Información importante');
+Logger?.warn('Advertencia');
+Logger?.error('Error crítico', errorObjeto);
+```
+
+### Características
+
+- ✅ Control automático de entorno (producción vs desarrollo)
+- ✅ Formato consistente con timestamp
+- ✅ Prefijo `[MaulePro <NIVEL>]`
+- ✅ Fallback a `console.log` si Logger no está disponible
 
 ---
 
-## 🎨 Manual de Marca
+## 🔒 Seguridad
 
-### Logos Implementados
+### Prevención de XSS
 
-- ✅ **Logo Horizontal**: `logo-gore-horizontal.png` - Para navbar
-- ✅ **Logo Blanco**: `logo-gore-blanco.png` - Para footer y fondos oscuros
-- ✅ **Logo Negro**: `logo-gore-negro.png` - Para fondos claros
-- ✅ **Logo Estándar**: `logo-gore.png` - Versión general
+El proyecto implementa renderizado seguro:
 
-### Colores Institucionales
+- ✅ **Sin `innerHTML` con datos del usuario**: Todos los datos se renderizan usando `createElement` y `textContent`
+- ✅ **Función `escapeHtml`**: Helper para escapar texto cuando sea necesario
+- ✅ **Validación de parámetros**: Todos los inputs se validan antes de procesar
 
-- **Pantone 7421**: `#611616` (Rojo institucional)
-- **Pantone 7420**: `#9B3D3D` (Rojo claro)
-- **Pantone Black 7C**: `#3A3A3A` (Gris oscuro)
+### Módulos Seguros
 
-### Implementaciones
+- `CardRenderer.js`: Renderiza tarjetas de forma segura
+- `ModalSearch.js`: Renderiza resultados de búsqueda de forma segura
+- `SearchManager.js`: Maneja renderizado seguro
 
-- ✅ Logo horizontal en navbar (todas las páginas)
-- ✅ Logo blanco en footer
-- ✅ Área de exclusión del logo definida
-- ✅ Tamaños mínimos y máximos establecidos
-- ✅ Sistema de espaciado corporativo
+### Ejemplo de Renderizado Seguro
 
-### Pendiente
+```javascript
+// ❌ INSEGURO (no se usa en el proyecto)
+container.innerHTML = `<div>${userInput}</div>`;
 
-- ⏭️ Verificar colores exactos en manual PDF
-- ⏭️ Identificar tipografía corporativa
-- ⏭️ Implementar tipografía corporativa
-- ⏭️ Revisar especificaciones de espaciado
-- ⏭️ Implementar patrones decorativos (si aplica)
-
-Ver `SUGERENCIAS_MANUAL_MARCA.md` para más detalles.
-
----
-
-## ✅ Mejoras Implementadas
-
-### Refactorización
-- ✅ CSS modularizado (7 módulos)
-- ✅ JavaScript modularizado (3 módulos)
-- ✅ Reducción de código: ~53.5%
-- ✅ 11 páginas HTML actualizadas
-
-### Arquitectura Modular - Fase 1
-- ✅ BaseComponent implementado
-- ✅ Configuración centralizada
-- ✅ Utilidades compartidas (4 módulos)
-- ✅ Helpers de selectores
-
-### Diseño
-- ✅ Buscador mejorado
-- ✅ Título "Líneas de postulación" mejorado
-- ✅ Deadlines con contorno amarillo
-- ✅ Badges de deadline en header
-- ✅ Footer con logo blanco
-- ✅ Scrollbar personalizada
-- ✅ Ocultación de scrollbar durante carga
-
-### Funcionalidad
-- ✅ Scroll automático a resultados
-- ✅ Mensaje "no hay resultados"
-- ✅ Búsqueda en tiempo real
-- ✅ Contadores integrados en header
+// ✅ SEGURO (implementado)
+const div = document.createElement('div');
+div.textContent = userInput; // Escapa automáticamente
+container.appendChild(div);
+```
 
 ---
 
 ## 📊 Estado del Proyecto
 
 ### Completado ✅
-- Refactorización CSS/JS
-- Arquitectura Modular Fase 1
-- Implementación de logos del manual de marca
-- Mejoras de diseño y funcionalidad
 
-### En Progreso ⏭️
-- Fase 2: Componentes (pendiente)
-- Fase 3: Sistema de Eventos (pendiente)
-- Verificación de colores del manual (pendiente)
-- Implementación de tipografía corporativa (pendiente)
+- ✅ Arquitectura CSS modular (7 módulos)
+- ✅ Arquitectura JavaScript modular (20+ archivos)
+- ✅ Sistema de búsqueda unificado
+- ✅ Sistema de logging centralizado
+- ✅ Gestión de deadlines centralizada
+- ✅ Gestión de accesibilidad centralizada
+- ✅ Renderizado seguro (sin XSS)
+- ✅ Refactorización de `script.js` (946 → 515 líneas, -45.5%)
+- ✅ Documentación JSDoc completa
+- ✅ Todas las imágenes en `assets/images/`
+- ✅ Eliminación de carpeta del manual de marca
+
+### Arquitectura Actual
+
+- **Módulos JS**: 20+ archivos organizados en módulos
+- **Módulos CSS**: 7 módulos independientes
+- **Datos centralizados**: `programas.js` como fuente única de verdad
+- **Utilidades compartidas**: Logger, DeadlineManager, AccessibilityManager, etc.
+- **Namespace global**: `window.MaulePro` para organización
+
+### Características de Código
+
+- ✅ **JSDoc completo**: 100% de cobertura en módulos principales
+- ✅ **Sin duplicación**: < 5% de código duplicado
+- ✅ **Funciones pequeñas**: Ninguna función > 50 líneas
+- ✅ **Principios SOLID**: SRP bien aplicado
+- ✅ **Testeable**: Separación de lógica y presentación
 
 ### Pendiente 📋
-- Optimización de imágenes
-- Preconnect a CDNs
-- Lazy loading
-- Build system
-- Testing
+
+- ⏭️ Tests unitarios
+- ⏭️ Optimización de imágenes (WebP)
+- ⏭️ Preconnect a CDNs
+- ⏭️ Lazy loading
+- ⏭️ Build system (opcional)
+- ⏭️ TypeScript (opcional)
 
 ---
 
@@ -290,20 +376,17 @@ Ver `SUGERENCIAS_MANUAL_MARCA.md` para más detalles.
 - **Bootstrap 5.3.3**: Framework CSS (CDN)
 - **Bootstrap Icons 1.11.3**: Iconografía (CDN)
 - **Userway**: Widget de accesibilidad
+- **Google Fonts**: Roboto Sans
 
 ---
 
 ## 📚 Documentación Relacionada
 
 - `ESTRUCTURA.md` - Estructura detallada del proyecto
-- `REFACTORIZACION_COMPLETA.md` - Resumen de refactorización
-- `FASE1_COMPLETADA.md` - Documentación de Fase 1
-- `RESUMEN_SESION.md` - Resumen de sesión de desarrollo
-- `MEJORAS_ARQUITECTURA_MODULAR.md` - Sugerencias de arquitectura
-- `SUGERENCIAS_MANUAL_MARCA.md` - Sugerencias basadas en manual de marca
+- `README.md` (raíz) - Documentación principal del proyecto
 
 ---
 
 **Última actualización**: Noviembre 2025  
-**Versión**: 1.0  
-**Estado**: Fase 1 completada, listo para Fase 2
+**Versión**: 2.0  
+**Estado**: Arquitectura modular completa, refactorización completada

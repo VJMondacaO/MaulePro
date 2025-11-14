@@ -1,6 +1,8 @@
 /**
- * FilterEngine
- * Motor de filtrado de programas
+ * FilterEngine Module
+ * Motor de filtrado de programas según múltiples criterios
+ * @module Search/FilterEngine
+ * @requires window.MaulePro
  */
 
 (function(window) {

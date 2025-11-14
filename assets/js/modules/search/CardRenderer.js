@@ -1,7 +1,9 @@
 /**
- * CardRenderer
- * Generador de HTML para tarjetas de programas
- * Usa createElement para evitar inyección XSS
+ * CardRenderer Module
+ * Generador de elementos DOM para tarjetas de programas
+ * Usa createElement y textContent para evitar inyección XSS
+ * @module Search/CardRenderer
+ * @requires window.MaulePro
  */
 
 (function(window) {
@@ -27,7 +29,12 @@
     function crearTarjetaElement(programa) {
         // Validar datos del programa
         if (!programa || typeof programa !== 'object') {
-            console.error('Programa inválido:', programa);
+            const Logger = window.MaulePro?.Utils?.Logger;
+            if (Logger) {
+                Logger.error('Programa inválido:', programa);
+            } else {
+                console.error('Programa inválido:', programa);
+            }
             return null;
         }
 

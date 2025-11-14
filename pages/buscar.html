@@ -234,6 +234,9 @@
         <!-- Bootstrap JS -->
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
         <!-- MaulePro Core Modules (cargar primero) -->
+        <script src="../assets/js/utils/Logger.js"></script>
+        <script src="../assets/js/utils/DeadlineManager.js"></script>
+        <script src="../assets/js/utils/AccessibilityManager.js"></script>
         <script src="../assets/js/data/programas.js"></script>
         <script src="../assets/js/utils/debounce.js"></script>
         <script src="../assets/js/modules/search/FilterEngine.js"></script>
@@ -248,70 +251,122 @@
             (function() {
                 'use strict';
 
-                // Función de Accesibilidad
-                function Accesibilidad() {
-                    spinnerAccesibilidad();
-                    if (typeof UserWay !== 'undefined' && UserWay.widgetToggle) {
-                        UserWay.widgetToggle();
+                // Usar AccessibilityManager si está disponible
+                // Si no, usar función de accesibilidad básica como fallback
+                if (window.MaulePro?.Utils?.AccessibilityManager) {
+                    window.Accesibilidad = function() {
+                        window.MaulePro.Utils.AccessibilityManager.execute();
+                    };
+                } else {
+                    // Fallback básico
+                    function Accesibilidad() {
+                        const img = document.getElementById("imgAccesibilidad");
+                        if (img) {
+                            img.classList.remove("bg-primary");
+                            img.classList.add("spinner-grow");
+                            img.classList.remove("rounded-pill");
+                        }
+                        if (typeof UserWay !== 'undefined' && UserWay.widgetToggle) {
+                            UserWay.widgetToggle();
+                        }
+                        setTimeout(function () {
+                            if (img) {
+                                img.classList.remove("spinner-grow");
+                                img.classList.add("bg-primary");
+                                img.classList.add("rounded-pill");
+                            }
+                        }, 1000);
                     }
-                    setTimeout(function () {
-                        ocultarspinnerAccesibilidad();
-                    }, 1000);
+                    window.Accesibilidad = Accesibilidad;
                 }
 
-                function spinnerAccesibilidad() {
-                    var elemento = document.getElementById("imgAccesibilidad");
-                    if (elemento) {
-                        elemento.classList.remove("bg-primary");
-                        elemento.classList.add("spinner-grow");
-                        elemento.classList.remove("rounded-pill");
-                    }
+                /**
+                 * Verifica que los módulos necesarios estén cargados
+                 * @returns {boolean} true si están cargados
+                 */
+                function verificarModulos() {
+                    return !!(window.MaulePro && 
+                             window.MaulePro.Data && 
+                             window.MaulePro.Search);
                 }
 
-                function ocultarspinnerAccesibilidad() {
-                    var elemento = document.getElementById("imgAccesibilidad");
-                    if (elemento) {
-                        elemento.classList.remove("spinner-grow");
-                        elemento.classList.add("bg-primary");
-                        elemento.classList.add("rounded-pill");
+                /**
+                 * Obtiene y ajusta los programas para la página actual
+                 * @returns {Array} Array de programas con rutas ajustadas
+                 */
+                function obtenerProgramasAjustados() {
+                    const programas = window.MaulePro.Data.programas || [];
+                    if (programas.length === 0) {
+                        const Logger = window.MaulePro?.Utils?.Logger;
+                        if (Logger) {
+                            Logger.error('No se encontraron programas');
+                        } else {
+                            console.error('Error: No se encontraron programas');
+                        }
+                        return [];
                     }
+
+                    // Ajustar rutas de links para buscar.html (relativo a pages/)
+                    return programas.map(p => ({
+                        ...p,
+                        link: p.link.replace('pages/', '../')
+                    }));
                 }
 
-                // Exponer función de accesibilidad globalmente
-                window.Accesibilidad = Accesibilidad;
+                /**
+                 * Inicializa el SearchManager con configuración
+                 * @param {Array} programas - Array de programas
+                 * @param {HTMLElement} container - Contenedor de resultados
+                 * @returns {Object} Instancia de SearchManager
+                 */
+                function crearSearchManager(programas, container) {
+                    const resultCount = document.getElementById('resultCount');
+                    
+                    return new window.MaulePro.Search.SearchManager({
+                        programas: programas,
+                        container: container,
+                        onCountChange: (counts) => {
+                            if (resultCount) {
+                                resultCount.textContent = counts.total;
+                            }
+                        }
+                    });
+                }
 
-                // Cargar resultados de búsqueda usando SearchManager
+                /**
+                 * Cargar resultados de búsqueda usando SearchManager
+                 */
                 function loadSearchResults() {
                     // Verificar que los módulos estén cargados
-                    if (!window.MaulePro || !window.MaulePro.Data || !window.MaulePro.Search) {
-                        console.error('Error: Los módulos de búsqueda no están cargados');
-                        // Reintentar después de un delay
+                    if (!verificarModulos()) {
+                        const Logger = window.MaulePro?.Utils?.Logger;
+                        if (Logger) {
+                            Logger.warn('Módulos no cargados, reintentando...');
+                        } else {
+                            console.error('Error: Los módulos de búsqueda no están cargados');
+                        }
                         setTimeout(loadSearchResults, 100);
                         return;
                     }
 
-                    // Obtener datos de programas
-                    const programas = window.MaulePro.Data.programas || [];
-                    if (programas.length === 0) {
-                        console.error('Error: No se encontraron programas');
+                    // Obtener y ajustar programas
+                    const programasAjustados = obtenerProgramasAjustados();
+                    if (programasAjustados.length === 0) {
                         return;
                     }
-
-                    // Ajustar rutas de links para buscar.html (relativo a pages/)
-                    const programasAjustados = programas.map(p => ({
-                        ...p,
-                        link: p.link.replace('pages/', '../')
-                    }));
 
                     // Obtener parámetros de URL
                     const params = window.MaulePro.Search.SearchManager.getUrlParams();
 
                     // Elementos del DOM
                     const resultsContainer = document.getElementById('searchResults');
-                    const resultCount = document.getElementById('resultCount');
-
                     if (!resultsContainer) {
-                        console.error('Error: No se encontró el contenedor de resultados');
+                        const Logger = window.MaulePro?.Utils?.Logger;
+                        if (Logger) {
+                            Logger.error('No se encontró el contenedor de resultados');
+                        } else {
+                            console.error('Error: No se encontró el contenedor de resultados');
+                        }
                         return;
                     }
 
@@ -324,21 +379,11 @@
                         region: 'selectRegion'
                     });
 
-                    // Crear SearchManager
-                    const searchManager = new window.MaulePro.Search.SearchManager({
-                        programas: programasAjustados,
-                        container: resultsContainer,
-                        onCountChange: (counts) => {
-                            if (resultCount) {
-                                resultCount.textContent = counts.total;
-                            }
-                        }
-                    });
+                    // Crear y configurar SearchManager
+                    const searchManager = crearSearchManager(programasAjustados, resultsContainer);
 
-                    // Ejecutar búsqueda
+                    // Ejecutar búsqueda y renderizar
                     const resultados = searchManager.search(params);
-
-                    // Renderizar resultados
                     searchManager.renderResults(resultados, resultsContainer);
 
                     // Inicializar funcionalidades adicionales
@@ -348,47 +393,41 @@
                     }, 100);
                 }
 
-                // Función para pintar deadlines (similar a filters.js)
+                // Función para pintar deadlines usando DeadlineManager
                 function paintDeadlines() {
-                    const now = new Date();
-                    document.querySelectorAll('[data-program][data-close]').forEach(col => {
-                        const closeDate = col.getAttribute('data-close');
-                        if (!closeDate) return;
-                        
-                        const d = new Date(closeDate);
-                        const badge = col.querySelector('[data-deadline]');
-                        if (!badge) return;
-                        
-                        if (!d || isNaN(d.getTime())) {
-                            badge.style.display = 'none';
-                            return;
-                        }
-                        
-                        const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
-                        
-                        if (days < 0) {
-                            badge.style.display = 'none';
-                            return;
-                        }
-                        
-                        let text = '';
-                        let cls = '';
-                        
-                        if (days === 0) {
-                            text = 'Finaliza hoy';
-                            cls = 'urgent';
-                        } else if (days === 1) {
-                            text = 'Finaliza en 1 día';
-                            cls = 'urgent';
-                        } else {
-                            text = `Finaliza en ${days} días`;
-                            cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
-                        }
-                        
-                        badge.className = `deadline-badge ${cls}`;
-                        badge.textContent = text;
-                        badge.style.display = 'inline-block';
-                    });
+                    const DeadlineManager = window.MaulePro?.Utils?.DeadlineManager;
+                    if (DeadlineManager) {
+                        DeadlineManager.paintAllDeadlines('[data-program][data-close]');
+                    } else {
+                        // Fallback básico
+                        const now = new Date();
+                        document.querySelectorAll('[data-program][data-close]').forEach(col => {
+                            const closeDate = col.getAttribute('data-close');
+                            if (!closeDate) return;
+                            
+                            const d = new Date(closeDate);
+                            const badge = col.querySelector('[data-deadline]');
+                            if (!badge || !d || isNaN(d.getTime())) {
+                                if (badge) badge.style.display = 'none';
+                                return;
+                            }
+                            
+                            const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
+                            if (days < 0) {
+                                badge.style.display = 'none';
+                                return;
+                            }
+                            
+                            const text = days === 0 ? 'Finaliza hoy' : 
+                                        days === 1 ? 'Finaliza en 1 día' : 
+                                        `Finaliza en ${days} días`;
+                            const cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
+                            
+                            badge.className = `deadline-badge ${cls}`;
+                            badge.textContent = text;
+                            badge.style.display = 'inline-block';
+                        });
+                    }
                 }
 
                 // Inicializar animaciones

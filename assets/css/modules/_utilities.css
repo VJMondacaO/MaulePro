@@ -213,55 +213,120 @@ footer .footer-logo {
     padding-left: var(--body-padding, 1rem);
     padding-right: var(--body-padding, 1rem);
     box-sizing: border-box;
+    position: relative;
 }
 
-.version-info {
-    display: flex;
-    flex-direction: column;
-    gap: 0.5rem;
+/* Contenido del footer con padding lateral */
+.footer-version .footer-content {
+    padding-left: 2rem;
+    padding-right: 2rem;
 }
 
-.version-bars {
-    display: flex;
-    gap: 0.25rem;
+@media (min-width: 1200px) {
+    .footer-version .footer-content {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
 }
 
-.version-bar {
-    width: 20px;
-    height: 4px;
-    border-radius: 2px;
+@media (max-width: 991.98px) {
+    .footer-version .footer-content {
+        padding-left: 1.5rem;
+        padding-right: 1.5rem;
+    }
 }
 
-.version-bar-blue {
-    background-color: #2196F3;
+@media (max-width: 575.98px) {
+    .footer-version .footer-content {
+        padding-left: 1rem;
+        padding-right: 1rem;
+    }
 }
 
-.version-bar-red {
-    background-color: #F44336;
+.footer-version h6 {
+    font-size: 1rem;
+    font-weight: 700;
+    color: #FFFFFF;
+    margin-bottom: 1rem;
+}
+
+.footer-version p,
+.footer-version li {
+    font-size: 0.875rem;
+    line-height: 1.5;
+    color: rgba(255, 255, 255, 0.9);
+}
+
+.footer-version ul.list-unstyled {
+    margin: 0;
+    padding: 0;
 }
 
 .footer-version a {
-    color: #FFFFFF !important;
-    text-decoration: underline;
+    color: rgba(255, 255, 255, 0.9) !important;
+    text-decoration: none;
     transition: opacity 0.2s ease;
 }
 
 .footer-version a:hover {
     opacity: 0.8;
+    text-decoration: underline;
+}
+
+/* Línea roja inferior */
+.footer-red-line {
+    width: 100%;
+    height: 4px;
+    background-color: #F44336;
+    margin-top: 1.5rem;
+}
+
+/* Logo GORE en el footer */
+.footer-logo-gore {
+    max-height: 140px;
+    max-width: 100%;
+    width: auto;
+    height: auto;
+    object-fit: contain;
+    display: block;
+}
+
+/* Asegurar que el logo y el contenido estén alineados */
+@media (min-width: 992px) {
+    .footer-version .row {
+        align-items: center;
+    }
+    
+    .footer-logo-gore {
+        max-height: 120px;
+    }
 }
 
 @media (max-width: 768px) {
     .footer-version {
-        text-align: center;
+        text-align: left;
+        padding-top: 2rem;
+        padding-bottom: 2rem;
     }
     
-    .version-info {
-        align-items: center;
-        margin-bottom: 1rem;
+    .footer-version h6 {
+        margin-top: 1.5rem;
+        margin-bottom: 0.75rem;
     }
     
-    .footer-version .col-md-6:last-child {
-        text-align: center !important;
+    .footer-version > .container-fluid > .row > div:first-child h6 {
+        margin-top: 0;
+    }
+    
+    .footer-logo-gore {
+        max-height: 100px;
+        margin: 0 auto;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .footer-logo-gore {
+        max-height: 80px;
     }
 }
 

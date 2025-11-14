@@ -16,6 +16,8 @@ MaulePro es un portal web que permite a usuarios acceder a las líneas de financ
 - 📊 **Estados de Programas**: Visualización clara de programas abiertos, próximos y cerrados
 - 🎨 **Manual de Marca**: Diseño alineado con las normas corporativas del GORE Maule
 - 🏗️ **Arquitectura Modular**: CSS y JavaScript organizados en módulos reutilizables
+- 🔒 **Seguridad**: Renderizado seguro sin riesgos de XSS
+- 📝 **Logging Centralizado**: Sistema de logging con niveles para desarrollo y producción
 
 ## 🚀 Inicio Rápido
 
@@ -62,8 +64,6 @@ npx serve
 php -S localhost:8000
 ```
 
-📖 **Ver `docs/CÓMO_EJECUTAR.md` para instrucciones detalladas.**
-
 ## 📁 Estructura del Proyecto
 
 ```
@@ -85,26 +85,43 @@ MaulePro/
 │   │       ├── _carousel.css   # Estilos carousel
 │   │       └── _utilities.css  # Utilidades
 │   ├── js/
-│   │   ├── script.js            # Funcionalidad principal
+│   │   ├── script.js            # Orquestador principal
+│   │   ├── main.js              # Punto de entrada
+│   │   ├── data/                # Datos centralizados
+│   │   │   └── programas.js     # Datos de programas
 │   │   ├── components/          # Componentes reutilizables
 │   │   │   └── BaseComponent.js
-│   │   ├── config/              # Configuración centralizada
+│   │   ├── config/              # Configuración
 │   │   │   ├── index.js
 │   │   │   └── selectors.js
-│   │   ├── modules/             # Módulos JavaScript
+│   │   ├── modules/             # Módulos funcionales
 │   │   │   ├── carousel.js
 │   │   │   ├── filters.js
-│   │   │   └── userway.js
-│   │   └── utils/              # Utilidades
+│   │   │   ├── userway.js
+│   │   │   ├── modals/
+│   │   │   │   └── ModalManager.js
+│   │   │   ├── forms/
+│   │   │   │   └── FormManager.js
+│   │   │   └── search/
+│   │   │       ├── FilterEngine.js
+│   │   │       ├── SortEngine.js
+│   │   │       ├── CardRenderer.js
+│   │   │       ├── SearchManager.js
+│   │   │       └── ModalSearch.js
+│   │   └── utils/               # Utilidades
+│   │       ├── Logger.js
+│   │       ├── DeadlineManager.js
+│   │       ├── AccessibilityManager.js
 │   │       ├── dom.js
 │   │       ├── storage.js
 │   │       ├── date.js
 │   │       └── debounce.js
 │   └── images/                  # Imágenes
-│       ├── logo-gore-horizontal.png
+│       ├── logo-gore-blanco-nuevo.png
+│       ├── logo-diseño-sin-titulo.png
 │       ├── logo-gore-blanco.png
-│       ├── logo-gore-negro.png
-│       └── logo-gore.png
+│       ├── claveunica-icon.svg
+│       └── ...
 │
 ├── pages/                        # Subpáginas del portal
 │   ├── programas/                # Páginas de programas
@@ -114,6 +131,7 @@ MaulePro/
 │   │   ├── fril.html
 │   │   ├── frpd.html
 │   │   └── proyectos-menores.html
+│   ├── buscar.html               # Página de búsqueda
 │   ├── financiamiento-programas.html
 │   ├── postulacion-financiamiento.html
 │   └── preguntas-frecuentes.html
@@ -123,13 +141,8 @@ MaulePro/
 │   └── preview.html
 │
 ├── docs/                         # Documentación
-│   ├── ESTRUCTURA.md            # Estructura del proyecto
-│   ├── REFACTORIZACION_COMPLETA.md
-│   ├── FASE1_COMPLETADA.md
-│   ├── RESUMEN_SESION.md
-│   ├── MEJORAS_ARQUITECTURA_MODULAR.md
-│   ├── SUGERENCIAS_MANUAL_MARCA.md
-│   └── README.md                # Documentación técnica
+│   ├── README.md                # Documentación técnica
+│   └── ESTRUCTURA.md            # Estructura detallada
 │
 └── utils/                        # Utilidades y scripts
     ├── server.py                 # Servidor Python local
@@ -145,30 +158,33 @@ MaulePro/
 - **Bootstrap 5.3.3**: Framework CSS (CDN)
 - **Bootstrap Icons 1.11.3**: Iconografía (CDN)
 - **Userway**: Widget de accesibilidad
+- **Google Fonts**: Tipografía Roboto Sans
 
 ## 🎨 Características de Diseño
 
 ### Paleta de Colores Institucionales
 
-- **Pantone 7421**: `#611616` (Rojo institucional)
-- **Pantone 7420**: `#9B3D3D` (Rojo claro)
-- **Pantone Black 7C**: `#3A3A3A` (Gris oscuro)
-- **Fondo**: `#E6E6E6` (Gris claro)
+- **Azul Institucional**: `#093F75` (Tarjetas y elementos principales)
+- **Azul Claro**: `#0D47A1` (Elementos secundarios)
+- **Verde Abierto**: `#018484` (Estado abierto)
+- **Rojo Cerrado**: `#FE6565` (Estado cerrado)
+- **Gris Fondo**: `#EEEEEE` (Fondo estático)
+- **Gris Cerrado**: `#BBBBBB` (Headers de tarjetas cerradas)
 
 ### Logos
 
-- **Logo Horizontal**: Para navbar y headers
-- **Logo Blanco**: Para fondos oscuros (footer)
-- **Logo Negro**: Para fondos claros
-- **Logo Estándar**: Versión general
+- **Logo Blanco Nuevo**: Para navbar móvil
+- **Logo Diseño Sin Título**: Para navbar desktop (horizontal)
+- **Logo Blanco**: Para footer y fondos oscuros
+- **ClaveÚnica**: Icono SVG para autenticación
 
 ### Componentes
 
 - **Navbar Fijo**: Se mantiene visible al hacer scroll
 - **Cards Interactivas**: Efectos hover y animaciones
 - **Búsqueda Avanzada**: Filtros por estado, beneficiario y ordenamiento
-- **Contadores de Estado**: Badges para programas abiertos, próximos y cerrados
-- **Deadlines**: Indicadores de tiempo restante con contorno amarillo
+- **Deadlines**: Indicadores de tiempo restante
+- **Footer Institucional**: Información del GORE Maule
 
 ## 🔧 Funcionalidades
 
@@ -179,8 +195,7 @@ MaulePro/
 - Filtro por beneficiario (Municipios, Servicios públicos, Organizaciones, etc.)
 - Ordenamiento (Relevancia, Abiertos primero, Fecha, A-Z)
 - Atajo de teclado `/` para acceso rápido
-- Scroll automático a resultados
-- Mensaje "no hay resultados" cuando no hay coincidencias
+- Página de resultados de búsqueda (`pages/buscar.html`)
 
 ### Programas Disponibles
 
@@ -231,18 +246,16 @@ El proyecto utiliza una arquitectura CSS modular con 7 módulos:
 
 ### JavaScript Modular
 
-- `modules/carousel.js`: Gestión del carousel
-- `modules/filters.js`: Sistema de búsqueda y filtrado
-- `modules/userway.js`: Integración con Userway
-- `components/BaseComponent.js`: Clase base para componentes
-- `config/`: Configuración centralizada
-- `utils/`: Utilidades reutilizables
+- **Módulos de Búsqueda**: `FilterEngine.js`, `SortEngine.js`, `CardRenderer.js`, `SearchManager.js`, `ModalSearch.js`
+- **Módulos de UI**: `ModalManager.js`, `FormManager.js`, `filters.js`
+- **Utilidades**: `Logger.js`, `DeadlineManager.js`, `AccessibilityManager.js`, `debounce.js`
+- **Datos**: `programas.js` (fuente única de verdad)
 
 ## ⚠️ Limitaciones Actuales
 
 Este es un **prototipo de frontend**. Las siguientes funcionalidades están simuladas:
 
-- ❌ **Login/Registro**: No hay integración con Clave Única
+- ❌ **Login/Registro**: No hay integración con Clave Única real
 - ❌ **Postulaciones**: No se envían a ningún servidor
 - ❌ **Documentos**: No se descargan realmente
 - ❌ **Backend**: No hay comunicación con APIs
@@ -258,13 +271,8 @@ Este es un **prototipo de frontend**. Las siguientes funcionalidades están simu
 
 ## 📚 Documentación Adicional
 
-- `docs/ESTRUCTURA.md`: Estructura detallada del proyecto
-- `docs/REFACTORIZACION_COMPLETA.md`: Resumen de refactorización
-- `docs/FASE1_COMPLETADA.md`: Documentación de Fase 1
-- `docs/RESUMEN_SESION.md`: Resumen de sesión de desarrollo
-- `docs/MEJORAS_ARQUITECTURA_MODULAR.md`: Sugerencias de arquitectura
-- `docs/SUGERENCIAS_MANUAL_MARCA.md`: Sugerencias basadas en manual de marca
 - `docs/README.md`: Documentación técnica detallada
+- `docs/ESTRUCTURA.md`: Estructura detallada del proyecto
 
 ## 🤝 Contribución
 
@@ -293,3 +301,5 @@ Desarrollado para el Gobierno Regional del Maule.
 ---
 
 **Nota**: Este es un prototipo de frontend que requiere integración con sistemas backend y Clave Única para ser completamente funcional en producción.
+
+**Última actualización**: Noviembre 2025

@@ -1,12 +1,31 @@
 /**
  * Filters Module
- * Sistema de búsqueda y filtrado de programas
- * Refactorizado para usar módulos compartidos
+ * Sistema de búsqueda y filtrado de programas para index.html
+ * Refactorizado para usar módulos compartidos (FilterEngine, SortEngine)
+ * @module Filters
+ * @requires window.MaulePro.Search.FilterEngine
+ * @requires window.MaulePro.Search.SortEngine
+ * @requires window.MaulePro.Utils.debounce
+ * @requires window.MaulePro.Utils.Logger
  */
 
 (function() {
     'use strict';
     
+    /**
+     * FilterManager Object
+     * Gestiona el filtrado y ordenamiento de programas en index.html
+     * @type {Object}
+     * @property {HTMLElement} grid - Contenedor de tarjetas
+     * @property {Array<HTMLElement>} cards - Array de tarjetas DOM
+     * @property {HTMLInputElement} q - Input de búsqueda de texto
+     * @property {HTMLSelectElement} estado - Select de estado
+     * @property {HTMLSelectElement} benef - Select de beneficiario
+     * @property {HTMLSelectElement} orden - Select de ordenamiento
+     * @property {HTMLFormElement} form - Formulario de búsqueda
+     * @property {HTMLElement} count - Elemento donde mostrar el contador
+     * @property {Function} debouncedApply - Función de apply con debounce
+     */
     const FilterManager = {
         grid: null,
         cards: [],
@@ -16,12 +35,13 @@
         orden: null,
         form: null,
         count: null,
-        // Contadores de estado eliminados
-        // cntOpen: null,
-        // cntSoon: null,
-        // cntClosed: null,
         debouncedApply: null,
         
+        /**
+         * Inicializa el FilterManager
+         * Configura elementos DOM y bindea eventos
+         * @method init
+         */
         init() {
             this.grid = document.getElementById('grid');
             if (!this.grid) return;
@@ -77,6 +97,11 @@
             this.initToast();
         },
         
+        /**
+         * Bindea eventos a los elementos del formulario
+         * Maneja atajos de teclado y eventos de cambio
+         * @method bindEvents
+         */
         bindEvents() {
             // Atajo de teclado "/" para buscar (funciona siempre, incluso con action)
             document.addEventListener('keydown', (e) => {
@@ -113,157 +138,213 @@
             }
         },
         
-        apply() {
-            // Obtener valores de los filtros
-            const term = (this.q?.value || '').trim().toLowerCase();
-            const fEstado = this.estado?.value || '';
-            const fBenef = this.benef?.value || '';
-            const fOrden = this.orden?.value || 'relevance';
-            
-            // Usar módulos compartidos si están disponibles
+        /**
+         * Obtiene los valores actuales de los filtros
+         * @method getFilterValues
+         * @returns {Object} Objeto con los valores de los filtros
+         * @private
+         */
+        getFilterValues() {
+            return {
+                q: (this.q?.value || '').trim().toLowerCase(),
+                estado: this.estado?.value || '',
+                benef: this.benef?.value || '',
+                orden: this.orden?.value || 'relevance'
+            };
+        },
+
+        /**
+         * Convierte elementos DOM de tarjetas a objetos de programas
+         * @method cardsToPrograms
+         * @param {Array<HTMLElement>} cards - Array de elementos DOM
+         * @returns {Array<Object>} Array de objetos de programas
+         * @private
+         */
+        cardsToPrograms(cards) {
+            return cards.map(card => ({
+                name: card.dataset.name || '',
+                estado: card.dataset.estado || '',
+                benef: card.dataset.benef || '',
+                close: card.dataset.close || '',
+                elemento: card
+            }));
+        },
+
+        /**
+         * Filtra las tarjetas usando FilterEngine o fallback manual
+         * @method filterCards
+         * @param {Array<HTMLElement>} cards - Tarjetas a filtrar
+         * @param {Object} filters - Valores de filtros
+         * @returns {Array<HTMLElement>} Tarjetas filtradas
+         * @private
+         */
+        filterCards(cards, filters) {
             const FilterEngine = window.MaulePro?.Search?.FilterEngine;
+            
+            if (FilterEngine) {
+                const programas = this.cardsToPrograms(cards);
+                const resultados = FilterEngine.filtrarProgramas(programas, filters);
+                return resultados.map(r => r.elemento);
+            }
+            
+            // Fallback: filtrado manual
+            return cards.filter(c => {
+                const name = (c.dataset.name || '').toLowerCase();
+                const matchQ = !filters.q || name.includes(filters.q);
+                const matchE = !filters.estado || c.dataset.estado === filters.estado;
+                const matchB = !filters.benef || c.dataset.benef === filters.benef;
+                return matchQ && matchE && matchB;
+            });
+        },
+
+        /**
+         * Ordena las tarjetas usando SortEngine o fallback manual
+         * @method sortCards
+         * @param {Array<HTMLElement>} cards - Tarjetas a ordenar
+         * @param {string} orden - Tipo de ordenamiento
+         * @returns {Array<HTMLElement>} Tarjetas ordenadas
+         * @private
+         */
+        sortCards(cards, orden) {
+            if (cards.length === 0) return cards;
+
             const SortEngine = window.MaulePro?.Search?.SortEngine;
             
-            // Filtrar tarjetas directamente desde DOM (más eficiente)
-            let visible;
-            if (FilterEngine) {
-                // Convertir cards DOM a array de objetos para usar con FilterEngine
-                const programas = this.cards.map(card => ({
-                    name: card.dataset.name || '',
-                    estado: card.dataset.estado || '',
-                    benef: card.dataset.benef || '',
-                    close: card.dataset.close || '',
-                    elemento: card // Guardar referencia al elemento
-                }));
-                
-                // Filtrar usando FilterEngine
-                const resultados = FilterEngine.filtrarProgramas(programas, {
-                    q: term,
-                    estado: fEstado,
-                    benef: fBenef
+            if (SortEngine) {
+                const programas = this.cardsToPrograms(cards);
+                const ordenados = SortEngine.ordenarProgramas(programas, orden);
+                return ordenados.map(p => p.elemento);
+            }
+            
+            // Fallback: ordenamiento manual
+            const byName = (a, b) => a.dataset.name.localeCompare(b.dataset.name, 'es');
+            const toRank = s => ({open: 3, soon: 2, closed: 1}[s] || 0);
+            
+            const sorted = [...cards];
+            
+            if (orden === 'alpha') {
+                sorted.sort(byName);
+            } else if (orden === 'openfirst') {
+                sorted.sort((a, b) => toRank(b.dataset.estado) - toRank(a.dataset.estado));
+            } else if (orden === 'date') {
+                sorted.sort((a, b) => {
+                    const da = Date.parse(a.dataset.close || '9999-12-31');
+                    const db = Date.parse(b.dataset.close || '9999-12-31');
+                    return da - db;
                 });
-                
-                // Extraer elementos DOM de los resultados
-                visible = resultados.map(r => r.elemento);
             } else {
-                // Fallback: filtrado manual
-                visible = this.cards.filter(c => {
-                    const name = (c.dataset.name || '').toLowerCase();
-                    const matchQ = !term || name.includes(term);
-                    const matchE = !fEstado || c.dataset.estado === fEstado;
-                    const matchB = !fBenef || c.dataset.benef === fBenef;
-                    return matchQ && matchE && matchB;
+                // relevance (default)
+                sorted.sort((a, b) => {
+                    const r = toRank(b.dataset.estado) - toRank(a.dataset.estado);
+                    return r !== 0 ? r : byName(a, b);
                 });
             }
             
-            // Ordenar
-            if (SortEngine && visible.length > 0) {
-                // Convertir a objetos con datos necesarios para ordenamiento
-                const programasParaOrdenar = visible.map(card => ({
-                    elemento: card,
-                    name: card.dataset.name || '',
-                    estado: card.dataset.estado || '',
-                    close: card.dataset.close || ''
-                }));
-                
-                // Ordenar usando SortEngine
-                const ordenados = SortEngine.ordenarProgramas(programasParaOrdenar, fOrden);
-                visible = ordenados.map(p => p.elemento);
-            } else if (visible.length > 0) {
-                // Fallback: ordenamiento manual
-                const byName = (a, b) => a.dataset.name.localeCompare(b.dataset.name, 'es');
-                const toRank = s => ({open: 3, soon: 2, closed: 1}[s] || 0);
-                
-                if (fOrden === 'alpha') {
-                    visible.sort(byName);
-                } else if (fOrden === 'openfirst') {
-                    visible.sort((a, b) => toRank(b.dataset.estado) - toRank(a.dataset.estado));
-                } else if (fOrden === 'date') {
-                    visible.sort((a, b) => {
-                        const da = Date.parse(a.dataset.close || '9999-12-31');
-                        const db = Date.parse(b.dataset.close || '9999-12-31');
-                        return da - db;
-                    });
-                } else {
-                    // relevance (default)
-                    visible.sort((a, b) => {
-                        const r = toRank(b.dataset.estado) - toRank(a.dataset.estado);
-                        return r !== 0 ? r : byName(a, b);
-                    });
-                }
-            }
-            
+            return sorted;
+        },
+
+        /**
+         * Actualiza el DOM con las tarjetas visibles
+         * @method updateDOM
+         * @param {Array<HTMLElement>} visible - Tarjetas visibles
+         * @private
+         */
+        updateDOM(visible) {
             // Ocultar todas las tarjetas primero
             this.cards.forEach(c => {
                 c.style.display = 'none';
             });
             
-            // Mostrar y reordenar tarjetas visibles usando DocumentFragment para mejor rendimiento
             if (visible.length > 0) {
+                // Usar DocumentFragment para mejor rendimiento
                 const fragment = document.createDocumentFragment();
                 visible.forEach(card => {
                     card.style.display = '';
                     fragment.appendChild(card);
                 });
-                // Limpiar grid y agregar fragment (más eficiente que appendChild individual)
                 this.grid.innerHTML = '';
                 this.grid.appendChild(fragment);
             } else {
-                // Si no hay resultados, limpiar grid
                 this.grid.innerHTML = '';
             }
+        },
+
+        /**
+         * Aplica filtros y ordenamiento a las tarjetas
+         * Usa FilterEngine y SortEngine si están disponibles
+         * @method apply
+         */
+        apply() {
+            const filters = this.getFilterValues();
+            
+            // Filtrar
+            let visible = this.filterCards(this.cards, filters);
+            
+            // Ordenar
+            visible = this.sortCards(visible, filters.orden);
+            
+            // Actualizar DOM
+            this.updateDOM(visible);
             
             // Actualizar contadores
             this.updateCounters(visible);
         },
         
+        /**
+         * Actualiza los contadores de resultados
+         * @method updateCounters
+         * @param {Array<HTMLElement>} visible - Array de tarjetas visibles
+         */
         updateCounters(visible) {
             if (this.count) this.count.textContent = String(visible.length);
             // Contadores de estado eliminados - solo actualizar contador total
         },
         
+        /**
+         * Pinta los deadlines dinámicamente según las fechas
+         * Usa DeadlineManager si está disponible, sino usa fallback
+         * @method paintDeadlines
+         */
         paintDeadlines() {
-            const now = new Date();
-            document.querySelectorAll('[data-program]').forEach(col => {
-                const closeDate = col.dataset.close;
-                if (!closeDate) return;
-                
-                const d = new Date(closeDate);
-                const badge = col.querySelector('[data-deadline]');
-                if (!badge) return;
-                
-                if (!d || isNaN(d.getTime())) {
-                    badge.style.display = 'none';
-                    return;
-                }
-                
-                const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
-                
-                if (days < 0) {
-                    badge.style.display = 'none';
-                    return;
-                }
-                
-                let text = '';
-                let cls = '';
-                
-                if (days === 0) {
-                    text = 'Finaliza hoy';
-                    cls = 'urgent';
-                } else if (days === 1) {
-                    text = 'Finaliza en 1 día';
-                    cls = 'urgent';
-                } else {
-                    text = `Finaliza en ${days} días`;
-                    cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
-                }
-                
-                badge.className = `deadline-badge ${cls}`;
-                badge.textContent = text;
-                badge.style.display = 'inline-block';
-            });
+            const DeadlineManager = window.MaulePro?.Utils?.DeadlineManager;
+            if (DeadlineManager) {
+                DeadlineManager.paintAllDeadlines('[data-program]');
+            } else {
+                // Fallback básico si DeadlineManager no está disponible
+                const now = new Date();
+                document.querySelectorAll('[data-program]').forEach(col => {
+                    const closeDate = col.dataset.close;
+                    if (!closeDate) return;
+                    
+                    const d = new Date(closeDate);
+                    const badge = col.querySelector('[data-deadline]');
+                    if (!badge || !d || isNaN(d.getTime())) {
+                        if (badge) badge.style.display = 'none';
+                        return;
+                    }
+                    
+                    const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
+                    if (days < 0) {
+                        badge.style.display = 'none';
+                        return;
+                    }
+                    
+                    const text = days === 0 ? 'Finaliza hoy' : 
+                                days === 1 ? 'Finaliza en 1 día' : 
+                                `Finaliza en ${days} días`;
+                    const cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
+                    
+                    badge.className = `deadline-badge ${cls}`;
+                    badge.textContent = text;
+                    badge.style.display = 'inline-block';
+                });
+            }
         },
         
+        /**
+         * Inicializa animaciones de entrada usando IntersectionObserver
+         * @method initAnimations
+         */
         initAnimations() {
             const els = document.querySelectorAll('[data-animate]');
             if ('IntersectionObserver' in window) {
@@ -281,6 +362,10 @@
             }
         },
         
+        /**
+         * Inicializa efecto ripple en botones
+         * @method initRipple
+         */
         initRipple() {
             document.querySelectorAll('.program-card .btn').forEach(btn => {
                 btn.addEventListener('click', function(e) {
@@ -304,6 +389,10 @@
             });
         },
         
+        /**
+         * Inicializa toasts de notificación
+         * @method initToast
+         */
         initToast() {
             document.querySelectorAll('a, button').forEach(el => {
                 if (/avisarme/i.test(el.textContent)) {

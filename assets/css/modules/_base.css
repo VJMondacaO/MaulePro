@@ -26,6 +26,48 @@ body {
     padding: 0 var(--body-padding);
 }
 
+/* Márgenes laterales para el contenido principal */
+main.main-content {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+/* Sin padding lateral en móvil */
+@media (max-width: 575.98px) {
+    main.main-content {
+        padding-left: 0;
+        padding-right: 0;
+    }
+}
+
+@media (min-width: 575.99px) {
+    main.main-content {
+        padding-left: 2.5rem;
+        padding-right: 2.5rem;
+    }
+}
+
+@media (min-width: 768px) {
+    main.main-content {
+        padding-left: 3rem;
+        padding-right: 3rem;
+    }
+}
+
+@media (min-width: 992px) {
+    main.main-content {
+        padding-left: 3.5rem;
+        padding-right: 3.5rem;
+    }
+}
+
+@media (min-width: 1200px) {
+    main.main-content {
+        padding-left: 4rem;
+        padding-right: 4rem;
+    }
+}
+
 /* Justificar todos los textos de contenido */
 p {
     text-align: justify;
@@ -153,5 +195,36 @@ html {
 .container, .row {
     max-width: 100%;
     overflow-x: hidden;
+}
+
+/* Mejoras de responsividad para móvil */
+@media (max-width: 575.98px) {
+    /* Reducir padding en secciones generales */
+    .section-header {
+        padding: 0;
+    }
+    
+    /* Ajustar espaciado en secciones */
+    .bg-info.bg-opacity-10 {
+        padding: 1rem !important;
+    }
+    
+    /* Reducir márgenes en contenedores */
+    .mb-4 {
+        margin-bottom: 1.5rem !important;
+    }
+    
+    .my-4 {
+        margin-top: 1rem !important;
+        margin-bottom: 1rem !important;
+    }
+    
+    /* Ajustar badges y elementos pequeños */
+    .badge {
+        padding: 0.4rem 0.75rem !important;
+        font-size: 0.75rem;
+    }
+    
+    /* Grid de cards optimizado para móvil - Ya se maneja en _program-cards.css */
 }
 

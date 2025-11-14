@@ -22,61 +22,67 @@ MaulePro/
 │   │       ├── _carousel.css    # Carousel de información
 │   │       └── _utilities.css   # Utilidades y helpers
 │   ├── js/
-│   │   ├── script.js            # Funcionalidad principal (login/registro)
+│   │   ├── script.js            # Orquestador principal (515 líneas)
 │   │   ├── main.js              # Punto de entrada principal
+│   │   ├── data/                # Datos centralizados
+│   │   │   └── programas.js     # Fuente única de verdad para programas
 │   │   ├── components/          # Componentes reutilizables
 │   │   │   └── BaseComponent.js # Clase base para componentes
 │   │   ├── config/              # Configuración centralizada
 │   │   │   ├── index.js         # Configuración principal
-│   │   │   └── selectors.js    # Helpers de selectores
+│   │   │   └── selectors.js     # Helpers de selectores
 │   │   ├── modules/             # Módulos JavaScript
 │   │   │   ├── carousel.js      # Gestión del carousel
-│   │   │   ├── filters.js      # Sistema de búsqueda y filtrado
-│   │   │   └── userway.js      # Integración con Userway
+│   │   │   ├── filters.js       # Sistema de búsqueda (index.html)
+│   │   │   ├── userway.js       # Integración Userway
+│   │   │   ├── modals/          # Gestión de modales
+│   │   │   │   └── ModalManager.js # Apertura/cierre de modales
+│   │   │   ├── forms/           # Gestión de formularios
+│   │   │   │   └── FormManager.js # Validación y envío
+│   │   │   └── search/          # Módulos de búsqueda
+│   │   │       ├── FilterEngine.js    # Motor de filtrado
+│   │   │       ├── SortEngine.js      # Motor de ordenamiento
+│   │   │       ├── CardRenderer.js    # Renderizado seguro
+│   │   │       ├── SearchManager.js   # Gestor unificado
+│   │   │       └── ModalSearch.js     # Búsqueda modal
 │   │   └── utils/               # Utilidades compartidas
+│   │       ├── Logger.js        # Sistema de logging con niveles
+│   │       ├── DeadlineManager.js     # Gestión de deadlines
+│   │       ├── AccessibilityManager.js # Gestión de accesibilidad
 │   │       ├── dom.js           # Utilidades DOM
 │   │       ├── storage.js       # LocalStorage helpers
 │   │       ├── date.js          # Utilidades de fecha
 │   │       └── debounce.js      # Debounce/throttle
-│   └── images/                   # Imágenes
-│       ├── logo-gore-horizontal.png # Logo horizontal (navbar)
-│       ├── logo-gore-blanco.png     # Logo blanco (footer)
-│       ├── logo-gore-negro.png      # Logo negro
-│       ├── logo-gore.png            # Logo estándar
-│       └── Logo.png                 # Logo legacy
+│   └── images/                  # Imágenes (todas centralizadas aquí)
+│       ├── logo-gore-blanco-nuevo.png # Logo móvil navbar
+│       ├── logo-diseño-sin-titulo.png # Logo desktop navbar
+│       ├── logo-gore-blanco.png  # Logo footer
+│       ├── logo-gore-horizontal.png # Logo horizontal
+│       ├── logo-gore-negro.png   # Logo negro
+│       ├── logo-gore.png         # Logo estándar
+│       ├── claveunica-icon.svg   # Icono ClaveÚnica
+│       └── ...
 │
 ├── pages/                        # Subpáginas del portal
+│   ├── buscar.html               # Página de resultados de búsqueda
 │   ├── programas/                # Páginas de programas específicos
 │   │   ├── circular-33.html     # Circular 33
 │   │   ├── fndr-8.html          # Subvenciones FNDR 8%
 │   │   ├── fndr-sub31.html      # FNDR Sub. 31 con Evaluación MIDESOYF
 │   │   ├── fril.html            # Fondo Regional de Iniciativa Local
-│   │   ├── frpd.html            # Fondo Regional para la Productividad y el Desarrollo
+│   │   ├── frpd.html            # Fondo Regional para la Productividad
 │   │   └── proyectos-menores.html # Proyectos Menores a 5.000 UTM
 │   ├── financiamiento-programas.html
 │   ├── postulacion-financiamiento.html
-│   └── preguntas-frecuentes.html # Página de preguntas frecuentes
+│   └── preguntas-frecuentes.html
 │
 ├── components/                   # Componentes de desarrollo
 │   ├── components.html          # Componentes reutilizables (referencia)
 │   └── preview.html             # Vista previa de componentes
 │
-├── docs/                         # Documentación adicional
+├── docs/                         # Documentación
 │   ├── README.md                # Documentación técnica detallada
-│   ├── ESTRUCTURA.md            # Este archivo
-│   ├── REFACTORIZACION_COMPLETA.md
-│   ├── FASE1_COMPLETADA.md
-│   ├── RESUMEN_SESION.md
-│   ├── MEJORAS_ARQUITECTURA_MODULAR.md
-│   ├── SUGERENCIAS_MANUAL_MARCA.md
-│   └── INSTRUCCIONES.txt        # Instrucciones adicionales
-│
-├── RV_ Manual de marca actualizado/ # Manual de marca
-│   ├── LOGO GORE HORIZONTAL.png
-│   ├── LOGO NUEVO GORE BLANCO.png
-│   ├── LOGO NUEVO GORE NEGRO.png
-│   ├── Logo Nuevo Gore.png
-│   └── MANUAL CORPORATIVO (2).pdf
+│   └── ESTRUCTURA.md            # Este archivo
 │
 └── utils/                        # Utilidades y scripts
     ├── server.py                 # Servidor Python local
@@ -90,14 +96,12 @@ MaulePro/
 
 #### `index.html`
 - Página de inicio del portal
-- Hero section con información general y tarjetas de características
-- Sistema de búsqueda y filtrado de programas con diseño mejorado
+- Hero section con información general
+- Sistema de búsqueda y filtrado de programas
 - Grid de programas con estados (Abiertos, Próximos, Cerrados)
-- Contadores por estado integrados en el header
 - Navbar fijo con navegación
 - Carousel de información con botón de cierre
-- Sección de información importante
-- Footer con logo blanco
+- Footer institucional con logo blanco
 
 #### `login.html`
 - Página de autenticación
@@ -106,64 +110,19 @@ MaulePro/
 - Recuperación de contraseña
 - Validación de RUT y correo electrónico
 
+#### `pages/buscar.html`
+- Página de resultados de búsqueda
+- Formulario de búsqueda avanzada
+- Renderizado de resultados usando SearchManager
+- Integración con módulos de búsqueda compartidos
+
 ### Páginas de Programas
 
-#### `pages/programas/circular-33.html`
-- Circular 33 (FRIL - Fondo Regional de Iniciativa Local)
-- Información sobre el programa
-- Tipos de proyectos
-- Bases y anexos
-- Manual de postulación
-
-#### `pages/programas/fndr-8.html`
-- Subvenciones para actividades FNDR 8%
-- Categorías de postulación (Cultural, Social, Deportiva, etc.)
-- Documentación y anexos
-- Sección de rendición
-- Botón "Postular aquí" estandarizado
-
-#### `pages/programas/fndr-sub31.html`
-- FNDR Sub. 31 con Evaluación MIDESOYF
-- Requisitos y documentación
-- Manual de postulación
-- Proceso de evaluación
-- Botón "Postular aquí" estandarizado
-
-#### `pages/programas/fril.html`
-- Fondo Regional de Iniciativa Local (FRIL)
+Todas las páginas de programas (`pages/programas/*.html`) incluyen:
 - Información detallada del programa
 - Bases y documentación
 - Botón "Postular aquí" estandarizado
-
-#### `pages/programas/frpd.html`
-- Fondo Regional para la Productividad y el Desarrollo (FRPD)
-- Información del programa
-- Requisitos y documentación
-- Botón "Postular aquí" estandarizado
-
-#### `pages/programas/proyectos-menores.html`
-- Proyectos Menores a 5.000 UTM
-- Información sobre proyectos menores
-- Bases y anexos
-- Estado de postulación
-- Botón "Postular aquí" estandarizado
-
-#### `pages/financiamiento-programas.html`
-- Financiamiento para Programas
-- Transferencias Subtítulo 33
-- Glosas 7.1, 7.7 y 5.12
-- Instructivos y manuales
-- Botón "Postular aquí" estandarizado
-
-#### `pages/postulacion-financiamiento.html`
-- Postulación a Financiamiento
-- Formularios y documentación
-
-#### `pages/preguntas-frecuentes.html`
-- Página de preguntas frecuentes
-- Accordion de Bootstrap
-- Información sobre postulaciones
-- Enlaces de ayuda
+- Navbar y footer consistentes
 
 ## 🎨 Recursos Estáticos
 
@@ -171,19 +130,21 @@ MaulePro/
 
 #### `_variables.css`
 - Variables CSS para colores institucionales
-- Variables de espaciado
-- Colores Pantone del manual de marca
+- Variables de espaciado responsive
+- Colores: azul (`#093F75`), verde abierto (`#018484`), rojo cerrado (`#FE6565`)
 
 #### `_base.css`
 - Estilos base de `html` y `body`
-- Fondos con gradientes y animaciones
-- Ocultación de scrollbar durante carga
+- Fondo estático (`#EEEEEE`)
+- Tipografía: Google Fonts (Roboto Sans)
+- Texto justificado
 - Estilos de scrollbar personalizados
 
 #### `_navbar.css`
 - Estilos del navbar
-- Logo con área de exclusión
-- Responsive design
+- Logo responsive (diferente en móvil y desktop)
+- ClaveÚnica button
+- Menú hamburguesa para móvil
 - Estados hover y active
 
 #### `_hero.css`
@@ -194,10 +155,11 @@ MaulePro/
 
 #### `_program-cards.css`
 - Tarjetas de programas
-- Header con fondo institucional
+- Header con fondo institucional o gris (cerrado)
 - Body con información estructurada
 - Badges de estado y deadline
 - Animaciones y efectos hover
+- Dimensiones estandarizadas (min-height)
 
 #### `_carousel.css`
 - Carousel de información
@@ -215,68 +177,125 @@ MaulePro/
 
 ### JavaScript Modular (`assets/js/`)
 
-#### `script.js`
-- Funcionalidad principal de login/registro
-- Manejo de modales
-- Validación de formularios
-- Persistencia con localStorage
+#### Orquestador Principal
 
-#### `modules/carousel.js`
+**`script.js`** (515 líneas)
+- Orquestador principal de la aplicación
+- Inicializa todos los módulos
+- Maneja eventos globales
+- Integración con Bootstrap
+- Fallbacks para compatibilidad
+
+#### Datos Centralizados
+
+**`data/programas.js`**
+- Fuente única de verdad para todos los programas
+- Array de objetos de programas
+- Funciones: `getAllProgramas`, `getProgramaByName`, `getProgramasByEstado`, `getProgramasByBenef`
+- Namespace: `window.MaulePro.Data.programas`
+
+#### Módulos de Búsqueda (`modules/search/`)
+
+**`FilterEngine.js`**
+- Motor de filtrado reutilizable
+- Filtra por nombre, estado, beneficiario, región
+- Validación de parámetros
+
+**`SortEngine.js`**
+- Motor de ordenamiento reutilizable
+- Ordena por relevancia, abiertos primero, fecha, alfabético
+
+**`CardRenderer.js`**
+- Renderizado seguro de tarjetas (sin XSS)
+- Usa `createElement` y `textContent`
+- Funciones: `crearTarjetaElement`, `escapeHtml`
+
+**`SearchManager.js`**
+- Gestor unificado de búsqueda
+- Orquesta FilterEngine, SortEngine y CardRenderer
+- Maneja URL params
+- Renderiza resultados y estados vacíos
+
+**`ModalSearch.js`**
+- Búsqueda modal completa
+- Renderizado seguro sin `innerHTML` con datos del usuario
+- Búsqueda en tiempo real (debounced)
+
+#### Módulos de UI
+
+**`modules/modals/ModalManager.js`**
+- Gestión centralizada de modales
+- Funciones: `open`, `close`, `init`, `setupTrigger`, `setupModalSwitch`
+
+**`modules/forms/FormManager.js`**
+- Gestión de formularios
+- Validación: RUT, email, match de emails
+- Handlers: login, registro, recuperación de contraseña
+- Gestión de UI de usuario logueado/deslogueado
+
+**`modules/filters.js`**
+- Sistema de búsqueda y filtrado para `index.html`
+- Integración con FilterEngine y SortEngine
+- Actualización de contadores
+- Cálculo de deadlines (usa DeadlineManager)
+
+**`modules/carousel.js`**
 - Gestión del carousel de información
 - Botón de cierre
 - Persistencia de estado en localStorage
 
-#### `modules/filters.js`
-- Sistema de búsqueda y filtrado
-- Filtros por estado, beneficiario y ordenamiento
-- Actualización de contadores
-- Cálculo de deadlines
-- Scroll automático a resultados
-- Mensaje "no hay resultados"
-- Animaciones de entrada
-- Efecto ripple en botones
-
-#### `modules/userway.js`
+**`modules/userway.js`**
 - Integración con Userway
-- Posicionamiento del widget en esquina inferior derecha
+- Posicionamiento del widget
 - Observador de cambios en el DOM
 
-#### `components/BaseComponent.js`
+#### Utilidades (`utils/`)
+
+**`Logger.js`**
+- Sistema de logging con niveles (DEBUG, INFO, WARN, ERROR)
+- Deshabilitación automática en producción
+- Formato consistente con timestamp
+
+**`DeadlineManager.js`**
+- Gestión centralizada de deadlines
+- Calcula días restantes
+- Aplica clases CSS (urgent, soon)
+
+**`AccessibilityManager.js`**
+- Gestión de accesibilidad
+- Spinner y toggle de UserWay
+
+**`dom.js`**, **`storage.js`**, **`date.js`**, **`debounce.js`**
+- Utilidades DOM, localStorage, fecha y debounce
+
+#### Componentes
+
+**`components/BaseComponent.js`**
 - Clase base para componentes reutilizables
 - Gestión automática de event listeners
 - Métodos helpers comunes
 
-#### `config/index.js`
+#### Configuración
+
+**`config/index.js`** y **`config/selectors.js`**
 - Configuración centralizada
 - Selectores DOM
-- Claves de localStorage
-- Configuración de features
-
-#### `config/selectors.js`
-- Helpers para acceder a elementos del DOM
-- Funciones: `getSelector()`, `getElement()`, `getElements()`, `elementExists()`
-
-#### `utils/dom.js`
-- Utilidades DOM: `create()`, `exists()`, `waitFor()`, `scrollTo()`, etc.
-
-#### `utils/storage.js`
-- Helpers de localStorage con prefijo automático
-- Serialización JSON automática
-
-#### `utils/date.js`
-- Utilidades de fecha: `format()`, `daysBetween()`, `formatDaysRemaining()`, etc.
-
-#### `utils/debounce.js`
-- Funciones `debounce()` y `throttle()`
+- Helpers de acceso al DOM
 
 ### Imágenes (`assets/images/`)
 
-#### Logos del Manual de Marca
-- `logo-gore-horizontal.png`: Logo horizontal para navbar (1641x619px)
-- `logo-gore-blanco.png`: Logo blanco para fondos oscuros (942x1023px)
-- `logo-gore-negro.png`: Logo negro para fondos claros (1176x1287px)
-- `logo-gore.png`: Logo estándar (1641x1216px)
-- `Logo.png`: Logo legacy (mantenido por compatibilidad)
+Todas las imágenes están centralizadas en `assets/images/`:
+
+- **`logo-gore-blanco-nuevo.png`**: Logo para navbar móvil
+- **`logo-diseño-sin-titulo.png`**: Logo para navbar desktop (horizontal)
+- **`logo-gore-blanco.png`**: Logo para footer
+- **`logo-gore-horizontal.png`**: Logo horizontal (alternativo)
+- **`logo-gore-negro.png`**: Logo negro para fondos claros
+- **`logo-gore.png`**: Logo estándar
+- **`claveunica-icon.svg`**: Icono ClaveÚnica
+- **`claveunica-icon.png`**: Icono ClaveÚnica (PNG)
+
+**Nota**: La carpeta del manual de marca ha sido eliminada. Todas las imágenes usadas están en `assets/images/`.
 
 ## 🛠️ Utilidades
 
@@ -300,47 +319,14 @@ MaulePro/
 
 ### `docs/README.md`
 - Documentación técnica detallada
-- Información sobre el desarrollo
-- Limitaciones y mejoras futuras
+- Arquitectura del proyecto
+- Sistema de logging
+- Seguridad
+- Estado del proyecto
 
 ### `docs/ESTRUCTURA.md`
 - Este archivo
 - Descripción detallada de la estructura del proyecto
-
-### `docs/REFACTORIZACION_COMPLETA.md`
-- Resumen de la refactorización CSS/JS
-- Métricas de reducción de código
-- Beneficios obtenidos
-
-### `docs/FASE1_COMPLETADA.md`
-- Documentación de la Fase 1 de arquitectura modular
-- Componentes creados
-- Utilidades implementadas
-
-### `docs/RESUMEN_SESION.md`
-- Resumen de sesión de desarrollo
-- Estado del proyecto
-- Próximos pasos
-
-### `docs/MEJORAS_ARQUITECTURA_MODULAR.md`
-- Sugerencias detalladas para mejorar la arquitectura
-- Plan de implementación por fases
-- Ejemplos de código
-
-### `docs/SUGERENCIAS_MANUAL_MARCA.md`
-- Sugerencias basadas en el manual de marca
-- Uso correcto de logos
-- Colores institucionales
-- Tipografía corporativa
-
-## 🔗 Navegación
-
-La navegación está implementada en todas las páginas con:
-
-- **Navbar fijo**: Se mantiene visible al hacer scroll
-- **Menú responsive**: Adaptado para móvil, tablet y desktop
-- **Enlaces internos**: Entre programas relacionados
-- **Logo institucional**: Logo horizontal del GORE Maule
 
 ## 🎯 Convenciones de Nomenclatura
 
@@ -349,6 +335,7 @@ La navegación está implementada en todas las páginas con:
 - **IDs**: camelCase (ej: `searchForm`)
 - **Variables JavaScript**: camelCase (ej: `userwayBtn`)
 - **Módulos CSS**: snake_case con prefijo `_` (ej: `_variables.css`)
+- **Módulos JS**: PascalCase (ej: `ModalManager.js`)
 
 ## 📱 Responsive Design
 
@@ -377,9 +364,20 @@ Todas las páginas son completamente responsive:
 - Vanilla JavaScript (sin dependencias)
 - ES6+ sintaxis
 - Módulos con IIFE
+- Namespace global: `window.MaulePro`
 - LocalStorage para persistencia
 - Intersection Observer API
-- Arquitectura modular (componentes, config, utils, modules)
+- Arquitectura modular (20+ archivos)
+
+## 📊 Estadísticas del Proyecto
+
+- **Páginas HTML**: 11+
+- **Módulos CSS**: 7
+- **Módulos JavaScript**: 20+
+- **Componentes**: 1 (BaseComponent)
+- **Utilidades**: 7 módulos
+- **Imágenes**: 10+ variantes centralizadas
+- **Reducción de código**: ~45.5% en `script.js` (946 → 515 líneas)
 
 ## 🚀 Flujo de Desarrollo
 
@@ -396,24 +394,10 @@ Todas las páginas son completamente responsive:
 - El JavaScript está modularizado en `assets/js/modules/`
 - No hay sistema de build - archivos estáticos directos
 - Las dependencias se cargan desde CDN
-- Logos del manual de marca disponibles en `assets/images/`
-- Manual de marca disponible en `RV_ Manual de marca actualizado/`
+- Todas las imágenes están en `assets/images/`
+- Namespace global: `window.MaulePro` para organización
 
-## 🎨 Manual de Marca
+---
 
-El proyecto incluye el manual de marca del Gobierno Regional del Maule:
-
-- **Ubicación**: `RV_ Manual de marca actualizado/`
-- **Logos**: Disponibles en múltiples variantes (horizontal, blanco, negro)
-- **PDF**: `MANUAL CORPORATIVO (2).pdf`
-- **Implementación**: Logos movidos a `assets/images/` y referencias actualizadas
-
-## 📊 Estadísticas del Proyecto
-
-- **Páginas HTML**: 11
-- **Módulos CSS**: 7
-- **Módulos JavaScript**: 3
-- **Componentes**: 1 (BaseComponent)
-- **Utilidades**: 20+ funciones
-- **Logos**: 4 variantes
-- **Reducción de código**: ~58.6% después de refactorización
+**Última actualización**: Noviembre 2025  
+**Versión**: 2.0
