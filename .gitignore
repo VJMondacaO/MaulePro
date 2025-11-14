@@ -1,22 +1,16 @@
-# Sistema Operativo
+# macOS
 .DS_Store
 .DS_Store?
 ._*
 .Spotlight-V100
 .Trashes
-ehthumbs.db
-Thumbs.db
-Desktop.ini
 
-# Editores
+# IDEs
 .vscode/
 .idea/
 *.swp
 *.swo
 *~
-.project
-.classpath
-.settings/
 
 # Logs
 *.log
@@ -24,38 +18,9 @@ npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 
-# Archivos temporales
-*.tmp
-*.temp
-*.bak
-*.backup
-
-# Node modules (si se usa en el futuro)
+# Dependencies
 node_modules/
-package-lock.json
-yarn.lock
 
-# Python
-__pycache__/
-*.py[cod]
-*$py.class
-*.so
-.Python
-env/
-venv/
-ENV/
-.venv
-
-# Servidor local
-.python-version
-
-# Archivos de configuración local
-.env
-.env.local
-config.local.js
-
-# Build (si se agrega en el futuro)
+# Build
 dist/
 build/
-*.min.js
-*.min.css
