@@ -74,8 +74,71 @@
         </div>
     </nav>
 
+    <!-- Banner Informativo con Carrusel -->
+    <div id="infoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
+        <button type="button" class="carousel-close-btn d-flex align-items-center justify-content-center" id="carouselCloseBtn" aria-label="Cerrar banner">
+            <i class="bi bi-x-lg"></i>
+        </button>
+        <div class="carousel-inner">
+            <div class="carousel-item active banner-pastel-verde">
+                <div class="container py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-info-circle me-2"></i>Convocatorias Abiertas</h5>
+                            <p class="mb-0 small text-dark">PROYECTOS MENORES A 5.000 UTM y Subvenciones FNDR 8% están recibiendo postulaciones. Revisa los requisitos y plazos.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                            <a href="../../index.html#programas" class="btn btn-dark btn-sm"><i class="bi bi-arrow-right me-1"></i>Ver Programas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item banner-pastel-ocre">
+                <div class="container py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-calendar-check me-2"></i>Plazos Importantes</h5>
+                            <p class="mb-0 small text-dark">PROYECTOS MENORES A 5.000 UTM cierra el 30 de noviembre de 2025.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                            <a href="../../index.html#programas" class="btn btn-dark btn-sm"><i class="bi bi-clock me-1"></i>Ver Fechas</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="carousel-item banner-pastel-azul">
+                <div class="container py-2">
+                    <div class="row align-items-center">
+                        <div class="col-md-8">
+                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-file-earmark-text me-2"></i>Documentación Requerida</h5>
+                            <p class="mb-0 small text-dark">Asegúrate de tener todos los documentos necesarios antes de postular. Descarga los instructivos y manuales de cada programa.</p>
+                        </div>
+                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
+                            <a href="../../index.html#programas" class="btn btn-dark btn-sm"><i class="bi bi-download me-1"></i>Descargar</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#infoCarousel" data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Anterior</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#infoCarousel" data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Siguiente</span>
+        </button>
+    </div>
+
     <!-- Main Content -->
     <main class="container my-4">
+        <!-- Botón Volver -->
+        <div class="mb-3">
+            <a href="../../index.html" class="btn btn-outline-secondary rounded-pill">
+                <i class="bi bi-chevron-left me-1"></i> Volver
+            </a>
+        </div>
+        
         <section class="bg-white border border-2 border-secondary p-4 p-md-5 mb-4">
             <h1 class="h2 fw-bold text-institucional mb-4 pb-3 border-bottom border-4 border-institucional">Subvenciones para actividades FNDR 8%</h1>
             <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-4 mb-4">
@@ -117,24 +180,92 @@
     </div>
 
     <!-- Footer -->
-    <footer class="footer-version text-white py-3 mt-5">
-        <div class="container-fluid">
-            <div class="row align-items-center">
-                <div class="col-md-6 d-flex align-items-center gap-3">
-                    <div class="version-info">
-                        <div class="version-bars d-flex gap-1">
-                            <div class="version-bar version-bar-blue"></div>
-                            <div class="version-bar version-bar-red"></div>
-                        </div>
-                    </div>
+    <footer class="footer-version text-white py-4 mt-5">
+        <div class="container-fluid footer-content">
+            <div class="row g-4 align-items-center">
+                <!-- Logo GORE a la izquierda -->
+                <div class="col-12 col-md-4 col-lg-2 mb-3 mb-md-0">
+                    <img src="../../assets/images/logo-gore-blanco.png" alt="Gobierno Regional del Maule" class="footer-logo-gore">
+                </div>
+                
+                <!-- Columna 1: Información Institucional -->
+                <div class="col-md-6 col-lg-2">
+                    <h6 class="fw-bold mb-3">Gobierno Regional del Maule</h6>
+                    <p class="mb-2 small">Talca, Región del Maule</p>
+                    <p class="mb-0 small">1 Norte N°711</p>
+                </div>
+                
+                <!-- Columna 2: Ayuda -->
+                <div class="col-md-6 col-lg-2">
+                    <h6 class="fw-bold mb-3">Ayuda</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">
+                            <a href="../../pages/preguntas-frecuentes.html" class="text-white text-decoration-none small">Preguntas Frecuentes</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="#" class="text-white text-decoration-none small">Términos y Condiciones</a>
+                        </li>
+                    </ul>
+                </div>
+                
+                <!-- Columna 3: Horarios -->
+                <div class="col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Nuestros horarios</h6>
+                    <p class="mb-2 small">Lunes a Jueves de 08:30 a 17:30 hrs.</p>
+                    <p class="mb-0 small">Viernes de 08:30 a 16:30 hrs.</p>
+                </div>
+                
+                <!-- Columna 4: Contáctanos -->
+                <div class="col-md-6 col-lg-3">
+                    <h6 class="fw-bold mb-3">Contáctanos</h6>
+                    <ul class="list-unstyled mb-0">
+                        <li class="mb-2">
+                            <a href="tel:+56964050080" class="text-white text-decoration-none small">+56 9 0000 0000</a>
+                        </li>
+                        <li class="mb-2">
+                            <a href="tel:+56964050057" class="text-white text-decoration-none small">+56 9 0000 0000</a>
+                        </li>
+                    </ul>
                 </div>
             </div>
         </div>
+        <!-- Línea roja inferior -->
+        <div class="footer-red-line"></div>
     </footer>
+
+    <!-- Toast confirmación Avisarme -->
+    <div class="position-fixed bottom-0 end-0 p-3" style="z-index:1080">
+        <div id="toastAviso" class="toast align-items-center text-bg-success border-0" role="status" aria-live="polite" aria-atomic="true">
+            <div class="d-flex">
+                <div class="toast-body">Te avisaremos cuando la convocatoria se abra. Revisa tu correo.</div>
+                <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast" aria-label="Cerrar"></button>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap 5 JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <!-- MaulePro Core Modules (cargar primero) -->
+    <script src="../../assets/js/utils/Logger.js"></script>
+    <script src="../../assets/js/utils/DeadlineManager.js"></script>
+    <script src="../../assets/js/utils/AccessibilityManager.js"></script>
+    <script src="../../assets/js/data/programas.js"></script>
+    <script src="../../assets/js/utils/debounce.js"></script>
+    <!-- MaulePro Module Managers -->
+    <script src="../../assets/js/modules/modals/ModalManager.js"></script>
+    <script src="../../assets/js/modules/forms/FormManager.js"></script>
+    <script src="../../assets/js/modules/search/ModalSearch.js"></script>
+    <!-- MaulePro Search Modules -->
+    <script src="../../assets/js/modules/search/FilterEngine.js"></script>
+    <script src="../../assets/js/modules/search/SortEngine.js"></script>
+    <script src="../../assets/js/modules/search/CardRenderer.js"></script>
+    <script src="../../assets/js/modules/search/SearchManager.js"></script>
+    <!-- MaulePro Main Script -->
     <script src="../../assets/js/script.js"></script>
+    <!-- MaulePro Modules -->
+    <script src="../../assets/js/modules/carousel.js" defer></script>
+    <script src="../../assets/js/modules/filters.js" defer></script>
+    <script src="../../assets/js/modules/userway.js" defer></script>
     
     <!-- UserWay Accessibility Widget -->
     <script>
