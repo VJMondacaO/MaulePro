@@ -68,10 +68,14 @@
 .hero * h3,
 .hero * h4,
 .hero * h5,
-.hero * h6 {
+.hero * h6,
+.hero p.lead {
     hyphens: none !important;
     -webkit-hyphens: none !important;
     -ms-hyphens: none !important;
+    word-break: normal !important;
+    overflow-wrap: normal !important;
+    word-wrap: normal !important;
 }
 
 .hero .rounded-circle {
