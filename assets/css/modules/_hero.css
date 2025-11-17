@@ -6,6 +6,7 @@
     background: linear-gradient(180deg, #fff 0%, var(--black-10) 100%);
     border: 1px solid var(--gov-border);
     border-radius: 1rem;
+    margin-top: 1.5rem;
 }
 
 .hero .bg-light {
