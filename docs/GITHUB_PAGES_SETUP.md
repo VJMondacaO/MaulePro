@@ -3,7 +3,7 @@
 ## ✅ Archivos Necesarios
 
 ### `.nojekyll`
-Archivo creado en la raíz del proyecto para deshabilitar Jekyll en GitHub Pages.
+✅ Archivo creado en la raíz del proyecto para deshabilitar Jekyll en GitHub Pages. Esto permite servir los archivos HTML estáticos directamente sin procesamiento.
 
 ### `.gitignore`
 Archivo creado para ignorar archivos del sistema operativo y dependencias.
@@ -100,5 +100,11 @@ Después de desplegar, verificar:
 
 ---
 
-**Última actualización**: Noviembre 2025
+## 📝 Nota sobre Jekyll
+
+Este proyecto usa `.nojekyll` para servir archivos estáticos directamente. Los archivos `_config.yml` y `Gemfile` están presentes pero **no se usarán** debido a `.nojekyll`. Si en el futuro quieres usar Jekyll, simplemente elimina el archivo `.nojekyll`.
+
+---
+
+**Última actualización**: Diciembre 2025
 
