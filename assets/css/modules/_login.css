@@ -1,0 +1,391 @@
+/* ============================================
+   Login Page Styles
+   Diseño moderno y profesional para página de login
+   ============================================ */
+
+/* Main Wrapper */
+.login-main-wrapper {
+    background: linear-gradient(135deg, #f5f7fa 0%, #e3f2fd 100%);
+    min-height: calc(100vh - 200px);
+    padding: 2rem 0;
+}
+
+@media (min-width: 768px) {
+    .login-main-wrapper {
+        padding: 3rem 0;
+    }
+}
+
+.min-vh-75 {
+    min-height: 75vh;
+}
+
+/* Login Card */
+.login-card {
+    background: #ffffff;
+    border-radius: 1.5rem;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.1);
+    padding: 2.5rem;
+    transition: all 0.3s ease;
+}
+
+.login-card:hover {
+    box-shadow: 0 15px 50px rgba(0, 0, 0, 0.15);
+}
+
+@media (max-width: 767.98px) {
+    .login-card {
+        padding: 1.5rem;
+        border-radius: 1rem;
+    }
+}
+
+/* Login Header */
+.login-header {
+    padding-bottom: 1.5rem;
+    border-bottom: 2px solid #f0f0f0;
+    text-align: center;
+}
+
+.claveunica-logo-wrapper {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.claveunica-logo-large {
+    width: 240px;
+    height: 240px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+    transition: transform 0.3s ease;
+}
+
+.claveunica-logo-large:hover {
+    transform: scale(1.05);
+}
+
+.login-title {
+    font-size: 2rem;
+    font-weight: 700;
+    color: var(--gobierno-azul-oscuro);
+    letter-spacing: -0.02em;
+    text-align: center;
+}
+
+.login-subtitle {
+    font-size: 1rem;
+    margin-bottom: 0;
+    text-align: center;
+}
+
+@media (max-width: 767.98px) {
+    .login-title {
+        font-size: 1.5rem;
+    }
+    
+    .claveunica-logo-large {
+        width: 180px;
+        height: 180px;
+    }
+}
+
+/* Login Tabs */
+.login-tabs {
+    border-bottom: 2px solid #f0f0f0;
+    margin-bottom: 2rem;
+}
+
+.login-tabs .nav-link {
+    border: none;
+    border-radius: 0.75rem 0.75rem 0 0;
+    padding: 1rem 1.5rem;
+    font-weight: 600;
+    color: #6c757d;
+    background: transparent;
+    transition: all 0.3s ease;
+    position: relative;
+}
+
+.login-tabs .nav-link:hover {
+    color: var(--institucional-azul);
+    background: rgba(0, 102, 204, 0.05);
+}
+
+.login-tabs .nav-link.active {
+    color: var(--institucional-azul);
+    background: transparent;
+    border-bottom: 3px solid var(--institucional-azul);
+}
+
+.login-tabs .nav-link.active::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    right: 0;
+    height: 2px;
+    background: var(--institucional-azul);
+}
+
+@media (max-width: 575.98px) {
+    .login-tabs .nav-link {
+        padding: 0.75rem 1rem;
+        font-size: 0.9rem;
+    }
+}
+
+/* Login Form */
+.login-form {
+    padding: 0.5rem 0;
+}
+
+.login-form .form-floating {
+    position: relative;
+}
+
+.login-form .form-floating > label {
+    color: #6c757d;
+    font-weight: 500;
+    padding-left: 0.75rem;
+}
+
+.login-form .form-control {
+    border: 2px solid #e0e0e0;
+    border-radius: 0.75rem;
+    padding: 1rem 0.75rem;
+    font-size: 1rem;
+    transition: all 0.3s ease;
+    background: #fafafa;
+}
+
+.login-form .form-control:focus {
+    border-color: var(--institucional-azul);
+    background: #ffffff;
+    box-shadow: 0 0 0 4px rgba(0, 102, 204, 0.1);
+    outline: none;
+}
+
+.login-form .form-control:focus ~ label,
+.login-form .form-control:not(:placeholder-shown) ~ label {
+    color: var(--institucional-azul);
+    transform: scale(0.85) translateY(-0.5rem) translateX(0.15rem);
+}
+
+.login-form .form-floating > .form-control:focus ~ label::after {
+    background: #ffffff;
+}
+
+/* Submit Button */
+.login-submit-btn {
+    background: linear-gradient(135deg, var(--institucional-azul) 0%, #0052CC 100%);
+    border: none;
+    padding: 1rem 2rem;
+    font-weight: 700;
+    font-size: 1.1rem;
+    letter-spacing: 0.5px;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 102, 204, 0.3);
+}
+
+.login-submit-btn:hover {
+    background: linear-gradient(135deg, #0052CC 0%, var(--gobierno-azul-oscuro) 100%);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 102, 204, 0.4);
+}
+
+.login-submit-btn:active {
+    transform: translateY(0);
+}
+
+/* ClaveÚnica Button */
+.btn-claveunica {
+    background: #ffffff;
+    border: 2px solid #e0e0e0;
+    color: #333;
+    padding: 1.5rem 2.5rem;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border-radius: 0.75rem;
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 80px;
+}
+
+.btn-claveunica:hover {
+    border-color: var(--institucional-azul);
+    background: rgba(0, 102, 204, 0.05);
+    color: var(--institucional-azul);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(0, 102, 204, 0.15);
+}
+
+.claveunica-btn-icon {
+    width: 180px;
+    height: 180px;
+    object-fit: contain;
+}
+
+/* Divider */
+.login-divider {
+    position: relative;
+    text-align: center;
+    margin: 2rem 0;
+}
+
+.login-divider::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: #e0e0e0;
+}
+
+.login-divider span {
+    position: relative;
+    background: #ffffff;
+    padding: 0 1rem;
+    color: #6c757d;
+    font-size: 0.875rem;
+}
+
+/* Info Box */
+.login-info-box {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    border-left: 4px solid var(--institucional-azul);
+    border-radius: 0.5rem;
+    padding: 1.25rem;
+}
+
+/* Alert Styles */
+.login-form .alert {
+    border-radius: 0.75rem;
+    border: none;
+    padding: 1rem 1.25rem;
+    font-size: 0.95rem;
+}
+
+.login-form .alert-danger {
+    background: #fee;
+    color: #c33;
+    border-left: 4px solid #dc3545;
+}
+
+.login-form .alert-info {
+    background: #e3f2fd;
+    color: #1565c0;
+    border-left: 4px solid var(--institucional-azul);
+}
+
+/* Help Section */
+.login-help-section {
+    padding: 1.5rem;
+    background: rgba(255, 255, 255, 0.7);
+    border-radius: 1rem;
+    backdrop-filter: blur(10px);
+}
+
+.login-help-section a {
+    color: var(--institucional-azul);
+    font-weight: 600;
+    transition: all 0.2s ease;
+}
+
+.login-help-section a:hover {
+    color: var(--gobierno-azul-oscuro);
+    text-decoration: underline;
+}
+
+/* Responsive Adjustments */
+@media (max-width: 991.98px) {
+    .login-card {
+        margin: 0 1rem;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .login-main-wrapper {
+        padding: 1rem 0;
+    }
+    
+    .login-card {
+        padding: 1.25rem;
+    }
+    
+    .login-title {
+        font-size: 1.35rem;
+    }
+    
+    .login-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .login-form .form-control {
+        padding: 0.875rem 0.75rem;
+        font-size: 0.95rem;
+    }
+    
+    .login-submit-btn {
+        padding: 0.875rem 1.5rem;
+        font-size: 1rem;
+    }
+}
+
+/* Animations */
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.login-card {
+    animation: fadeInUp 0.5s ease-out;
+}
+
+.tab-pane {
+    animation: fadeInUp 0.3s ease-out;
+}
+
+/* Focus States for Accessibility */
+.login-form .form-control:focus-visible,
+.btn-claveunica:focus-visible,
+.login-submit-btn:focus-visible {
+    outline: 3px solid var(--institucional-azul-claro);
+    outline-offset: 2px;
+}
+
+/* Loading State */
+.login-form.loading .login-submit-btn {
+    position: relative;
+    color: transparent;
+}
+
+.login-form.loading .login-submit-btn::after {
+    content: '';
+    position: absolute;
+    width: 20px;
+    height: 20px;
+    top: 50%;
+    left: 50%;
+    margin-left: -10px;
+    margin-top: -10px;
+    border: 3px solid rgba(255, 255, 255, 0.3);
+    border-radius: 50%;
+    border-top-color: #ffffff;
+    animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+    to { transform: rotate(360deg); }
+}
+
