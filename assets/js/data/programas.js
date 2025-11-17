@@ -99,7 +99,7 @@
             beneficiarios: "Servicios públicos",
             fechas: "Sin convocatoria vigente",
             montos: "Variables",
-            link: "pages/financiamiento-programas.html",
+            link: "pages/programas/financiamiento-programas.html",
             hasDeadline: false,
             deadlineUrgent: false
         },
