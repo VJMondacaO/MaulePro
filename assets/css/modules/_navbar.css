@@ -3,15 +3,17 @@
    ============================================ */
 
 .navbar {
-    position: relative;
-    width: 100vw;
-    max-width: 100vw;
-    margin-left: calc(50% - 50vw);
-    margin-right: calc(50% - 50vw);
-    padding-left: 0 !important;
-    padding-right: 0 !important;
+    position: fixed;
+    top: 0;
     left: 0;
     right: 0;
+    width: 100%;
+    max-width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    padding-left: 0 !important;
+    padding-right: 0 !important;
+    z-index: 1030;
     box-sizing: border-box;
 }
 

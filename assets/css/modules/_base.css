@@ -24,6 +24,20 @@ body {
     position: relative;
     overflow-x: hidden;
     padding: 0 var(--body-padding);
+    padding-top: 76px;
+}
+
+/* Ajuste del padding-top para navbar fijo en diferentes tamaños de pantalla */
+@media (max-width: 991.98px) {
+    body {
+        padding-top: 70px;
+    }
+}
+
+@media (max-width: 575.98px) {
+    body {
+        padding-top: 65px;
+    }
 }
 
 /* Márgenes laterales para el contenido principal */
@@ -157,8 +171,11 @@ th {
 
 /* Permitir que el navbar se extienda completamente */
 body > .navbar {
-    margin-left: calc(-1 * var(--body-padding));
-    margin-right: calc(-1 * var(--body-padding));
+    margin-left: 0;
+    margin-right: 0;
+    left: 0;
+    right: 0;
+    width: 100vw;
 }
 
 /* Ocultar scrollbar visualmente pero mantener funcionalidad */
