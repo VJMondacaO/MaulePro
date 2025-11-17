@@ -24,7 +24,7 @@ MaulePro es un portal web que permite a usuarios acceder a las líneas de financ
 ### Requisitos
 
 - Navegador moderno (Chrome, Firefox, Safari, Edge)
-- Servidor local (opcional pero recomendado)
+- Servidor local (opcional, solo necesario para desarrollo con Live Server)
 
 ### Instalación
 
@@ -113,11 +113,18 @@ MaulePro/
 │   │       ├── date.js
 │   │       └── debounce.js
 │   └── images/                  # Imágenes
-│       ├── logo-gore-blanco-nuevo.png
-│       ├── logo-diseño-sin-titulo.png
-│       ├── logo-gore-blanco.png
-│       ├── claveunica-icon.svg
-│       └── ...
+│       ├── favicon.png
+│       ├── icon-claveunica.png
+│       ├── icon-claveunica.svg
+│       ├── logo-gore-blanco-horizontal.png
+│       ├── logo-gore-footer-blanco.png
+│       ├── logo-gore-horizontal-blanco.png
+│       ├── logo-gore-horizontal-manual.png
+│       ├── logo-gore-horizontal.png
+│       ├── logo-gore-negro.png
+│       ├── logo-gore-vertical-blanco.png
+│       ├── logo-gore.png
+│       └── Logo.png
 │
 ├── pages/                        # Subpáginas del portal
 │   ├── programas/                # Páginas de programas
@@ -164,10 +171,11 @@ MaulePro/
 
 ### Logos
 
-- **Logo Blanco Nuevo**: Para navbar móvil
-- **Logo Diseño Sin Título**: Para navbar desktop (horizontal)
-- **Logo Blanco**: Para footer y fondos oscuros
-- **ClaveÚnica**: Icono SVG para autenticación
+- **logo-gore-vertical-blanco.png**: Para navbar móvil
+- **logo-gore-horizontal-blanco.png**: Para navbar desktop (horizontal)
+- **logo-gore-footer-blanco.png**: Para footer
+- **icon-claveunica.svg**: Icono SVG para autenticación
+- **favicon.png**: Favicon del sitio
 
 ### Componentes
 
