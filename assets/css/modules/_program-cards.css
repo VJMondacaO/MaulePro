@@ -101,9 +101,14 @@
     line-height: 1.4;
     margin: 0.5rem 0 0 0;
     color: rgba(255, 255, 255, 0.9);
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-    hyphens: auto;
+    word-wrap: normal !important;
+    overflow-wrap: normal !important;
+    word-break: normal !important;
+    hyphens: none !important;
+    white-space: normal;
+    overflow: visible;
+    max-width: 100%;
+    text-align: left;
 }
 
 /* Program Card Body */
