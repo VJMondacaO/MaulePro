@@ -133,69 +133,371 @@
         </button>
     </div>
 
-    <!-- Main Content -->
-    <main class="container my-4">
-        <!-- Botón Volver -->
-        <div class="mb-3">
-            <a href="../../index.html" class="btn btn-outline-secondary rounded-pill">
+    <main role="main">
+        <section class="pt-0 pb-0">
+            <!-- Hero Section con Info del Programa -->
+            <section class="bg-azul bg-01">
+                <div class="container-fluid hero-content-wrapper">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-12 mb-4 mb-lg-0">
+                            <div class="hero-volver-wrapper">
+                                <a href="../../index.html" class="btn btn-outline-light rounded-pill">
                 <i class="bi bi-chevron-left me-1"></i> Volver
             </a>
+                            </div>
         </div>
         
-        <section class="bg-white border border-2 border-secondary p-4 p-md-5 mb-4">
-            <h1 class="h2 fw-bold text-institucional mb-4 pb-3 border-bottom border-4 border-institucional">CIRCULAR 33</h1>
-            
-            <h2 class="h4 fw-bold text-institucional mb-3">I.- DESCRIPCIÓN GENERAL</h2>
+                        <div class="col-lg-10 col-md-12 text-white">
+                            <div class="d-block d-md-flex mb-4 align-items-center flex-wrap gap-2">
+                                <div class="me-3 mb-2">
+                                    <span class="bg-rojo me-3 rounded-pill px-2 py-1">CERRADO</span>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="categoria-badge-small">Infraestructura y equipamiento</span>
+                                </div>
+                            </div>
+                            <div class="hero-main-content">
+                                <h1 class="h2 mb-3">CIRCULAR 33</h1>
             <div class="mb-4">
-                <p class="text-muted">El presente Instructivo regula el procedimiento de evaluación y ejecución de proyectos que tienen como objetivo la Adquisición de Activos No financieros y las Conservaciones de Infraestructura Pública, que son regulados por la Circular N° 33 de 13.07.2009 del Ministerio de Hacienda y sus modificaciones, y que son financiados con cargo al Fondo Nacional de Desarrollo Regional F.N.D.R., contemplado en la Ley de Presupuestos del sector público.</p>
+                                    <p class="mb-0">Este fondo busca financiar la adquisición de activos no financieros y la conservación de infraestructura pública con cargo al F.N.D.R., permitiendo así renovar el equipamiento operativo y mantener las obras civiles esenciales de la región. Las entidades públicas autorizadas, tales como municipalidades y servicios regionales, podrán postular sus iniciativas durante todo el año a través de la plataforma digital Maule Pro, optando a dos líneas de inversión que abarcan desde la compra de vehículos, maquinaria y equipos, hasta reparaciones de edificios y pavimentos que no superen el 30% del costo de reposición del activo.</p>
             </div>
             
-            <h2 class="h4 fw-bold text-institucional mb-3">II.- DEFINICIONES</h2>
+                                <div class="d-block d-md-flex justify-content-start align-items-start gap-4 mb-4">
+                                    <div>
+                                        <small class="d-block mb-1 text-white-50">Invita:</small>
+                                        <span class="bg-rosa text-dark rounded px-2 py-1 d-inline-block">Gobierno Regional del Maule</span>
+                                    </div>
+                                    <div>
+                                        <small class="d-block mb-1 text-white-50">Alcance:</small>
+                                        <span class="bg-rosa text-dark rounded px-2 py-1 d-inline-block">Regional</span>
+                                    </div>
+                                    <div>
+                                        <small class="d-block mb-1 text-white-50">Categoría:</small>
+                                        <span class="bg-rosa text-dark rounded px-2 py-1 d-inline-block">Infraestructura y equipamiento</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button type="button" class="btn btn-primary btn-lg rounded-pill btn-postular" disabled>Postular</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detalles del fondo -->
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2>Detalles del fondo</h2>
+                        </div>
+                    </div>
+                    <!-- Escritorio -->
+                    <div id="detalles-collap" class="d-none d-md-block">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center p-4 d-grid">
+                                        <h3 class="mb-2 fs-5">Modalidad de postulación</h3>
+                                        <p class="h4 text-danger mb-2">
+                                            <i class="bi bi-laptop me-2"></i> Online
+                                        </p>
+                                        <hr>
+                                        <button class="btn btn-outline-primary collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse01" aria-expanded="false" aria-controls="flush-collapse01">
+                                            <span class="vermas">Ver más <i class="bi bi-chevron-down"></i></span>
+                                            <span class="vermenos">Ver menos <i class="bi bi-chevron-up"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center p-4 d-grid">
+                                        <h3 class="mb-2 fs-5">Tipo de Postulante</h3>
+                                        <p class="h4 text-danger mb-2">
+                                            <i class="bi bi-people-fill me-2"></i> Entidades Públicas
+                                        </p>
+                                        <hr>
+                                        <button class="btn btn-outline-primary collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse02" aria-expanded="false" aria-controls="flush-collapse02">
+                                            <span class="vermas">Ver más <i class="bi bi-chevron-down"></i></span>
+                                            <span class="vermenos">Ver menos <i class="bi bi-chevron-up"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center p-4 d-grid">
+                                        <h3 class="mb-2 fs-5">Tipo de Financiamiento</h3>
+                                        <p class="h4 text-danger mb-2">
+                                            <i class="bi bi-cash-stack me-2"></i> FNDR
+                                        </p>
+                                        <hr>
+                                        <button class="btn btn-outline-primary collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse03" aria-expanded="false" aria-controls="flush-collapse03">
+                                            <span class="vermas">Ver más <i class="bi bi-chevron-down"></i></span>
+                                            <span class="vermenos">Ver menos <i class="bi bi-chevron-up"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="accordion accordion-flush" id="accordionEsc">
+                                    <div id="flush-collapse01" class="accordion-collapse collapse" aria-labelledby="flush-heading01" data-bs-parent="#accordionEsc">
+                                        <div class="row flecha">
+                                            <div class="col-4 text-center">
+                                                <i class="bi bi-caret-up-fill text-secondary fs-1"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body p-md-5 p-3 border border-secondary rounded-3">
+                                                <h3>Modalidad de postulación: <span class="text-danger">Online</span></h3>
+                                                <div>Todas las iniciativas deben ingresarse a través de la plataforma digital Maule Pro, accesible desde el sitio web del Gobierno Regional.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="flush-collapse02" class="accordion-collapse collapse" aria-labelledby="flush-heading02" data-bs-parent="#accordionEsc">
+                                        <div class="row flecha">
+                                            <div class="offset-sm-4 col-4 text-center">
+                                                <i class="bi bi-caret-up-fill text-secondary fs-1"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body p-md-5 p-3 border border-secondary rounded-3">
+                                                <h3>Tipo de Postulante: <span class="text-danger">Entidades Públicas</span></h3>
+                                                <div>Pueden postular Municipalidades, Servicios Públicos, Bomberos, Carabineros, PDI, Gendarmería y las Fuerzas Armadas.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="flush-collapse03" class="accordion-collapse collapse" aria-labelledby="flush-heading03" data-bs-parent="#accordionEsc">
+                                        <div class="row flecha">
+                                            <div class="offset-sm-8 col-4 text-center">
+                                                <i class="bi bi-caret-up-fill text-secondary fs-1"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body p-md-5 p-3 border border-secondary rounded-3">
+                                                <h3>Tipo de Financiamiento: <span class="text-danger">FNDR</span></h3>
+                                                <div>El financiamiento corresponde al Fondo Nacional de Desarrollo Regional (F.N.D.R.) bajo la Circular 33 del Ministerio de Hacienda, para proyectos de adquisición de activos no financieros y conservación de infraestructura pública.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Mobile -->
+                    <div id="detalles-collap" class="d-block d-md-none">
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="accordion accordion-flush" id="accordionMob">
+                                    <div class="accordion-item mb-4 rounded-3">
+                                        <h4 class="accordion-header" id="headingMob01">
+                                            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMob01" aria-expanded="false" aria-controls="flush-collapseMob01">
+                                                <i class="bi bi-laptop me-2"></i> Modalidad de postulación: <span class="text-danger ms-1">Online</span>
+                                            </button>
+                                        </h4>
+                                        <div id="flush-collapseMob01" class="accordion-collapse collapse" aria-labelledby="headingMob01" data-bs-parent="#accordionMob">
+                                            <div class="card">
+                                                <div class="card-body p-4 rounded-3">
+                                                    <h3>Modalidad de postulación: <span class="text-danger">Online</span></h3>
+                                                    <div>Todas las iniciativas deben ingresarse a través de la plataforma digital Maule Pro, accesible desde el sitio web del Gobierno Regional.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-4 rounded-3">
+                                        <h4 class="accordion-header" id="headingMob02">
+                                            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMob02" aria-expanded="false" aria-controls="flush-collapseMob02">
+                                                <i class="bi bi-people-fill me-2"></i> Tipo de Postulante: <span class="text-danger ms-1">Entidades Públicas</span>
+                                            </button>
+                                        </h4>
+                                        <div id="flush-collapseMob02" class="accordion-collapse collapse" aria-labelledby="headingMob02" data-bs-parent="#accordionMob">
+                                            <div class="card">
+                                                <div class="card-body p-4 rounded-3">
+                                                    <h3>Tipo de Postulante: <span class="text-danger">Entidades Públicas</span></h3>
+                                                    <div>Pueden postular Municipalidades, Servicios Públicos, Bomberos, Carabineros, PDI, Gendarmería y las Fuerzas Armadas.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-4 rounded-3">
+                                        <h4 class="accordion-header" id="headingMob03">
+                                            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMob03" aria-expanded="false" aria-controls="flush-collapseMob03">
+                                                <i class="bi bi-cash-stack me-2"></i> Tipo de Financiamiento: <span class="text-danger">FNDR</span>
+                                            </button>
+                                        </h4>
+                                        <div id="flush-collapseMob03" class="accordion-collapse collapse" aria-labelledby="headingMob03" data-bs-parent="#accordionMob">
+                                            <div class="card">
+                                                <div class="card-body p-4 rounded-3">
+                                                    <h3>Tipo de Financiamiento: <span class="text-danger">FNDR</span></h3>
+                                                    <div>El financiamiento corresponde al Fondo Nacional de Desarrollo Regional (F.N.D.R.) bajo la Circular 33 del Ministerio de Hacienda, para proyectos de adquisición de activos no financieros y conservación de infraestructura pública.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
             
-            <h3 class="h5 fw-bold text-institucional mb-3">ADQUISICIÓN DE ACTIVOS NO FINANCIEROS</h3>
-            <div class="mb-4">
-                <p class="text-muted mb-3">Los activos no financieros correspondientes al subtítulo 29 de la Ley de Presupuesto, corresponden a los gastos para formación de capital y compra de activos físicos existentes. Las instrucciones de la Circular 36 considera la adquisición de activos no financieros siempre y cuando no forme parte de un proyecto de inversión.</p>
-                <p class="text-muted mb-4">Cualquier otra adquisición de activos no financieros, que sean parte integrante de una iniciativa de inversión, deberá atender las indicaciones del Clasificador Presupuestario y del SNI, no debiendo presentarse como iniciativas independientes.</p>
-                
-                <h4 class="h6 fw-bold text-institucional mb-2">Edificios:</h4>
-                <p class="text-muted mb-3">son los gastos por concepto de compra de viviendas, edificios, locales y otros similares.</p>
-                
-                <h4 class="h6 fw-bold text-institucional mb-2">Vehículos:</h4>
-                <p class="text-muted mb-3">Son los gastos por concepto de adquisición de equipos empleados para transportar personas y objetos, e incluye la compra de automóviles, station wagons, furgones, buses, buques, aeronaves, remolques y semirremolques y/o cualquier otro tipo de vehículo motorizado no ligados a proyecto de inversión. Incluye vehículos de tracción animal.</p>
-                
-                <h4 class="h6 fw-bold text-institucional mb-2">Mobiliario y otros:</h4>
-                <p class="text-muted mb-3">Son los gastos por concepto de adquisición de mobiliario de oficinas y de viviendas, muebles de instalaciones educacionales, hospitalarias, policiales, etc. Asimismo, incluye los gastos en otros enseres destinados al funcionamiento de oficinas, casinos, edificaciones y otras instalaciones públicas.</p>
-                
-                <h4 class="h6 fw-bold text-institucional mb-2">Máquinas y Equipos:</h4>
-                <p class="text-muted mb-3">Son los gastos por concepto de adquisición de máquinas, equipos y accesorios para el funcionamiento, producción o mantenimiento que no formen parte de un proyecto. Considera las siguientes asignaciones: Máquinas y Equipos de Oficina, Maquinarias y Equipos para la Producción y otras.</p>
-                
-                <h4 class="h6 fw-bold text-institucional mb-2">Equipos Informáticos:</h4>
-                <p class="text-muted mb-2">Considera las siguientes asignaciones:</p>
-                <p class="text-muted mb-2"><strong>Equipo computacional y Periféricos:</strong> Son los gastos por concepto de adquisición de equipos computacionales y unidades complementarias, tales como: UPS, lectores de cinta impresora, lectoras grabadoras de CD-ROM, etc.</p>
-                <p class="text-muted mb-3"><strong>Equipos de Comunicaciones para Redes Informáticas:</strong> Son los gastos por concepto de adquisición de equipos de comunicaciones, tales como Router, Hub, Firewall, Balanceador de Carga, Scanner de Red, Patch Panel, etc.</p>
-                
-                <h4 class="h6 fw-bold text-institucional mb-2">Programas Informáticos:</h4>
-                <p class="text-muted mb-2">Considera las siguientes asignaciones:</p>
-                <p class="text-muted mb-2"><strong>Programas Computacionales:</strong> Son los gastos por concepto de adquisición de uso software, tales como procesadores de texto, planillas electrónicas, bases de datos, etc.</p>
-                <p class="text-muted mb-0"><strong>Sistemas de Informáticos:</strong> Son los gastos por concepto de software diseñados específicamente o adecuados a las necesidades de la institución, a partir de un producto genérico, o la contratación de un servicio de desarrollo de software del que resulte un producto final, cuya propiedad intelectual pertenecerá a la institución.</p>
+                    <!-- Tabs con detalles -->
+                    <div id="detalles-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card tab-card-integrated">
+                                    <div class="card-body p-0">
+                                        <ul class="nav nav-pills nav-justified tab-nav-integrated" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="pills-02-tab" data-bs-toggle="pill" data-bs-target="#pills-02" type="button" role="tab" aria-controls="pills-02" aria-selected="true">Requisitos</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-03-tab" data-bs-toggle="pill" data-bs-target="#pills-03" type="button" role="tab" aria-controls="pills-03" aria-selected="false">Documentación</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-04-tab" data-bs-toggle="pill" data-bs-target="#pills-04" type="button" role="tab" aria-controls="pills-04" aria-selected="false">Evaluación</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-05-tab" data-bs-toggle="pill" data-bs-target="#pills-05" type="button" role="tab" aria-controls="pills-05" aria-selected="false">Bases</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-06-tab" data-bs-toggle="pill" data-bs-target="#pills-06" type="button" role="tab" aria-controls="pills-06" aria-selected="false">Dudas y consultas</button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content tab-content-integrated" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-02" role="tabpanel" aria-labelledby="pills-02-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Requisitos y Plazos</h3>
+                                                    <div>
+                                                        <div class="requisitos-list">
+                                                            <div class="requisito-item"><strong>Plataforma de Ingreso:</strong> Todas las iniciativas deben ingresarse a través de la plataforma digital Maule Pro, accesible desde el sitio web del Gobierno Regional.</div>
+                                                            <div class="requisito-item"><strong>Periodo de Postulación:</strong> El ingreso de iniciativas se encuentra disponible durante todo el año.</div>
+                                                            <div class="requisito-item"><strong>Formato:</strong> La documentación debe presentarse en hoja tamaño oficio, originales y firmados por la autoridad competente.</div>
+                                                            <div class="requisito-item mb-0"><strong>Normativa de Inclusión:</strong> Los proyectos deben cumplir con las normas sobre igualdad de oportunidades e inclusión social (Leyes 20.422 y 19.284), garantizando accesibilidad universal.</div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-03" role="tabpanel" aria-labelledby="pills-03-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Documentación Requerida</h3>
+                                                    <div>
+                                                        <p class="mb-3">La documentación varía según la tipología del proyecto. A continuación, se detallan los antecedentes obligatorios:</p>
+                                                        
+                                                        <div class="mb-4">
+                                                            <h4 class="h5 mb-3"><strong>A. Para Adquisición de Activos No Financieros</strong></h4>
+                                                            <div class="documentos-list">
+                                                                <div class="documento-item"><strong>Oficio Conductor:</strong> Dirigido a la Gobernadora Regional.</div>
+                                                                <div class="documento-item"><strong>Ficha IDI:</strong> Con todos los datos solicitados por el BIP y el descriptor "Subtítulo 29".</div>
+                                                                <div class="documento-item"><strong>Ficha Resumen (Anexo N°1):</strong> Firmada por el formulador y representante legal.</div>
+                                                                <div class="documento-item"><strong>Diagnóstico:</strong> Según metodología del Anexo N°2.</div>
+                                                                <div class="documento-item"><strong>Especificaciones Técnicas:</strong> Detalladas y firmadas.</div>
+                                                                <div class="documento-item"><strong>Presupuesto Oficial (Anexo N°3):</strong> Desglosado por ítem y en pesos chilenos.</div>
+                                                                <div class="documento-item"><strong>Cotizaciones:</strong> Mínimo tres (3) de proveedores distintos, con vigencia no mayor a 3 meses. También se requiere una cotización o certificado de arriendo.</div>
+                                                                <div class="documento-item"><strong>Cuadro Comparativo (Anexo N°4):</strong> Evaluando atributos (precio, garantía, etc.).</div>
+                                                                <div class="documento-item"><strong>Certificados:</strong></div>
+                                                                <div class="documento-item ms-4">• Baja de Activo (en caso de reposición).</div>
+                                                                <div class="documento-item ms-4">• Gastos de Operación y Mantención (aprobado por Concejo o Servicio).</div>
+                                                                <div class="documento-item ms-4 mb-2">• Impuesto Verde (si aplica).</div>
+                                                                <div class="documento-item"><strong>Cuadro de Dotación Vehicular (Anexo N°5):</strong> Actualizado.</div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="mb-0">
+                                                            <h4 class="h5 mb-3"><strong>B. Para Conservación de Infraestructura</strong></h4>
+                                                            <div class="documentos-list">
+                                                                <div class="documento-item"><strong>Oficio Conductor y Ficha IDI:</strong> El nombre del proyecto debe iniciar con "CONSERVACIÓN".</div>
+                                                                <div class="documento-item"><strong>Ficha Resumen (Anexo N°1).</strong></div>
+                                                                <div class="documento-item"><strong>Diagnóstico:</strong> Según metodología del Anexo N°4.</div>
+                                                                <div class="documento-item"><strong>Especificaciones Técnicas y Carta Gantt:</strong> Coherentes con el presupuesto.</div>
+                                                                <div class="documento-item"><strong>Presupuesto Oficial (Anexo N°2):</strong> Desglosado por partidas.</div>
+                                                                <div class="documento-item"><strong>Certificados de Propiedad:</strong> Dominio vigente, Bien Nacional de Uso Público o Comodato (mínimo 20 años).</div>
+                                                                <div class="documento-item"><strong>Planimetría:</strong> Ubicación, emplazamiento, arquitectura, ingeniería y detalles, firmados por profesionales competentes.</div>
+                                                                <div class="documento-item"><strong>Certificados Técnicos:</strong></div>
+                                                                <div class="documento-item ms-4">• Certificado indicando que la conservación no supera el 30% del valor de reposición.</div>
+                                                                <div class="documento-item ms-4">• Certificado de Vida Útil cumplida.</div>
+                                                                <div class="documento-item ms-4 mb-2">• Certificado de Recepción Municipal de la edificación original.</div>
+                                                                <div class="documento-item mb-0"><strong>Gastos de Operación y Mantención:</strong> Aprobación de los costos futuros.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-04" role="tabpanel" aria-labelledby="pills-04-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Proceso de Evaluación</h3>
+                                                    <div>
+                                                        <p class="mb-3">La evaluación es realizada por la División de Infraestructura y Transportes del Gobierno Regional y consta de dos etapas:</p>
+                                                        
+                                                        <div class="evaluacion-etapa mb-4">
+                                                            <h4 class="mb-3"><strong>1. Admisibilidad</strong></h4>
+                                                            <p class="mb-0">Revisión de que el expediente contenga toda la documentación mínima descrita. Si falta información, el proyecto será declarado "Inadmisible".</p>
                 </div>
             
-            <h3 class="h5 fw-bold text-institucional mb-3">CONSERVACIONES</h3>
-            <div class="mb-4">
-                <p class="text-muted mb-3">Se define como proyectos de mantención aquella "decisión sobre el uso de recursos con el fin de mantener la producción de bienes y servicios. Se materializa por lo general en una obra física. Normalmente su ejecución se financia con gasto de capital o inversión y su operación con gasto corriente o de funcionamiento".</p>
-                <p class="text-muted mb-3">Los proyectos de mantención de infraestructura pública deben crearse en el Banco Integrado de Proyectos (BIP) bajo el proceso de Conservación. De acuerdo a las Instrucciones NIP 2023 el proceso de Conservación se define como "Acción tendiente a mantener los estándares que corresponde a un funcionamiento predeterminado."</p>
-                
-                <p class="text-muted mb-2"><strong>1.</strong> Las obras de reposición de pavimentos y obras anexas, que no afectan la capacidad ni la materialidad de la vía, ni tampoco modifica de manera significativa su geometría. Así mismo se entenderá por obras anexas, en el caso de vías interurbanas, aquellas referidas a obras de arte, señales y elementos de seguridad y las obras de habilitación, reposición y/o mejoramiento del saneamiento de un camino. En el caso de vías urbanas se entenderán por obras anexas a las veredas y soleras. Estas obras anexas podrán ejecutarse en forma independiente de las vías.</p>
-                
-                <p class="text-muted mb-0"><strong>2.</strong> Las obras de "reparaciones menores", correspondientes a aquellas intervenciones de edificación pública cuyo costo total sea menor o igual al 30% del costo total de reponer el activo. En caso contrario, el proyecto debe ingresar al Sistema Nacional de Inversiones (SNI).</p>
+                                                        <div class="evaluacion-etapa mb-4">
+                                                            <h4 class="mb-3"><strong>2. Evaluación Técnica-Económica</strong></h4>
+                                                            <p class="mb-2">Análisis de coherencia y cumplimiento normativo.</p>
+                                                            <div class="evaluacion-list">
+                                                                <div class="evaluacion-item"><strong>Resultado Recomendado (RS):</strong> Proyecto evaluado favorablemente.</div>
+                                                                <div class="evaluacion-item mb-0"><strong>Resultado No Recomendado / Objetado:</strong> Proyecto con observaciones o que no cumple la normativa.</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <div class="notas-importantes">
+                                                            <p class="mb-0">Las iniciativas recomendadas serán presentadas a la Gobernadora Regional o al Consejo Regional para la asignación de financiamiento.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-05" role="tabpanel" aria-labelledby="pills-05-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Bases Legales y Administrativas</h3>
+                                                    <div class="bases-list">
+                                                        <p class="mb-3">Este proceso se rige por las siguientes normativas:</p>
+                                                        <ul class="mb-0">
+                                                            <li><strong>Ley N° 19.175</strong> Orgánica Constitucional sobre Gobierno y Administración Regional.</li>
+                                                            <li><strong>Ley de Presupuestos del Sector Público</strong> vigente.</li>
+                                                            <li><strong>Oficio Circular N° 33</strong> del Ministerio de Hacienda (2009) y sus actualizaciones.</li>
+                                                            <li><strong>Resolución N° 2146</strong> del Gobierno Regional del Maule (Instructivo).</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-06" role="tabpanel" aria-labelledby="pills-06-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Dudas y consultas</h3>
+                                                    <div>
+                                                        <p class="mb-3">Para mayor información sobre el funcionamiento de la plataforma o detalles técnicos de la postulación, diríjase a los canales oficiales:</p>
+                                                        
+                                                        <div class="mb-3">
+                                                            <h4 class="h6 mb-2"><strong>Sitio Web:</strong></h4>
+                                                            <p class="mb-0"><a href="https://www.goremaule.cl" target="_blank" rel="noopener">www.goremaule.cl</a></p>
             </div>
             
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-                <a href="#" class="btn btn-institucional"><i class="bi bi-file-earmark-text me-2"></i>Instructivo</a>
-                <a href="#" class="btn btn-institucional"><i class="bi bi-file-earmark-text me-2"></i>Manual de Postulación</a>
+                                                        <div class="mb-3">
+                                                            <h4 class="h6 mb-2"><strong>Plataforma de Postulación:</strong></h4>
+                                                            <p class="mb-0">Maule Pro</p>
             </div>
             
-            <button class="btn btn-institucional btn-lg w-100"><i class="bi bi-send me-2"></i>Postular aquí</button>
+                                                        <div class="mb-0">
+                                                            <h4 class="h6 mb-2"><strong>Unidad Responsable:</strong></h4>
+                                                            <p class="mb-0">División de Infraestructura y Transportes, Gobierno Regional del Maule.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
 

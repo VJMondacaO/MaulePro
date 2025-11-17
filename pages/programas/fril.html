@@ -133,69 +133,382 @@
         </button>
     </div>
 
-    <!-- Main Content -->
-    <main class="container my-4">
-        <!-- Botón Volver -->
-        <div class="mb-3">
-            <a href="../../index.html" class="btn btn-outline-secondary rounded-pill">
+    <main role="main">
+        <section class="pt-0 pb-0">
+            <!-- Hero Section con Info del Programa -->
+            <section class="bg-azul bg-01">
+                <div class="container-fluid hero-content-wrapper">
+                    <div class="row">
+                        <div class="col-lg-2 col-md-12 mb-4 mb-lg-0">
+                            <div class="hero-volver-wrapper">
+                                <a href="../../index.html" class="btn btn-outline-light rounded-pill">
                 <i class="bi bi-chevron-left me-1"></i> Volver
             </a>
+                            </div>
         </div>
         
-        <section class="bg-white border border border-2 border-secondary p-3 p-md-5 mb-3">
-            <h1 class="h2 fw-bold text-institucional mb-3 pb-3 border-bottom border-4 border-institucional">FONDO REGIONAL DE INICIATIVA LOCAL (FRIL)</h1>
+                        <div class="col-lg-10 col-md-12 text-white">
+                            <div class="d-block d-md-flex mb-4 align-items-center flex-wrap gap-2">
+                                <div class="me-3 mb-2">
+                                    <span class="bg-rojo me-3 rounded-pill px-2 py-1">CERRADO</span>
+                                </div>
+                                <div class="mb-2">
+                                    <span class="categoria-badge-small">Infraestructura y equipamiento</span>
+                                </div>
+                            </div>
+                            <div class="hero-main-content">
+                                <h1 class="h2 mb-3">FONDO REGIONAL DE INICIATIVA LOCAL (FRIL)</h1>
+                                <div class="mb-4">
+                                    <p class="mb-0">El Gobierno Regional del Maule, a través de la Resolución N° 8238, establece el instructivo para la convocatoria 2024 del Fondo Regional de Iniciativa Local (FRIL), financiado con recursos del F.N.D.R., el cual invita exclusivamente a las municipalidades de la región a postular proyectos de infraestructura pública que no superen las 3.000 UTM. Este fondo busca financiar la ejecución, conservación o mantención de obras en áreas claves como servicios básicos, vialidad urbana y rural, espacios públicos y equipamiento comunitario, gestionando todo el proceso de postulación de manera digital a través de la plataforma Maule Pro y exigiendo la ejecución de las obras mediante licitación pública.</p>
+                                </div>
+
+                                <div class="d-block d-md-flex justify-content-start align-items-start gap-4 mb-4">
+                                    <div>
+                                        <small class="d-block mb-1 text-white-50">Invita:</small>
+                                        <span class="bg-rosa text-dark rounded px-2 py-1 d-inline-block">Gobierno Regional del Maule</span>
+                                    </div>
+                                    <div>
+                                        <small class="d-block mb-1 text-white-50">Alcance:</small>
+                                        <span class="bg-rosa text-dark rounded px-2 py-1 d-inline-block">Regional</span>
+                                    </div>
+                                    <div>
+                                        <small class="d-block mb-1 text-white-50">Categoría:</small>
+                                        <span class="bg-rosa text-dark rounded px-2 py-1 d-inline-block">Infraestructura y equipamiento</span>
+                                    </div>
+                                </div>
+                                <div class="mt-4">
+                                    <button type="button" class="btn btn-primary btn-lg rounded-pill btn-postular" disabled>Postular</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Detalles del fondo -->
+            <section>
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <h2>Detalles del fondo</h2>
+                        </div>
+                    </div>
+                    <!-- Escritorio -->
+                    <div id="detalles-collap" class="d-none d-md-block">
+                        <div class="row">
+                            <div class="col-sm-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center p-4 d-grid">
+                                        <h3 class="mb-2 fs-5">Modalidad de postulación</h3>
+                                        <p class="h4 text-danger mb-2">
+                                            <i class="bi bi-laptop me-2"></i> Online
+                                        </p>
+                                        <hr>
+                                        <button class="btn btn-outline-primary collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse01" aria-expanded="false" aria-controls="flush-collapse01">
+                                            <span class="vermas">Ver más <i class="bi bi-chevron-down"></i></span>
+                                            <span class="vermenos">Ver menos <i class="bi bi-chevron-up"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center p-4 d-grid">
+                                        <h3 class="mb-2 fs-5">Tipo de Postulante</h3>
+                                        <p class="h4 text-danger mb-2">
+                                            <i class="bi bi-people-fill me-2"></i> Municipalidades
+                                        </p>
+                                        <hr>
+                                        <button class="btn btn-outline-primary collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse02" aria-expanded="false" aria-controls="flush-collapse02">
+                                            <span class="vermas">Ver más <i class="bi bi-chevron-down"></i></span>
+                                            <span class="vermenos">Ver menos <i class="bi bi-chevron-up"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-sm-4">
+                                <div class="card h-100">
+                                    <div class="card-body text-center p-4 d-grid">
+                                        <h3 class="mb-2 fs-5">Tipo de Financiamiento</h3>
+                                        <p class="h4 text-danger mb-2">
+                                            <i class="bi bi-cash-stack me-2"></i> FNDR
+                                        </p>
+                                        <hr>
+                                        <button class="btn btn-outline-primary collapsed border-0" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapse03" aria-expanded="false" aria-controls="flush-collapse03">
+                                            <span class="vermas">Ver más <i class="bi bi-chevron-down"></i></span>
+                                            <span class="vermenos">Ver menos <i class="bi bi-chevron-up"></i></span>
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="accordion accordion-flush" id="accordionEsc">
+                                    <div id="flush-collapse01" class="accordion-collapse collapse" aria-labelledby="flush-heading01" data-bs-parent="#accordionEsc">
+                                        <div class="row flecha">
+                                            <div class="col-4 text-center">
+                                                <i class="bi bi-caret-up-fill text-secondary fs-1"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body p-md-5 p-3 border border-secondary rounded-3">
+                                                <h3>Modalidad de postulación: <span class="text-danger">Online</span></h3>
+                                                <div>Todas las postulaciones deben realizarse a través de la plataforma digital Maule Pro (www.goremaule.cl).</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="flush-collapse02" class="accordion-collapse collapse" aria-labelledby="flush-heading02" data-bs-parent="#accordionEsc">
+                                        <div class="row flecha">
+                                            <div class="offset-sm-4 col-4 text-center">
+                                                <i class="bi bi-caret-up-fill text-secondary fs-1"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body p-md-5 p-3 border border-secondary rounded-3">
+                                                <h3>Tipo de Postulante: <span class="text-danger">Municipalidades</span></h3>
+                                                <div>Exclusivamente las Municipalidades de la Región del Maule.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div id="flush-collapse03" class="accordion-collapse collapse" aria-labelledby="flush-heading03" data-bs-parent="#accordionEsc">
+                                        <div class="row flecha">
+                                            <div class="offset-sm-8 col-4 text-center">
+                                                <i class="bi bi-caret-up-fill text-secondary fs-1"></i>
+                                            </div>
+                                        </div>
+                                        <div class="card">
+                                            <div class="card-body p-md-5 p-3 border border-secondary rounded-3">
+                                                <h3>Tipo de Financiamiento: <span class="text-danger">FNDR</span></h3>
+                                                <div>El financiamiento corresponde al Fondo Nacional de Desarrollo Regional (F.N.D.R.) para proyectos de infraestructura pública que no superen las 3.000 UTM.</div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+
+                    <!-- Mobile -->
+                    <div id="detalles-collap" class="d-block d-md-none">
+                        <div class="row mb-4">
+                            <div class="col-12">
+                                <div class="accordion accordion-flush" id="accordionMob">
+                                    <div class="accordion-item mb-4 rounded-3">
+                                        <h4 class="accordion-header" id="headingMob01">
+                                            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMob01" aria-expanded="false" aria-controls="flush-collapseMob01">
+                                                <i class="bi bi-laptop me-2"></i> Modalidad de postulación: <span class="text-danger ms-1">Online</span>
+                                            </button>
+                                        </h4>
+                                        <div id="flush-collapseMob01" class="accordion-collapse collapse" aria-labelledby="headingMob01" data-bs-parent="#accordionMob">
+                                            <div class="card">
+                                                <div class="card-body p-4 rounded-3">
+                                                    <h3>Modalidad de postulación: <span class="text-danger">Online</span></h3>
+                                                    <div>Todas las postulaciones deben realizarse a través de la plataforma digital Maule Pro (www.goremaule.cl).</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-4 rounded-3">
+                                        <h4 class="accordion-header" id="headingMob02">
+                                            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMob02" aria-expanded="false" aria-controls="flush-collapseMob02">
+                                                <i class="bi bi-people-fill me-2"></i> Tipo de Postulante: <span class="text-danger ms-1">Municipalidades</span>
+                                            </button>
+                                        </h4>
+                                        <div id="flush-collapseMob02" class="accordion-collapse collapse" aria-labelledby="headingMob02" data-bs-parent="#accordionMob">
+                                            <div class="card">
+                                                <div class="card-body p-4 rounded-3">
+                                                    <h3>Tipo de Postulante: <span class="text-danger">Municipalidades</span></h3>
+                                                    <div>Exclusivamente las Municipalidades de la Región del Maule.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="accordion-item mb-4 rounded-3">
+                                        <h4 class="accordion-header" id="headingMob03">
+                                            <button class="accordion-button rounded-3 collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseMob03" aria-expanded="false" aria-controls="flush-collapseMob03">
+                                                <i class="bi bi-cash-stack me-2"></i> Tipo de Financiamiento: <span class="text-danger">FNDR</span>
+                                            </button>
+                                        </h4>
+                                        <div id="flush-collapseMob03" class="accordion-collapse collapse" aria-labelledby="headingMob03" data-bs-parent="#accordionMob">
+                                            <div class="card">
+                                                <div class="card-body p-4 rounded-3">
+                                                    <h3>Tipo de Financiamiento: <span class="text-danger">FNDR</span></h3>
+                                                    <div>El financiamiento corresponde al Fondo Nacional de Desarrollo Regional (F.N.D.R.) para proyectos de infraestructura pública que no superen las 3.000 UTM.</div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+            </div>
+
+                    <!-- Tabs con detalles -->
+                    <div id="detalles-tab">
+                        <div class="row">
+                            <div class="col-12">
+                                <div class="card tab-card-integrated">
+                                    <div class="card-body p-0">
+                                        <ul class="nav nav-pills nav-justified tab-nav-integrated" id="pills-tab" role="tablist">
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link active" id="pills-01-tab" data-bs-toggle="pill" data-bs-target="#pills-01" type="button" role="tab" aria-controls="pills-01" aria-selected="true">Requisitos</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-02-tab" data-bs-toggle="pill" data-bs-target="#pills-02" type="button" role="tab" aria-controls="pills-02" aria-selected="false">Documentación</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-03-tab" data-bs-toggle="pill" data-bs-target="#pills-03" type="button" role="tab" aria-controls="pills-03" aria-selected="false">Evaluación</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-04-tab" data-bs-toggle="pill" data-bs-target="#pills-04" type="button" role="tab" aria-controls="pills-04" aria-selected="false">Bases</button>
+                                            </li>
+                                            <li class="nav-item" role="presentation">
+                                                <button class="nav-link" id="pills-05-tab" data-bs-toggle="pill" data-bs-target="#pills-05" type="button" role="tab" aria-controls="pills-05" aria-selected="false">Dudas y consultas</button>
+                                            </li>
+                                        </ul>
+                                        <div class="tab-content tab-content-integrated" id="pills-tabContent">
+                                            <div class="tab-pane fade show active" id="pills-01" role="tabpanel" aria-labelledby="pills-01-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Requisitos de Postulación</h3>
+                                                    <div>
+                                                        <p class="mb-3">Para participar en esta convocatoria, se deben cumplir las siguientes condiciones:</p>
+                                                        
+                                                        <div class="mb-4">
+                                                            <h4 class="h5 mb-3"><strong>Entidades Postulantes</strong></h4>
+                                                            <p class="mb-0">Exclusivamente las Municipalidades de la Región del Maule.</p>
+                                                        </div>
+                                                        
+                                                        <div class="mb-4">
+                                                            <h4 class="h5 mb-3"><strong>Monto Máximo por Iniciativa</strong></h4>
+                                                            <p class="mb-0">El costo total no debe superar las 3.000 UTM (valorizadas al 1 de enero de 2024), equivalente a M$ 193.997 (ciento noventa y tres millones novecientos noventa y siete mil pesos).</p>
+            </div>
+
+                                                        <div class="mb-4">
+                                                            <h4 class="h5 mb-3"><strong>Plataforma de Ingreso</strong></h4>
+                                                            <p class="mb-0">Todas las postulaciones deben realizarse a través de la plataforma digital Maule Pro (www.goremaule.cl).</p>
+                                                        </div>
+                                                        
+                                                        <div class="mb-4">
+                                                            <h4 class="h5 mb-3"><strong>Plazos</strong></h4>
+                                                            <div class="requisitos-list">
+                                                                <div class="requisito-item"><strong>Cierre de Postulaciones:</strong> Hasta el 26 de noviembre de 2024.</div>
+                                                                <div class="requisito-item"><strong>Subsanación de Observaciones:</strong> Hasta el 20 de marzo de 2025.</div>
+                                                                <div class="requisito-item mb-0"><strong>Recomendación Favorable (RS):</strong> Fecha límite 03 de abril de 2025.</div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="mb-0">
+                                                            <h4 class="h5 mb-3"><strong>Modalidad de Ejecución</strong></h4>
+                                                            <p class="mb-0">Las obras deben ser ejecutadas por terceros mediante licitación pública (Ley 19.886), prohibiéndose la administración directa.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-02" role="tabpanel" aria-labelledby="pills-02-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Documentación Requerida</h3>
+                                                    <div>
+                                                        <p class="mb-3">La presentación de proyectos debe incluir los siguientes antecedentes en formato PDF, cargados en la plataforma Maule Pro:</p>
+                                                        
+                                                        <div class="mb-4">
+                                                            <h4 class="h5 mb-3"><strong>Antecedentes Administrativos:</strong></h4>
+                                                            <div class="documentos-list">
+                                                                <div class="documento-item"><strong>Oficio Conductor del Alcalde.</strong></div>
+                                                                <div class="documento-item"><strong>Ficha IDI completa:</strong> Con descriptor "Inversión menor a 3.000 UTM" y "Subtítulo 33".</div>
+                                                                <div class="documento-item"><strong>Certificados de Propiedad del Terreno:</strong> Inscripción de dominio vigente, prohibiciones, usufructo o comodato según corresponda.</div>
+                                                                <div class="documento-item"><strong>Certificado de Informaciones Previas (CIP).</strong></div>
+                                                                <div class="documento-item"><strong>Certificado del Concejo Municipal:</strong> Aprobando costos de operación y mantención.</div>
+                                                                <div class="documento-item"><strong>Certificado de Participación Ciudadana:</strong> Con nómina de asistentes y medios de verificación como actas o fotos.</div>
+                                                                <div class="documento-item"><strong>Certificado SECPLAN:</strong> De no duplicidad de inversión.</div>
+                                                            </div>
+                                                        </div>
+                                                        
+                                                        <div class="mb-0">
+                                                            <h4 class="h5 mb-3"><strong>Antecedentes Técnicos:</strong></h4>
+                                                            <div class="documentos-list">
+                                                                <div class="documento-item"><strong>Diagnóstico y vinculación:</strong> Con instrumentos de planificación regional.</div>
+                                                                <div class="documento-item"><strong>Especificaciones Técnicas detalladas:</strong> De Arquitectura y Especialidades.</div>
+                                                                <div class="documento-item"><strong>Presupuesto Oficial:</strong> Desglosado por partidas y precios unitarios (coherente con EETT).</div>
+                                                                <div class="documento-item"><strong>Carta Gantt.</strong></div>
+                                                                <div class="documento-item"><strong>Planimetría completa:</strong> Arquitectura, Estructura, Especialidades en formato A1.</div>
+                                                                <div class="documento-item"><strong>Factibilidades de Servicios:</strong> Sanitaria y Eléctrica o boletas de consumo si existen.</div>
+                                                                <div class="documento-item"><strong>Anteproyecto de Edificación:</strong> Aprobado por la DOM (si aplica).</div>
+                                                                <div class="documento-item"><strong>Archivo KMZ:</strong> Con la ubicación exacta.</div>
+                                                                <div class="documento-item mb-0"><strong>Aprobaciones de otros servicios:</strong> Seremi Salud, Vialidad, DGA, etc. según la naturaleza del proyecto.</div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-03" role="tabpanel" aria-labelledby="pills-03-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Proceso de Evaluación</h3>
+                                                    <div>
+                                                        <p class="mb-3">El proceso consta de dos etapas a cargo del Gobierno Regional:</p>
+                                                        
+                                                        <div class="evaluacion-etapa mb-4">
+                                                            <h4 class="mb-3"><strong>1. Admisibilidad</strong></h4>
+                                                            <p class="mb-0">Revisión de la existencia de todos los documentos y antecedentes obligatorios. Si falta información, el proyecto será declarado "Inadmisible" (IN).</p>
+                                                        </div>
+
+                                                        <div class="evaluacion-etapa mb-4">
+                                                            <h4 class="mb-3"><strong>2. Evaluación Técnica - Económica</strong></h4>
+                                                            <p class="mb-2">Análisis de coherencia y calidad técnica. El resultado puede ser:</p>
+                                                            <div class="evaluacion-list">
+                                                                <div class="evaluacion-item"><strong>"Recomendado":</strong> Proyecto evaluado favorablemente.</div>
+                                                                <div class="evaluacion-item mb-0"><strong>"No Recomendado":</strong> Proyecto con observaciones.</div>
+                                                            </div>
+            </div>
             
-            <h2 class="h4 fw-bold text-institucional mb-3">I.- DESCRIPCIÓN GENERAL</h2>
-            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
-                <p class="mb-3 text-muted">El Instructivo tiene por objeto establecer lineamientos y regular la metodología de distribución y asignación de los recursos, la forma y oportunidad de la presentación de proyectos, su mecanismo de evaluación, de transferencia de remesas, ejecución y rendición de gastos, así como las demás disposiciones que permitan la mejor utilización de los recursos del Fondo Regional de Iniciativa Local, contemplado en la Ley de Presupuestos del Sector Público vigente, específicamente, lo establecido por la Glosa 6, letra g) del Subtítulo 33, Programa 02, Capítulo 01, Partida 31.</p>
-                
-                <p class="mb-3 text-muted">El presente instructivo toma como base, la Guía Operativa del Fondo Regional de Iniciativa Local elaborada por la Subsecretaria de Desarrollo Regional y Administrativo, aprobada por resolución exenta N° 15.051, de fecha 29 de diciembre de 2023, de la Subsecretaría de Desarrollo Regional y Administrativo.</p>
-              
-            </div>
-
-            <h2 class="h4 fw-bold text-institucional mb-3 mt-3">II.- POSTULACIÓN</h2>
-            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
-                <p class="text-muted mb-0">Sólo pueden postular proyectos a la presente convocatoria del Fondo Regional de Iniciativa Local (FRIL) las Municipalidades de la Región del Maule, ciñéndose a la forma, plazo requisitos y demás estipulaciones del presente instructivo.</p>
-            </div>
-
-            <h2 class="h4 fw-bold text-institucional mb-3 mt-3">III.- OBJETIVOS DEL PROGRAMA</h2>
-            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
-                <p class="mb-2 text-muted">Los recursos del Fondo Regional de Iniciativa Local, en adelante FRIL, deberán destinarse a ejecutar, mantener o conservar infraestructura pública incluso aquellas de carácter social o deportivo que se ejecuten en los recintos indicados en la letra c) de la glosa 06, del Subtítulo 33, Programa 02, Capítulo 01, Partida 31, de la Ley 21.640, las que serán autorizadas de acuerdo a los procedimientos establecido en el presente instructivo y en el oficio circular N° 33, del Ministerio de Hacienda de fecha 13 de julio de 2009, y sus modificaciones.</p>
-                
-                <p class="mb-2 text-muted">La identificación y el ordenamiento de prioridades de desarrollo de la Región del Maule radican en las condiciones individuales de cada territorio y de su gente. La inversión en infraestructura pública permite acceder a más y mejores servicios, mejora la calidad de vida de las maulinas y maulinos, aporta a una mayor equidad territorial y también contribuye a crear condiciones para el aumento de la productividad de la economía local.</p>
-                
-                <p class="text-muted mb-0">Las iniciativas deben propender a un desarrollo territorial resiliente y sostenible mediante servicios de infraestructura de calidad al servicio de las personas, promoviendo el desarrollo rural integral y el desarrollo urbano sostenible, teniendo en consideración el enfoque de género.</p>
-            </div>
-
-            <h2 class="h4 fw-bold text-institucional mb-3 mt-3">IV.- CONVOCATORIA</h2>
-            <div class="bg-info bg-opacity-10 border-start border-4 border-institucional p-3 mb-3">
-                <h3 class="h5 fw-bold text-institucional mb-3">Del Costo Total de una Iniciativa:</h3>
-                <p class="mb-2 text-muted">El numeral 6, letra g), de la glosa antes citada de la Ley de Presupuesto vigente dispone que "Los proyectos que se ejecuten con recursos transferidos a los municipios a través de este ítem, cuyo costo total por proyecto sea inferior a 3000 UTM, valorizadas al 1 de enero del ejercicio presupuestario vigente, no requerirán informe favorable del Ministerio de Desarrollo Social y Familia."</p>
-                
-                <p class="mb-2 text-muted">Ahora bien, considerando que el presupuesto regional se gestiona en miles de pesos (M$), el monto del proyecto a presentar no debe superar, en el ejercicio vigente, los <strong>M$ 193.997.-</strong> (ciento noventa y tres millones novecientos noventa y siete mil pesos), para ser evaluado por el Gobierno Regional del Maule.</p>
-                
-                <p class="mb-3 text-muted">Las iniciativas que sobrepasen el monto indicado en este párrafo serán enviadas, para su evaluación, al Ministerio de Desarrollo Social y Familia, conforme lo dispone la glosa citada.</p>
-
-                <h3 class="h5 fw-bold text-institucional mb-3 mt-3">De la asignación de Recursos por Comuna:</h3>
-                <p class="mb-2 text-muted">Se asignarán <strong>9.000 UTM</strong> a cada comuna de la Región del Maule, valorizadas a enero de 2024, que establezca la glosa que regula el Fondo Regional de Iniciativa Local, contenida en las Glosas comunes para todos los Gobiernos Regionales de la Ley de Presupuestos del Sector Público Vigente para el ejercicio presupuestario en que la iniciativa se encuentra en proceso de evaluación. Lo anterior será en conformidad a metodología de distribución de recursos aprobada por el Gobierno Regional del Maule.</p>
-
-                <h3 class="h5 fw-bold text-institucional mb-3 mt-3">Renuncia a los recursos asignados:</h3>
-                <p class="mb-2 text-muted">Si habiendo Transcurrido el plazo establecido, el/la Alcalde (sa) no ha remitido el Oficio señalado en el numeral 7 del presente instructivo, se entenderá que renuncia a los recursos asignados a su comuna, los que podrán ser reasignados por el/la Gobernador(a) Regional con la metodología aprobada por el Consejo Regional.</p>
-                
-                <p class="mb-2 text-muted">Asimismo, se entenderá que renuncia parcialmente a los recursos si solo presenta, dentro del plazo indicado en el numeral 7 de este instructivo, proyectos financiables por un monto total inferior al asignado a su comuna.</p>
-
-                <h3 class="h5 fw-bold text-institucional mb-3 mt-3">De la postulación y plazos Fondo Regional Iniciativa Local año 2024:</h3>
-                <p class="mb-2 text-muted">El proceso de postulación de iniciativas de inversión al Fondo Regional de Iniciativa Local, año 2024, se realizará a través de la plataforma digital Maule Pro, a la que se accede desde la página web del Gobierno Regional del Maule (www.goremaule.cl).</p>
-                
-                <p class="text-muted mb-0"><strong>Plazo de postulación:</strong> El plazo máximo de postulación será de <strong>40 días hábiles</strong> siguientes al envío del Oficio que informa la Resolución Exenta del Gobierno Regional, que aprueba el presente instructivo y sus anexos, emitido por el/la Gobernador(a) Regional, dentro del cual cada Alcalde (sa) deberá remitir mediante Oficio, para su evaluación, el listado de los proyectos a financiar con cargo a los recursos correspondientes a su comuna, dirigido al Gobernador(a) Regional.</p>
+                                                        <div class="notas-importantes">
+                                                            <p class="mb-0">Los municipios tendrán un plazo de 20 días hábiles para subsanar observaciones una vez notificados por el evaluador.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-04" role="tabpanel" aria-labelledby="pills-04-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Bases Legales</h3>
+                                                    <div class="bases-list">
+                                                        <p class="mb-3">Este proceso se rige por la siguiente normativa:</p>
+                                                        <ul class="mb-0">
+                                                            <li><strong>Resolución (E) N° 8238</strong> del 12 de septiembre de 2024 (Instructivo FRIL 2024).</li>
+                                                            <li><strong>Ley Nº 19.175</strong> Orgánica Constitucional sobre Gobierno y Administración Regional.</li>
+                                                            <li><strong>Ley Nº 21.640</strong> de Presupuestos del Sector Público año 2024.</li>
+                                                            <li><strong>Guía Operativa FRIL</strong> de la SUBDERE (Resolución N° 15.051 de 2023).</li>
+                                                            <li><strong>Resolución N° 7 de 2019</strong> de la Contraloría General de la República.</li>
+                                                        </ul>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="tab-pane fade" id="pills-05" role="tabpanel" aria-labelledby="pills-05-tab">
+                                                <div class="p-md-5 p-3">
+                                                    <h3 class="tab-title-square">Dudas y consultas</h3>
+                                                    <div>
+                                                        <p class="mb-3">Para consultas técnicas o administrativas sobre el proceso, dirigirse a las unidades responsables del Gobierno Regional del Maule:</p>
+                                                        
+                                                        <div class="mb-3">
+                                                            <h4 class="h6 mb-2"><strong>División de Infraestructura y Transportes:</strong></h4>
+                                                            <p class="mb-0">Para admisibilidad, evaluación técnica y elegibilidad.</p>
             </div>
             
-            <div class="d-flex flex-wrap justify-content-center gap-3 mb-4">
-                <a href="#" class="btn btn-institucional"><i class="bi bi-file-earmark-pdf me-2"></i>Bases y Anexos</a>
-                <a href="#" class="btn btn-institucional"><i class="bi bi-file-earmark-text me-2"></i>Manual de Postulación</a>
-            </div>
-            
-            <button class="btn btn-institucional btn-lg w-100"><i class="bi bi-send me-2"></i>Postular aquí</button>
+                                                        <div class="mb-0">
+                                                            <h4 class="h6 mb-2"><strong>División de Planificación y Desarrollo Regional:</strong></h4>
+                                                            <p class="mb-0">Para pertinencia con instrumentos de planificación.</p>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
         </section>
     </main>
 
