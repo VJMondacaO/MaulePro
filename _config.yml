@@ -1,0 +1,75 @@
+# Configuración de Jekyll para GitHub Pages
+# MaulePro - Portal del Gobierno Regional del Maule
+
+# Configuración básica
+title: MaulePro
+description: Portal de postulación a fondos del Gobierno Regional del Maule
+baseurl: "" # Dejar vacío si el repositorio está en la raíz
+url: "" # Tu dominio de GitHub Pages (ej: https://username.github.io)
+
+# Configuración del sitio
+lang: es
+locale: es_CL
+timezone: America/Santiago
+
+# Configuración de Jekyll
+markdown: kramdown
+highlighter: rouge
+permalink: pretty
+
+# Plugins (GitHub Pages soporta plugins limitados)
+plugins:
+  - jekyll-feed
+  - jekyll-sitemap
+  - jekyll-seo-tag
+
+# Excluir archivos del procesamiento
+exclude:
+  - README.md
+  - docs/
+  - .git/
+  - .gitignore
+  - node_modules/
+  - package.json
+  - package-lock.json
+  - Gemfile
+  - Gemfile.lock
+  - .vscode/
+  - .idea/
+
+# Incluir archivos necesarios
+include:
+  - _pages
+
+# Configuración de Sass
+sass:
+  style: compressed
+
+# Configuración de Kramdown
+kramdown:
+  input: GFM
+  hard_wrap: false
+  syntax_highlighter: rouge
+
+# Configuración de SEO
+author: Gobierno Regional del Maule
+twitter:
+  username: goremaule
+  card: summary_large_image
+
+# Configuración de navegación
+navigation:
+  - title: Inicio
+    url: /
+  - title: Programas
+    url: /#programas
+  - title: Preguntas Frecuentes
+    url: /pages/preguntas-frecuentes.html
+
+# Configuración de Google Analytics (opcional)
+# google_analytics: UA-XXXXXXXXX-X
+
+# Configuración de comentarios (opcional)
+# disqus:
+#   shortname: maulepro
+
