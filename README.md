@@ -32,31 +32,27 @@ Este proyecto es **solo frontend** y no requiere instalación de dependencias. T
 
 ### Ejecución
 
-#### Opción 1: Live Server (Recomendado)
+Este proyecto es **solo frontend estático**. Puedes abrirlo de varias formas:
+
+#### Opción 1: Abrir directamente en el navegador
+
+Simplemente abre el archivo `index.html` en tu navegador.
+
+#### Opción 2: Live Server (Recomendado para desarrollo)
 
 1. Instala la extensión "Live Server" en VS Code
 2. Abre `index.html`
 3. Click derecho → "Open with Live Server"
 4. Se abrirá en `http://127.0.0.1:5500`
 
-#### Opción 2: Servidor Python
+#### Opción 3: Servidor local simple (opcional)
+
+Si necesitas un servidor local, puedes usar cualquier servidor HTTP simple:
 
 ```bash
-# Desde la raíz del proyecto
-cd utils
-python3 server.py
-```
-
-O directamente:
-```bash
+# Python
 python3 -m http.server 8000
-```
 
-Luego visita `http://localhost:8000`
-
-#### Opción 3: Otros Servidores
-
-```bash
 # Node.js
 npx serve
 
@@ -140,14 +136,9 @@ MaulePro/
 │   ├── components.html
 │   └── preview.html
 │
-├── docs/                         # Documentación
-│   ├── README.md                # Documentación técnica
-│   └── ESTRUCTURA.md            # Estructura detallada
-│
-└── utils/                        # Utilidades y scripts
-    ├── server.py                 # Servidor Python local
-    ├── start.sh                  # Script de inicio
-    └── package.json
+└── docs/                         # Documentación
+    ├── README.md                # Documentación técnica
+    └── ESTRUCTURA.md            # Estructura detallada
 ```
 
 ## 🛠️ Tecnologías Utilizadas

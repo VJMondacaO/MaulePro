@@ -84,10 +84,6 @@ MaulePro/
 │   ├── README.md                # Documentación técnica detallada
 │   └── ESTRUCTURA.md            # Este archivo
 │
-└── utils/                        # Utilidades y scripts
-    ├── server.py                 # Servidor Python local
-    ├── start.sh                  # Script de inicio (macOS/Linux)
-    └── package.json              # Configuración (si se usa)
 ```
 
 ## 📄 Descripción de Archivos Principales
@@ -296,18 +292,6 @@ Todas las imágenes están centralizadas en `assets/images/`:
 - **`claveunica-icon.png`**: Icono ClaveÚnica (PNG)
 
 **Nota**: La carpeta del manual de marca ha sido eliminada. Todas las imágenes usadas están en `assets/images/`.
-
-## 🛠️ Utilidades
-
-### `utils/server.py`
-- Servidor HTTP simple en Python
-- Para desarrollo local
-- Puerto por defecto: 8000
-
-### `utils/start.sh`
-- Script de inicio para macOS/Linux
-- Ejecuta el servidor Python
-- Requiere permisos de ejecución
 
 ## 📚 Documentación
 

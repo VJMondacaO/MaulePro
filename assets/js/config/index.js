@@ -44,17 +44,6 @@ export const CONFIG = {
         }
     },
     
-    // API endpoints (si aplica en el futuro)
-    api: {
-        baseUrl: '/api',
-        endpoints: {
-            programs: '/programs',
-            search: '/search',
-            notifications: '/notifications'
-        },
-        timeout: 5000
-    },
-    
     // Feature flags
     features: {
         animations: true,
