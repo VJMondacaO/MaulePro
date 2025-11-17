@@ -95,6 +95,17 @@
     display: block;
 }
 
+.program-card-subtitle {
+    font-size: 0.85rem;
+    font-weight: 400;
+    line-height: 1.4;
+    margin: 0.5rem 0 0 0;
+    color: rgba(255, 255, 255, 0.9);
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+    hyphens: auto;
+}
+
 /* Program Card Body */
 .program-card-body {
     padding: 1.5rem;
@@ -231,6 +242,10 @@
     flex-grow: 1;
     min-height: 50px;
     display: block;
+}
+
+[data-program][data-estado="closed"] .program-card-subtitle {
+    color: rgba(0, 0, 0, 0.85);
 }
 
 /* Asegurar que header-top de cerradas tenga misma altura mínima */
