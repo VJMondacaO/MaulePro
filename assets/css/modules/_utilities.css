@@ -154,6 +154,10 @@ kbd {
     box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
+.help-card.align-with-accordion {
+    margin-top: 5.5rem;
+}
+
 /* Container Responsive */
 @media (max-width: 991.98px) {
     .container {
