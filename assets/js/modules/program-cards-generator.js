@@ -46,9 +46,20 @@
             return;
         }
 
+        // Ordenar programas: abiertos primero
+        const SortEngine = window.MaulePro?.Search?.SortEngine;
+        let programasOrdenados = [...programas];
+        if (SortEngine) {
+            programasOrdenados = SortEngine.ordenarProgramas(programas, 'openfirst');
+        } else {
+            // Fallback: ordenamiento manual por estado
+            const toRank = (estado) => ({ open: 3, soon: 2, closed: 1 }[estado] || 0);
+            programasOrdenados.sort((a, b) => toRank(b.estado) - toRank(a.estado));
+        }
+
         // Generar tarjetas usando CardRenderer
         const fragment = document.createDocumentFragment();
-        programas.forEach(programa => {
+        programasOrdenados.forEach(programa => {
             const tarjeta = CardRenderer.crearTarjetaElement(programa);
             if (tarjeta) {
                 fragment.appendChild(tarjeta);

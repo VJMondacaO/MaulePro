@@ -121,6 +121,14 @@
         title.textContent = programa.name || '';
         header.appendChild(title);
 
+        // Subtítulo/Descripción (si existe)
+        if (programa.subtitle) {
+            const subtitle = document.createElement('p');
+            subtitle.className = 'program-card-subtitle';
+            subtitle.textContent = programa.subtitle;
+            header.appendChild(subtitle);
+        }
+
         return header;
     }
 

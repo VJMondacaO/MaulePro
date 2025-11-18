@@ -54,6 +54,26 @@
             // Inicializar tarjetas siempre (necesario para paintDeadlines y otras funcionalidades)
             this.cards = [...this.grid.querySelectorAll('[data-program]')];
             
+            // Ordenar tarjetas existentes al cargar (abiertos primero) - siempre
+            if (this.cards.length > 0) {
+                const SortEngine = window.MaulePro?.Search?.SortEngine;
+                if (SortEngine) {
+                    const programas = this.cardsToPrograms(this.cards);
+                    const ordenados = SortEngine.ordenarProgramas(programas, 'openfirst');
+                    const tarjetasOrdenadas = ordenados.map(p => p.elemento);
+                    this.updateDOM(tarjetasOrdenadas);
+                    this.cards = tarjetasOrdenadas;
+                } else {
+                    // Fallback: ordenamiento manual
+                    const toRank = s => ({open: 3, soon: 2, closed: 1}[s] || 0);
+                    const tarjetasOrdenadas = [...this.cards].sort((a, b) => 
+                        toRank(b.dataset.estado) - toRank(a.dataset.estado)
+                    );
+                    this.updateDOM(tarjetasOrdenadas);
+                    this.cards = tarjetasOrdenadas;
+                }
+            }
+            
             // Si el formulario tiene action, NO inicializar filtrado local ni interceptar submit
             if (hasRedirectAction) {
                 // Inicializar solo funcionalidades que no dependen del formulario
@@ -149,7 +169,7 @@
                 q: (this.q?.value || '').trim().toLowerCase(),
                 estado: this.estado?.value || '',
                 benef: this.benef?.value || '',
-                orden: this.orden?.value || 'relevance'
+                orden: this.orden?.value || 'openfirst'
             };
         },
 

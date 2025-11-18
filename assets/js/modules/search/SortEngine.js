@@ -15,7 +15,7 @@
      * @param {string} orden - Tipo de ordenamiento (relevance, openfirst, date, alpha)
      * @returns {Array} Programas ordenados (nueva instancia, no modifica el original)
      */
-    function ordenarProgramas(programas, orden = 'relevance') {
+    function ordenarProgramas(programas, orden = 'openfirst') {
         if (!Array.isArray(programas) || programas.length === 0) {
             return [];
         }
