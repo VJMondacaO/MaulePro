@@ -115,6 +115,97 @@
             link: "pages/programas/frpd.html",
             hasDeadline: false,
             deadlineUrgent: false
+        },
+        {
+            name: "Actividades de Seguridad Ciudadana",
+            benef: "org",
+            estado: "open",
+            close: "2025-12-15",
+            location: "Regional",
+            beneficiarios: "Organizaciones",
+            fechas: "Inicio: 01-11-2025 | Fin: 15-12-2025",
+            montos: "$2.000.000 - $5.000.000",
+            link: "pages/programas/fndr-8.html",
+            hasDeadline: true,
+            deadlineUrgent: false
+        },
+        {
+            name: "Actividades de Carácter Social",
+            benef: "org",
+            estado: "open",
+            close: "2025-12-15",
+            location: "Regional",
+            beneficiarios: "Organizaciones",
+            fechas: "Inicio: 01-11-2025 | Fin: 15-12-2025",
+            montos: "$2.000.000 - $5.000.000",
+            link: "pages/programas/fndr-8.html",
+            hasDeadline: true,
+            deadlineUrgent: false
+        },
+        {
+            name: "Actividades Deportivas",
+            benef: "org",
+            estado: "open",
+            close: "2025-12-15",
+            location: "Regional",
+            beneficiarios: "Organizaciones",
+            fechas: "Inicio: 01-11-2025 | Fin: 15-12-2025",
+            montos: "$2.000.000 - $5.000.000",
+            link: "pages/programas/fndr-8.html",
+            hasDeadline: true,
+            deadlineUrgent: false
+        },
+        {
+            name: "Actividades de protección del medio Ambiente",
+            benef: "org",
+            estado: "open",
+            close: "2025-12-15",
+            location: "Regional",
+            beneficiarios: "Organizaciones",
+            fechas: "Inicio: 01-11-2025 | Fin: 15-12-2025",
+            montos: "$2.000.000 - $5.000.000",
+            link: "pages/programas/fndr-8.html",
+            hasDeadline: true,
+            deadlineUrgent: false
+        },
+        {
+            name: "Actividades de Rescate y Atención Animal",
+            benef: "org",
+            estado: "open",
+            close: "2025-12-15",
+            location: "Regional",
+            beneficiarios: "Organizaciones",
+            fechas: "Inicio: 01-11-2025 | Fin: 15-12-2025",
+            montos: "$2.000.000 - $5.000.000",
+            link: "pages/programas/fndr-8.html",
+            hasDeadline: true,
+            deadlineUrgent: false
+        },
+        {
+            name: "Actividades Artísticas, Culturales y Patrimoniales",
+            benef: "org",
+            estado: "open",
+            close: "2025-12-15",
+            location: "Regional",
+            beneficiarios: "Organizaciones",
+            fechas: "Inicio: 01-11-2025 | Fin: 15-12-2025",
+            montos: "$2.000.000 - $5.000.000",
+            link: "pages/programas/fndr-8.html",
+            hasDeadline: true,
+            deadlineUrgent: false
+        },
+        {
+            name: "Actividades Culturales y Programación de Teatros",
+            benef: "org",
+            estado: "open",
+            close: "2025-12-15",
+            location: "Regional",
+            beneficiarios: "Organizaciones",
+            fechas: "Inicio: 01-11-2025 | Fin: 15-12-2025",
+            montos: "$2.000.000 - $5.000.000",
+            link: "pages/programas/fndr-8.html",
+            hasDeadline: true,
+            deadlineUrgent: false
         }
     ];
 

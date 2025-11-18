@@ -76,14 +76,14 @@
             // this.cntSoon = document.getElementById('cntSoon');
             // this.cntClosed = document.getElementById('cntClosed');
             
-            // Crear función debounced para inputs de texto
-            const debounce = window.MaulePro?.Utils?.debounce || function(fn, wait) {
+            // Crear función debounced para inputs de texto usando utilidad existente
+            const debounce = window.MaulePro?.Utils?.debounce || ((fn, wait) => {
                 let timeout;
-                return function(...args) {
+                return (...args) => {
                     clearTimeout(timeout);
-                    timeout = setTimeout(() => fn.apply(this, args), wait);
+                    timeout = setTimeout(() => fn(...args), wait);
                 };
-            };
+            });
             this.debouncedApply = debounce(() => this.apply(), 300);
             
             // Inicializar eventos y aplicar filtrado local
@@ -251,21 +251,17 @@
          */
         updateDOM(visible) {
             // Ocultar todas las tarjetas primero
-            this.cards.forEach(c => {
-                c.style.display = 'none';
-            });
+            this.cards.forEach(c => c.style.display = 'none');
             
+            // Mostrar solo las tarjetas visibles
+            visible.forEach(card => card.style.display = '');
+            
+            // Reordenar en el DOM si es necesario
             if (visible.length > 0) {
-                // Usar DocumentFragment para mejor rendimiento
                 const fragment = document.createDocumentFragment();
-                visible.forEach(card => {
-                    card.style.display = '';
-                    fragment.appendChild(card);
-                });
+                visible.forEach(card => fragment.appendChild(card));
                 this.grid.innerHTML = '';
                 this.grid.appendChild(fragment);
-            } else {
-                this.grid.innerHTML = '';
             }
         },
 
@@ -302,43 +298,15 @@
         
         /**
          * Pinta los deadlines dinámicamente según las fechas
-         * Usa DeadlineManager si está disponible, sino usa fallback
+         * Usa DeadlineManager si está disponible
          * @method paintDeadlines
          */
         paintDeadlines() {
             const DeadlineManager = window.MaulePro?.Utils?.DeadlineManager;
             if (DeadlineManager) {
                 DeadlineManager.paintAllDeadlines('[data-program]');
-            } else {
-                // Fallback básico si DeadlineManager no está disponible
-                const now = new Date();
-                document.querySelectorAll('[data-program]').forEach(col => {
-                    const closeDate = col.dataset.close;
-                    if (!closeDate) return;
-                    
-                    const d = new Date(closeDate);
-                    const badge = col.querySelector('[data-deadline]');
-                    if (!badge || !d || isNaN(d.getTime())) {
-                        if (badge) badge.style.display = 'none';
-                        return;
-                    }
-                    
-                    const days = Math.ceil((d - now) / (1000 * 60 * 60 * 24));
-                    if (days < 0) {
-                        badge.style.display = 'none';
-                        return;
-                    }
-                    
-                    const text = days === 0 ? 'Finaliza hoy' : 
-                                days === 1 ? 'Finaliza en 1 día' : 
-                                `Finaliza en ${days} días`;
-                    const cls = days <= 3 ? 'urgent' : (days <= 10 ? 'soon' : '');
-                    
-                    badge.className = `deadline-badge ${cls}`;
-                    badge.textContent = text;
-                    badge.style.display = 'inline-block';
-                });
             }
+            // Si DeadlineManager no está disponible, los deadlines se manejan en otro lugar
         },
         
         /**

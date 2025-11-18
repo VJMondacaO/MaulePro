@@ -42,6 +42,39 @@
     border-color: var(--institucional-azul) !important;
 }
 
+/* ============================================
+   Header Margin Utilities
+   ============================================ */
+.mt-header {
+    margin-top: 100px !important;
+    padding-top: 0 !important;
+}
+
+@media (max-width: 991.98px) {
+    .mt-header {
+        margin-top: 95px !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .mt-header {
+        margin-top: 90px !important;
+    }
+}
+
+/* ============================================
+   Badge FNDR 8% - Estilo unificado
+   ============================================ */
+.badge-fndr {
+    padding: 0.4rem 0.9rem;
+    font-weight: 700;
+    font-size: 0.7rem;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    color: #0A2140;
+    background-color: #f5e6d3;
+}
+
 /* Animations */
 @keyframes fadeSlideUp {
     from {
@@ -348,19 +381,7 @@ footer .footer-logo {
    Estilos para Páginas de Detalle de Programas
    ============================================ */
 
-/* Background azul para hero section */
-.bg-azul.bg-01 {
-    background-color: var(--gobierno-azul-oscuro);
-    padding: 3rem 0;
-    min-height: 400px;
-}
-
-@media (max-width: 991.98px) {
-    .bg-azul.bg-01 {
-        padding: 2rem 0;
-        min-height: auto;
-    }
-}
+/* Background azul para hero section - Consolidado más abajo */
 
 /* Badges de estado y información */
 .bg-verde {
@@ -501,9 +522,9 @@ footer .footer-logo {
    Sección: Hero de Página de Programa (FNDR 8%)
    ============================================ */
 
-/* Hero Section - Fondo azul que ocupa todo el ancho */
+/* Hero Section - Fondo azul que ocupa todo el ancho (Consolidado) */
 .bg-azul.bg-01 {
-    background-color: #004080;
+    background-color: var(--gobierno-azul-oscuro, #004080);
     padding: 3rem 0;
     min-height: 500px;
     position: relative;
@@ -512,6 +533,26 @@ footer .footer-logo {
     margin-left: calc(50% - 50vw);
     margin-right: calc(50% - 50vw);
     box-sizing: border-box;
+}
+
+.bg-azul.bg-01.mt-header {
+    margin-top: 100px !important;
+    margin-left: calc(50% - 50vw) !important;
+    margin-right: calc(50% - 50vw) !important;
+    padding-top: 3rem !important;
+}
+
+@media (max-width: 991.98px) {
+    .bg-azul.bg-01.mt-header {
+        margin-top: 95px !important;
+        padding-top: 2rem !important;
+    }
+}
+
+@media (max-width: 575.98px) {
+    .bg-azul.bg-01.mt-header {
+        margin-top: 90px !important;
+    }
 }
 
 .bg-azul.bg-01 .container-fluid {
@@ -550,7 +591,7 @@ footer .footer-logo {
 
 @media (max-width: 991.98px) {
     .bg-azul.bg-01 {
-        padding: 3rem 0;
+        padding: 2rem 0;
         min-height: auto;
     }
     

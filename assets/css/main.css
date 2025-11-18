@@ -13,7 +13,6 @@
 @import url('modules/_navbar.css');
 @import url('modules/_hero.css');
 @import url('modules/_program-cards.css');
-@import url('modules/_carousel.css');
 @import url('modules/_login.css');
 
 /* 4. Utilities (debe ir último para poder sobrescribir) */

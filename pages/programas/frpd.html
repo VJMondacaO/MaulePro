@@ -28,7 +28,7 @@
 </head>
 <body>
     <!-- Navbar Bootstrap Estándar -->
-    <nav class="navbar navbar-expand-lg navbar-dark sticky-top">
+    <nav class="navbar navbar-expand-lg navbar-dark fixed-top">
         <div class="container-fluid">
             <a class="navbar-brand d-flex align-items-center gap-3" href="../../index.html">
                 <img src="../../assets/images/logo-gore-vertical-blanco.png" alt="Logo Gobierno Regional del Maule" class="navbar-logo d-lg-none">
@@ -77,64 +77,8 @@
         </div>
     </nav>
 
-    <!-- Banner Informativo con Carrusel -->
-    <div id="infoCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
-        <button type="button" class="carousel-close-btn d-flex align-items-center justify-content-center" id="carouselCloseBtn" aria-label="Cerrar banner">
-            <i class="bi bi-x-lg"></i>
-        </button>
-        <div class="carousel-inner">
-            <div class="carousel-item active banner-pastel-verde">
-                <div class="container py-2">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-info-circle me-2"></i>Convocatorias Abiertas</h5>
-                            <p class="mb-0 small text-dark">PROYECTOS MENORES A 5.000 UTM y Subvenciones FNDR 8% están recibiendo postulaciones. Revisa los requisitos y plazos.</p>
-                        </div>
-                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
-                            <a href="../../index.html#programas" class="btn btn-dark btn-sm"><i class="bi bi-arrow-right me-1"></i>Ver Programas</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item banner-pastel-ocre">
-                <div class="container py-2">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-calendar-check me-2"></i>Plazos Importantes</h5>
-                            <p class="mb-0 small text-dark">PROYECTOS MENORES A 5.000 UTM cierra el 30 de noviembre de 2025.</p>
-                        </div>
-                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
-                            <a href="../../index.html#programas" class="btn btn-dark btn-sm"><i class="bi bi-clock me-1"></i>Ver Fechas</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="carousel-item banner-pastel-azul">
-                <div class="container py-2">
-                    <div class="row align-items-center">
-                        <div class="col-md-8">
-                            <h5 class="mb-1 fw-bold text-dark"><i class="bi bi-file-earmark-text me-2"></i>Documentación Requerida</h5>
-                            <p class="mb-0 small text-dark">Asegúrate de tener todos los documentos necesarios antes de postular. Descarga los instructivos y manuales de cada programa.</p>
-                        </div>
-                        <div class="col-md-4 text-md-end mt-2 mt-md-0">
-                            <a href="../../index.html#programas" class="btn btn-dark btn-sm"><i class="bi bi-download me-1"></i>Descargar</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <button class="carousel-control-prev" type="button" data-bs-target="#infoCarousel" data-bs-slide="prev">
-            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Anterior</span>
-        </button>
-        <button class="carousel-control-next" type="button" data-bs-target="#infoCarousel" data-bs-slide="next">
-            <span class="carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="visually-hidden">Siguiente</span>
-        </button>
-    </div>
-
     <!-- Main Content -->
-    <main class="container my-4">
+    <main class="container my-4 mt-header">
         <!-- Botón Volver -->
         <div class="mb-3">
             <a href="../../index.html" class="btn btn-outline-secondary rounded-pill">
@@ -332,5 +276,7 @@
             }
         });
     </script>
+    <!-- Navbar Spacer - Ajusta dinámicamente el margen del contenido -->
+    <script src="../../assets/js/modules/navbar-spacer.js"></script>
 </body>
 </html>

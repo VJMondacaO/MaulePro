@@ -18,12 +18,13 @@ MaulePro es un portal web que permite a usuarios acceder a las líneas de financ
 - 🏗️ **Arquitectura Modular**: CSS y JavaScript organizados en módulos reutilizables
 - 🔒 **Seguridad**: Renderizado seguro sin riesgos de XSS
 - 📝 **Logging Centralizado**: Sistema de logging con niveles para desarrollo y producción
+- ⚡ **Código Optimizado**: Código simplificado y optimizado para mejor rendimiento
 
 ## 🚀 Inicio Rápido
 
 ### Requisitos
 
-- Navegador moderno (Chrome, Firefox, Safari, Edge)
+- Navegador moderno (Chrome, Firefox, Safari, Edge - últimas 2 versiones)
 - Servidor local (opcional, solo necesario para desarrollo con Live Server)
 
 ### Instalación
@@ -66,7 +67,7 @@ php -S localhost:8000
 MaulePro/
 │
 ├── index.html                    # Página principal
-├── login.html                    # Página de login y registro
+├── login.html                    # Página de login
 ├── README.md                     # Este archivo
 │
 ├── assets/                       # Recursos estáticos
@@ -78,53 +79,31 @@ MaulePro/
 │   │       ├── _navbar.css      # Estilos navbar
 │   │       ├── _hero.css        # Estilos hero section
 │   │       ├── _program-cards.css # Estilos tarjetas
-│   │       ├── _carousel.css   # Estilos carousel
-│   │       └── _utilities.css  # Utilidades
+│   │       ├── _login.css       # Estilos login
+│   │       └── _utilities.css   # Utilidades
 │   ├── js/
-│   │   ├── script.js            # Orquestador principal
-│   │   ├── main.js              # Punto de entrada
+│   │   ├── script.js            # Script principal
 │   │   ├── data/                # Datos centralizados
-│   │   │   └── programas.js     # Datos de programas
-│   │   ├── components/          # Componentes reutilizables
-│   │   │   └── BaseComponent.js
-│   │   ├── config/              # Configuración
-│   │   │   ├── index.js
-│   │   │   └── selectors.js
+│   │   │   └── programas.js     # Datos de programas (fuente única)
 │   │   ├── modules/             # Módulos funcionales
-│   │   │   ├── carousel.js
-│   │   │   ├── filters.js
-│   │   │   ├── userway.js
-│   │   │   ├── modals/
-│   │   │   │   └── ModalManager.js
-│   │   │   ├── forms/
-│   │   │   │   └── FormManager.js
-│   │   │   └── search/
-│   │   │       ├── FilterEngine.js
-│   │   │       ├── SortEngine.js
-│   │   │       ├── CardRenderer.js
-│   │   │       ├── SearchManager.js
-│   │   │       └── ModalSearch.js
+│   │   │   ├── filters.js       # Filtrado y búsqueda en index.html
+│   │   │   ├── navbar-spacer.js # Ajuste de márgenes del navbar
+│   │   │   ├── program-cards-generator.js # Generación dinámica de tarjetas
+│   │   │   ├── userway.js       # Integración Userway
+│   │   │   └── search/          # Módulos de búsqueda
+│   │   │       ├── FilterEngine.js    # Motor de filtrado
+│   │   │       ├── SortEngine.js      # Motor de ordenamiento
+│   │   │       ├── CardRenderer.js    # Renderizado seguro de tarjetas
+│   │   │       └── SearchManager.js   # Gestor de búsqueda
 │   │   └── utils/               # Utilidades
-│   │       ├── Logger.js
-│   │       ├── DeadlineManager.js
-│   │       ├── AccessibilityManager.js
-│   │       ├── dom.js
-│   │       ├── storage.js
-│   │       ├── date.js
-│   │       └── debounce.js
-│   └── images/                  # Imágenes
+│   │       ├── Logger.js        # Sistema de logging
+│   │       ├── DeadlineManager.js # Gestión de deadlines
+│   │       ├── AccessibilityManager.js # Gestión de accesibilidad
+│   │       └── debounce.js      # Utilidad debounce/throttle
+│   └── images/                  # Imágenes y logos
 │       ├── favicon.png
-│       ├── icon-claveunica.png
 │       ├── icon-claveunica.svg
-│       ├── logo-gore-blanco-horizontal.png
-│       ├── logo-gore-footer-blanco.png
-│       ├── logo-gore-horizontal-blanco.png
-│       ├── logo-gore-horizontal-manual.png
-│       ├── logo-gore-horizontal.png
-│       ├── logo-gore-negro.png
-│       ├── logo-gore-vertical-blanco.png
-│       ├── logo-gore.png
-│       └── Logo.png
+│       └── logo-gore-*.png      # Varios logos del GORE
 │
 ├── pages/                        # Subpáginas del portal
 │   ├── programas/                # Páginas de programas
@@ -133,26 +112,22 @@ MaulePro/
 │   │   ├── fndr-sub31.html
 │   │   ├── fril.html
 │   │   ├── frpd.html
-│   │   └── proyectos-menores.html
-│   ├── buscar.html               # Página de búsqueda
-│   ├── financiamiento-programas.html
-│   ├── postulacion-financiamiento.html
+│   │   ├── proyectos-menores.html
+│   │   ├── financiamiento-programas.html
+│   │   └── postulacion-financiamiento.html
+│   ├── buscar.html               # Página de búsqueda avanzada
 │   └── preguntas-frecuentes.html
 │
-├── components/                   # Componentes de desarrollo
-│   ├── components.html
-│   └── preview.html
-│
-└── docs/                         # Documentación
-    ├── README.md                # Documentación técnica
-    └── ESTRUCTURA.md            # Estructura detallada
+└── components/                   # Componentes de desarrollo
+    ├── components.html
+    └── preview.html
 ```
 
 ## 🛠️ Tecnologías Utilizadas
 
 - **HTML5**: Estructura semántica
 - **CSS3**: Estilos modernos con variables CSS, Flexbox y Grid
-- **JavaScript (ES6+)**: Vanilla JavaScript modular
+- **JavaScript (ES6+)**: Vanilla JavaScript modular (IIFE pattern)
 - **Bootstrap 5.3.3**: Framework CSS (CDN)
 - **Bootstrap Icons 1.11.3**: Iconografía (CDN)
 - **Userway**: Widget de accesibilidad
@@ -169,20 +144,12 @@ MaulePro/
 - **Gris Fondo**: `#EEEEEE` (Fondo estático)
 - **Gris Cerrado**: `#BBBBBB` (Headers de tarjetas cerradas)
 
-### Logos
-
-- **logo-gore-vertical-blanco.png**: Para navbar móvil
-- **logo-gore-horizontal-blanco.png**: Para navbar desktop (horizontal)
-- **logo-gore-footer-blanco.png**: Para footer
-- **icon-claveunica.svg**: Icono SVG para autenticación
-- **favicon.png**: Favicon del sitio
-
 ### Componentes
 
 - **Navbar Fijo**: Se mantiene visible al hacer scroll
 - **Cards Interactivas**: Efectos hover y animaciones
 - **Búsqueda Avanzada**: Filtros por estado, beneficiario y ordenamiento
-- **Deadlines**: Indicadores de tiempo restante
+- **Deadlines**: Indicadores de tiempo restante con colores según urgencia
 - **Footer Institucional**: Información del GORE Maule
 
 ## 🔧 Funcionalidades
@@ -193,10 +160,12 @@ MaulePro/
 - Filtro por estado (Abiertos, Próximos, Cerrados)
 - Filtro por beneficiario (Municipios, Servicios públicos, Organizaciones, etc.)
 - Ordenamiento (Relevancia, Abiertos primero, Fecha, A-Z)
-- Atajo de teclado `/` para acceso rápido
+- Atajo de teclado `/` para acceso rápido al buscador
 - Página de resultados de búsqueda (`pages/buscar.html`)
 
 ### Programas Disponibles
+
+Los programas se gestionan centralizadamente en `assets/js/data/programas.js`:
 
 - **PROYECTOS MENORES A 5.000 UTM**: Abierto
 - **Subvenciones FNDR 8%**: Abierto
@@ -205,14 +174,16 @@ MaulePro/
 - **FNDR Sub. 31**: Cerrado
 - **Financiamiento para Programas**: Cerrado
 - **FRPD**: Cerrado
+- **Actividades FNDR 8%**: Varias actividades abiertas
 
 ### Accesibilidad
 
 - Integración con Userway
-- Navegación por teclado
+- Navegación por teclado completa
 - Focus visible
 - Respeto a `prefers-reduced-motion`
 - Widget posicionado en esquina inferior derecha
+- Función global `Accesibilidad()` para activar herramientas
 
 ## 📱 Responsive Design
 
@@ -233,22 +204,65 @@ El sitio es completamente responsive y se adapta a:
 
 ### CSS Modular
 
-El proyecto utiliza una arquitectura CSS modular con 7 módulos:
+El proyecto utiliza una arquitectura CSS modular con 7 módulos importados en `main.css`:
 
-- `_variables.css`: Variables CSS y colores
-- `_base.css`: Estilos base y fondo
-- `_navbar.css`: Estilos del navbar
-- `_hero.css`: Hero section y buscador
-- `_program-cards.css`: Tarjetas de programas
-- `_carousel.css`: Carousel de información
-- `_utilities.css`: Utilidades y helpers
+1. `_variables.css`: Variables CSS y colores institucionales
+2. `_base.css`: Estilos base y fondo
+3. `_navbar.css`: Estilos del navbar fijo
+4. `_hero.css`: Hero section y buscador
+5. `_program-cards.css`: Tarjetas de programas
+6. `_login.css`: Estilos de login
+7. `_utilities.css`: Utilidades y helpers
 
 ### JavaScript Modular
 
-- **Módulos de Búsqueda**: `FilterEngine.js`, `SortEngine.js`, `CardRenderer.js`, `SearchManager.js`, `ModalSearch.js`
-- **Módulos de UI**: `ModalManager.js`, `FormManager.js`, `filters.js`
-- **Utilidades**: `Logger.js`, `DeadlineManager.js`, `AccessibilityManager.js`, `debounce.js`
-- **Datos**: `programas.js` (fuente única de verdad)
+El proyecto utiliza un patrón IIFE (Immediately Invoked Function Expression) con namespace global `window.MaulePro`:
+
+#### Módulos de Búsqueda (`modules/search/`)
+- **FilterEngine.js**: Motor de filtrado reutilizable
+- **SortEngine.js**: Motor de ordenamiento reutilizable
+- **CardRenderer.js**: Renderizado seguro de tarjetas (sin XSS)
+- **SearchManager.js**: Gestor unificado de búsqueda
+
+#### Módulos de UI (`modules/`)
+- **filters.js**: Filtrado y búsqueda en `index.html`
+- **navbar-spacer.js**: Ajuste dinámico de márgenes según altura del navbar
+- **program-cards-generator.js**: Generación dinámica de tarjetas desde `programas.js`
+- **userway.js**: Integración con widget de accesibilidad
+
+#### Utilidades (`utils/`)
+- **Logger.js**: Sistema de logging con niveles (debug, info, warn, error)
+- **DeadlineManager.js**: Gestión centralizada de deadlines y fechas
+- **AccessibilityManager.js**: Gestión de funcionalidades de accesibilidad
+- **debounce.js**: Utilidades debounce y throttle
+
+#### Datos (`data/`)
+- **programas.js**: Fuente única de verdad para todos los programas
+
+### Flujo de Carga de Scripts
+
+Los scripts se cargan en el siguiente orden en `index.html`:
+
+1. **Bootstrap JS** (CDN)
+2. **Utils básicos**: Logger, debounce
+3. **Data y Managers**: programas.js, DeadlineManager, AccessibilityManager
+4. **Search Modules**: CardRenderer (para generación de tarjetas)
+5. **Script principal**: script.js
+6. **Módulos**: navbar-spacer, program-cards-generator, filters (defer), userway (defer)
+
+## 📊 Generación Dinámica de Tarjetas
+
+El módulo `program-cards-generator.js` permite generar tarjetas dinámicamente desde `programas.js`, eliminando la necesidad de mantener HTML hardcodeado.
+
+**Características:**
+- Genera tarjetas automáticamente desde `programas.js`
+- Usa `CardRenderer` para renderizado seguro
+- Integra automáticamente con `DeadlineManager`
+- Actualiza contadores automáticamente
+- No reemplaza tarjetas existentes (fallback seguro)
+
+**Uso:**
+El módulo se inicializa automáticamente. Si el contenedor `#grid` está vacío, genera las tarjetas. Si ya hay tarjetas, no las reemplaza.
 
 ## ⚠️ Limitaciones Actuales
 
@@ -268,10 +282,39 @@ Este es un **prototipo de frontend**. Las siguientes funcionalidades están simu
 - ✅ Sistema de procesamiento de postulaciones
 - ✅ Integración con sistemas gubernamentales
 
-## 📚 Documentación Adicional
+## 🔍 Desarrollo
 
-- `docs/README.md`: Documentación técnica detallada
-- `docs/ESTRUCTURA.md`: Estructura detallada del proyecto
+### Agregar un Nuevo Programa
+
+1. Edita `assets/js/data/programas.js`
+2. Agrega un nuevo objeto al array `programas` con la estructura:
+   ```javascript
+   {
+       name: "Nombre del Programa",
+       benef: "municipios|org|personas|servicios|empresas",
+       estado: "open|soon|closed",
+       close: "2025-12-31", // Fecha ISO o vacío
+       location: "Regional",
+       beneficiarios: "Descripción de beneficiarios",
+       fechas: "Rango de fechas",
+       montos: "Información de montos",
+       link: "pages/programas/nombre-programa.html",
+       hasDeadline: true,
+       deadlineUrgent: false
+   }
+   ```
+3. Si usas generación dinámica, la tarjeta aparecerá automáticamente
+4. Si usas HTML hardcodeado, agrega la tarjeta manualmente en `index.html`
+
+### Modificar Estilos
+
+Los estilos están organizados en módulos CSS. Edita el módulo correspondiente en `assets/css/modules/`.
+
+### Agregar Nueva Funcionalidad
+
+1. Crea un nuevo módulo en `assets/js/modules/`
+2. Usa el patrón IIFE con namespace `window.MaulePro`
+3. Agrega el script en `index.html` en el orden apropiado
 
 ## 🤝 Contribución
 
@@ -281,6 +324,8 @@ Este es un proyecto de prototipo. Para contribuciones:
 2. Sigue las convenciones de código existentes
 3. Mantén el código limpio y comentado
 4. Prueba en múltiples navegadores
+5. Usa el patrón IIFE para módulos
+6. Documenta funciones públicas con JSDoc
 
 ## 📄 Licencia
 
@@ -301,4 +346,4 @@ Desarrollado para el Gobierno Regional del Maule.
 
 **Nota**: Este es un prototipo de frontend que requiere integración con sistemas backend y Clave Única para ser completamente funcional en producción.
 
-**Última actualización**: Noviembre 2025
+**Última actualización**: 18 Noviembre 2025
